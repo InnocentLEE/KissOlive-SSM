@@ -1,0 +1,116 @@
+/*口红管理列表页面css*/
+a#link {
+    height: 100%;
+}
+.card{
+	border: 1px solid #ccc;
+	height:100%;
+}
+.operate {
+    margin-bottom: 25px;
+}
+img#card-series {
+    width: 100%;
+    height: auto;
+    margin-bottom: 25px;
+}
+.rcontent-list {
+    /* grid-template-columns: repeat(4, minmax(220px,1fr)); */
+    grid-template-rows: repeat(auto-fit, 340px);
+    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+}
+figcaption.lip_text {
+    padding: 0 20;
+    height: 130px;
+    margin-bottom: 15px;
+}
+/*口红添加页面css**/
+img#previewLgImg {
+    margin: 20;
+}
+a.btn.btn-opera {
+	background:#000;
+	color:#fff;
+    margin-right: 10;
+    font-weight: bold;
+}
+.input-group {
+	margin-bottom: 20px;
+	width:790px;
+}
+
+select#sid,#hid,#bid {
+	height: 30px;
+}
+
+input#myfile {
+	margin: 0 auto;
+	float: right;
+	width: 100%;
+	/* margin-bottom: 15px; */
+	padding: 2px 0px 0px 0px;
+	height: 30px;
+}
+input#mylgfile {
+    /* margin: 0 auto;
+	float: right;
+	width: 80%;
+	margin-bottom: 15px;
+	padding: 2px 0px 0px 0px;
+	height: 30px; */
+	margin: 0 auto;
+    padding: 2px 0px 0px 0px;
+    height: 30px;
+   /*  margin-bottom: 15px; */
+}
+
+.PIC.input-group {
+	margin-bottom: 20px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	margin-right:0px;
+	width:790px;
+}
+
+.PIC.input-group-addon {
+    border-color: transparent;
+    vertical-align: middle;
+}
+
+img#previewImg {
+	/* margin: 5 20% 15; */
+	margin: 5 0 15 105px
+}
+
+.file-input {
+	/* text-align: center;
+	margin: 20 0; */
+	
+    text-align: center;
+    margin: 10 0;
+    display: grid;
+    grid-template-columns: 120px 425px;
+}
+
+span.piclab {
+	line-height: 30px;
+	float:left
+}
+input.submit {
+    margin: 25 20;
+    width: 80px;
+    height: 30px;
+    background: #000000;
+    color: #fff;
+    font-weight: bold;
+    border-color: #000;
+}
+button#showbtn {
+    width: 100%;
+    float: right;
+    /* margin-bottom: 20; */
+    height: 30px;
+    border-radius: 4px;
+    background: #ccc;
+    grid-column-start: 2;
+}
