@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<title>鼠标悬停显示提示信息窗口</title>
+		<meta charset="utf-8" />
+		<style type="text/css">
+			.contact {
+				width: 100px;
+				height: 15px;
+				margin: 20px 0 0 50px;
+				background-color: #CCCCCC;
+				text-align: center;
+			}
+			
+			.us {
+				display: none;
+				width: 300px;
+				height: 40px;
+				padding: 10px;
+				position: relative;
+				top: 0px;
+				left: 50px;
+				background-color: #0099FF;
+			}
+		</style>
+		<script type="text/javascript" src="../../js/jquery.js"></script>
+		<script>
+			function show(obj, id) {
+				var objDiv = $("#" + id + "");
+				$(objDiv).css("display", "block");
+				$(objDiv).css("left", event.clientX);
+				$(objDiv).css("top", event.clientY + 10);
+			}
+
+			function hide(obj, id) {
+				var objDiv = $("#" + id + "");
+				$(objDiv).css("display", "none");
+			}
+		</script>
+
+	</head>
+
+	<body>
+		<div id="mydiv1" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+			提示1效果
+		</div>
+		<div id="mydiv2" style="position:absolute;display:none;border:1px solid silver;background:silver;">
+			提示2效果
+		</div>
+
+		<a id="t1" onMouseOver="javascript:show(this,'mydiv1');" onMouseOut="hide(this,'mydiv1')">鼠标放上去1</a>
+		<br />
+		<a id="t2" onMouseOver="javascript:show(this,'mydiv2');" onMouseOut="hide(this,'mydiv2')">鼠标放上去2</a>
+	</body>
+
+</html>

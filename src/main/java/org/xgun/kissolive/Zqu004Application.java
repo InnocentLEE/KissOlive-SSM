@@ -22,4 +22,9 @@ public class Zqu004Application {
 	String index(){
 		return "pages/OnlineConsult.html";
 	}
+
+	@RequestMapping("/home")
+	String home(){
+		return "page/user/user_home.html";
+	}
 }

@@ -1,0 +1,405 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+	<head>
+
+		<title>Kiss OLive 商品详情</title>
+
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+		<meta http-equiv="description" content="This is my page">
+
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../css/admin/fontawesome-all.css">
+		<link rel="stylesheet" href="../../css/user/home.css">
+		<link rel="stylesheet" href="../../css/user/user_lips.css">
+		<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+
+	</head>
+
+	<body>
+		<!-- start of 头部 -->
+		<div class="header-main-bar">
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="container header">
+					<div class="navbar-header">
+						<ul class="nav navbar-nav navbar-left ">
+							<li id="li_login">
+								<a href="#" class="navbar-brand">登录</a>
+							</li>
+							<li>
+								<a href="#" class="navbar-brand">注册</a>
+							</li>
+
+							<!--<li>
+								<a href="" class="navbar-brand"><img class="img-circle user-head-image" src="../../images/yadianna.png"></img></a>
+							</li>
+							<li>
+								<a href="" class="navbar-brand">星矢</a>
+							</li>
+							<li><a
+								href=""
+								class="navbar-brand">[退出]</a></li>-->
+							<!-- 响应式布局按钮-下拉框 -->
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+								<span class="icon-bar"></span> <span class="icon-bar"></span>
+							</button>
+						</ul>
+					</div>
+					<div class="collapse navbar-collapse" id="navbar-collapse">
+						<ul class="nav navbar-nav navbar-right" style="margin: 0">
+							<li>
+								<a href="user_myshoppingcart.html"><span class="glyphicon glyphicon-shopping-cart">&nbsp;<span>我的购物车</span></span>
+								</a>
+							</li>
+							<li>
+								<a href="user_orderlist.html"><span class="glyphicon glyphicon-list">&nbsp;<span>我的订单</span></span>
+								</a>
+							</li>
+
+						</ul>
+					</div>
+
+				</div>
+			</nav>
+			<div class="main-bar-content">
+				<div class="header-logo row">
+					<div class="col-md-4 col-lg-4"></div>
+					<div class="col-md-4 col-lg-4">
+						<a href="user_home.html"><img src="../../img/kissolive.png" class="icon-olive" /></a>
+					</div>
+					<div class="col-md-4 col-lg-4">
+						<form action="/KissOlive/MainServlet" method="post">
+							<input type="hidden" name="method" value="search" />
+							<div class="nav-search">
+								<div class="input-group">
+									<input type="text" class="form-control" name="search" placeholder="Search for..."> <span class="input-group-btn">
+									<button class="btn btn-default glyphicon glyphicon-search"
+										type="submit"></button>
+								</span>
+								</div>
+								<!-- /input-group -->
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- end of main-bar-content -->
+		</div>
+		<!-- end of 头部 -->
+
+		<!-- start of 内容 -->
+		<div class="container content">
+			<div class="product-pic">
+				<img class="pic" src="../../images/959B06291F454B14A8A663597CC5C077.png" alt="">
+			</div>
+			<div class="product-intro">
+				<h1 class="product-name">CLIO少女之吻丝润唇彩唇蜜</h1>
+				<h2 class="product-disc">丝润质地、丝滑莹润、色泽丰润</h2>
+				<h3 class="product-price" id="gprice"></h3>
+				<div class="product-color row" id="wrap">
+					<label class="pro-label">颜色分类&nbsp;</label>
+					<ul class="color-group">
+						
+									<li class="color-item" id="" value="125.00">
+										<em id="" title="" style="background: #E32B55">&nbsp;<i></i></em>
+										<input type="radio" id="" value="" name="gid" checked>
+										<input type="radio" id="" value="" name="gid" checked>
+									</li>
+									<li class="color-item" id="" value="127.00">
+										<em id="" title="" style="background: #D54D5F">&nbsp;<i></i></em>
+										<input type="radio" id="" value="" name="gid" checked>
+										<input type="radio" id="" value="" name="gid" checked>
+									</li>
+									<li class="color-item" id="" value="119.00">
+										<em id="" title="" style="background: #D6534F">&nbsp;<i></i></em>
+										<input type="radio" id="" value="" name="gid" checked>
+										<input type="radio" id="" value="" name="gid" checked>
+									</li>
+									
+					</ul>
+				</div>
+				<div class="product-num row">
+					<label class="pro-label num">数量&nbsp;</label>
+					<div class="input-group count" style="grid-row-start:1;margin:auto 0;">
+						<input class="inputclass" id="reduce" type=button value="-">
+						<input class="inputclass" id="gnumber" type=text name=amount value="1" disabled>
+						<input class="inputclass" id="plus" type=button value="+">
+					</div>
+				</div>
+				<button type="button" class="btn btn-buy" onclick="valid()">>加入购物袋</button>
+			</div>
+			<div class="product-pram mid">
+				<div class="line"><span class="header">商品详情</span></div>
+				<div class="pram">
+					<div class="content">
+						<div class="title">
+							<h2>PRODUCT PARAMETER</h2>
+							<h3>产品参数</h3>
+						</div>
+						<div class="intro-text">
+							<label class="lip-label" style="grid-column: 1/6;grid-column-start: 2;">产品名称：&nbsp;CLIO少女之吻丝润唇彩唇蜜&nbsp;</label>
+							<label class="lip-label" style="grid-row-start: 2;grid-column-start: 2;">产品品牌：&nbsp;珂莱欧CLIO&nbsp;</label>
+							<label class="lip-label" style="grid-row-start: 3;grid-column-start: 2;">产品功能：&nbsp;滋润、持久、防水、不沾杯、提升气色&nbsp;</label>
+							<label class="lip-label" style="grid-column: 1/6;grid-row-start:4 ;grid-column-start:2;">选购热点：&nbsp;丝润质地、丝滑莹润、色泽丰润&nbsp;</label>
+							<label class="lip-label" style="grid-row-start: 2;grid-column-start: 4;">产地：&nbsp;韩国&nbsp;</label>
+							<label class="lip-label" style="grid-row-start: 3;grid-column-start: 4;">适合肤质：&nbsp;所有肤质&nbsp;</label>
+							<label class="lip-label" style="grid-row-start: 4;grid-column-start: 4;">保质期限：&nbsp;3年&nbsp;</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="product-pic bottom">
+				<img class="morecontent" src="../../images/7778CBB784CA46889BD89F2A1CC8CB90.png">
+			</div>
+		</div>
+		<!-- end of 内容 -->
+
+		<!-- start of 尾部  -->
+		<footer class="contaniner content">
+			<div class="footer-top">
+				<div class="row">
+					<div class="col-md-3">
+						<!-- <span><h6 class="logoname">KISS OLIVE</h6><p>&nbsp;口&nbsp;红&nbsp;热&nbsp;门&nbsp;商&nbsp;城&nbsp;</p></span>
+			           -->
+						<span class="logoname"><img
+					src="../../img/user_home/logo_black.png"></span>
+					</div>
+					<div class="col-md-9">
+						<ul style="display:flex">
+
+							<li class="branditem">
+								<a href="">圣罗兰</a>
+							</li>
+							<li class="branditem">
+								<a href="">圣斗士</a>
+							</li>
+							<li class="branditem">
+								<a href="">罗兰</a>
+							</li>
+							<li class="branditem">
+								<a href="">圣兰</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<div class="footer-bottom-border">
+					<div class="row">
+						<div class="col-md-1"></div>
+						<div class="col-md-3">
+							<span class="title-footer-section">客户服务</span>
+							<div class="nav-footer">
+								<span class="title-footer-section"><a href="#">联系我们</a></span> <span class="title-footer-section wechat"><img
+							class="wechat-img"
+							src="../../img/user_home/wechat.jpg"></span>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<span class="title-footer-section">&nbsp;</span>
+							<div class="nav-footer">
+								<ul class="ul_top">
+									<li class="item">
+										<a href="#">精品店</a>
+									</li>
+									<li class="item">
+										<a href="#">工作机会</a>
+									</li>
+									<li class="item">
+										<a href="#">使用条款</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<span class="title-footer-section1">电子通讯</span>
+							<div class="nav-footer">
+								<span class="title-footer-section font">率先获取最新商品的信息及KISS
+							OLIVE的独家优惠：</a>
+						</span>
+								<div class="input-group title-footer-section">
+									<input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="basic-addon2"> <span class="input-group-addon" id="basic-addon2">@example.com</span>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- end of 尾部 -->
+
+		<!-- Start of 登录 Modal -->
+		<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="h3_titile">LOGIN</h3>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+					</div>
+					<!-- end of modal-header -->
+					<div class="modal-body">
+
+						<form>
+							<input type="text" id="usertel" name="usertel" class="username modal_input" placeholder="登录账号">
+							<br/>
+							<input type="text" id="password" name="password" class="pwd modal_input" placeholder="密码">
+							<div class="div_label">
+								<label class="errorClass" id="passwordError">密码错误！！！</label>
+								<label class="correctClass" id="passwordCorrect"></label>
+							</div>
+						</form>
+						<a href="#" class="link" data-toggle="modal" data-target="#myModal" data-dismiss="modal">
+							忘记密码？
+						</a>
+						<br/>
+						<div class="slider-lock">
+							<div id="slider">
+								<div id="slider_bg"></div>
+								<span id="label">>></span> <span id="labelTip">向右拖动滑块验证</span>
+							</div>
+						</div>
+
+						<button class="register modal_btn" onclick="regis()">
+						    <span>注册</span>
+						  </button>
+						<button class="signin modal_btn" type="submit" id="submit" disabled="true">
+					    <span>登录</span>
+					  </button>
+					</div>
+					<!-- end of modal-body -->
+					<div class="modal-footer">
+
+					</div>
+					<!-- end of modal-footer -->
+				</div>
+				<!-- end of modal-content -->
+			</div>
+			<!-- end of modal-dialog -->
+		</div>
+		<!-- end of modal fade -->
+		<!-- End of Modal -->
+
+		<!-- Start of 忘记密码 Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+						<h3 class="modal-title" id="myModalLabel">忘记密码</h3>
+					</div>
+					<!-- end of modal-header -->
+					<div class="modal-body" style="text-align:left">
+						<div>
+							<h5>请输入你需要找回登录密码的帐户名（即手机号）:</h5>
+							<input type="text" class="username modal_input" id="tel" name="tel" placeholder="登陆账号" />
+							<div class="div_label">
+								<label class="errorClass" id="telError">用户不存在！！！</label>
+								<label class="correctClass" id="telError"></label>
+							</div>
+						</div>
+						<div id="mpanel2"></div>
+					</div>
+					<!-- end of modal-body -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" id="check-btn" name="check-btn" onclick="sentUserpassword();">发送</button>
+					</div>
+					<!-- end of modal-footer -->
+				</div>
+				<!-- end of modal-content -->
+			</div>
+			<!-- end of modal-dialog -->
+		</div>
+		<!-- end of modal fade -->
+		<!-- End of Modal -->
+
+		<script type="text/javascript" src="../../js/jquery.js"></script>
+		<script src="../../js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				document.getElementById("gprice").innerHTML = "选择颜色查看价钱";
+				$("li.color-item").click(
+					function() {
+						$(this).addClass("selected").siblings()
+							.removeClass("selected");
+						//var value = $('#wrap input[name="gid"]:checked').attr("id");
+						document.getElementById("gprice").innerHTML = "￥ " + $(this).attr("value") + "元";
+					})
+			})
+		</script>
+		<script>
+			$(document).ready(function() {
+				//获得文本框对象  
+				var t = $("#gnumber");
+				//初始化数量为1,并失效减  
+				$('#reduce').attr('disabled', true);
+
+				//数量增加操作  
+				$("#plus").click(function() {
+					// 给获取的val加上绝对值，避免出现负数  
+					t.val(Math.abs(parseInt(t.val())) + 1);
+					if(parseInt(t.val()) != 1) {
+						$('#reduce').attr('disabled', false);
+					};
+				})
+				//数量减少操作  
+				$("#reduce").click(function() {
+					t.val(Math.abs(parseInt(t.val())) - 1);
+					if(parseInt(t.val()) == 1) {
+						$('#reduce').attr('disabled', true);
+					};
+				})
+			});
+
+			function valid() {
+				var islogin = $("input[type='hidden']").val();
+				var price = $('#gprice').text();
+
+				var gid = $("li[class='color-item selected']").attr("id"); //获取商品id
+				var gnumber = $('#gnumber').val(); //获取商品当前数量gnmber
+
+				if(islogin == true) {
+					alert("您还没有登录！");
+				} else if(price == "选择颜色查看价钱") {
+					alert("请选择想购买的口红颜色！");
+				} else {
+					$.ajax({
+						url: "/KissOlive/MainServlet", //要请求的servlet
+						data: {
+							method: "ajaxAddCart",
+							gid: gid,
+							gnumber: gnumber
+						}, //给服务器的参数
+						type: "POST",
+						dataType: "json",
+						async: false, //是否异步请求，如果是异步，那么不会等服务器返回，这个函数就向下运行了。
+						cache: false,
+						success: function(result) {
+							if(!result) { //如果校验失败
+								alert("您还没有登录！");
+								return false;
+							} else {
+								alert("添加成功！");
+								return true;
+							}
+						}
+					});
+				}
+			}
+		</script>
+
+	</body>
+
+</html>

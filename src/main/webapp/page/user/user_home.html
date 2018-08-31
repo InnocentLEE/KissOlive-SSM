@@ -1,0 +1,783 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+	<head>
+
+		<title>Kiss OLive 官方商城网站</title>
+
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+		<meta http-equiv="description" content="This is my page">
+
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../css/user/slide-unlock.css">
+		
+		<link rel="stylesheet" href="../../css/user/home.css">
+		<link rel="stylesheet" href="../../css/user/home.css">
+		<link rel="stylesheet" href="../../css/user/floatstyle.css">
+		<link rel="stylesheet" href="../../css/user/sign_login.css"/>
+
+		<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+
+	</head>
+
+	<body style="background-color: #DDDDDD;">
+		
+		<div class="header-main-bar">
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="container header">
+					<div class="navbar-header">
+						<ul class="nav navbar-nav navbar-left ">
+							<li id="li_login">
+								<a href="#" class="navbar-brand">登录</a>
+							</li>
+							<li>
+								<a href="#" class="navbar-brand">注册</a>
+							</li>
+
+							<!--<li>
+								<a href="" class="navbar-brand"><img class="img-circle user-head-image" src="../../images/yadianna.png"></img></a>
+							</li>
+							<li>
+								<a href="" class="navbar-brand">星矢</a>
+							</li>
+							<li><a
+								href=""
+								class="navbar-brand">[退出]</a></li>-->
+							<!-- 响应式布局按钮-下拉框 -->
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+								<span class="icon-bar"></span> <span class="icon-bar"></span>
+							</button>
+						</ul>
+					</div>
+					<div class="collapse navbar-collapse" id="navbar-collapse">
+						<ul class="nav navbar-nav navbar-right" style="margin: 0">
+							<li>
+								<a href="user_myshoppingcart.html"><span class="glyphicon glyphicon-shopping-cart">&nbsp;<span>我的购物车</span></span>
+								</a>
+							</li>
+							<li>
+								<a href="user_orderlist.html"><span class="glyphicon glyphicon-list">&nbsp;<span>我的订单</span></span>
+								</a>
+							</li>
+
+						</ul>
+					</div>
+									
+				</div>
+			</nav>
+			<div class="main-bar-content">
+				<div class="header-logo row">
+					<div class="col-md-4 col-lg-4"></div>
+					<div class="col-md-4 col-lg-4">
+						<a href="user_home.html"><img src="../../img/kissolive.png" class="icon-olive" /></a>
+					</div>
+					<div class="col-md-4 col-lg-4">
+						<form action="/KissOlive/MainServlet" method="post">
+							<input type="hidden" name="method" value="search" />
+							<div class="nav-search">
+								<div class="input-group">
+									<input type="text" class="form-control" name="search" placeholder="Search for..."> <span class="input-group-btn">
+									<button class="btn btn-default glyphicon glyphicon-search"
+										type="submit"></button>
+								</span>
+								</div>
+								<!-- /input-group -->
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="dropdownList">
+				<h4 class="sortname">品牌</h4>
+				<ul class="ul_brandlist">
+					<li class="li_branditem">
+						<a href="#">迪奥</a>
+					</li>
+					<li class="li_branditem">
+						<a href="#">美宝莲纽约</a>
+					</li>
+					<li class="li_branditem">
+						<a href="#">香奈儿</a>
+					</li>
+					<li class="li_branditem">
+						<a href="#">雅诗兰黛</a>
+					</li>
+					<li class="li_branditem">
+						<a href="#">M.A.C魅可</a>
+					</li>
+					<li class="li_branditem">
+						<a href="#">兰蔻</a>
+					</li>
+					<li class="li_branditem">
+						<a href="#">巴黎欧莱雅</a>
+					</li>
+					<li class="li_branditem">
+						<a href="#">YSL圣罗兰</a>
+					</li>
+					<li class="li_branditem">
+						<a href="#">纪梵希</a>
+					</li>
+					<li class="li_branditem">
+						<a href="#">法国娇兰</a>
+					</li>
+					<li class="li_branditem">
+						<a href="#">NARS</a>
+					</li>
+					<li class="li_branditem">
+						<a href="#">植村秀</a>
+					</li>
+					<li class="li_branditem">
+						<a href="#">阿玛尼</a>
+					</li>
+				</ul>
+			</div>
+			<!-- end of main-bar-content -->
+		</div>
+		<div class="container content">
+			<div class="main-olive">
+				<div class="mgrid">
+					<!-- start of 轮播图  -->
+					<div class="row cover">
+						<div class="col col-md-12 col-lg-12">
+							<div id="myCarousel" class="carousel slide">
+								<ol class="carousel-indicators">
+									<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+									<li data-target="#myCarousel" data-slide-to="1"></li>
+									<li data-target="#myCarousel" data-slide-to="2"></li>
+									<li data-target="#myCarousel" data-slide-to="3"></li>
+									<li data-target="#myCarousel" data-slide-to="4"></li>
+								</ol>
+								<div class="carousel-inner">
+									<div class="item active">
+										<img src="../../images/6A0041EAF0384913BE18501126E002E7.jpg" alt="">
+									</div>
+									<div class="item">
+										<img src="../../images/DEF35AAD917F4AD1975A2F113B98820C.jpg" alt="">
+									</div>
+									<div class="item">
+										<img src="../../images/D234F336E6444A6D8E69617566B70CB4.jpg" alt="">
+									</div>
+									<div class="item">
+										<img src="../../images/98A57F64BF4F4ED88D565DAC5F89634A.jpg" alt="">
+									</div>
+									<div class="item">
+										<img src="../../images/6A0041EAF0384913BE18501126E002E7.jpg" alt="">
+									</div>
+								</div>
+								<a href="#myCarousel" data-slide="prev" class="carousel-control left">&lsaquo;</a>
+								<a href="#myCarousel" data-slide="next" class="carousel-control right">&rsaquo;</a>
+							</div>
+						</div>
+					</div>
+					<!-- end of 轮播图  -->
+
+					<!-- start of 信息部分  -->
+					<div style="" class="brand-name-div">
+						<div style="height: 70px;">
+							<div class="inlien-left">
+								<h3 class="text-capitalize" >YSL圣罗兰</h3>
+							</div>
+							<div class="inline-right">
+								<a href="#">更多>></a>
+							</div>
+						</div>
+						<div class="content-list">
+							<ul class="brick-list">
+								<li class="brick-item brick-item-m" data-gid="2181600011" >
+									<div class="figure figure-img">
+										<a class="exposure" href="#detail" onclick="">
+											<img src="../../images/YSL1.jpg"  alt="圣罗兰纯口红"></a>
+									</div>
+									<h3 class="title"> 
+                          				<a href="#detail" onclick="">ROUGE PUR COUTURE</a>                         
+									</h3>
+									<p class="desc"> 唇膏 / 圣罗兰纯口红</p>
+									<p class="price"> <span class="num">1399</span>元
+										<del><span class="num">1699</span>元</del> </p>
+									<p class="rank"></p>
+									<div class="review-wrapper">
+										<a href="#">
+											<span class="review">查看详情</span>
+										</a>
+									</div>
+								</li>
+								<li class="brick-item brick-item-m" data-gid="2181600011" >
+									<div class="figure figure-img">
+										<a class="exposure" href="#detail" onclick="">
+											<img src="../../images/6E43A08923604C1397CBF20FE1225ABC.png"  alt="圣罗兰纯口红"></a>
+									</div>
+									<h3 class="title"> 
+                          				<a href="#detail" onclick="">ROUGE PUR COUTURE</a>                         
+									</h3>
+									<p class="desc"> 唇膏 / 圣罗兰纯口红</p>
+									<p class="price"> <span class="num">1399</span>元
+										<del><span class="num">1699</span>元</del> </p>
+									<p class="rank"></p>
+									<div class="review-wrapper">
+										<a href="#">
+											<span class="review">查看详情</span>
+										</a>
+									</div>
+								</li>
+								<li class="brick-item brick-item-m" data-gid="2181600011" >
+									<div class="figure figure-img">
+										<a class="exposure" href="#detail" onclick="">
+											<img src="../../images/6E43A08923604C1397CBF20FE1225ABC.png"  alt="圣罗兰纯口红"></a>
+									</div>
+									<h3 class="title"> 
+                          				<a href="#detail" onclick="">ROUGE PUR COUTURE</a>                         
+									</h3>
+									<p class="desc"> 唇膏 / 圣罗兰纯口红</p>
+									<p class="price"> <span class="num">1399</span>元
+										<del><span class="num">1699</span>元</del> </p>
+									<p class="rank"></p>
+									<div class="review-wrapper">
+										<a href="#">
+											<span class="review">查看详情</span>
+										</a>
+									</div>
+								</li>
+								<li class="brick-item brick-item-m" data-gid="2181600011" >
+									<div class="figure figure-img">
+										<a class="exposure" href="#detail" onclick="">
+											<img src="../../images/6E43A08923604C1397CBF20FE1225ABC.png"  alt="圣罗兰纯口红"></a>
+									</div>
+									<h3 class="title"> 
+                          				<a href="#detail" onclick="">ROUGE PUR COUTURE</a>                         
+									</h3>
+									<p class="desc"> 唇膏 / 圣罗兰纯口红</p>
+									<p class="price"> <span class="num">1399</span>元
+										<del><span class="num">1699</span>元</del> </p>
+									<p class="rank"></p>
+									<div class="review-wrapper">
+										<a href="#">
+											<span class="review">查看详情</span>
+										</a>
+									</div>
+								</li>
+								<li class="brick-item brick-item-m" data-gid="2181600011" >
+									<div class="figure figure-img">
+										<a class="exposure" href="#detail" onclick="">
+											<img src="../../images/6E43A08923604C1397CBF20FE1225ABC.png"  alt="圣罗兰纯口红"></a>
+									</div>
+									<h3 class="title"> 
+                          				<a href="#detail" onclick="">ROUGE PUR COUTURE</a>                         
+									</h3>
+									<p class="desc"> 唇膏 / 圣罗兰纯口红</p>
+									<p class="price"> <span class="num">1399</span>元
+										<del><span class="num">1699</span>元</del> </p>
+									<p class="rank"></p>
+									<div class="review-wrapper">
+										<a href="#">
+											<span class="review">查看详情</span>
+										</a>
+									</div>
+								</li>
+
+							</ul>
+						</div>
+						<div style="height: 70px;">
+							<div class="inlien-left">
+								<h3 class="text-capitalize" >阿玛尼</h3>
+							</div>
+							<div class="inline-right">
+								<a href="#">更多>></a>
+							</div>
+						</div>
+						<div class="content-list">
+							<ul class="brick-list">
+								<li class="brick-item brick-item-m" data-gid="2181600011" >
+									<div class="figure figure-img">
+										<a class="exposure" href="#detail" onclick="">
+											<img src="../../images/AMANI.png"  alt="臻致丝绒哑光唇釉"></a>
+									</div>
+									<h3 class="title"> 
+                          				<a href="#detail" onclick="">GIORGIO ARMANI LIP MAESTRO</a>                         
+									</h3>
+									<p class="desc">唇釉  / 臻致丝绒哑光唇釉</p>
+									<p class="price"> <span class="num">1399</span>元
+										<del><span class="num">1699</span>元</del> </p>
+									<p class="rank"></p>
+									<div class="review-wrapper">
+										<a href="#">
+											<span class="review">查看详情</span>
+										</a>
+									</div>
+								</li>
+								<li class="brick-item brick-item-m" data-gid="2181600011" >
+									<div class="figure figure-img">
+										<a class="exposure" href="#detail" onclick="">
+											<img src="../../images/A24F36A04024440B960470880694B4F5.png"  alt="臻致丝绒哑光唇釉"></a>
+									</div>
+									<h3 class="title"> 
+                          				<a href="#detail" onclick="">GIORGIO ARMANI LIP MAESTRO</a>                         
+									</h3>
+									<p class="desc">唇釉  / 臻致丝绒哑光唇釉</p>
+									<p class="price"> <span class="num">1399</span>元
+										<del><span class="num">1699</span>元</del> </p>
+									<p class="rank"></p>
+									<div class="review-wrapper">
+										<a href="#">
+											<span class="review">查看详情</span>
+										</a>
+									</div>
+								</li>
+								<li class="brick-item brick-item-m" data-gid="2181600011" >
+									<div class="figure figure-img">
+										<a class="exposure" href="#detail" onclick="">
+											<img src="../../images/43BA9650F414402B8472A33881DEF788.png"  alt="臻致丝绒哑光唇釉"></a>
+									</div>
+									<h3 class="title"> 
+                          				<a href="#detail" onclick="">GIORGIO ARMANI LIP MAESTRO</a>                         
+									</h3>
+									<p class="desc">唇釉  / 臻致丝绒哑光唇釉</p>
+									<p class="price"> <span class="num">1399</span>元
+										<del><span class="num">1699</span>元</del> </p>
+									<p class="rank"></p>
+									<div class="review-wrapper">
+										<a href="#">
+											<span class="review">查看详情</span>
+										</a>
+									</div>
+								</li>
+								<li class="brick-item brick-item-m" data-gid="2181600011" >
+									<div class="figure figure-img">
+										<a class="exposure" href="#detail" onclick="">
+											<img src="../../images/43BA9650F414402B8472A33881DEF788.png"  alt="臻致丝绒哑光唇釉"></a>
+									</div>
+									<h3 class="title"> 
+                          				<a href="#detail" onclick="">GIORGIO ARMANI LIP MAESTRO</a>                         
+									</h3>
+									<p class="desc">唇釉  / 臻致丝绒哑光唇釉</p>
+									<p class="price"> <span class="num">1399</span>元
+										<del><span class="num">1699</span>元</del> </p>
+									<p class="rank"></p>
+									<div class="review-wrapper">
+										<a href="#">
+											<span class="review">查看详情</span>
+										</a>
+									</div>
+								</li>
+								<li class="brick-item brick-item-m" data-gid="2181600011" >
+									<div class="figure figure-img">
+										<a class="exposure" href="#detail" onclick="">
+											<img src="../../images/871795D64731442FA9CAE5993708E5D2.jpg"  alt="臻致丝绒哑光唇釉"></a>
+									</div>
+									<h3 class="title"> 
+                          				<a href="#detail" onclick="">GIORGIO ARMANI LIP MAESTRO</a>                         
+									</h3>
+									<p class="desc">唇釉  / 臻致丝绒哑光唇釉</p>
+									<p class="price"> <span class="num">1399</span>元
+										<del><span class="num">1699</span>元</del> </p>
+									<p class="rank"></p>
+									<div class="review-wrapper">
+										<a href="#">
+											<span class="review">查看详情</span>
+										</a>
+									</div>
+								</li>
+
+							</ul>
+						</div>
+						<div style="height: 70px;">
+							<div class="inlien-left">
+								<h3 class="text-capitalize" >雅诗兰黛</h3>
+							</div>
+							<div class="inline-right">
+								<a href="#">更多>></a>
+							</div>
+						</div>
+						<div class="content-list">
+							<ul class="brick-list">
+								<li class="brick-item brick-item-m" data-gid="2181600011" >
+									<div class="figure figure-img">
+										<a class="exposure" href="#detail" onclick="">
+											<img src="../../images/YASLD.jpg"  alt="Pure Color Love Lipstick"></a>
+									</div>
+									<h3 class="title"> 
+                          				<a href="#detail" onclick="">Pure Color Love Lipstick</a>                         
+									</h3>
+									<p class="desc">恋爱唇膏</p>
+									<p class="price"> <span class="num">1399</span>元
+										<del><span class="num">1699</span>元</del> </p>
+									<p class="rank"></p>
+									<div class="review-wrapper">
+										<a href="#">
+											<span class="review">查看详情</span>
+										</a>
+									</div>
+								</li>
+								<li class="brick-item brick-item-m" data-gid="2181600011" >
+									<div class="figure figure-img">
+										<a class="exposure" href="#detail" onclick="">
+											<img src="../../images/YASLD.jpg"  alt="Pure Color Love Lipstick"></a>
+									</div>
+									<h3 class="title"> 
+                          				<a href="#detail" onclick="">Pure Color Love Lipstick</a>                         
+									</h3>
+									<p class="desc">恋爱唇膏</p>
+									<p class="price"> <span class="num">1399</span>元
+										<del><span class="num">1699</span>元</del> </p>
+									<p class="rank"></p>
+									<div class="review-wrapper">
+										<a href="#">
+											<span class="review">查看详情</span>
+										</a>
+									</div>
+								</li>
+								<li class="brick-item brick-item-m" data-gid="2181600011" >
+									<div class="figure figure-img">
+										<a class="exposure" href="#detail" onclick="">
+											<img src="../../images/YASLD.jpg"  alt="Pure Color Love Lipstick"></a>
+									</div>
+									<h3 class="title"> 
+                          				<a href="#detail" onclick="">Pure Color Love Lipstick</a>                         
+									</h3>
+									<p class="desc">恋爱唇膏</p>
+									<p class="price"> <span class="num">1399</span>元
+										<del><span class="num">1699</span>元</del> </p>
+									<p class="rank"></p>
+									<div class="review-wrapper">
+										<a href="#">
+											<span class="review">查看详情</span>
+										</a>
+									</div>
+								</li>
+								<li class="brick-item brick-item-m" data-gid="2181600011" >
+									<div class="figure figure-img">
+										<a class="exposure" href="#detail" onclick="">
+											<img src="../../images/YASLD.jpg"  alt="Pure Color Love Lipstick"></a>
+									</div>
+									<h3 class="title"> 
+                          				<a href="#detail" onclick="">Pure Color Love Lipstick</a>                         
+									</h3>
+									<p class="desc">恋爱唇膏</p>
+									<p class="price"> <span class="num">1399</span>元
+										<del><span class="num">1699</span>元</del> </p>
+									<p class="rank"></p>
+									<div class="review-wrapper">
+										<a href="#">
+											<span class="review">查看详情</span>
+										</a>
+									</div>
+								</li>
+								<li class="brick-item brick-item-m" data-gid="2181600011" >
+									<div class="figure figure-img">
+										<a class="exposure" href="#detail" onclick="">
+											<img src="../../images/YASLD.jpg"  alt="Pure Color Love Lipstick"></a>
+									</div>
+									<h3 class="title"> 
+                          				<a href="#detail" onclick="">Pure Color Love Lipstick</a>                         
+									</h3>
+									<p class="desc">恋爱唇膏</p>
+									<p class="price"> <span class="num">1399</span>元
+										<del><span class="num">1699</span>元</del> </p>
+									<p class="rank"></p>
+									<div class="review-wrapper">
+										<a href="#">
+											<span class="review">查看详情</span>
+										</a>
+									</div>
+								</li>
+
+							</ul>
+						</div>
+						<div style="height: 70px;">
+							<div class="inlien-left">
+								<h3 class="text-capitalize" >香奈儿</h3>
+							</div>
+							<div class="inline-right">
+								<a href="#">更多>></a>
+							</div>
+						</div>
+						<div class="content-list">
+							<ul class="brick-list">
+								<li class="brick-item brick-item-m" data-gid="2181600011" >
+									<div class="figure figure-img">
+										<a class="exposure" href="#detail" onclick="">
+											<img src="../../images/XNE.jpg"  alt="ROUGE ALLURE"></a>
+									</div>
+									<h3 class="title"> 
+                          				<a href="#detail" onclick="">ROUGE ALLURE</a>                         
+									</h3>
+									<p class="desc">香奈儿炫亮魅力唇膏限量版</p>
+									<p class="price"> <span class="num">1399</span>元
+										<del><span class="num">1699</span>元</del> </p>
+									<p class="rank"></p>
+									<div class="review-wrapper">
+										<a href="#">
+											<span class="review">查看详情</span>
+										</a>
+									</div>
+								</li>
+								<li class="brick-item brick-item-m" data-gid="2181600011" >
+									<div class="figure figure-img">
+										<a class="exposure" href="#detail" onclick="">
+											<img src="../../images/XNE.jpg"  alt="ROUGE ALLURE"></a>
+									</div>
+									<h3 class="title"> 
+                          				<a href="#detail" onclick="">ROUGE ALLURE</a>                         
+									</h3>
+									<p class="desc">香奈儿炫亮魅力唇膏限量版</p>
+									<p class="price"> <span class="num">1399</span>元
+										<del><span class="num">1699</span>元</del> </p>
+									<p class="rank"></p>
+									<div class="review-wrapper">
+										<a href="#">
+											<span class="review">查看详情</span>
+										</a>
+									</div>
+								</li>
+								<li class="brick-item brick-item-m" data-gid="2181600011" >
+									<div class="figure figure-img">
+										<a class="exposure" href="#detail" onclick="">
+											<img src="../../images/XNE.jpg"  alt="ROUGE ALLURE"></a>
+									</div>
+									<h3 class="title"> 
+                          				<a href="#detail" onclick="">ROUGE ALLURE</a>                         
+									</h3>
+									<p class="desc">香奈儿炫亮魅力唇膏限量版</p>
+									<p class="price"> <span class="num">1399</span>元
+										<del><span class="num">1699</span>元</del> </p>
+									<p class="rank"></p>
+									<div class="review-wrapper">
+										<a href="#">
+											<span class="review">查看详情</span>
+										</a>
+									</div>
+								</li>
+								<li class="brick-item brick-item-m" data-gid="2181600011" >
+									<div class="figure figure-img">
+										<a class="exposure" href="#detail" onclick="">
+											<img src="../../images/XNE.jpg"  alt="ROUGE ALLURE"></a>
+									</div>
+									<h3 class="title"> 
+                          				<a href="#detail" onclick="">ROUGE ALLURE</a>                         
+									</h3>
+									<p class="desc">香奈儿炫亮魅力唇膏限量版</p>
+									<p class="price"> <span class="num">1399</span>元
+										<del><span class="num">1699</span>元</del> </p>
+									<p class="rank"></p>
+									<div class="review-wrapper">
+										<a href="#">
+											<span class="review">查看详情</span>
+										</a>
+									</div>
+								</li>
+								<li class="brick-item brick-item-m" data-gid="2181600011" >
+									<div class="figure figure-img">
+										<a class="exposure" href="#detail" onclick="">
+											<img src="../../images/XNE.jpg"  alt="ROUGE ALLURE"></a>
+									</div>
+									<h3 class="title"> 
+                          				<a href="#detail" onclick="">ROUGE ALLURE</a>                         
+									</h3>
+									<p class="desc">香奈儿炫亮魅力唇膏限量版</p>
+									<p class="price"> <span class="num">1399</span>元
+										<del><span class="num">1699</span>元</del> </p>
+									<p class="rank"></p>
+									<div class="review-wrapper">
+										<a href="#">
+											<span class="review">查看详情</span>
+										</a>
+									</div>
+								</li>
+
+							</ul>
+						</div>
+					</div>
+					<div style="height:60px"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- start of 尾部  -->
+		<footer class="contaniner content">
+			<div class="footer-top">
+				<div class="row">
+					<div class="col-md-3">
+						<!-- <span><h6 class="logoname">KISS OLIVE</h6><p>&nbsp;口&nbsp;红&nbsp;热&nbsp;门&nbsp;商&nbsp;城&nbsp;</p></span>
+			           -->
+						<span class="logoname"><img
+					src="../../img/user_home/logo_black.png"></span>
+					</div>
+					<div class="col-md-9">
+						<ul style="display:flex">
+
+							<li class="branditem">
+								<a href="">圣罗兰</a>
+							</li>
+							<li class="branditem">
+								<a href="">圣斗士</a>
+							</li>
+							<li class="branditem">
+								<a href="">罗兰</a>
+							</li>
+							<li class="branditem">
+								<a href="">圣兰</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<div class="footer-bottom-border">
+					<div class="row">
+						<div class="col-md-1"></div>
+						<div class="col-md-3">
+							<span class="title-footer-section">客户服务</span>
+							<div class="nav-footer">
+								<span class="title-footer-section"><a href="#">联系我们</a></span> <span class="title-footer-section wechat"><img
+							class="wechat-img"
+							src="../../img/user_home/wechat.jpg"></span>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<span class="title-footer-section">&nbsp;</span>
+							<div class="nav-footer">
+								<ul class="ul_top">
+									<li class="item">
+										<a href="#">精品店</a>
+									</li>
+									<li class="item">
+										<a href="#">工作机会</a>
+									</li>
+									<li class="item">
+										<a href="#">使用条款</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<span class="title-footer-section1">电子通讯</span>
+							<div class="nav-footer">
+								<span class="title-footer-section font">率先获取最新商品的信息及KISS
+							OLIVE的独家优惠：</a>
+						</span>
+								<div class="input-group title-footer-section">
+									<input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="basic-addon2"> <span class="input-group-addon" id="basic-addon2">@example.com</span>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- end of 尾部 -->
+		
+		<!-- Start of 登录 Modal -->
+		<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="h3_titile">LOGIN</h3>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+					</div>
+					<!-- end of modal-header -->
+					<div class="modal-body">
+
+						<form>
+							<input type="text" id="usertel" name="usertel" class="username modal_input" placeholder="登录账号">
+							<br/>
+							<input type="text" id="password" name="password" class="pwd modal_input" placeholder="密码">
+							<div class="div_label">
+								<label class="errorClass" id="passwordError">密码错误！！！</label>
+								<label class="correctClass" id="passwordCorrect"></label>
+							</div>
+						</form>
+						<a href="#" class="link"  data-toggle="modal" data-target="#myModal" data-dismiss="modal">
+						    忘记密码？
+						 </a>
+						<br/>
+						<div class="slider-lock">
+							<div id="slider">
+								<div id="slider_bg"></div>
+								<span id="label">>></span> <span id="labelTip">向右拖动滑块验证</span>
+							</div>
+						</div>
+
+						<button class="register modal_btn" onclick="regis()">
+						    <span>注册</span>
+						  </button>
+						<button class="signin modal_btn" type="submit" id="submit" disabled="true">
+					    <span>登录</span>
+					  </button>
+					</div>
+					<!-- end of modal-body -->
+					<div class="modal-footer">
+
+					</div>
+					<!-- end of modal-footer -->
+				</div>
+				<!-- end of modal-content -->
+			</div>
+			<!-- end of modal-dialog -->
+		</div>
+		<!-- end of modal fade -->
+		<!-- End of Modal -->
+
+		<!-- Start of 忘记密码 Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+						<h3 class="modal-title" id="myModalLabel">忘记密码</h3>
+					</div>
+					<!-- end of modal-header -->
+					<div class="modal-body" style="text-align:left">
+						<div>
+							<h5>请输入你需要找回登录密码的帐户名（即手机号）:</h5>
+							<input type="text" class="username modal_input" id="tel" name="tel" placeholder="登陆账号"/>
+							<div class="div_label">
+								<label class="errorClass" id="telError">用户不存在！！！</label>
+								<label class="correctClass" id="telError"></label>
+							</div>
+						</div>
+						<div id="mpanel2"></div>
+					</div>
+					<!-- end of modal-body -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" id="check-btn" name="check-btn" onclick="sentUserpassword();">发送</button>
+					</div>
+					<!-- end of modal-footer -->
+				</div>
+				<!-- end of modal-content -->
+			</div>
+			<!-- end of modal-dialog -->
+		</div>
+		<!-- end of modal fade -->
+		<!-- End of Modal -->
+
+		<script type="text/javascript" src="../../js/jquery.js"></script>
+		<script src="../../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../js/slideunlock.js"></script>
+		<script type="text/javascript" src="../../js/login_verify.js"></script>  
+		<script type="text/javascript" src="../../js/valid.js"></script>
+		<script type="text/javascript" src="../../js/login.js"></script>
+		<script>
+			$(".icon-olive").hover(function() {
+				$(".dropdownList").css("opacity", "1");
+			});
+			$(".dropdownList").hover(function() {
+		
+			}, function() {
+				$(".dropdownList").css("opacity", "0");
+			});
+		</script>
+	</body>
+
+</html>

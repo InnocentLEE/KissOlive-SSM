@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/admin/bootstrap.min.css" />
+		<link rel="stylesheet" href="../../css/admin/main.css" />
+		<link rel="stylesheet" href="../../css/admin/fontawesome-all.css" />
+	</head>
+
+	<body>
+		<ol class="breadcrumb head_title">
+			<li>
+				<a href="#"><span>首页</span></a>
+			</li>
+			<li class="active">
+				<span>首页管理</span>
+			</li>
+		</ol>
+		<div class="panel-group" id="accordion">
+			<div class="panel panel-success">
+				<div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+					<h4 class="panel-title">
+						选择展示活动
+					</h4>
+				</div>
+				<div id="collapseTwo" class="panel-collapse collapse in">
+					<div class="panel-body">
+						<table class="table">
+							<thead>
+								<tr>
+									<th><input type="checkbox" /></th>
+									<th>活动名称</th>
+									<th>会员等级</th>
+									<th>开始时间</th>
+									<th>结束时间</th>
+									<th>查看详情</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active">
+									<th><input type="checkbox" /></th>
+									<th>活动1</th>
+									<th><img src="../../img/user/user_prointro/V1.png" /></th>
+									<th>2018-08-10 00:00:00</th>
+									<th>2018-09-10 00:00:00</th>
+									<th><button type="button" class="btn btn-primary"><i class="fas fa-eye"></i>查看详情</button></th>
+								</tr>
+								<tr class="active">
+									<th><input type="checkbox" /></th>
+									<th>活动1</th>
+									<th><img src="../../img/user/user_prointro/V1.png" /></th>
+									<th>2018-08-10 00:00:00</th>
+									<th>2018-09-10 00:00:00</th>
+									<th><button type="button" class="btn btn-primary"><i class="fas fa-eye"></i>查看详情</button></th>
+								</tr>
+								<tr class="active">
+									<th><input type="checkbox" /></th>
+									<th>活动1</th>
+									<th><img src="../../img/user/user_prointro/V1.png" /></th>
+									<th>2018-08-10 00:00:00</th>
+									<th>2018-09-10 00:00:00</th>
+									<th><button type="button" class="btn btn-primary"><i class="fas fa-eye"></i>查看详情</button></th>
+								</tr>
+								<tr class="active">
+									<th><input type="checkbox" /></th>
+									<th>活动1</th>
+									<th><img src="../../img/user/user_prointro/V1.png" /></th>
+									<th>2018-08-10 00:00:00</th>
+									<th>2018-09-10 00:00:00</th>
+									<th><button type="button" class="btn btn-primary"><i class="fas fa-eye"></i>查看详情</button></th>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-info">
+				<div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+					<h4 class="panel-title">
+						产品展示
+					</h4>
+				</div>
+				<div id="collapseThree" class="panel-collapse collapse in">
+					<div class="panel-body">
+						<!--<ul class="nav nav-tabs nav-justified">
+							<li class="active"><a>阿玛尼<a></li>
+							<li>YSL圣罗兰</li>
+							<li>雅诗兰黛</li>
+							<li>香奈儿</li>
+							<li>olive</li>
+						</ul>-->					
+						<ul class="nav nav-tabs nav-justified" id="product">
+							<li class="active"><a href="#">阿玛尼</a></li>
+							<li><a href="#">YSL圣罗兰</a></li>
+							<li><a href="#">雅诗兰黛</a></li>
+							<li><a href="#">香奈儿</a></li>
+							<li><a href="#">olive</a></li>							
+						</ul>
+						<div class="row product-content" id="product-content">
+						    <div class="col-sm-6 col-md-3">
+						        <a class="thumbnail">
+						            <img src="../../images/6E43A08923604C1397CBF20FE1225ABC.png"
+						                 alt="通用的占位符缩略图">
+						        </a>
+						    </div>
+						    <div class="col-sm-6 col-md-3">
+						        <a class="thumbnail">
+						            <img src="../../images/6E43A08923604C1397CBF20FE1225ABC.png"
+						                 alt="通用的占位符缩略图">
+						        </a>
+						    </div>
+						    <div class="col-sm-6 col-md-3">
+						        <a class="thumbnail">
+						            <img src="../../images/6E43A08923604C1397CBF20FE1225ABC.png"
+						                 alt="通用的占位符缩略图">
+						        </a>
+						    </div>
+						    <div class="col-sm-6 col-md-3">
+						        <a class="thumbnail">
+						            <img src="../../images/6E43A08923604C1397CBF20FE1225ABC.png"
+						                 alt="通用的占位符缩略图">
+						        </a>
+						    </div>
+						    <div class="col-sm-6 col-md-3">
+						        <a class="thumbnail">
+						            <img src="../../images/6E43A08923604C1397CBF20FE1225ABC.png"
+						                 alt="通用的占位符缩略图">
+						        </a>
+						    </div>
+						    <div class="col-sm-6 col-md-3">
+						        <a class="thumbnail">
+						            <img src="../../images/6E43A08923604C1397CBF20FE1225ABC.png"
+						                 alt="通用的占位符缩略图">
+						        </a>
+						    </div>
+						</div>
+						<button onclick="test()">确定</button>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../js/jquery.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$("#product li").click(function() {
+					$("#product li").removeClass("active");
+					//alert($("#product li").length);
+					$(this).addClass("active");
+				});
+				$("#product-content a").click(function() {
+					if($(this).hasClass("p_active")){
+						$(this).removeClass("p_active");
+					}else{
+						$(this).addClass("p_active");
+					}					
+				});
+			})
+			function test(){
+				alert($(".p_active").length);
+			}
+		</script>
+	</body>
+
+</html>
