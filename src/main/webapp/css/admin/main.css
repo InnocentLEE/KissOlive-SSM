@@ -27,7 +27,7 @@ table.table.table-striped.table-bordered.table-hover {
     min-height:748px; 
 }
 
-@media (min-width:768px)
+@media (min-width:768px){}
 #page-wrapper {
 	position: inherit;
 	margin:0 0 0 250px;

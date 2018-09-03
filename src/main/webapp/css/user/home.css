@@ -9,7 +9,7 @@
  }
  
  .input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group{
- 		margin-top: -1;
+ 		margin-top: -1px;
  }
  .form-control{
    height:34px;
@@ -17,7 +17,7 @@
  .nav-search{
     width: 65%;
     margin:0 auto;
-    padding: 30 20;
+    padding: 30px 20px;
  }
  .header-logo{
    height:85px;
@@ -129,26 +129,26 @@ a {
     font-size: 22px;
 }
 .panel-body{
-	padding: 0 15;
+	padding: 0 15px;
 }
 .push-good{
 	margin: 9.2% 0 0;
 }
 /*底部样式*/
 span.logoname {
-    padding: 0 0 0 200;
+    padding: 0 0 0 200px;
 }
 ul{
 	flex-wrap: wrap;
     align-content: space-between;
-    margin-top: 10;
+    margin-top: 10px;
 }
 li{
   padding-left:15px;	
   list-style-type:none;	
 }
 .col-md-9 {
-    padding: 0 350 0 50;
+    padding: 0 350px 0 50px;
 }
 footer.contaniner.content {
     /* height: 800px; */
@@ -157,7 +157,7 @@ footer.contaniner.content {
 }
 .footer-top {
     height: 80px;
-    margin-bottom: 20;
+    margin-bottom: 20px;
 }
 .footer-bottom{
 	 height: 250px;
@@ -167,8 +167,8 @@ footer.contaniner.content {
     width:80%;
     border-top-color: #33333326;
     border-top-style: solid;
-    border-top-width: 1;
-    padding-top: 30;
+    border-top-width: 1px;
+    padding-top: 30px;
     font-weight: bold;
 }
 .nav-footer {
@@ -176,7 +176,7 @@ footer.contaniner.content {
     font-weight: normal;
 }
 li.item {
-    padding: 0 0 25 0;
+    padding: 0 0 25px 0;
 }
 ul.ul_top {
     margin-top: 0;
@@ -190,13 +190,13 @@ span.title-footer-section.font {
 }
 img.wechat-img {
     width: 85px;
-    padding-top: 20;
+    padding-top: 20px;
 }
 span.title-footer-section {
-    padding: 0 80 0;
+    padding: 0 80px 0;
 }
 span.title-footer-section.wechat {
-    padding: 0 65;
+    padding: 0 65px;
 }
 .brand-name-div{
 	margin: 0 12px;
