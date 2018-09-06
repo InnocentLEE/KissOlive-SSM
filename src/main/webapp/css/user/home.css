@@ -1,124 +1,124 @@
- /*header部分的css*/
- .row{
+/*header部分的css*/
+.row{
     margin-left:0;
     margin-right:0;
     width: 100%;
     height:auto;
     /* float:left; */
     z-index:-1;
- }
- 
- .input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group{
- 		margin-top: -1px;
- }
- .form-control{
-   height:34px;
- }
- .nav-search{
+}
+
+.input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group{
+    margin-top: -1;
+}
+.form-control{
+    height:34px;
+}
+.nav-search{
     width: 65%;
     margin:0 auto;
-    padding: 30px 20px;
- }
- .header-logo{
-   height:85px;
-   padding-top: 10px;
- }
- .icon-olive{
-     height: 85px;
- 	clear: both;
- 	display: block;
- 	margin: 0 auto;
- }
+    padding: 30 20;
+}
+.header-logo{
+    height:85px;
+    padding-top: 10px;
+}
+.icon-olive{
+    height: 85px;
+    clear: both;
+    display: block;
+    margin: 0 auto;
+}
 .main-bar-content{
-	margin-top: 52px;
-	text-align: center;
+    margin-top: 52px;
+    text-align: center;
 }
 .header{
-	padding-top: 0.2%;
-	height:56px;
+    padding-top: 0.2%;
+    height:56px;
 }
 /*主元素*/
 a {
     color: #333;
 }
 .main-olive{
-	width:100%;
-	padding-bottom:60px;
-	display:block;
-	padding: 0 1.45%;
+    width:100%;
+    padding-bottom:60px;
+    display:block;
+    padding: 0 1.45%;
 }
 .mgrid{
-	 z-index:-1;
+    z-index:-1;
 }
 /*轮播图的css*/
- @media (min-width: 1200px){
-   .container.content {
-    width: 1349.49px;
-    padding: 0;
-    margin: 0 auto; 
- } 
- }
- .main-olive .grid .row .col{
+@media (min-width: 1200px){
+    .container.content {
+        width: 1349.49px;
+        padding: 0;
+        margin: 0 auto;
+    }
+}
+.main-olive .grid .row .col{
     padding: 0 1.45%;
-    	zoom:1;
-	/* display:table; */
-} 
+    zoom:1;
+    /* display:table; */
+}
 .carousel-inner{
-	width:100%;
-	backgroud:pink;
+    width:100%;
+    backgroud:pink;
 }
 .carousel-inner img{
-	margin:0 auto;
-	width:100%;
-	height:542.672px;
-	overflow: hidden;
+    margin:0 auto;
+    width:100%;
+    height:542.672px;
+    overflow: hidden;
     vertical-align: top;
 }
 .carousel-control{
-	font-size:50px;
-	color: #fff;
-} 
+    font-size:50px;
+    color: #fff;
+}
 .carousel{
-	width: 100%;
-	min-height:411px;
-	margin-bottom: 2.9%;
+    width: 100%;
+    min-height:411px;
+    margin-bottom: 2.9%;
 }
 /*产品logo及商品系列部分*/
 .brand1,.brand2{
-	margin:0 auto;
-	 z-index:-1;
-	 zoom:1;
+    margin:0 auto;
+    z-index:-1;
+    zoom:1;
 }
 .brand1:after{
-	content: "."; 
-	clear: both; 
-	display: block; 
-	visibility: hidden;
-	height: 0;   
-} 
+    content: ".";
+    clear: both;
+    display: block;
+    visibility: hidden;
+    height: 0;
+}
 
 .panel{
-	left:0;
-	width:100%;
+    left:0;
+    width:100%;
     display:table;
 }
 .home_good{
-	border-color:#000000;
+    border-color:#000000;
 }
 .home_logo, .home_good{
-	width:100%;
-	/*height:271px;*/
-	height:auto;
+    width:100%;
+    /*height:271px;*/
+    height:auto;
 }
 .push push-brand{
-	height:271px;
+    height:271px;
 }
 .home_series{
-	width:100%;
-	height:581px;
+    width:100%;
+    height:581px;
 }
 .push-good .push-text h4{
-	font-size:15px;
+    font-size:15px;
 }
 .goods_text .push-suptitle {
     font-size: 15px;;
@@ -129,26 +129,26 @@ a {
     font-size: 22px;
 }
 .panel-body{
-	padding: 0 15px;
+    padding: 0 15;
 }
 .push-good{
-	margin: 9.2% 0 0;
+    margin: 9.2% 0 0;
 }
 /*底部样式*/
 span.logoname {
-    padding: 0 0 0 200px;
+    padding: 0 0 0 200;
 }
 ul{
-	flex-wrap: wrap;
+    flex-wrap: wrap;
     align-content: space-between;
-    margin-top: 10px;
+    margin-top: 10;
 }
 li{
-  padding-left:15px;	
-  list-style-type:none;	
+    padding-left:15px;
+    list-style-type:none;
 }
 .col-md-9 {
-    padding: 0 350px 0 50px;
+    padding: 0 350 0 50;
 }
 footer.contaniner.content {
     /* height: 800px; */
@@ -157,18 +157,18 @@ footer.contaniner.content {
 }
 .footer-top {
     height: 80px;
-    margin-bottom: 20px;
+    margin-bottom: 20;
 }
 .footer-bottom{
-	 height: 250px;
+    height: 250px;
 }
 .footer-bottom-border {
-	margin:0 auto;
+    margin:0 auto;
     width:80%;
     border-top-color: #33333326;
     border-top-style: solid;
-    border-top-width: 1px;
-    padding-top: 30px;
+    border-top-width: 1;
+    padding-top: 30;
     font-weight: bold;
 }
 .nav-footer {
@@ -176,13 +176,13 @@ footer.contaniner.content {
     font-weight: normal;
 }
 li.item {
-    padding: 0 0 25px 0;
+    padding: 0 0 25 0;
 }
 ul.ul_top {
     margin-top: 0;
 }
 span.title-footer-section.font {
-	padding:0;
+    padding:0;
     font-size: 13px;
 }
 .input-group.title-footer-section {
@@ -190,34 +190,34 @@ span.title-footer-section.font {
 }
 img.wechat-img {
     width: 85px;
-    padding-top: 20px;
+    padding-top: 20;
 }
 span.title-footer-section {
-    padding: 0 80px 0;
+    padding: 0 80 0;
 }
 span.title-footer-section.wechat {
-    padding: 0 65px;
+    padding: 0 65;
 }
 .brand-name-div{
-	margin: 0 12px;
+    margin: 0 12px;
 }
 
 .navbar-left li{
-	padding: unset;
+    padding: unset;
 }
 .ul_brandlist {
-	list-style: none;
-	display: inline-flex;
-	width: 75%;
-	font-size: 15px;
+    list-style: none;
+    display: inline-flex;
+    width: 75%;
+    font-size: 15px;
 }
 
 .li_branditem {
-	list-style: none;
+    list-style: none;
     line-height: 3;
 }
 
-.dropdownList {
+/*.dropdownList {
 	width: 36%;
     border-top: 1px solid #ccc;
     margin-top: 10px;
@@ -226,35 +226,33 @@ span.title-footer-section.wechat {
     min-height: 200px;
     z-index: 9999;
     position: absolute;
-    left: 32%;
-}
+}*/
 
 h4.sortname {
-	font-weight: 600;
-	margin-left: 50px;
-	margin-top: 31px;
-	display: inline-block;
-	width: -webkit-fit-content;
+    font-weight: 600;
+    margin-left: 50px;
+    margin-top: 31px;
+    width: -webkit-fit-content;
 }
 
 .inlien-left{
-	width:200px;
-	float:left;
+    width:200px;
+    float:left;
 }
 
 .inline-right {
-	width: 52px;
-	float: right;
-	margin-top: 33px;
+    width: 52px;
+    float: right;
+    margin-top: 33px;
 }
 
 .content-list{
-	padding-left: 5px;
-	padding-bottom: 100px;	
+    padding-left: 5px;
+    padding-bottom: 100px;
 }
 
 img.img-circle.user-head-image{
-	height: 34px;
+    height: 34px;
     width: 34px;
     margin-top: -7px;
 }
