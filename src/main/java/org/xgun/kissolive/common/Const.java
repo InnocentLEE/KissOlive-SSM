@@ -5,6 +5,10 @@ package org.xgun.kissolive.common;
  */
 public class Const {
     public static final String CURRENT_USER = "currentUser";
-    public static final String TELPHONE = "telphone";
-    public static final String USERNAME = "username";
+    public static final String VERIFY_CODE = "verifyCode";
+    public interface Role{
+        int ROLE_CUSTOMER = 0; //会员
+        int ROLE_ADMIN = 1;//店员
+        int RELE_SUPER = 2;//店长
+    }
 }

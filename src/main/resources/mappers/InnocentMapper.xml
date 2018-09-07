@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.xgun.kissolive.dao.InnocentMapper" >
+  <select id="countByPhoneNumber" resultType="int" parameterType="string">
+    SELECT COUNT(*)
+    FROM tb_user
+    WHERE telphone = #{phoneNumber,jdbcType=VARCHAR}
+  </select>
+  <insert id="insertUser" parameterType="org.xgun.kissolive.pojo.User">
+    INSERT INTO tb_user (id, username, password,
+      telphone, img_url, score,
+      role)
+    VALUES (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{telphone,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER},
+      #{role,jdbcType=INTEGER})
+  </insert>
+  <select id="selectIdByUser" resultType="int" parameterType="string">
+    SELECT id
+    FROM tb_user
+    WHERE telphone = #{phoneNumber,jdbcType=VARCHAR}
+  </select>
+  <insert id="insertAddress" parameterType="org.xgun.kissolive.pojo.Address" >
+    INSERT INTO tb_address (id, user_id, province,
+    city, district, detail,
+    postcode, consignee, telphone
+    )
+    VALUES (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{province,jdbcType=VARCHAR},
+    #{city,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR},
+    #{postcode,jdbcType=VARCHAR}, #{consignee,jdbcType=VARCHAR}, #{telphone,jdbcType=VARCHAR}
+    )
+  </insert>
+</mapper>
