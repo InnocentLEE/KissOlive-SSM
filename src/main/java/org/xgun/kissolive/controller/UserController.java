@@ -46,15 +46,17 @@ public class UserController {
 
         vcodeMap.put(Const.VERIFY_CODE,vcode);
         vcodeMap.put(Const.PHONE_NUMBER,phoneNumber);
+        session.removeAttribute(Const.VERIFY_CODE);
         session.setAttribute(Const.VERIFY_CODE,vcodeMap);
         Map<String,String> map = (Map<String, String>) session.getAttribute(Const.VERIFY_CODE);
-        System.out.println(map.get(phoneNumber));
+        System.out.println(map.get(Const.VERIFY_CODE));
         return ServerResponse.createBySuccess("验证码发送成功！skr~",vcodeMap);
         // end 去掉短信验证码
         /*String responseCode = MNS.sendSms(phoneNumber,vcode).getCode();
         if(responseCode.equals("OK")){
             vcodeMap.put(Const.VERIFY_CODE,vcode);
             vcodeMap.put(Const.PHONE_NUMBER,phoneNumber);
+            session.removeAttribute(Const.VERIFY_CODE);
             session.setAttribute(Const.VERIFY_CODE,vcodeMap);
             return ServerResponse.createBySuccess("验证码发送成功！skr~",vcodeMap);
         }else {

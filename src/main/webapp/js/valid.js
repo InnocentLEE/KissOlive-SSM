@@ -58,7 +58,36 @@ function checkform(){
     //alert($(usertelError).text+"\n"+$(passwordError).text+"\n"+$(password2Error).text+"\n"+$(detailError).text+"\n"+$(nameError).text+"\n"+$(telError).text+"\n"+$(mobilebtnError).text);
     if(telflag&&passwordflag&&repasswordflag&&detailaddressflag&&nameflag&&telphoneflag&&verifyCodeflag)
     {
-        window.location.href="/KissOlive/servlet/UserServlet";
+        var usertel = $("#usertel").val();
+        var password = $("#password").val();
+        var province = $("#province option:selected").val();
+        var city = $("#city option:selected").val();
+        var district = $("#district option:selected").val();
+        var detail = $("#detail").val();
+        var name = $("#name").val();
+        var tel = $("#tel").val();
+        var verifyCode = $("#verifyCode").val();
+        $.ajax({
+            url:"http://localhost:8080/user/register.do",
+            data:{
+                phone_number:usertel,
+                password:password,
+                address_province:province,
+                address_city:city,
+                address_district:district,
+                address_detail:detail,
+                address_consignee:name,
+                address_telphone:tel,
+                verify_code:verifyCode
+            },
+            type:"POST",
+            dataType:"json",
+            async:false,//是否异步请求，如果是异步，那么不会等服务器返回，这个函数就向下运行了。
+            cache:false,
+            success:function(result) {
+                  alert(result.msg);
+            }
+        });
     }
     else{
         alert('警告，存在信息验证有误，请重新输入！！！');
