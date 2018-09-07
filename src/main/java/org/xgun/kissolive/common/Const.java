@@ -6,6 +6,7 @@ package org.xgun.kissolive.common;
 public class Const {
     public static final String CURRENT_USER = "currentUser";
     public static final String VERIFY_CODE = "verifyCode";
+    public static final String PHONE_NUMBER = "phoneNumber";
     public interface Role{
         int ROLE_CUSTOMER = 0; //会员
         int ROLE_ADMIN = 1;//店员

@@ -27,4 +27,9 @@ public class Zqu004Application {
 	String home(){
 		return "page/user/user_home.html";
 	}
+
+	@RequestMapping("/register")
+	String register(){
+		return "page/user/user_register.html";
+	}
 }

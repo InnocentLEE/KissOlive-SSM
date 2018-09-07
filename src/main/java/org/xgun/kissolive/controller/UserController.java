@@ -43,7 +43,9 @@ public class UserController {
         Map<String,String> vcodeMap = Maps.newHashMap();
         String vcode = MNS.getVerifyCode();
         // begin 去掉短信验证码
-        vcodeMap.put(phoneNumber,vcode);
+
+        vcodeMap.put(Const.VERIFY_CODE,vcode);
+        vcodeMap.put(Const.PHONE_NUMBER,phoneNumber);
         session.setAttribute(Const.VERIFY_CODE,vcodeMap);
         Map<String,String> map = (Map<String, String>) session.getAttribute(Const.VERIFY_CODE);
         System.out.println(map.get(phoneNumber));
@@ -51,7 +53,8 @@ public class UserController {
         // end 去掉短信验证码
         /*String responseCode = MNS.sendSms(phoneNumber,vcode).getCode();
         if(responseCode.equals("OK")){
-            vcodeMap.put(phoneNumber,vcode);
+            vcodeMap.put(Const.VERIFY_CODE,vcode);
+            vcodeMap.put(Const.PHONE_NUMBER,phoneNumber);
             session.setAttribute(Const.VERIFY_CODE,vcodeMap);
             return ServerResponse.createBySuccess("验证码发送成功！skr~",vcodeMap);
         }else {
@@ -94,8 +97,9 @@ public class UserController {
                                    @RequestParam(value = "address_detail")String detail, @RequestParam(value = "address_consignee")String consignee,
                                    @RequestParam(value = "address_telphone")String telphone, @RequestParam(value = "verify_code")String vcode){
         Map<String,String> vcodeMap = (Map<String, String>) session.getAttribute(Const.VERIFY_CODE);
-        boolean b = vcodeMap.get(phoneNumber).equals(vcode);
-        if(!b){
+        boolean b1 = vcodeMap.get(Const.VERIFY_CODE).equals(vcode);
+        boolean b2 = vcodeMap.get(Const.PHONE_NUMBER).equals(phoneNumber);
+        if(!( b1 && b2 )){
             return ServerResponse.createByErrorMessage("验证码错误");
         }
         User user = new User(0,"Olive"+phoneNumber,password,phoneNumber,null,0,Const.Role.ROLE_CUSTOMER);
