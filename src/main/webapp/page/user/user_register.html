@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+
+	<title>Kiss Olive 官方商城 注册页面</title>
+
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="keywords" content="ajax，jQuery，省市联动">
+
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/user/sign_login.css">
+
+	<link rel="stylesheet" href="../../css/validform/style.css">
+	<link rel="stylesheet" href="../../css/validform/demo.css">
+	<link rel="stylesheet" href="../../css/user/register.css">
+	<link rel="stylesheet" href="../../css/user/signup.css">
+	<!--
+<link rel="stylesheet" type="text/css" href="styles.css">
+-->
+
+</head>
+
+<body>
+<div class="container-fluid">
+	<div class="logo_header row">
+		<div class="ko col-xs-12 col-md-12">
+			<img src="../../img/kissolive.png" alt="">
+		</div>
+	</div>
+	<div class="row">
+		<div class="center-block">
+			<div class="panel panel-default sign-panel">
+				<span class="zhuce">&nbsp;&nbsp;&nbsp;注  册</span>
+				<form class="registerform form-horizontal">
+					<div class="sum-group">
+						<div class="form-group">
+							<label for="usertel" class="col-sm-3 control-label">手机号</label>
+							<div class="col-sm-6">
+								<input type="text" class="inputClass form-control inputxt" id="usertel" name="usertel" placeholder="请输入手机号" value="" />
+							</div>
+							<div class="col-sm-12 tip">
+								<label class="errorClass" id="usertelError"></label>
+								<label class="correctClass" id="usertelCorrect"></label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="password" class="col-sm-3 control-label">密码</label>
+							<div class="col-sm-6">
+								<input type="password" value="" id="password" name="password" class="inputClass form-control inputxt" placeholder="6-18位以字母开头，含数字/字母/'_'" />
+							</div>
+							<div class="col-sm-12 tip">
+								<label class="errorClass" id="passwordError"></label>
+								<label class="correctClass" id="passwordCorrect"></label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="password2" class="col-sm-3 control-label">确认密码</label>
+							<div class="col-sm-6">
+								<input type="password" class="inputClass form-control inputxt" placeholder="请重复输入密码" value="" id="password2" name="password2" />
+							</div>
+							<div class="col-sm-12 tip">
+								<label class="errorClass" id="password2Error"></label>
+								<label class="correctClass" id="password2Correct"></label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="address_1" class="col-sm-3 control-label">收货地址</label>
+							<div class="col-sm-6" id="address_1">
+								<select class="prov form-control" id="province" name="province"></select>
+								<select class="city form-control" id="city" name="city" disabled="disabled"></select>
+								<select class="dist form-control" id="district" name="district" disabled="disabled"></select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="detail" class="col-sm-3 control-label">详细地址</label>
+							<div class="col-sm-6">
+								<input type="text" class="inputClass form-control inputxt" id="detail" name="detail" placeholder="请输入详细地址" value="" />
+							</div>
+							<div class="col-sm-12 tip">
+								<label class="errorClass" id="detailError"></label>
+								<label class="correctClass" id="detailCorrect"></label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="name" class="col-sm-3 control-label">收件人</label>
+							<div class="col-sm-6">
+								<input type="text" class="inputClass form-control inputxt" id="name" name="name" placeholder="请输入收件人姓名" value="" />
+							</div>
+							<div class="col-sm-12 tip">
+								<label class="errorClass" id="nameError"></label>
+								<label class="correctClass" id="nameCorrect"></label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="tel" class="col-sm-3 control-label">联系方式</label>
+							<div class="col-sm-6">
+								<input type="text" class="inputClass form-control inputxt" id="tel" name="tel" placeholder="请输入收件人联系方式" value="" />
+							</div>
+							<div class="col-sm-12 tip">
+								<label class="errorClass" id="telError"></label>
+								<label class="correctClass" id="telCorrect"></label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="verifyCode" class="col-sm-3 control-label">短信验证码</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control code" id="verifyCode" name="verifyCode" onkeyup="validateVerifyCode()"/>
+							</div>
+							<div class="col-sm-3 valid">
+								<input type="button" class="btn btn-default obtain generate_code" value="获取验证码" onclick="sentVerifyCode();settime(this);" id="VerifyCodeButton"/>
+
+							</div>
+							<div class="col-sm-3"></div>
+							<div class="col-sm-12  tip">
+								<label class="errorClass" id="verifyCodeError"></label>
+								<label class="correctClass" id="verifyCodeCorrect"></label>
+							</div>
+							<div class="col-sm-12">
+								<div class="control-label focus"><span>请查收手机短信，并填写短信中的验证码（此验证码5分钟内有效）</span></div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12 col-md-12 control-label" style="left:25px">
+								<label><a href="#" class="agreement">请阅读《Kiss Olive 相关协议》</a>
+								</label>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="summit_btn col-md-12" style="text-align: right">
+								<button class="btn btn-default" type="submit" id="submit" onclick="checkform();return false;">同意协议并注册</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.cityselect.js"></script>
+<script type="text/javascript" src="../../js/valid.js"></script>
+
+<script type="text/javascript">
+    //倒计时
+    var countdown = 3;
+
+    function settime(val) {
+        if(countdown == 0) {
+
+            val.removeAttribute("disabled");
+            val.value = "获取验证码";
+            countdown = 3;
+
+            return false;
+        } else {
+            val.setAttribute("disabled", true);
+            val.value = "重新发送(" + countdown + ")";
+            countdown--;
+        }
+        setTimeout(function() {
+            settime(val);
+        }, 1000);
+    }
+</script>
+<script type="text/javascript">
+    $(function() {
+
+        $("#address_1").citySelect({
+            prov: "广东",
+            city: "肇庆",
+            dist: "端州区",
+            nodata: "none"
+        });
+    });
+</script>
+</body>
+
+</html>
