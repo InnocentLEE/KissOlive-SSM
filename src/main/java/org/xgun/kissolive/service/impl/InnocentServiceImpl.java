@@ -2,10 +2,14 @@ package org.xgun.kissolive.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.xgun.kissolive.common.Const;
 import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.dao.InnocentMapper;
 import org.xgun.kissolive.pojo.Brand;
+import org.xgun.kissolive.pojo.Hotspot;
 import org.xgun.kissolive.service.IInnocentService;
+
+import java.util.List;
 
 /**
  * Created by Lee on 2018/9/7.
@@ -17,11 +21,48 @@ public class InnocentServiceImpl implements IInnocentService {
     private InnocentMapper innocentMapper;
 
     @Override
-    public ServerResponse addBrand(Brand brand){
-        boolean result = innocentMapper.insertBrand(brand)>0;
-        if(result)
+    public ServerResponse addBrand(Brand brand) {
+        boolean result = innocentMapper.insertBrand(brand) > 0;
+        if (result)
             return ServerResponse.createBySuccessMessage("添加品牌成功");
         else
             return ServerResponse.createByErrorMessage("添加品牌失败");
     }
+
+    @Override
+    public ServerResponse getBrandList() {
+        List<Brand> list = innocentMapper.selectBrand();
+        return ServerResponse.createBySuccess("查询成功", list);
+    }
+
+    @Override
+    public ServerResponse getBrandPutOn() {
+        List<Brand> list = innocentMapper.selectBrandByStatus(Const.BRAND_PUT_ON_STATUS);
+        return ServerResponse.createBySuccess("查询成功", list);
+    }
+
+    @Override
+    public ServerResponse changeBrandPutOnStatus(Brand brand) {
+        boolean result = innocentMapper.updateBrandStatusById(brand) > 0;
+        if (result)
+            return ServerResponse.createBySuccessMessage("修改成功");
+        else
+            return ServerResponse.createByErrorMessage("修改失败");
+    }
+
+    @Override
+    public ServerResponse addHotspot(Hotspot hotspot) {
+        boolean isExist = innocentMapper.countHotspotByDescribe(hotspot.getDescribe())>0;
+        if(isExist)
+            return ServerResponse.createByErrorMessage("添加选购热点失败，该选购热点已存在");
+        innocentMapper.insertHotspot(hotspot);
+        Integer id = hotspot.getId();
+        if (id != null) {
+            hotspot = innocentMapper.selectHotspotById(id);
+            return ServerResponse.createBySuccess("添加选购热点成功", hotspot);
+        } else {
+            return ServerResponse.createByErrorMessage("添加选购热点失败");
+        }
+    }
+
 }

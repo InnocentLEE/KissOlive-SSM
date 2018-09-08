@@ -35,4 +35,35 @@
     VALUES (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR},
       #{status,jdbcType=INTEGER})
   </insert>
+  <select id="selectBrand" resultType="org.xgun.kissolive.pojo.Brand">
+    SELECT id,`name`,img_url AS imgUrl,status
+    FROM tb_brand
+  </select>
+  <select id="selectBrandByStatus" resultType="org.xgun.kissolive.pojo.Brand" parameterType="int">
+    SELECT id,`name`,img_url AS imgUrl
+    FROM tb_brand
+    WHERE status = #{status,jdbcType=INTEGER}
+  </select>
+  <update id="updateBrandStatusById" parameterType="org.xgun.kissolive.pojo.Brand">
+    UPDATE tb_brand
+    SET status = #{status,jdbcType=INTEGER}
+    WHERE id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="countHotspotByDescribe" resultType="int" parameterType="string">
+    SELECT COUNT(1)
+    FROM tb_hotspot
+    WHERE `describe` = #{describe,jdbcType=VARCHAR}
+  </select>
+  <insert id="insertHotspot" parameterType="org.xgun.kissolive.pojo.Hotspot">
+    INSERT INTO tb_hotspot (`describe`)
+    VALUES (#{hotspot.describe,jdbcType=VARCHAR})
+    <selectKey resultType="Integer" order="AFTER" keyProperty="hotspot.id">
+      SELECT LAST_INSERT_ID() AS `id`
+    </selectKey>
+  </insert>
+  <select id="selectHotspotById" resultType="org.xgun.kissolive.pojo.Hotspot" parameterType="int">
+    SELECT `id`,`describe`
+    FROM tb_hotspot
+    WHERE id = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>
