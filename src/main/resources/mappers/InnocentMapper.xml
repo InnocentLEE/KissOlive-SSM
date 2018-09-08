@@ -29,4 +29,10 @@
     #{postcode,jdbcType=VARCHAR}, #{consignee,jdbcType=VARCHAR}, #{telphone,jdbcType=VARCHAR}
     )
   </insert>
+  <insert id="insertBrand" parameterType="org.xgun.kissolive.pojo.Brand">
+    INSERT INTO tb_brand (id, `name`, img_url,
+      status)
+    VALUES (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR},
+      #{status,jdbcType=INTEGER})
+  </insert>
 </mapper>

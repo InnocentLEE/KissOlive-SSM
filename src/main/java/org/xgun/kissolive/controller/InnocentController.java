@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.xgun.kissolive.common.ServerResponse;
+import org.xgun.kissolive.pojo.Brand;
 import org.xgun.kissolive.service.IInnocentService;
 import org.xgun.kissolive.utils.FTPSSMLoad;
 
@@ -30,9 +31,8 @@ public class InnocentController {
     public ServerResponse addBrand(HttpSession session, HttpServletRequest request,
                                    @RequestParam("logo_img") MultipartFile brandLogo,
                                    @RequestParam("brand_name") String brandName){
-        Map map = FTPSSMLoad.upload(brandLogo,request,"/video/");
-        System.out.println(map.get("http_url"));
-        System.out.println(brandName);
-        return ServerResponse.createBySuccess(map);
+        Map map = FTPSSMLoad.upload(brandLogo,request,"/kissolive/");
+        Brand brand = new Brand(0,brandName,map.get("http_url").toString(),1);
+        return iInnocentService.addBrand(brand);
     }
 }
