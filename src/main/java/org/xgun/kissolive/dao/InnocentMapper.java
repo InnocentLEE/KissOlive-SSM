@@ -2,10 +2,7 @@ package org.xgun.kissolive.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.xgun.kissolive.pojo.Address;
-import org.xgun.kissolive.pojo.Brand;
-import org.xgun.kissolive.pojo.Hotspot;
-import org.xgun.kissolive.pojo.User;
+import org.xgun.kissolive.pojo.*;
 
 import java.util.List;
 
@@ -49,4 +46,13 @@ public interface InnocentMapper {
 
     // 获取全部选购热点
     List<Hotspot> selectHotspot();
+
+    // 查找功能是否存在
+    int countFunctionByDescribe(String describe);
+
+    // 插入一条功能记录
+    void insertFunction(@Param("function")Function function);
+
+    // 根据id获取功能
+    Function selectFunctionById(Integer id);
 }

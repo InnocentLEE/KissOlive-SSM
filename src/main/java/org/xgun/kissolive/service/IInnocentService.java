@@ -2,6 +2,7 @@ package org.xgun.kissolive.service;
 
 import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.pojo.Brand;
+import org.xgun.kissolive.pojo.Function;
 import org.xgun.kissolive.pojo.Hotspot;
 
 
@@ -21,6 +22,8 @@ public interface IInnocentService {
     ServerResponse addHotspot(Hotspot hotspot);
 
     ServerResponse getHotspotList();
+
+    ServerResponse addFunction(Function function);
 
 
 }

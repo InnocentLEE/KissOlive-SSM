@@ -54,6 +54,11 @@
     FROM tb_hotspot
     WHERE `describe` = #{describe,jdbcType=VARCHAR}
   </select>
+  <select id="countFunctionByDescribe" resultType="int" parameterType="string">
+    SELECT COUNT(1)
+    FROM tb_function
+    WHERE `describe` = #{describe,jdbcType=VARCHAR}
+  </select>
   <insert id="insertHotspot" parameterType="org.xgun.kissolive.pojo.Hotspot">
     INSERT INTO tb_hotspot (`describe`)
     VALUES (#{hotspot.describe,jdbcType=VARCHAR})
@@ -61,9 +66,21 @@
       SELECT LAST_INSERT_ID() AS `id`
     </selectKey>
   </insert>
+  <insert id="insertFunction" parameterType="org.xgun.kissolive.pojo.Function">
+    INSERT INTO tb_function(`describe`)
+    VALUES (#{function.describe,jdbcType=VARCHAR})
+    <selectKey resultType="Integer" order="AFTER" keyProperty="function.id">
+      SELECT LAST_INSERT_ID() AS `id`
+    </selectKey>
+  </insert>
   <select id="selectHotspotById" resultType="org.xgun.kissolive.pojo.Hotspot" parameterType="int">
     SELECT `id`,`describe`
     FROM tb_hotspot
+    WHERE id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectFunctionById" resultType="org.xgun.kissolive.pojo.Function" parameterType="int">
+    SELECT `id`,`describe`
+    FROM tb_function
     WHERE id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectHotspot" resultType="org.xgun.kissolive.pojo.Hotspot">

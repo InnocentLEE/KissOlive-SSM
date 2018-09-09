@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.xgun.kissolive.common.Const;
 import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.pojo.Brand;
+import org.xgun.kissolive.pojo.Function;
 import org.xgun.kissolive.pojo.Hotspot;
 import org.xgun.kissolive.service.IInnocentService;
 import org.xgun.kissolive.utils.FTPSSMLoad;
@@ -110,5 +111,18 @@ public class InnocentController {
     public ServerResponse getHotspotList(){
         return iInnocentService.getHotspotList();
     }
-    
+
+    /**
+     * 添加功能
+     * @param session
+     * @param describe
+     * @return
+     */
+    @RequestMapping(value="/production/add_function.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse addFunction(HttpSession session,@RequestParam("function_describe") String describe){
+        // TODO: 2018/9/9  校验管理员身份
+        Function function = new Function(Const.ID_INIT, describe);
+        return iInnocentService.addFunction(function);
+    }
 }

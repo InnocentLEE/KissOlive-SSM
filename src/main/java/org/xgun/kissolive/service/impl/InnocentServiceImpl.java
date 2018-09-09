@@ -7,6 +7,7 @@ import org.xgun.kissolive.common.Const;
 import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.dao.InnocentMapper;
 import org.xgun.kissolive.pojo.Brand;
+import org.xgun.kissolive.pojo.Function;
 import org.xgun.kissolive.pojo.Hotspot;
 import org.xgun.kissolive.service.IInnocentService;
 
@@ -72,4 +73,18 @@ public class InnocentServiceImpl implements IInnocentService {
         return ServerResponse.createBySuccess("获取选购热点成功",list);
     }
 
+    @Override
+    public ServerResponse addFunction(Function function) {
+        boolean isExist = innocentMapper.countFunctionByDescribe(function.getDescribe())>0;
+        if(isExist)
+            return ServerResponse.createByErrorMessage("添加功能失败，该功能已存在");
+        innocentMapper.insertFunction(function);
+        Integer id = function.getId();
+        if(id != null){
+            function = innocentMapper.selectFunctionById(id);
+            return ServerResponse.createBySuccess("添加功能成功",function);
+        }else {
+            return ServerResponse.createByErrorMessage("添加功能失败");
+        }
+    }
 }
