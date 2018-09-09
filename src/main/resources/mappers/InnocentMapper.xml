@@ -66,4 +66,8 @@
     FROM tb_hotspot
     WHERE id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectHotspot" resultType="org.xgun.kissolive.pojo.Hotspot">
+    SELECT `id`,`describe`
+    FROM tb_hotspot
+  </select>
 </mapper>

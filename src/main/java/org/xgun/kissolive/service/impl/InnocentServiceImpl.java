@@ -1,5 +1,6 @@
 package org.xgun.kissolive.service.impl;
 
+import ch.qos.logback.core.joran.event.SaxEventRecorder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xgun.kissolive.common.Const;
@@ -63,6 +64,12 @@ public class InnocentServiceImpl implements IInnocentService {
         } else {
             return ServerResponse.createByErrorMessage("添加选购热点失败");
         }
+    }
+
+    @Override
+    public ServerResponse getHotspotList(){
+        List<Hotspot> list = innocentMapper.selectHotspot();
+        return ServerResponse.createBySuccess("获取选购热点成功",list);
     }
 
 }

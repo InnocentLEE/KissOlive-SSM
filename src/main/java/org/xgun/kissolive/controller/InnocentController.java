@@ -100,4 +100,15 @@ public class InnocentController {
         Hotspot hotspot = new Hotspot(Const.ID_INIT,describe);
         return iInnocentService.addHotspot(hotspot);
     }
+
+    /**
+     * 获取全部选购热点
+     * @return
+     */
+    @RequestMapping(value="/production/get_hotspot_list.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse getHotspotList(){
+        return iInnocentService.getHotspotList();
+    }
+    
 }

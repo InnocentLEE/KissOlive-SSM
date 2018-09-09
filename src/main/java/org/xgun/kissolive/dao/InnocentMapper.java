@@ -46,4 +46,7 @@ public interface InnocentMapper {
 
     // 根据id获取选购热点
     Hotspot selectHotspotById(Integer id);
+
+    // 获取全部选购热点
+    List<Hotspot> selectHotspot();
 }

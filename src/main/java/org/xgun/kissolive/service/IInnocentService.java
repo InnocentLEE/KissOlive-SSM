@@ -20,5 +20,7 @@ public interface IInnocentService {
 
     ServerResponse addHotspot(Hotspot hotspot);
 
+    ServerResponse getHotspotList();
+
 
 }
