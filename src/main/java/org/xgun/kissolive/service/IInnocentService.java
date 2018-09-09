@@ -25,5 +25,6 @@ public interface IInnocentService {
 
     ServerResponse addFunction(Function function);
 
+    ServerResponse getFunctionList();
 
 }

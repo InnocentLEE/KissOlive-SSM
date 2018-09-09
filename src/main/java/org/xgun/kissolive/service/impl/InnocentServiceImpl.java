@@ -87,4 +87,10 @@ public class InnocentServiceImpl implements IInnocentService {
             return ServerResponse.createByErrorMessage("添加功能失败");
         }
     }
+
+    @Override
+    public ServerResponse getFunctionList(){
+        List<Function> list = innocentMapper.selectFunction();
+        return ServerResponse.createBySuccess("获取功能成功",list);
+    }
 }

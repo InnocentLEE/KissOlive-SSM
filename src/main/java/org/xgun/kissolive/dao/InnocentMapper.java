@@ -55,4 +55,7 @@ public interface InnocentMapper {
 
     // 根据id获取功能
     Function selectFunctionById(Integer id);
+
+    // 获取全部功能
+    List<Function> selectFunction();
 }

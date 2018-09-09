@@ -87,4 +87,8 @@
     SELECT `id`,`describe`
     FROM tb_hotspot
   </select>
+  <select id="selectFunction" resultType="org.xgun.kissolive.pojo.Function">
+    SELECT `id`,`describe`
+    FROM tb_function
+  </select>
 </mapper>

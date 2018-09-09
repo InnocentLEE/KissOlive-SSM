@@ -125,4 +125,14 @@ public class InnocentController {
         Function function = new Function(Const.ID_INIT, describe);
         return iInnocentService.addFunction(function);
     }
+
+    /**
+     * 获取全部功能
+     * @return
+     */
+    @RequestMapping(value="/production/get_function_list.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse getFunctionList(){
+        return iInnocentService.getFunctionList();
+    }
 }
