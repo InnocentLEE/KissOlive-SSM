@@ -16,6 +16,7 @@ import org.xgun.kissolive.utils.FTPSSMLoad;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -41,7 +42,7 @@ public class InnocentController {
                                    @RequestParam("logo_img") MultipartFile brandLogo,
                                    @RequestParam("brand_name") String brandName){
         // TODO: 2018/9/8 校验身份
-        Map map = FTPSSMLoad.upload(brandLogo,request,"/kissolive/");
+        Map map = FTPSSMLoad.upload(brandLogo,request,Const.FILE_SAVE_PATH);
         Brand brand = new Brand(Const.ID_INIT,brandName,map.get("http_url").toString(), Const.BRAND_PUT_ON_STATUS);
         return iInnocentService.addBrand(brand);
     }
@@ -204,5 +205,20 @@ public class InnocentController {
     @ResponseBody
     public ServerResponse getSkinList(){
         return iInnocentService.getSkinList();
+    }
+
+    /**
+     * 富文本上传图片接口
+     * @param request
+     * @param file
+     * @return
+     */
+    @RequestMapping(value="/production/upload_image.do",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,String> uploadImage(HttpServletRequest request, @RequestParam("img") MultipartFile file){
+        Map map = FTPSSMLoad.upload(file,request,Const.FILE_SAVE_PATH);
+        Map<String,String> result = new HashMap<>();
+        result.put("url",map.get("http_url").toString());
+        return result;
     }
 }

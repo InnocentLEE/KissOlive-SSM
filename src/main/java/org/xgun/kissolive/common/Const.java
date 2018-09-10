@@ -15,6 +15,8 @@ public class Const {
 
     public static final Integer BRAND_PUT_ON_STATUS = 1;//品牌上架状态值
     public static final Integer ID_INIT = 0;//id默认值为0
+
+    public static final String FILE_SAVE_PATH = "/kissolive/";//文件上传目录路径
     public interface Role{
         int ROLE_CUSTOMER = 0; //会员
         int ROLE_ADMIN = 1;//店员
