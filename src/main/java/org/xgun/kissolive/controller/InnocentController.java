@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.xgun.kissolive.common.Const;
 import org.xgun.kissolive.common.ServerResponse;
-import org.xgun.kissolive.pojo.Brand;
-import org.xgun.kissolive.pojo.Function;
-import org.xgun.kissolive.pojo.Hotspot;
-import org.xgun.kissolive.pojo.Origin;
+import org.xgun.kissolive.pojo.*;
 import org.xgun.kissolive.service.IInnocentService;
 import org.xgun.kissolive.utils.FTPSSMLoad;
 
@@ -159,5 +156,19 @@ public class InnocentController {
     @ResponseBody
     public ServerResponse getOriginList(){
         return iInnocentService.getOriginList();
+    }
+
+    /**
+     * 添加上市时间
+     * @param session
+     * @param describe
+     * @return
+     */
+    @RequestMapping(value="/production/add_market_time.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse addMarketTime(HttpSession session,@RequestParam("market_time_describe") String describe){
+        // TODO: 2018/9/10  校验管理员身份
+        MarketTime marketTime = new MarketTime(Const.ID_INIT,describe);
+        return iInnocentService.addMarketTime(marketTime);
     }
 }

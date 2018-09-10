@@ -70,4 +70,13 @@ public interface InnocentMapper {
 
     // 获取全部产地
     List<Origin> selectOrigin();
+
+    // 查找上市时间是否存在
+    int countMarketTimeByDescribe(String describe);
+
+    // 插入一条上市时间记录
+    void insertMarketTime(@Param("marketTime")MarketTime marketTime);
+
+    // 根据id获取上市时间
+    MarketTime selectMarketTimeById(Integer id);
 }

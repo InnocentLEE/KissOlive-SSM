@@ -64,6 +64,11 @@
     FROM tb_origin
     WHERE `describe` = #{describe,jdbcType=VARCHAR}
   </select>
+  <select id="countMarketTimeByDescribe" resultType="int" parameterType="string">
+    SELECT COUNT(1)
+    FROM tb_market_time
+    WHERE `describe` = #{describe,jdbcType=VARCHAR}
+  </select>
   <insert id="insertHotspot" parameterType="org.xgun.kissolive.pojo.Hotspot">
     INSERT INTO tb_hotspot (`describe`)
     VALUES (#{hotspot.describe,jdbcType=VARCHAR})
@@ -85,6 +90,13 @@
       SELECT LAST_INSERT_ID() AS `id`
     </selectKey>
   </insert>
+  <insert id="insertMarketTime" parameterType="org.xgun.kissolive.pojo.MarketTime">
+    INSERT INTO tb_market_time(`describe`)
+    VALUES (#{marketTime.describe,jdbcType=VARCHAR})
+    <selectKey resultType="Integer" order="AFTER" keyProperty="marketTime.id">
+      SELECT LAST_INSERT_ID() AS `id`
+    </selectKey>
+  </insert>
   <select id="selectHotspotById" resultType="org.xgun.kissolive.pojo.Hotspot" parameterType="int">
     SELECT `id`,`describe`
     FROM tb_hotspot
@@ -98,6 +110,11 @@
   <select id="selectOriginById" resultType="org.xgun.kissolive.pojo.Origin" parameterType="int">
     SELECT `id`,`describe`
     FROM tb_origin
+    WHERE id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectMarketTimeById" resultType="org.xgun.kissolive.pojo.MarketTime" parameterType="int">
+    SELECT `id`,`describe`
+    FROM tb_market_time
     WHERE id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectHotspot" resultType="org.xgun.kissolive.pojo.Hotspot">

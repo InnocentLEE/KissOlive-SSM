@@ -1,10 +1,7 @@
 package org.xgun.kissolive.service;
 
 import org.xgun.kissolive.common.ServerResponse;
-import org.xgun.kissolive.pojo.Brand;
-import org.xgun.kissolive.pojo.Function;
-import org.xgun.kissolive.pojo.Hotspot;
-import org.xgun.kissolive.pojo.Origin;
+import org.xgun.kissolive.pojo.*;
 
 
 /**
@@ -31,5 +28,7 @@ public interface IInnocentService {
     ServerResponse addOrigin(Origin origin);
 
     ServerResponse getOriginList();
+
+    ServerResponse addMarketTime(MarketTime marketTime);
 
 }

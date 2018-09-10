@@ -8,10 +8,7 @@ import org.springframework.stereotype.Service;
 import org.xgun.kissolive.common.Const;
 import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.dao.InnocentMapper;
-import org.xgun.kissolive.pojo.Brand;
-import org.xgun.kissolive.pojo.Function;
-import org.xgun.kissolive.pojo.Hotspot;
-import org.xgun.kissolive.pojo.Origin;
+import org.xgun.kissolive.pojo.*;
 import org.xgun.kissolive.service.IInnocentService;
 
 import java.util.List;
@@ -116,5 +113,20 @@ public class InnocentServiceImpl implements IInnocentService {
     public ServerResponse getOriginList(){
         List<Origin> list = innocentMapper.selectOrigin();
         return ServerResponse.createBySuccess("获取产地成功",list);
+    }
+
+    @Override
+    public ServerResponse addMarketTime(MarketTime marketTime){
+        boolean isExist = innocentMapper.countMarketTimeByDescribe(marketTime.getDescribe())>0;
+        if(isExist)
+            return ServerResponse.createByErrorMessage("添加上市时间失败，该功能已存在");
+        innocentMapper.insertMarketTime(marketTime);
+        Integer id = marketTime.getId();
+        if(id != null){
+            marketTime = innocentMapper.selectMarketTimeById(id);
+            return ServerResponse.createBySuccess("添加上市时间成功",marketTime);
+        }else {
+            return ServerResponse.createByErrorMessage("添加上市时间失败");
+        }
     }
 }
