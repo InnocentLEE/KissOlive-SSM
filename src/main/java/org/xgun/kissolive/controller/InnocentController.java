@@ -150,4 +150,14 @@ public class InnocentController {
         Origin origin = new Origin(Const.ID_INIT,describe);
         return iInnocentService.addOrigin(origin);
     }
+
+    /**
+     * 获取全部产地
+     * @return
+     */
+    @RequestMapping(value="/production/get_origin_list.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse getOriginList(){
+        return iInnocentService.getOriginList();
+    }
 }

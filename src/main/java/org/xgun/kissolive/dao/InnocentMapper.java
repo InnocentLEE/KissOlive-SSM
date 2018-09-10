@@ -67,4 +67,7 @@ public interface InnocentMapper {
 
     // 根据id获取产地
     Origin selectOriginById(Integer id);
+
+    // 获取全部产地
+    List<Origin> selectOrigin();
 }

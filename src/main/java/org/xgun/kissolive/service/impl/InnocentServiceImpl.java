@@ -1,6 +1,7 @@
 package org.xgun.kissolive.service.impl;
 
 import ch.qos.logback.core.joran.event.SaxEventRecorder;
+import com.sun.org.apache.bcel.internal.generic.PUSH;
 import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -109,5 +110,11 @@ public class InnocentServiceImpl implements IInnocentService {
         }else {
             return ServerResponse.createByErrorMessage("添加产地失败");
         }
+    }
+
+    @Override
+    public ServerResponse getOriginList(){
+        List<Origin> list = innocentMapper.selectOrigin();
+        return ServerResponse.createBySuccess("获取产地成功",list);
     }
 }

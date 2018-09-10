@@ -30,4 +30,6 @@ public interface IInnocentService {
 
     ServerResponse addOrigin(Origin origin);
 
+    ServerResponse getOriginList();
+
 }

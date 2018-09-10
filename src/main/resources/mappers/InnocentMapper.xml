@@ -108,4 +108,8 @@
     SELECT `id`,`describe`
     FROM tb_function
   </select>
+  <select id="selectOrigin" resultType="org.xgun.kissolive.pojo.Origin">
+    SELECT `id`,`describe`
+    FROM tb_origin
+  </select>
 </mapper>
