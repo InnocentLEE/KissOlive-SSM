@@ -196,6 +196,10 @@ public class InnocentController {
         return iInnocentService.addSkin(skin);
     }
 
+    /**
+     * 获取全部适用肤质
+     * @return
+     */
     @RequestMapping(value="/production/get_skin_list.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse getSkinList(){
