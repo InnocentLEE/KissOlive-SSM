@@ -58,4 +58,13 @@ public interface InnocentMapper {
 
     // 获取全部功能
     List<Function> selectFunction();
+
+    // 查找产地是否存在
+    int countOriginByDescribe(String describe);
+
+    // 插入一条产地记录
+    void inserOrigin(@Param("origin")Origin origin);
+
+    // 根据id获取产地
+    Origin selectOriginById(Integer id);
 }

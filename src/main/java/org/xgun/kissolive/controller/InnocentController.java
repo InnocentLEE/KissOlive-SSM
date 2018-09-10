@@ -13,6 +13,7 @@ import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.pojo.Brand;
 import org.xgun.kissolive.pojo.Function;
 import org.xgun.kissolive.pojo.Hotspot;
+import org.xgun.kissolive.pojo.Origin;
 import org.xgun.kissolive.service.IInnocentService;
 import org.xgun.kissolive.utils.FTPSSMLoad;
 
@@ -134,5 +135,19 @@ public class InnocentController {
     @ResponseBody
     public ServerResponse getFunctionList(){
         return iInnocentService.getFunctionList();
+    }
+
+    /**
+     * 添加产地
+     * @param session
+     * @param describe
+     * @return
+     */
+    @RequestMapping(value="/production/add_origin.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse addOrigin(HttpSession session,@RequestParam("origin_describe") String describe){
+        // TODO: 2018/9/10  校验管理员身份
+        Origin origin = new Origin(Const.ID_INIT,describe);
+        return iInnocentService.addOrigin(origin);
     }
 }

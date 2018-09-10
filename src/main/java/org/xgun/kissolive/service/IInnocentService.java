@@ -4,6 +4,7 @@ import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.pojo.Brand;
 import org.xgun.kissolive.pojo.Function;
 import org.xgun.kissolive.pojo.Hotspot;
+import org.xgun.kissolive.pojo.Origin;
 
 
 /**
@@ -26,5 +27,7 @@ public interface IInnocentService {
     ServerResponse addFunction(Function function);
 
     ServerResponse getFunctionList();
+
+    ServerResponse addOrigin(Origin origin);
 
 }

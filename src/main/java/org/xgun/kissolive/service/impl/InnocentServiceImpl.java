@@ -1,6 +1,7 @@
 package org.xgun.kissolive.service.impl;
 
 import ch.qos.logback.core.joran.event.SaxEventRecorder;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xgun.kissolive.common.Const;
@@ -9,6 +10,7 @@ import org.xgun.kissolive.dao.InnocentMapper;
 import org.xgun.kissolive.pojo.Brand;
 import org.xgun.kissolive.pojo.Function;
 import org.xgun.kissolive.pojo.Hotspot;
+import org.xgun.kissolive.pojo.Origin;
 import org.xgun.kissolive.service.IInnocentService;
 
 import java.util.List;
@@ -92,5 +94,20 @@ public class InnocentServiceImpl implements IInnocentService {
     public ServerResponse getFunctionList(){
         List<Function> list = innocentMapper.selectFunction();
         return ServerResponse.createBySuccess("获取功能成功",list);
+    }
+
+    @Override
+    public ServerResponse addOrigin(Origin origin){
+        boolean isExist = innocentMapper.countOriginByDescribe(origin.getDescribe())>0;
+        if(isExist)
+            return ServerResponse.createByErrorMessage("添加产地失败，该功能已存在");
+        innocentMapper.inserOrigin(origin);
+        Integer id = origin.getId();
+        if(id != null){
+            origin = innocentMapper.selectOriginById(id);
+            return ServerResponse.createBySuccess("添加产地成功",origin);
+        }else {
+            return ServerResponse.createByErrorMessage("添加产地失败");
+        }
     }
 }
