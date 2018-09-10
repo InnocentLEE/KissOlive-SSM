@@ -171,4 +171,14 @@ public class InnocentController {
         MarketTime marketTime = new MarketTime(Const.ID_INIT,describe);
         return iInnocentService.addMarketTime(marketTime);
     }
+
+    /**
+     * 获取全部上市时间
+     * @return
+     */
+    @RequestMapping(value="/production/get_market_time_list.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse getMarketTimeList(){
+        return iInnocentService.getMarketTimeList();
+    }
 }

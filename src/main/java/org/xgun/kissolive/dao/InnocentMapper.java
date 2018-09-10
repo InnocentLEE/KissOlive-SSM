@@ -79,4 +79,7 @@ public interface InnocentMapper {
 
     // 根据id获取上市时间
     MarketTime selectMarketTimeById(Integer id);
+
+    // 获取全部上市时间
+    List<MarketTime> selectMarketTime();
 }

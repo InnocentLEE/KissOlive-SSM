@@ -31,4 +31,6 @@ public interface IInnocentService {
 
     ServerResponse addMarketTime(MarketTime marketTime);
 
+    ServerResponse getMarketTimeList();
+
 }

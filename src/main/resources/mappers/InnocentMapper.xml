@@ -129,4 +129,8 @@
     SELECT `id`,`describe`
     FROM tb_origin
   </select>
+  <select id="selectMarketTime" resultType="org.xgun.kissolive.pojo.MarketTime">
+    SELECT `id`,`describe`
+    FROM tb_market_time
+  </select>
 </mapper>

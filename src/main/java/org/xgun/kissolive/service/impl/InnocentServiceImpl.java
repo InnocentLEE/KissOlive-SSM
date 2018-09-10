@@ -129,4 +129,10 @@ public class InnocentServiceImpl implements IInnocentService {
             return ServerResponse.createByErrorMessage("添加上市时间失败");
         }
     }
+
+    @Override
+    public ServerResponse getMarketTimeList(){
+        List<MarketTime> list = innocentMapper.selectMarketTime();
+        return ServerResponse.createBySuccess("获取上市时间成功",list);
+    }
 }
