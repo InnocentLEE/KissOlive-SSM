@@ -181,4 +181,24 @@ public class InnocentController {
     public ServerResponse getMarketTimeList(){
         return iInnocentService.getMarketTimeList();
     }
+
+    /**
+     * 添加适用肤质
+     * @param session
+     * @param describe
+     * @return
+     */
+    @RequestMapping(value="/production/add_skin.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse addSkin(HttpSession session,@RequestParam("skin_describe") String describe){
+        // TODO: 2018/9/10  校验管理员身份
+        Skin skin = new Skin(Const.ID_INIT,describe);
+        return iInnocentService.addSkin(skin);
+    }
+
+    @RequestMapping(value="/production/get_skin_list.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse getSkinList(){
+        return iInnocentService.getSkinList();
+    }
 }

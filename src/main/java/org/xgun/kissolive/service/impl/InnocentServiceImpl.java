@@ -135,4 +135,25 @@ public class InnocentServiceImpl implements IInnocentService {
         List<MarketTime> list = innocentMapper.selectMarketTime();
         return ServerResponse.createBySuccess("获取上市时间成功",list);
     }
+
+    @Override
+    public ServerResponse addSkin(Skin skin){
+        boolean isExist = innocentMapper.countSkinByDescribe(skin.getDescribe())>0;
+        if(isExist)
+            return ServerResponse.createByErrorMessage("添加适用肤质失败，该功能已存在");
+        innocentMapper.insertSkin(skin);
+        Integer id = skin.getId();
+        if(id != null){
+            skin = innocentMapper.selectSkinById(id);
+            return ServerResponse.createBySuccess("添加适用肤质成功",skin);
+        }else {
+            return ServerResponse.createByErrorMessage("添加适用肤质失败");
+        }
+    }
+
+    @Override
+    public ServerResponse getSkinList(){
+        List<Skin> list = innocentMapper.selectSkin();
+        return ServerResponse.createBySuccess("获取适用肤质成功",list);
+    }
 }

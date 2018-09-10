@@ -69,6 +69,11 @@
     FROM tb_market_time
     WHERE `describe` = #{describe,jdbcType=VARCHAR}
   </select>
+  <select id="countSkinByDescribe" resultType="int" parameterType="string">
+    SELECT COUNT(1)
+    FROM tb_skin
+    WHERE `describe` = #{describe,jdbcType=VARCHAR}
+  </select>
   <insert id="insertHotspot" parameterType="org.xgun.kissolive.pojo.Hotspot">
     INSERT INTO tb_hotspot (`describe`)
     VALUES (#{hotspot.describe,jdbcType=VARCHAR})
@@ -97,6 +102,13 @@
       SELECT LAST_INSERT_ID() AS `id`
     </selectKey>
   </insert>
+  <insert id="insertSkin" parameterType="org.xgun.kissolive.pojo.Skin">
+    INSERT INTO tb_skin(`describe`)
+    VALUES (#{skin.describe,jdbcType=VARCHAR})
+    <selectKey resultType="Integer" order="AFTER" keyProperty="skin.id">
+      SELECT LAST_INSERT_ID() AS `id`
+    </selectKey>
+  </insert>
   <select id="selectHotspotById" resultType="org.xgun.kissolive.pojo.Hotspot" parameterType="int">
     SELECT `id`,`describe`
     FROM tb_hotspot
@@ -117,6 +129,11 @@
     FROM tb_market_time
     WHERE id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectSkinById" resultType="org.xgun.kissolive.pojo.Skin" parameterType="int">
+    SELECT `id`,`describe`
+    FROM tb_skin
+    WHERE id = #{id,jdbcType=INTEGER}
+  </select>
   <select id="selectHotspot" resultType="org.xgun.kissolive.pojo.Hotspot">
     SELECT `id`,`describe`
     FROM tb_hotspot
@@ -132,5 +149,9 @@
   <select id="selectMarketTime" resultType="org.xgun.kissolive.pojo.MarketTime">
     SELECT `id`,`describe`
     FROM tb_market_time
+  </select>
+  <select id="selectSkin" resultType="org.xgun.kissolive.pojo.Skin">
+    SELECT `id`,`describe`
+    FROM tb_skin
   </select>
 </mapper>

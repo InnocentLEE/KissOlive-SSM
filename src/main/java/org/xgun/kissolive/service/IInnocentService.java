@@ -33,4 +33,8 @@ public interface IInnocentService {
 
     ServerResponse getMarketTimeList();
 
+    ServerResponse addSkin(Skin skin);
+
+    ServerResponse getSkinList();
+
 }

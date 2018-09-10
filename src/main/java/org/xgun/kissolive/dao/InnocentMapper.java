@@ -82,4 +82,15 @@ public interface InnocentMapper {
 
     // 获取全部上市时间
     List<MarketTime> selectMarketTime();
+
+    // 查找适用肤质是否存在
+    int countSkinByDescribe(String describe);
+
+    // 插入一条适用肤质记录
+    void insertSkin(@Param("skin")Skin skin);
+
+    // 根据id获取适用肤质
+    Skin selectSkinById(Integer id);
+
+    List<Skin> selectSkin();
 }
