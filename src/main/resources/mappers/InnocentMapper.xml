@@ -35,6 +35,11 @@
     VALUES (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR},
       #{status,jdbcType=INTEGER})
   </insert>
+  <select id="selectBrandById" resultType="org.xgun.kissolive.pojo.Brand" parameterType="int">
+    SELECT id,`name`,img_url AS imgUrl,status
+    FROM tb_brand
+    WHERE id = #{id,jdbcType=INTEGER}
+  </select>
   <select id="selectBrand" resultType="org.xgun.kissolive.pojo.Brand">
     SELECT id,`name`,img_url AS imgUrl,status
     FROM tb_brand
@@ -154,4 +159,37 @@
     SELECT `id`,`describe`
     FROM tb_skin
   </select>
+  <insert id="insertProduction" parameterType="org.xgun.kissolive.pojo.Production">
+    INSERT INTO tb_production (brand_id, origin_id,
+    market_time_id, `name`, description,
+    img_url, detail, search,
+    updatetime)
+    VALUES (#{production.brandId,jdbcType=INTEGER}, #{production.originId,jdbcType=INTEGER},
+    #{production.marketTimeId,jdbcType=INTEGER}, #{production.name,jdbcType=VARCHAR}, #{production.description,jdbcType=VARCHAR},
+    #{production.imgUrl,jdbcType=VARCHAR}, #{production.detail,jdbcType=VARCHAR}, #{production.search,jdbcType=VARCHAR},now())
+    <selectKey resultType="Integer" order="AFTER" keyProperty="production.id">
+      SELECT LAST_INSERT_ID() AS `id`
+    </selectKey>
+  </insert>
+  <insert id="inserProductionHotspot" parameterType="list">
+    INSERT INTO tb_production_hotspot(hotspot_id,production_id)
+    VALUES
+    <foreach item="item" collection="list" separator="," open="" close=";" index="">
+      (#{item.hotspotId,jdbcType=INTEGER}, #{item.productionId,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+  <insert id="inserProductionFunction" parameterType="list">
+    INSERT INTO tb_production_function(function_id,production_id)
+    VALUES
+    <foreach item="item" collection="list" separator="," open="" close=";" index="">
+      (#{item.functionId,jdbcType=INTEGER}, #{item.productionId,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+  <insert id="inserProductionSkin" parameterType="list">
+    INSERT INTO tb_production_skin(skin_id,production_id)
+    VALUES
+    <foreach item="item" collection="list" separator="," open="" close=";" index="">
+      (#{item.skinId,jdbcType=INTEGER}, #{item.productionId,jdbcType=INTEGER})
+    </foreach>
+  </insert>
 </mapper>

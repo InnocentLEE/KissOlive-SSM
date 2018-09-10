@@ -26,6 +26,9 @@ public interface InnocentMapper {
     // 插入一条品牌信息记录
     int insertBrand(Brand brand);
 
+    // 根据id获取品牌
+    Brand selectBrandById(Integer id);
+
     // 获取全部品牌
     List<Brand> selectBrand();
 
@@ -92,5 +95,18 @@ public interface InnocentMapper {
     // 根据id获取适用肤质
     Skin selectSkinById(Integer id);
 
+    // 获取全部适用肤质
     List<Skin> selectSkin();
+
+    // 插入一条产品记录
+    void insertProduction(@Param("production")Production production);
+
+    // 插入产品选购热点
+    void inserProductionHotspot(@Param("list")List<ProductionHotspot> list);
+
+    // 插入产品功能
+    void inserProductionFunction(@Param("list")List<ProductionFunction> list);
+
+    // 插入产品适用肤质
+    void inserProductionSkin(@Param("list")List<ProductionSkin> list);
 }

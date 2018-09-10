@@ -8,8 +8,8 @@ public class Const {
     public static final String PHONE_NUMBER = "phoneNumber";//手机
 
     public static final String FTP_SERVER_IP = "119.23.253.135";//ftp服务器ip地址
-    public static final String FTP_USERNAME = "";//ftp服务器用户名
-    public static final String FTP_PASSWORD = "";//ftp服务器密码
+    public static final String FTP_USERNAME = "innocent";//ftp服务器用户名
+    public static final String FTP_PASSWORD = "lyp82nlf";//ftp服务器密码
     public static final String FTP_PREFIX = "ftp://119.23.253.135";//ftp服务器资源访问前缀
     public static final String HTTP_PREFIX = "http://119.23.253.135:9090";//ftp服务器资源访问前缀
 

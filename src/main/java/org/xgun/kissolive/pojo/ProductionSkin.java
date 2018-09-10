@@ -1,16 +1,16 @@
 package org.xgun.kissolive.pojo;
 
-public class ProductionFunctionSkin {
+public class ProductionSkin {
     private Integer skinId;
 
     private Integer productionId;
 
-    public ProductionFunctionSkin(Integer skinId, Integer productionId) {
+    public ProductionSkin(Integer skinId, Integer productionId) {
         this.skinId = skinId;
         this.productionId = productionId;
     }
 
-    public ProductionFunctionSkin() {
+    public ProductionSkin() {
         super();
     }
 

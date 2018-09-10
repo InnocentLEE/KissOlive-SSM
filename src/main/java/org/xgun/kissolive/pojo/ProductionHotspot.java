@@ -1,16 +1,16 @@
 package org.xgun.kissolive.pojo;
 
-public class ProductionFunctionHotspot {
+public class ProductionHotspot {
     private Integer hotspotId;
 
     private Integer productionId;
 
-    public ProductionFunctionHotspot(Integer hotspotId, Integer productionId) {
+    public ProductionHotspot(Integer hotspotId, Integer productionId) {
         this.hotspotId = hotspotId;
         this.productionId = productionId;
     }
 
-    public ProductionFunctionHotspot() {
+    public ProductionHotspot() {
         super();
     }
 

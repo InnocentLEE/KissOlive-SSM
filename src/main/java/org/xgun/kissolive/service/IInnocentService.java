@@ -3,6 +3,8 @@ package org.xgun.kissolive.service;
 import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.pojo.*;
 
+import java.util.List;
+
 
 /**
  * Created by Lee on 2018/9/7.
@@ -36,5 +38,7 @@ public interface IInnocentService {
     ServerResponse addSkin(Skin skin);
 
     ServerResponse getSkinList();
+
+    ServerResponse addProduction(Production production,List<ProductionHotspot> productionHotspots,List<ProductionFunction> productionFunctions,List<ProductionSkin> productionSkins);
 
 }
