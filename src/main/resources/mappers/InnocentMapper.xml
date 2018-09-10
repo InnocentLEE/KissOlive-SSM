@@ -171,6 +171,19 @@
       SELECT LAST_INSERT_ID() AS `id`
     </selectKey>
   </insert>
+  <insert id="insertGoods" parameterType="org.xgun.kissolive.pojo.Goods">
+    INSERT INTO tb_goods (production_id, color_code, color_name, price, status, updatetime)
+    values (#{goods.productionId,jdbcType=INTEGER}, #{goods.colorCode,jdbcType=VARCHAR},
+      #{goods.colorName,jdbcType=VARCHAR}, #{goods.price,jdbcType=DECIMAL}, #{goods.status,jdbcType=INTEGER}, now())
+    <selectKey resultType="Integer" order="AFTER" keyProperty="goods.id">
+      SELECT LAST_INSERT_ID() AS `id`
+    </selectKey>
+  </insert>
+  <select id="selectGoodsById" resultType="org.xgun.kissolive.pojo.Goods" parameterType="int">
+    SELECT id, production_id AS productionId, color_code AS colorCode, color_name AS colorName, price, status, updatetime
+    FROM tb_goods
+    WHERE id = #{id,jdbcType=INTEGER}
+  </select>
   <insert id="inserProductionHotspot" parameterType="list">
     INSERT INTO tb_production_hotspot(hotspot_id,production_id)
     VALUES

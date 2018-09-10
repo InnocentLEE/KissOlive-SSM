@@ -109,4 +109,10 @@ public interface InnocentMapper {
 
     // 插入产品适用肤质
     void inserProductionSkin(@Param("list")List<ProductionSkin> list);
+
+    // 插入一条商品记录
+    void insertGoods(@Param("goods")Goods goods);
+
+    // 根据id查找商品记录
+    Goods selectGoodsById(Integer id);
 }

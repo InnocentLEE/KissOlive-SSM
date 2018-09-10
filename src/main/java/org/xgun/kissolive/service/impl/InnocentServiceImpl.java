@@ -200,4 +200,14 @@ public class InnocentServiceImpl implements IInnocentService {
             return ServerResponse.createByErrorMessage("添加产品失败,添加过程出错");
         return ServerResponse.createBySuccessMessage("添加产品成功");
     }
+
+    @Override
+    public ServerResponse addGoods(Goods goods){
+        innocentMapper.insertGoods(goods);
+        Integer id = goods.getId();
+        if(id == null)
+            return ServerResponse.createByErrorMessage("添加商品失败");
+        goods = innocentMapper.selectGoodsById(id);
+        return ServerResponse.createBySuccess("添加商品成功",goods);
+    }
 }

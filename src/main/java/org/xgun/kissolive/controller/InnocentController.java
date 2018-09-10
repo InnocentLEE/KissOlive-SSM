@@ -1,5 +1,6 @@
 package org.xgun.kissolive.controller;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import org.xgun.kissolive.utils.FTPSSMLoad;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -238,6 +240,22 @@ public class InnocentController {
         return result;
     }
 
+    /**
+     * 添加产品
+     * @param session
+     * @param request
+     * @param brandId :品牌id
+     * @param originId:产地id
+     * @param marketTimeId:上市时间id
+     * @param hotspot:选购热点数组
+     * @param function:功能数组
+     * @param skin:适用肤质数组
+     * @param name:产品名
+     * @param description:描述
+     * @param detail:详情
+     * @param file
+     * @return
+     */
     @RequestMapping(value = "/production/add_production.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse addProduction(HttpSession session, HttpServletRequest request,
@@ -267,5 +285,24 @@ public class InnocentController {
             productionSkins.add(new ProductionSkin(skin[i],Const.ID_INIT));
         }
         return iInnocentService.addProduction(production,productionHotspots,productionFunctions,productionSkins);
+    }
+
+    /**
+     * 添加商品
+     * @param session
+     * @param productionId
+     * @param colorCode
+     * @param colorName
+     * @param price
+     * @return
+     */
+    @RequestMapping(value = "/production/add_goods.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse addGoods(HttpSession session,@RequestParam("production_id")Integer productionId,
+                                   @RequestParam("color_code")String colorCode,@RequestParam("color_name")String colorName,
+                                   @RequestParam("price")double price){
+        Goods goods = new Goods(Const.ID_INIT,productionId,colorCode,colorName,BigDecimal.valueOf(price),Const.GOODS_PUT_ON_STATUS,null);
+        System.out.println(goods.toString());
+        return iInnocentService.addGoods(goods);
     }
 }

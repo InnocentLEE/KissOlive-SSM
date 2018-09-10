@@ -87,4 +87,17 @@ public class Goods {
     public void setUpdatetime(Date updatetime) {
         this.updatetime = updatetime;
     }
+
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "id=" + id +
+                ", productionId=" + productionId +
+                ", colorCode='" + colorCode + '\'' +
+                ", colorName='" + colorName + '\'' +
+                ", price=" + price +
+                ", status=" + status +
+                ", updatetime=" + updatetime +
+                '}';
+    }
 }

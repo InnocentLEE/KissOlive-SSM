@@ -14,6 +14,7 @@ public class Const {
     public static final String HTTP_PREFIX = "http://119.23.253.135:9090";//ftp服务器资源访问前缀
 
     public static final Integer BRAND_PUT_ON_STATUS = 1;//品牌上架状态值
+    public static final Integer GOODS_PUT_ON_STATUS = 1;//商品上架状态值
     public static final Integer ID_INIT = 0;//id默认值为0
 
     public static final String FILE_SAVE_PATH = "/kissolive/";//文件上传目录路径
