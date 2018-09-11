@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>文章发布</title>
+<link href="../../css/admin/avtivity/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+<link href="../../css/admin/avtivity/font-awesome.css" rel="stylesheet">
+<link href="../../css/admin/avtivity/summernote.css" rel="stylesheet" >
+
+<link href="../../css/admin/avtivity/articlepublished.css" rel="stylesheet" >
+
+</head>
+<body>
+    <form>
+    <div class=container>
+         <div class = "header">
+                            文章管理   > 文章发布
+         
+         <!-- 工具栏  -->
+            <div class=toolbar>
+                <!--  <a class="btn btn-default op" id="save" href="#">
+                                <i class="fa fa-hourglass op-icon"></i> 暂存</a>
+                 <a class="btn btn-default op" id="preview" href="#">
+                                <i class="fa fa-eye op-icon"></i> 预览</a> -->
+                 <a class="btn btn-default op" id="send" onclick="sendarticle()" >
+                                <i class="fa fa-paper-plane op-icon"></i> 发布</a>
+            </div>
+          <!--   <div class="clearfix"></div> -->
+         </div>
+  
+            <!-- 图片上传错误提示  Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">提示</h4>
+			      </div>
+			      <div class="modal-body">
+			                               图片不符合要求，请上传宽度不小于630px，高度不小于355px的图片 
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+    
+            <!-- 封面图   -->
+            <div class="coverimg" id="imgArea">
+                <img  src='' class="banner-pic" id="banner-pic">
+	            <em class="icon-add " id="icon-add"></em>
+	            <span id="dragContainer" class="dragContainer hovertip">拖拽或点击添加封面图</span>
+	            <input title="未上传文件" type="file" name="" class="file-upload" id="file-upload" accept="image/jpeg, image/jpg, image/png">
+	            
+	            <div class="WriteCover-editWrapper" id="reloadbtn">
+	                  <button title="更换" aria-label="更换" type="button" class="Button WriteCover-editButton WriteCover-uploadButton">
+	                  <i class=" icon-ic fa fa-camera"></i>
+	                  <input title="更换"  type="file" id="filebtn" class="WriteCover-uploadInput" name="upload_file" accept=".jpeg, .jpg, .png">
+	                  </button>
+	                  <button title="删除" aria-label="删除" type="button" class="Button WriteCover-editButton WriteCover-deleteButton">
+	                  <i class=" icon-ic fa fa-trash-o"></i>
+	                  </button>
+	            </div>
+	        </div>
+	        <div class="content-area">
+	            <!-- 标题  -->
+	            <div class="textareawrap">
+	                <textarea type="text" class="title" id="title" placeholder="请填写标题" maxlength="32" autocomplete="off" style="height:50px;resize:none;" wrap="hard"></textarea>
+	            </div>
+	                                     
+                
+                <!-- 编辑器  -->
+	            <div class="editorWrap">
+	                <div id="summernote"></div>
+	            </div>
+	            <div class="editorWrap">
+                    <a class="btn btn-default op" id="send" onclick="sendarticle()" >
+                    <i class="fa fa-paper-plane op-icon"></i> 发布</a>
+                </div>
+	        </div>
+
+	</div>
+	</form>
+
+   
+   <script type="text/javascript" src="../../js/activity/jquery.min.js"></script>
+   <script type="text/javascript" src="../../js/activity/bootstrap.min.js"></script>
+   <script type="text/javascript" src="../../js/activity/summernote.js"></script>
+   <script type="text/javascript" src="../../js/activity/bootstrap-treeview.js"></script>
+   <script type="text/javascript" src="../../js/activity/articlepublished.js"></script>
+   
+   
+  
+</body>
+</html>

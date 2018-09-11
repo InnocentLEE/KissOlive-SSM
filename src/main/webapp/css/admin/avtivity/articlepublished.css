@@ -1,0 +1,296 @@
+.clearfix:after {
+   content:""; 
+   display: block; 
+   clear:both; 
+}
+.container {
+    float:left;
+    min-width:100%;
+    background: #fff;
+    padding:0px;
+}
+.header {
+    padding: 20px;
+    font-size: 22px;
+    color: #004d6f;
+    font-family: sans-serif;
+    font-weight: 800;
+    border-bottom-color: #69666685;
+    border-bottom: solid 0.5px #69666685;
+    background: #fff;
+    padding-left: 50px;
+}
+body{
+    background: #f1f1f5;
+    height:100%;
+}
+.op-icon{
+	color:#979797;
+}
+.toolbar {
+   /*  margin: 40px 20px 20px 40px; */
+    float:right;
+}
+.coverimg {
+    position: relative;
+    z-index: 100;
+    display: block;
+    width: 630px;
+    min-height: 150px;
+    max-height:355px;
+    margin: 0;
+    background: none;
+    border: 1px solid #eee;
+    -webkit-border-radius: 6px;
+    
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+.coverimg:hover{
+	background: #f6f6f6;
+    border-color: #f6f6f6;
+}
+input#file-upload {
+    /* position: absolute;
+    left: 0;
+    top: 0;
+    width: 0px;
+    height: 0;
+    opacity: 1; */
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 630px;
+    height: 150px;
+    opacity: 0;
+    z-index: 25;
+    user-select: none;
+}
+.hovertip {
+    position: relative;
+    z-index: 20;
+    opacity: 0;
+    display: block;
+    width: 100%;
+    min-height: 90px;
+    line-height: 90px;
+    color: #ccc;
+    font-size: 18px;
+    text-align: center;
+    background: url(../../../images/workbench/empty.png) 0 0 repeat;
+    margin: 35px 0px;
+}
+.banner-pic {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    width: 630px;
+    height: 100%;
+    opacity:0;
+    cursor: default;
+}
+.icon-add {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 5;
+    width: 23px;
+    height: 22px;
+    margin: -11px 0 0 -11px;
+    background: url(../../../images/workbench/addpic.png) 0 0 no-repeat;
+}
+.WriteCover-editWrapper {
+    position: absolute;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    height: 42px;
+    /* right: 0;
+    bottom: 0; */
+    right: -1px;
+    bottom: -1px;
+    z-index: 10;
+    background: #000;
+    background: rgba(0,0,0,.75);
+    border-radius: 4px 0 0 0;
+    border: 0;
+    display:none;
+    opacity: 0;
+}
+.WriteCover-editButton {
+    width: 48px;
+    border: 0;
+    border-radius: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 0;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+     background: transparent;
+}
+.WriteCover-editWrapper .Button {
+    color: #fff;
+}
+[class*=" icon-"], [class^=icon-] {
+    font-size: 18px;
+   /*  font-family: icomoon!important; */
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    -webkit-font-feature-settings: normal;
+    font-feature-settings: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.WriteCover-uploadInput {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+.textareawrap {
+    margin: 0 auto;
+    width: fit-content;
+    padding: 30px 0 20px 0;
+    height: 96px;
+}
+.title {
+    display: block;
+    width: 630px;
+    margin: 0 0 12px 0;
+    outline: none;
+    border: none;
+    color: #333;
+    font-size: 30px;
+}
+.editorWrap {
+    margin: 0 auto;
+    width: fit-content;
+}
+.note-editor.note-frame {
+    border: transparent;
+}
+.note-toolbar.panel-heading {
+   /*  padding: 5px 0 10px 5px; */
+    background-color: #fff;
+    border-color: #ddd;
+    border-top: solid 1px #ddd;
+    color: #f5f5f5;
+}
+.note-editor.note-frame .note-placeholder {
+    padding: 20px 10px;
+    font-size: 16px;
+}
+.btn-sm, .btn-group-sm > .btn {
+    font-size: 14px;
+}
+.btn-default {
+    color: #777;
+}
+.note-btn-group.btn-group {
+    margin-right: 15px;
+}
+.note-popover .popover-content>.btn-group, .panel-heading.note-toolbar>.btn-group {
+    margin-right: 10px;
+}
+.note-editor.note-frame .note-editing-area .note-editable {
+    padding: 20px 10px;
+}
+.articleposition {
+    display: flex;
+    flex-direction: column;
+    width:630px;
+    margin:0 auto;
+}
+button.btn.positionbtn {
+    background: #fff;
+}
+button#positionbtn {
+    text-align: left;
+    color: #999;
+    font-size: 18px;
+    padding: 5px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+label.plabel {
+    font-weight: 500;
+     margin-bottom:0;
+}
+label.position {
+    padding: 10px;
+    color: #999;
+    font-size: 16px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+     font-weight: 800;
+    
+}
+i.fa.fa-circle {
+    margin-right: 30px;
+}
+button.btn.positionbtn.pop {
+    float: right;
+}
+button#positionbtn:focus, button#position:hover {
+    outline: none;
+}
+button#positionbtn:hover span.addbtn {
+ background: url(../../../images/workbench/greenplus.png)no-repeat;
+    background-size: 26px;
+}
+span.addbtn {
+    background: url(../../../images/workbench/plus.png)no-repeat;
+    background-size: 26px;
+    height: 26px;
+    width: 26px;
+    float: right;
+    margin-right: 20px;
+}
+span.addbtn:hover{
+	background: url(../../../images/workbench/greenplus.png)no-repeat;
+	background-size: 26px;
+}
+span.minusbtn {
+    background: url(../../../images/workbench/minus.png)no-repeat;
+    background-size: 24px;
+    height: 24px;
+    width: 24px;
+    float: right;
+    margin: 0 17px;
+    cursor: pointer;
+}
+span.minusbtn:hover{
+	background: url(../../../images/workbench/redminus.png)no-repeat;
+	background-size: 24px;
+}
+div#ppp {
+    display: grid;
+    margin:10px 0;
+}
+h4#pModalLabel {
+    font-weight: 600;
+    text-align: center;
+    font-size: 20px;
+    padding-top: 2px;
+    margin: auto 0;
+}
+.modal-header>button>span {
+    height: 20px;
+    font-size: 35px;
+    margin: auto 0px;
+}
+
