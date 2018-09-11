@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.xgun.kissolive.dao.SilentMapper" >
+  <insert id="insertNewCard" parameterType="org.xgun.kissolive.pojo.Card">
+    INSERT INTO tb_card (user_id, goods_id, num, updatetime)
+    VALUES (#{userId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER},
+      #{num,jdbcType=INTEGER}, now())
+  </insert>
+
+  <select id="checkCard" parameterType="org.xgun.kissolive.pojo.Card" resultType="Integer">
+    SELECT num
+    FROM tb_card
+    WHERE user_id = #{userId,jdbcType=INTEGER}
+    AND goods_id = #{goodsId,jdbcType=INTEGER}
+    LIMIT 1
+  </select>
+
+  <select id="selectMyCard" resultType="org.xgun.kissolive.vo.CardInfo">
+    SELECT c.id 'cardId', g.id'goodsId', c.num'num', p.img_url'imgUrl', b.name 'brandName',
+      p.name 'productionName',g.color_name 'colorName', g.color_code 'colorCode', g.price 'price',
+	  g.status 'status', c.updatetime'updateTime'
+    FROM tb_card c
+    LEFT JOIN tb_goods g ON c.goods_id = g.id
+    LEFT JOIN tb_production p ON g.production_id = p.id
+    LEFT JOIN tb_brand b ON p.brand_id = b.id
+    WHERE user_id = #{userId,jdbcType=INTEGER}
+  </select>
+
+  <update id="updateCard" parameterType="org.xgun.kissolive.pojo.Card">
+    UPDATE tb_card
+    SET num = num + #{num,jdbcType=INTEGER}, updatetime = now()
+    WHERE user_id = #{userId,jdbcType=INTEGER}
+    AND goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+
+  <delete id="deleteCardByBatch">
+    DELETE FROM tb_card
+    WHERE id IN
+    <foreach collection="cardIds" item="cardId" index="index" open="(" separator="," close=")">
+      #{cardId}
+    </foreach>
+    AND user_id = #{userId}
+  </delete>
+</mapper>

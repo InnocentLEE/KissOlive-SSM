@@ -9,15 +9,15 @@ public class Card {
 
     private Integer goodsId;
 
-    private Integer numberId;
+    private Integer num;
 
     private Date updatetime;
 
-    public Card(Integer id, Integer userId, Integer goodsId, Integer numberId, Date updatetime) {
+    public Card(Integer id, Integer userId, Integer goodsId, Integer num, Date updatetime) {
         this.id = id;
         this.userId = userId;
         this.goodsId = goodsId;
-        this.numberId = numberId;
+        this.num = num;
         this.updatetime = updatetime;
     }
 
@@ -49,12 +49,12 @@ public class Card {
         this.goodsId = goodsId;
     }
 
-    public Integer getNumberId() {
-        return numberId;
+    public Integer getNum() {
+        return num;
     }
 
-    public void setNumberId(Integer numberId) {
-        this.numberId = numberId;
+    public void setNum(Integer num) {
+        this.num = num;
     }
 
     public Date getUpdatetime() {
