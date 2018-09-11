@@ -26,7 +26,7 @@ public class SilentController {
     private ISilentService iSilentService;
 
     /**
-     * 将商品添加入购物车,若已存在则改变数量
+     * 将商品添加入购物车 或者 对已存在于购物车的商品改变数量
      * @param goodsId
      * @param num
      * @return
@@ -54,46 +54,15 @@ public class SilentController {
 
     /**
      * 根据购物车id号来删除对应商品，批量删除
-     * @param cardIds 格式为：&id1&id2&id3..
+     * @param cardIds
      * @return
      */
     @RequestMapping(value = "/shoppingCart/delete_card_ByBatch.do",method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse deleteCard(@RequestParam("cardIds")String cardIds){
-        List<Integer> cardIdList = this.StringToListId(cardIds);
-        if(CollectionUtils.isEmpty(cardIdList)) {
+    public ServerResponse deleteCard(@RequestParam("cardIds")int[] cardIds){
+        if( cardIds==null || cardIds.length==0 ) {
             return ServerResponse.createByErrorMessage("删除失败");
         }
-        return iSilentService.deleteCardByBatch(cardIdList);
-    }
-
-    /**
-     * 根据Id字符串返回Id的list
-     * @param Id
-     * @return
-     */
-    public List<Integer> StringToListId(String Id) {
-        if(StringUtils.isEmpty(Id))
-            return null;
-        List<Integer> Ids = new ArrayList<>();
-        try {
-            int index=0;
-            int i=0;
-            for( ; i<Id.length() ; i++) {
-                if(Id.substring(i, i+1).equals("&")) {
-                    if(i==0) {
-                        index = i+1;
-                        continue;
-                    }
-                    Ids.add(Integer.parseInt(Id.substring(index, i)));
-                    index = i+1;
-                }
-            }
-            if(i>index)
-                Ids.add(Integer.parseInt(Id.substring(index, i)));
-        } catch (NumberFormatException x) {
-            return null;
-        }
-        return Ids;
+        return iSilentService.deleteCardByBatch(cardIds);
     }
 }

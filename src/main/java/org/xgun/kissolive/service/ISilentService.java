@@ -15,5 +15,5 @@ public interface ISilentService {
 
     ServerResponse getMyCard();
 
-    ServerResponse deleteCardByBatch(List<Integer> cardIdList);
+    ServerResponse deleteCardByBatch(int[] cardIds);
 }

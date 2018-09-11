@@ -60,10 +60,10 @@ public class SilentServiceImpl implements ISilentService {
     }
 
     @Override
-    public ServerResponse deleteCardByBatch(List<Integer> cardIdList) {
+    public ServerResponse deleteCardByBatch(int[] cardIds) {
         //获取当前用户userId
         Integer userId = 1;//测试用
-        boolean result = silentMapper.deleteCardByBatch(cardIdList,userId)>0;
+        boolean result = silentMapper.deleteCardByBatch(cardIds,userId)>0;
         if(result) {
             return ServerResponse.createBySuccessMessage("购物车删除成功");
         }else {

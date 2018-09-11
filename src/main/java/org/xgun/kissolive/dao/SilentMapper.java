@@ -24,5 +24,5 @@ public interface SilentMapper {
     List<CardInfo> selectMyCard(@Param("userId")Integer userId);
 
     //删除我的购物车里某件商品
-    int deleteCardByBatch(@Param("cardIds")List<Integer> cardIds, @Param("userId")Integer userId);
+    int deleteCardByBatch(@Param("cardIds")int[] cardIds, @Param("userId")Integer userId);
 }
