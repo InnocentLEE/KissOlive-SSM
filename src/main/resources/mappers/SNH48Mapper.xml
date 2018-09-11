@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.xgun.kissolive.dao.SNH48Mapper" >
+    <select id="listSupplier" resultType="org.xgun.kissolive.pojo.Supplier">
+        SELECT *
+        FROM tb_supplier
+    </select>
+    <insert id="addSupplier" parameterType="String">
+        INSERT INTO tb_supplier(name)
+        VALUES (#{name})
+    </insert>
+    <delete id="removeSupplier" parameterType="Integer">
+        DELETE FROM tb_supplier
+        WHERE id=#{id}
+    </delete>
+    <update id="updateSupplier">
+        UPDATE tb_supplier
+        SET name=#{name}
+        WHERE id=#{id}
+    </update>
+</mapper>
