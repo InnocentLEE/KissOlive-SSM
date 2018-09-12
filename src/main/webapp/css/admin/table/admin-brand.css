@@ -1,0 +1,28 @@
+.col-sm-10.div-img-group {
+    padding: 0;
+}
+.div-img {
+    width: 35%;
+    height: 30px;
+    text-align: center;
+    background: #fff;
+    border-color: #999;
+    border: 1px dotted #c0bebe;
+    line-height: 2.1;
+    color: #999;
+}
+.div-img:hover {
+    background: #f6f6f6;
+    color: #999;
+}
+.input-brand-logo {
+    margin-top: -29px;
+    opacity: 0.01;
+}
+.form-group.div-upload {
+    height: 30px;
+}
+img.img-display {
+    width: 63%;
+    margin-top: -36%;
+}
