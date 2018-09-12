@@ -44,10 +44,11 @@ public class InnocentController {
     @ResponseBody
     public ServerResponse addBrand(HttpSession session, HttpServletRequest request,
                                    @RequestParam("logo_img") MultipartFile brandLogo,
-                                   @RequestParam("brand_name") String brandName) {
+                                   @RequestParam("brand_name") String brandName,
+                                   @RequestParam("brand_status") Integer status) {
         // TODO: 2018/9/8 校验身份
         Map map = FTPSSMLoad.upload(brandLogo, request, Const.FILE_SAVE_PATH);
-        Brand brand = new Brand(Const.ID_INIT, brandName, map.get("http_url").toString(), Const.BRAND_PUT_ON_STATUS);
+        Brand brand = new Brand(Const.ID_INIT, brandName, map.get("http_url").toString(), status);
         return iInnocentService.addBrand(brand);
     }
 
