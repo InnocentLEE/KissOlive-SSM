@@ -29,7 +29,7 @@ $(document).ready(function() {
                 "sortDescending": ": activate to sort column descending"
             }
         },
-        "sDom": "<'col-sm-12' <'row col-sm-12' <'col-sm-2'l> <'col-sm-8'<'#btn'>> <'cos-sm-2' f>> t <'col-sm-6' i> <'col-sm-6'p>>"
+        "sDom": "<'col-sm-12' <'row col-sm-12' <'col-sm-2'<'#btn'>> <'col-sm-8'> <'cos-sm-2'f>> t <'col-sm-6'> <'col-sm-6'>>"
     });
     var btnn = "<button class=\"btn btn-primary btn-sm\" data-toggle='modal' data-target='#myModal'><i class=\"fa fa-plus\"></i>添加</button>\n" +
         "\t\t\t\t<button class=\"btn btn-success btn-sm\"><i class=\"fa fa-upload\"></i>上架</button>\n" +
@@ -54,15 +54,40 @@ function brand_submit() {
         dataType : 'json', //请求成功后，后台返回图片访问地址字符串，故此以text格式获取，而不是json格式
         success : function(result) {
            alert(result.msg);
+           window.parent.frames["right"].location.reload();
         }
     })
 }
-var add_brand = new Vue({
-    el : '#add_brand',
+var table_id_example = new Vue({
+    el : '#table_id_example',
     data :{
-
+        datas:[]
     },
-    created:{
-
+    created:function () {
+        var self = this;
+        $.ajax({
+            type : 'post',
+            url : 'http://localhost:8080/production/get_brand_list.do',
+            async : false,
+            dataType : 'json',
+            success : function(result) {
+                if(result.status==0)
+                    self.datas = result.data;
+                else{
+                    alert(result.msg);
+                }
+            }
+        })
     }
 })
+
+brand_logo.onchange=function () {
+    var read=new FileReader();
+    read.readAsDataURL(this.files[0]);
+    read.onload=function(){
+        var url=read.result;
+        var previewImg =document.getElementById("logo-img");
+        previewImg.src= url;
+    }
+
+}

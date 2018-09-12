@@ -11,14 +11,14 @@
     <link rel="stylesheet" type="text/css" href="../../css/admin/table/dataTables.responsive.css">
     <link rel="stylesheet" type="text/css" href="../../css/admin/table/sb-admin-2.css">
     <link rel="stylesheet" type="text/css" href="../../css/admin/font-awesome.css">
-
+    <link rel="stylesheet" type="text/css" href="../../css/admin/table/admin-brand.css">
 </head>
 <body>
 <div class="page-wrapper">
-    <!-- start:库存管理 -->
+    <!-- start:品牌管理 -->
     <div class="row">
-        <div class="col-lg-10">
-            <h1 class="page-header">库存管理</h1>
+        <div class="col-lg-12">
+            <h1 class="page-header" style="margin-left: 20px">品牌管理</h1>
         </div>
     </div>
     <table id="table_id_example" class="table table-bordered">
@@ -32,78 +32,24 @@
         </tr>
         </thead>
         <tbody>
-        <tr align="center">
+        <tr align="center" v-for="r in datas">
             <td><input type="checkbox"/></td>
-            <td>阿玛尼</td>
+            <td>{{r.name}}</td>
             <td width="480px">
-                <img src="../../images/52272A381C3E4DCFB9FFEF7ECBF5DD9B.jpg" style="width: 20%"/>
+                <img :src="r.imgUrl" style="width: 20%"/>
             </td>
-            <td>已上架</td>
-            <td>
+            <td v-if="r.status==1">已上架</td>
+            <td v-else>已下架</td>
+            <td v-if="r.status==1">
                 <button class="btn btn-danger btn-sm"><i class="fa fa-download"></i>下架</button>
                 <button class="btn btn-primary btn-sm" data-toggle='modal' data-target='#myModal'><i class="fa fa-pencil-square"></i>编辑</button>
             </td>
-        </tr>
-        <tr align="center">
-            <td><input type="checkbox"/></td>
-            <td>阿玛尼</td>
-            <td width="480px">
-                <img src="../../images/52272A381C3E4DCFB9FFEF7ECBF5DD9B.jpg" style="width: 20%"/>
-            </td>
-            <td>已下架</td>
-            <td>
+            <td v-else>
                 <button class="btn btn-success btn-sm"><i class="fa fa-upload"></i>上架</button>
                 <button class="btn btn-primary btn-sm" data-toggle='modal' data-target='#myModal'><i class="fa fa-pencil-square"></i>编辑</button>
             </td>
         </tr>
-        <tr align="center">
-            <td><input type="checkbox"/></td>
-            <td>阿玛尼</td>
-            <td width="480px">
-                <img src="../../images/52272A381C3E4DCFB9FFEF7ECBF5DD9B.jpg" style="width: 20%"/>
-            </td>
-            <td>已下架</td>
-            <td>
-                <button class="btn btn-success btn-sm"><i class="fa fa-upload"></i>上架</button>
-                <button class="btn btn-primary btn-sm" data-toggle='modal' data-target='#myModal'><i class="fa fa-pencil-square"></i>编辑</button>
-            </td>
-        </tr>
-        <tr align="center">
-            <td><input type="checkbox"/></td>
-            <td>阿玛尼</td>
-            <td width="480px">
-                <img src="../../images/52272A381C3E4DCFB9FFEF7ECBF5DD9B.jpg" style="width: 20%"/>
-            </td>
-            <td>已下架</td>
-            <td>
-                <button class="btn btn-success btn-sm"><i class="fa fa-upload"></i>上架</button>
-                <button class="btn btn-primary btn-sm" data-toggle='modal' data-target='#myModal'><i class="fa fa-pencil-square"></i>编辑</button>
-            </td>
-        </tr>
-        <tr align="center">
-            <td><input type="checkbox"/></td>
-            <td>阿玛尼</td>
-            <td width="480px">
-                <img src="../../images/52272A381C3E4DCFB9FFEF7ECBF5DD9B.jpg" style="width: 20%"/>
-            </td>
-            <td>已上架</td>
-            <td>
-                <button class="btn btn-danger btn-sm"><i class="fa fa-download"></i>下架</button>
-                <button class="btn btn-primary btn-sm" data-toggle='modal' data-target='#myModal'><i class="fa fa-pencil-square"></i>编辑</button>
-            </td>
-        </tr>
-        <tr align="center">
-            <td><input type="checkbox"/></td>
-            <td>阿玛尼</td>
-            <td width="480px">
-                <img src="../../images/52272A381C3E4DCFB9FFEF7ECBF5DD9B.jpg" style="width: 20%"/>
-            </td>
-            <td>已上架</td>
-            <td>
-                <button class="btn btn-danger btn-sm"><i class="fa fa-download"></i>下架</button>
-                <button class="btn btn-primary btn-sm" data-toggle='modal' data-target='#myModal'><i class="fa fa-pencil-square"></i>编辑</button>
-            </td>
-        </tr>
+
         </tbody>
     </table>
 </div>
@@ -122,14 +68,23 @@
                     <input type="text" id="brand_name"/>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group div-upload">
                     <label class="col-sm-2 control-label">品牌商标</label>
-                    <input type="file" id="brand_logo"/>
+                    <div class="col-sm-10 div-img-group">
+                        <div class="div-img" id="div-img">
+                            <span class="upload-tip" id="upload-tip">选择文件上传</span>
+                            <input type="file" id="brand_logo" class="input-brand-logo"/>
+                            <!--<img class="img-display" src="http://119.23.253.135:9090/kissolive/7bc81761-33c1-4660-b478-43c287305f03.jpg"/>-->
+                            <img class="img-display" src="" id="logo-img"/>
+
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-2 control-label">状态</label>
-                    <select id="brand_status">
+                    <select id="brand_status" style="width: 60px;height: 30px">
                         <option value="1">上架</option>
                         <option value="0">下架</option>
                     </select>
