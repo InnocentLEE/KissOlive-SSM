@@ -19,18 +19,18 @@ $(document).ready(function() {
         ],//配置工具栏      
         callbacks: {  
             onImageUpload: function(file) {  //图片默认以二进制的形式存储到数据库，调用此方法将请求后台将图片存储到服务器，返回图片请求地址到前端
-            	sendfile(file);           	
+            	returnImageUrl(file);
             }  
         }
     });
 });
-function sendfile(file){
+function returnImageUrl(file){
 	//将图片放入Formdate对象中                                         
     var formData = new FormData();  
-    formData.append("uploadIMG", file[0]); 
+    formData.append("img", file[0]);
     $.ajax({                            
          type:'post',        
-         url:'../../publicityManage/uploadIMG',                        
+         url:'http://localhost:8080/production/upload_image.do',
          cache: false,
          data:formData, 
          processData: false,
@@ -38,13 +38,11 @@ function sendfile(file){
          dataType:'json',
          success: function(picture) { 
         	 //console.log(picture);
-        	 if(picture.status == 0){        		
-        		 $('#summernote').summernote('insertImage',picture.data); 
-        	 }
-         },  
-         error:function(){                                                  
-            alert("上传失败");                                                     
-         } 
+        	 $('#summernote').summernote('insertImage',picture.url);
+         },
+         error:function(){
+            alert("上传失败");
+         }
     });
 }
 function sendarticle(){

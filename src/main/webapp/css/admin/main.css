@@ -1,3 +1,21 @@
+.header {
+	padding: 20px;
+	font-size: 22px;
+	color: #004d6f;
+	font-family: sans-serif;
+	font-weight: 800;
+	border-bottom-color: #69666685;
+	border-bottom: solid 0.5px #69666685;
+	background: #fff;
+	padding-left: 50px;
+}
+.header .active{
+	color: gray;
+}
+.toolbar {
+	/*  margin: 40px 20px 20px 40px; */
+	float:right;
+}
 th {
     text-align: center;
 }

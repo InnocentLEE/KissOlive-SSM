@@ -9,27 +9,12 @@
     background: #fff;
     padding:0px;
 }
-.header {
-    padding: 20px;
-    font-size: 22px;
-    color: #004d6f;
-    font-family: sans-serif;
-    font-weight: 800;
-    border-bottom-color: #69666685;
-    border-bottom: solid 0.5px #69666685;
-    background: #fff;
-    padding-left: 50px;
-}
 body{
     background: #f1f1f5;
     height:100%;
 }
 .op-icon{
 	color:#979797;
-}
-.toolbar {
-   /*  margin: 40px 20px 20px 40px; */
-    float:right;
 }
 .coverimg {
     position: relative;

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Kiss Olive 库存管理</title>
+ 		<link rel="stylesheet" type="text/css" href="../../css/admin/table/dataTables.bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="../../css/admin/table/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../../css/validform/style.css">
+		<link rel="stylesheet" type="text/css" href="../../css/user/slide-unlock.css">
+		<link rel="stylesheet" type="text/css" href="../../css/user/sign_login1.css">
+		<link rel="stylesheet" type="text/css" href="../../css/admin/table/dataTables.responsive.css">
+		<link rel="stylesheet" type="text/css" href="../../css/admin/table/sb-admin-2.css">
+		<link rel="stylesheet" type="text/css" href="../../css/admin/font-awesome.css">
+
+	</head>
+	<body>
+	<div class="page-wrapper">
+		<!-- start:库存管理 -->
+		<div class="row">
+			<div class="col-lg-10">
+				<h1 class="page-header">库存管理</h1>
+			</div>
+		</div>
+		<table id="table_id_example" class="table table-bordered">
+			<thead>
+			<tr>
+				<th style="text-align:center;">库存批号</th>
+				<th style="text-align:center;">商品名</th>
+				<th style="text-align:center;">保质期限</th>
+				<th style="text-align:center;">库存量</th>
+				<th style="text-align:center;">供应商</th>
+				<th style="text-align:center;">入库时间</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr align="center">
+				<td>001</td>
+				<td>002</td>
+				<td>003</td>
+				<td>004</td>
+				<td>005</td>
+				<td>006</td>
+			</tr>
+			<tr align="center">
+				<td>001</td>
+				<td>002</td>
+				<td>003</td>
+				<td>004</td>
+				<td>005</td>
+				<td>006</td>
+			</tr>
+			<tr align="center">
+				<td>001</td>
+				<td>002</td>
+				<td>003</td>
+				<td>004</td>
+				<td>005</td>
+				<td>006</td>
+			</tr>
+			<tr align="center">
+				<td>001</td>
+				<td>002</td>
+				<td>003</td>
+				<td>004</td>
+				<td>005</td>
+				<td>006</td>
+			</tr>
+			<tr align="center">
+				<td>001</td>
+				<td>002</td>
+				<td>003</td>
+				<td>004</td>
+				<td>005</td>
+				<td>006</td>
+			</tr>
+			<tr align="center">
+				<td>001</td>
+				<td>002</td>
+				<td>003</td>
+				<td>004</td>
+				<td>005</td>
+				<td>006</td>
+			</tr>
+			<tr align="center">
+				<td>001</td>
+				<td>002</td>
+				<td>003</td>
+				<td>004</td>
+				<td>005</td>
+				<td>006</td>
+			</tr>
+			<tr align="center">
+				<td>001</td>
+				<td>002</td>
+				<td>003</td>
+				<td>004</td>
+				<td>005</td>
+				<td>006</td>
+			</tr>
+			<tr align="center">
+				<td>001</td>
+				<td>002</td>
+				<td>003</td>
+				<td>004</td>
+				<td>005</td>
+				<td>006</td>
+			</tr>
+			<tr align="center">
+				<td>001</td>
+				<td>002</td>
+				<td>003</td>
+				<td>004</td>
+				<td>005</td>
+				<td>006</td>
+			</tr>
+			<tr align="center">
+				<td>001</td>
+				<td>002</td>
+				<td>003</td>
+				<td>004</td>
+				<td>005</td>
+				<td>006</td>
+			</tr>
+			<tr align="center">
+				<td>001</td>
+				<td>002</td>
+				<td>003</td>
+				<td>004</td>
+				<td>005</td>
+				<td>006</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						</button>
+						<h4 class="modal-title" id="myModalLabel">商品入库</h4>
+					</div>
+					<form role="form">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">入库批号</label>
+							<input type="text" id="newinventory1">&nbsp;&nbsp;<input type="button" id="newinventory" value="生成入库号" class="btn btn-default" />
+								<div class="form-group">
+									<label class="col-sm-2 control-label">选择商品</label>
+									<select>
+										<option value="1">品牌</option>
+										<option value="2">奥迪</option>
+										<option value="3">香奈儿</option>
+										<option value="4">圣罗兰</option>
+										<option value="5">古驰</option>
+									</select>
+									<select>
+										<option value="1">产品</option>
+										<option value="2">奥迪</option>
+										<option value="3">香奈儿</option>
+										<option value="4">圣罗兰</option>
+										<option value="5">古驰</option>
+									</select>
+									<select>
+										<option value="1">色号</option>
+										<option value="2">红色</option>
+										<option value="3">绿色</option>
+										<option value="4">黑色</option>
+										<option value="5">古粉色</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">保质期限</label><input type="date">
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">入库数量</label><input type="text">&nbsp;<label class="control-label">件</label>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">供应商</label>
+									<select>
+										<option value="1">供应商</option>
+										<option value="2">阿玛尼公司</option>
+										<option value="3">圣罗兰公司</option>
+										<option value="4">香奈儿公司</option>
+										<option value="5">雅诗兰黛公司</option>
+									</select>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+									<button type="button" class="btn btn-default" onclick="">提交</button>
+								</div>
+						</div>
+					</form>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+		<script type="text/javascript" src="../../js/jquery.js"></script>
+		<!--DataTables 核心 js-->
+		<script type="text/javascript" src="../../js/table/jquery.dataTables.min.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../js/login_verify.js"></script>
+		<script type="text/javascript" src="../../js/valid.js"></script>
+		<script type="text/javascript" src="../../js/table/dataTables.bootstrap.min.js"></script>
+		<!--datatables的配置-->
+		<script type="text/javascript" src="../../js/admin/inventory.js"></script>
+
+	</body>
+</html>

@@ -32,4 +32,14 @@ public class Zqu004Application {
 	String register(){
 		return "page/user/user_register.html";
 	}
+
+    @RequestMapping("/publish")
+    String published(){
+        return "page/admin/activitypublished.html";
+    }
+
+	@RequestMapping("/admin")
+	String admin(){
+		return "page/admin/frameset.html";
+	}
 }
