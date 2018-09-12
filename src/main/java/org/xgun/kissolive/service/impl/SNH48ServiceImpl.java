@@ -5,8 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.dao.SNH48Mapper;
+import org.xgun.kissolive.pojo.Stock;
 import org.xgun.kissolive.pojo.Supplier;
 import org.xgun.kissolive.service.ISNH48Service;
+import org.xgun.kissolive.utils.DateUtil;
+import org.xgun.kissolive.vo.ListStock;
 
 import java.util.List;
 
@@ -45,5 +48,31 @@ public class SNH48ServiceImpl implements ISNH48Service {
         if (mapper.updateSupplier(id, name) > 0)
             return ServerResponse.createBySuccess();
         return ServerResponse.createByErrorMessage("修改供应商信息失败");
+    }
+
+    @Override
+    public ServerResponse addStock(Stock stock) {
+
+        try {
+            if (mapper.addStock(stock) > 0)
+                return ServerResponse.createBySuccessMessage("入库成功");
+            return ServerResponse.createByErrorMessage("入库失败");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.createByErrorMessage("入库失败");
+        }
+    }
+
+    @Override
+    public ServerResponse<List<ListStock>> listStock() {
+
+        List<ListStock> listStock = mapper.listStock();
+        if (listStock == null || listStock.size() == 0) {
+            return ServerResponse.createBySuccess("库存信息为空", null);
+        }
+        for (ListStock stock : listStock) {
+            stock.setStringShelfdate(DateUtil.formatTime(stock.getShelfdate()));
+        }
+        return ServerResponse.createBySuccess(listStock);
     }
 }

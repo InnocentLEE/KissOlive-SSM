@@ -18,4 +18,17 @@
         SET name=#{name}
         WHERE id=#{id}
     </update>
+    <insert id="addStock" parameterType="org.xgun.kissolive.pojo.Stock">
+        INSERT INTO tb_stock(stock_id, goods_id, shelfdate, `number`, supplier_id, updatetime)
+        VALUES (#{stock.stockId,jdbcType=VARCHAR}, #{stock.goodsId,jdbcType=INTEGER},
+      #{stock.shelfdate,jdbcType=TIMESTAMP}, #{stock.number,jdbcType=INTEGER}, #{stock.supplierId,jdbcType=INTEGER}, now())
+    </insert>
+    <select id="listStock" resultType="org.xgun.kissolive.vo.ListStock">
+        SELECT tb_stock.id, stock_id AS stockId, goods_id AS goodsId, shelfdate, `number`, supplier_id AS supplierId,
+          tb_stock.updatetime, tb_supplier.name AS supplierName, tb_production.name AS productionName
+        FROM tb_stock
+        LEFT JOIN tb_supplier ON supplier_id = tb_supplier.id
+        LEFT JOIN tb_goods ON tb_goods.id = goods_id
+        LEFT JOIN  tb_production ON tb_goods.production_id = tb_production.id
+    </select>
 </mapper>

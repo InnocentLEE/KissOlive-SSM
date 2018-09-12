@@ -1,11 +1,17 @@
 package org.xgun.kissolive.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.xgun.kissolive.common.ServerResponse;
+import org.xgun.kissolive.pojo.Stock;
 import org.xgun.kissolive.pojo.Supplier;
 import org.xgun.kissolive.service.ISNH48Service;
+import org.xgun.kissolive.vo.ListStock;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -56,5 +62,32 @@ public class SNH48Controller {
     public ServerResponse removeSupplier(@PathVariable("id") Integer id) {
 
         return service.removeSupplier(id);
+    }
+
+    //接收前端传的Date类型值
+    @InitBinder
+    public void initDate(WebDataBinder binder) {
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));
+    }
+
+    /**
+     * 入库
+     * @param stock 入库信息
+     * @return
+     */
+    @PostMapping("/stock")
+    public ServerResponse addStock(Stock stock) {
+
+        return service.addStock(stock);
+    }
+
+    /**
+     * 获取库存信息列表
+     * @return
+     */
+    @GetMapping("/stock")
+    public ServerResponse<List<ListStock>> listStock() {
+
+        return service.listStock();
     }
 }
