@@ -42,4 +42,6 @@ public interface IInnocentService {
     ServerResponse addProduction(Production production,List<ProductionHotspot> productionHotspots,List<ProductionFunction> productionFunctions,List<ProductionSkin> productionSkins);
 
     ServerResponse addGoods(Goods goods);
+
+    ServerResponse editBrand(Brand brand);
 }

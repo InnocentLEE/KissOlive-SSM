@@ -115,4 +115,6 @@ public interface InnocentMapper {
 
     // 根据id查找商品记录
     Goods selectGoodsById(Integer id);
+
+    int updateBrandByIdSelective(Brand brand);
 }
