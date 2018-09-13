@@ -47,8 +47,14 @@ public class InnocentController {
                                    @RequestParam("brand_name") String brandName,
                                    @RequestParam("brand_status") Integer status) {
         // TODO: 2018/9/8 校验身份
-        Map map = FTPSSMLoad.upload(brandLogo, request, Const.FILE_SAVE_PATH);
-        Brand brand = new Brand(Const.ID_INIT, brandName, map.get("http_url").toString(), status);
+        String imgUrl = null;
+        try {
+            Map map = FTPSSMLoad.upload(brandLogo, request, Const.FILE_SAVE_PATH);
+            imgUrl = map.get("http_url").toString();
+        }catch (Exception e){
+            return ServerResponse.createByErrorMessage("添加品牌失败");
+        }
+        Brand brand = new Brand(Const.ID_INIT, brandName, imgUrl, status);
         return iInnocentService.addBrand(brand);
     }
 
@@ -305,5 +311,36 @@ public class InnocentController {
         Goods goods = new Goods(Const.ID_INIT,productionId,colorCode,colorName,BigDecimal.valueOf(price),Const.GOODS_PUT_ON_STATUS,null);
         System.out.println(goods.toString());
         return iInnocentService.addGoods(goods);
+    }
+
+    /**
+     * 编辑品牌信息
+     * @param session
+     * @param request
+     * @param brandId
+     * @param brandLogo
+     * @param brandName
+     * @param status
+     * @return
+     */
+    @RequestMapping(value = "/production/edit_brand.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse editBrand(HttpSession session, HttpServletRequest request,
+                                    @RequestParam("brand_id")Integer brandId,
+                                    @RequestParam("logo_img") MultipartFile brandLogo,
+                                    @RequestParam("brand_name") String brandName,
+                                    @RequestParam("brand_status") Integer status) {
+        // TODO: 2018/9/13 校验身份
+        String imgUrl = null;
+        if(!brandLogo.isEmpty()){
+            try {
+                Map map = FTPSSMLoad.upload(brandLogo, request, Const.FILE_SAVE_PATH);
+                imgUrl = map.get("http_url").toString();
+            }catch (Exception e){
+                return ServerResponse.createByErrorMessage("编辑品牌失败");
+            }
+        }
+        Brand brand = new Brand(brandId, brandName, imgUrl, status);
+        return iInnocentService.editBrand(brand);
     }
 }

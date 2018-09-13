@@ -210,4 +210,13 @@ public class InnocentServiceImpl implements IInnocentService {
         goods = innocentMapper.selectGoodsById(id);
         return ServerResponse.createBySuccess("添加商品成功",goods);
     }
+
+    @Override
+    public ServerResponse editBrand(Brand brand){
+        boolean result = innocentMapper.updateBrandByIdSelective(brand) > 0;
+        if (result)
+            return ServerResponse.createBySuccessMessage("编辑品牌成功");
+        else
+            return ServerResponse.createByErrorMessage("编辑品牌失败");
+    }
 }

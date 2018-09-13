@@ -205,4 +205,19 @@
       (#{item.skinId,jdbcType=INTEGER}, #{item.productionId,jdbcType=INTEGER})
     </foreach>
   </insert>
+  <update id="updateBrandByIdSelective" parameterType="org.xgun.kissolive.pojo.Brand">
+    UPDATE tb_brand
+    <set >
+      <if test="name != null" >
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null" >
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>
