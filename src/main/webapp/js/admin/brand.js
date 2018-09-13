@@ -1,6 +1,5 @@
 $(document).ready(function() {
     $('#table_id_example').DataTable({
-
         "processing": true,
         "aLengthMenu": [5, 10, 20],
         "aoColumnDefs": [ { "bSortable": false, "aTargets": [ 0 ] }],
@@ -35,6 +34,21 @@ $(document).ready(function() {
         "\t\t\t\t<button class=\"btn btn-success btn-sm\"><i class=\"fa fa-upload\"></i>上架</button>\n" +
         "\t\t\t\t<button class=\"btn btn-danger btn-sm\"><i class=\"fa fa-download\"></i>下架</button>";
     $("#btn")[0].innerHTML = btnn;
+    $("#all").click(function(){
+        $('[name=all]:checkbox').prop('checked',this.checked);//checked为true时为默认显示的状态
+    });
+    //弹出框取消按钮事件
+    $('.popup_de .btn_cancel').click(function(){
+        $('.popup_de').removeClass('bbox');
+    });
+    //弹出框关闭按钮事件
+    $('.popup_de .popup_close').click(function(){
+        $('.popup_de').removeClass('bbox');
+    });
+    $('.img-display').click(function(){
+        $('#brand_logo').trigger("click");
+    });
+    
 });
 function brand_submit() {
     var formData = new FormData();
@@ -81,13 +95,64 @@ var table_id_example = new Vue({
     }
 })
 
-brand_logo.onchange=function () {
+function imgchange() {
     var read=new FileReader();
     read.readAsDataURL(this.files[0]);
     read.onload=function(){
         var url=read.result;
         var previewImg =document.getElementById("logo-img");
+        alert("1234");
         previewImg.src= url;
+        previewImg.style.display = "block";
     }
+}
 
+function edit_imgchange() {
+    alert("123");
+    var read=new FileReader();
+    read.readAsDataURL(this.files[0]);
+    read.onload=function(){
+        var url=read.result;
+        alert(url);
+        $('#edit_logo-img').attr("src",url);
+    }
+}
+/*$('#brand_logo').onchange=function () {
+    var read=new FileReader();
+    read.readAsDataURL(this.files[0]);
+    read.onload=function(){
+        var url=read.result;
+        var previewImg =document.getElementById("logo-img");
+        alert("1234");
+        previewImg.src= url;
+        previewImg.style.display = "block";
+    }
+}
+
+$('#edit_brand_logo').onchange=function (){
+    alert("123");
+    var read=new FileReader();
+    read.readAsDataURL(this.files[0]);
+    read.onload=function(){
+        var url=read.result;
+        alert(url);
+        $('#edit_logo-img').attr("src",url);
+    }
+}*/
+
+var edit_brand_id;
+function setvalue(obj) {
+    var tds = $(obj).parent().parent().find('td');
+    edit_brand_id = tds.eq(0).find('input').val();
+    var edit_brand_name = tds.eq(1).text();
+    var edit_brand_imgUrl = tds.eq(2).find('img').attr("src");
+    var edit_brand_status = tds.eq(3).text();
+    //alert(edit_brand_id+"       "+edit_brand_name+"       "+edit_brand_status+"       "+edit_brand_imgUrl);
+    $('#edit_brand_name').val(edit_brand_name);
+    $('#edit_logo-img').attr("src",edit_brand_imgUrl);
+    if(edit_brand_status=="已上架"){
+        $('#edit_brand_status').val("1");
+    }else{
+        $('#edit_brand_status').val("0");
+    }
 }

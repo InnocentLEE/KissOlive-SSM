@@ -23,6 +23,11 @@
     height: 30px;
 }
 img.img-display {
-    width: 63%;
-    margin-top: -36%;
+    width: 22%;
+    height: 27px;
+    /* margin-top: -36%; */
+    position: absolute;
+    left: 6%;
+    top: 7%;
+    z-index: 0;
 }

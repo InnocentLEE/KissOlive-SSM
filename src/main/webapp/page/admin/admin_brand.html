@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/admin/table/dataTables.responsive.css">
     <link rel="stylesheet" type="text/css" href="../../css/admin/table/sb-admin-2.css">
     <link rel="stylesheet" type="text/css" href="../../css/admin/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="../../css/admin/table/table.css">
     <link rel="stylesheet" type="text/css" href="../../css/admin/table/admin-brand.css">
 </head>
 <body>
@@ -24,7 +25,7 @@
     <table id="table_id_example" class="table table-bordered">
         <thead>
         <tr>
-            <th style="text-align:center;"><input type="checkbox"/></th>
+            <th style="text-align:center;"><input type="checkbox"  name="all" id="all"></th>
             <th style="text-align:center;">品牌名</th>
             <th style="text-align:center;">Logo</th>
             <th style="text-align:center;">状态</th>
@@ -33,7 +34,7 @@
         </thead>
         <tbody>
         <tr align="center" v-for="r in datas">
-            <td><input type="checkbox"/></td>
+            <td><input type="checkbox"  name="all" id="all" :value="r.id"></td>
             <td>{{r.name}}</td>
             <td width="480px">
                 <img :src="r.imgUrl" style="width: 20%"/>
@@ -42,18 +43,82 @@
             <td v-else>已下架</td>
             <td v-if="r.status==1">
                 <button class="btn btn-danger btn-sm"><i class="fa fa-download"></i>下架</button>
-                <button class="btn btn-primary btn-sm" data-toggle='modal' data-target='#myModal'><i class="fa fa-pencil-square"></i>编辑</button>
+                <button class="btn btn-primary btn-sm" data-toggle='modal' data-target='#edit_myModal' onclick="setvalue(this)"><i class="fa fa-pencil-square"></i>编辑</button>
             </td>
             <td v-else>
                 <button class="btn btn-success btn-sm"><i class="fa fa-upload"></i>上架</button>
-                <button class="btn btn-primary btn-sm" data-toggle='modal' data-target='#myModal'><i class="fa fa-pencil-square"></i>编辑</button>
+                <button class="btn btn-primary btn-sm" data-toggle='modal' data-target='#edit_myModal' onclick="setvalue(this)"><i class="fa fa-pencil-square"></i>编辑</button>
             </td>
         </tr>
 
         </tbody>
     </table>
 </div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="add_brand">
+
+
+<div class="popup_de xycenter">
+    <div class="popup_box">
+        <span class="popup_close" value="关闭">×</span>
+        <span class="show_msg" id="show_msg"></span>
+        <div class="btn_box">
+            <div class="popup_btn btn-danger" value="确定">确定</div>
+            <div class="popup_btn btn_cancel" value="取消">取消</div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="edit_myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="add_brand">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                </button>
+                <h4 class="modal-title" id="edit_myModalLabel">编辑品牌</h4>
+            </div>
+            <form role="form">
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">品牌名称</label>
+                    <input type="text" id="edit_brand_name"/>
+                </div>
+
+                <div class="form-group div-upload">
+                    <label class="col-sm-2 control-label">品牌商标</label>
+                    <div class="col-sm-10 div-img-group">
+                        <div class="div-img" id="edit_div-img">
+                            <span class="upload-tip" id="edit_upload-tip">选择文件上传</span>
+                            <input type="file" id="edit_brand_logo" class="input-brand-logo" onchange="edit_imgchange()"/>
+                            <!--<img class="img-display" src="http://119.23.253.135:9090/kissolive/7bc81761-33c1-4660-b478-43c287305f03.jpg"/>-->
+                            <img class="img-display" src="" id="edit_logo-img"/>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">状态</label>
+                    <select id="edit_brand_status" style="width: 60px;height: 30px">
+                        <option value="1">上架</option>
+                        <option value="0">下架</option>
+                    </select>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-default" onclick="edit_brand();">提交</button>
+                </div>
+        </form>
+    </div>
+    <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="edit_brand">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -73,9 +138,9 @@
                     <div class="col-sm-10 div-img-group">
                         <div class="div-img" id="div-img">
                             <span class="upload-tip" id="upload-tip">选择文件上传</span>
-                            <input type="file" id="brand_logo" class="input-brand-logo"/>
+                            <input type="file" id="brand_logo" class="input-brand-logo" onchange="imgchange()"/>
                             <!--<img class="img-display" src="http://119.23.253.135:9090/kissolive/7bc81761-33c1-4660-b478-43c287305f03.jpg"/>-->
-                            <img class="img-display" src="" id="logo-img"/>
+                            <img class="img-display" src="" id="logo-img" style="display: none"/>
 
                         </div>
                     </div>
@@ -94,13 +159,15 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     <button type="button" class="btn btn-default" onclick="brand_submit();">提交</button>
                 </div>
-        </form>
+            </form>
+        </div>
+        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-content -->
-</div>
-<!-- /.modal-dialog -->
+    <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+
 <script type="text/javascript" src="../../js/jquery.js"></script>
 <!--DataTables 核心 js-->
 <script type="text/javascript" src="../../js/table/jquery.dataTables.min.js"></script>
