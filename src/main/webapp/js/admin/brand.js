@@ -95,50 +95,40 @@ var table_id_example = new Vue({
     }
 })
 
-function imgchange() {
-    var read=new FileReader();
-    read.readAsDataURL(this.files[0]);
-    read.onload=function(){
-        var url=read.result;
-        var previewImg =document.getElementById("logo-img");
-        alert("1234");
-        previewImg.src= url;
-        previewImg.style.display = "block";
+//获取图片路劲的方法，兼容多种浏览器，通过createObjectURL实现
+function getObjectURL(file){
+    var url = null;
+    if(window.createObjectURL != undefined){
+        url = window.createObjectURL(file);//basic
+    }else if(window.URL != undefined){
+        url = window.URL.createObjectURL(file);
+    }else if(window.webkitURL != undefined){
+        url = window.webkitURL.createObjectURL(file);
     }
+
+    return url;
 }
 
-function edit_imgchange() {
-    alert("123");
-    var read=new FileReader();
-    read.readAsDataURL(this.files[0]);
-    read.onload=function(){
-        var url=read.result;
-        alert(url);
-        $('#edit_logo-img').attr("src",url);
-    }
-}
-/*$('#brand_logo').onchange=function () {
-    var read=new FileReader();
-    read.readAsDataURL(this.files[0]);
-    read.onload=function(){
-        var url=read.result;
-        var previewImg =document.getElementById("logo-img");
-        alert("1234");
-        previewImg.src= url;
-        previewImg.style.display = "block";
-    }
-}
+$(function(){
+    $('#brand_logo').change(function () {
+        var objUrl = getObjectURL(this.files[0]);
+        //alert("1:"+objUrl);
+       if(objUrl){
+           var previewImg =document.getElementById("logo-img");
+           previewImg.src= objUrl;
+           previewImg.style.display = "block";
+       }
+    });
+    $('#edit_logo').change(function () {
+        var objUrl = getObjectURL(this.files[0]);
+        //alert("2:"+objUrl);
+        if(objUrl){
+            var previewImg =document.getElementById("edit_logo-img");
+            previewImg.src= objUrl;
+        }
+    });
+})
 
-$('#edit_brand_logo').onchange=function (){
-    alert("123");
-    var read=new FileReader();
-    read.readAsDataURL(this.files[0]);
-    read.onload=function(){
-        var url=read.result;
-        alert(url);
-        $('#edit_logo-img').attr("src",url);
-    }
-}*/
 
 var edit_brand_id;
 function setvalue(obj) {
