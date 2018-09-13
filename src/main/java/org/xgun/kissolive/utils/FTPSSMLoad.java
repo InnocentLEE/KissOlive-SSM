@@ -31,11 +31,12 @@ public class FTPSSMLoad {
         try {
             //下载到本地
             file.transferTo(targetFile);
-            FTPUtil.uploadFile(remotePath,Lists.newArrayList(targetFile));
+            boolean result = FTPUtil.uploadFile(remotePath,Lists.newArrayList(targetFile));
             targetFile.delete();
             Map fileMap = Maps.newHashMap();
             fileMap.put("uri",targetFile.getName());
             fileMap.put("http_url",Const.HTTP_PREFIX+remotePath+targetFile.getName());
+            fileMap.put("result",result);
             return fileMap;
         } catch (IOException e) {
             e.printStackTrace();

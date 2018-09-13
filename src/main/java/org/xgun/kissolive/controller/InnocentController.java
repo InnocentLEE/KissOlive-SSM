@@ -50,6 +50,8 @@ public class InnocentController {
         String imgUrl = null;
         try {
             Map map = FTPSSMLoad.upload(brandLogo, request, Const.FILE_SAVE_PATH);
+            if(!(boolean)map.get("result"))
+                return ServerResponse.createByErrorMessage("添加品牌失败");
             imgUrl = map.get("http_url").toString();
         }catch (Exception e){
             return ServerResponse.createByErrorMessage("添加品牌失败");
@@ -242,6 +244,8 @@ public class InnocentController {
     @ResponseBody
     public Map<String, String> uploadImage(HttpServletRequest request, @RequestParam("img") MultipartFile file) {
         Map map = FTPSSMLoad.upload(file, request, Const.FILE_SAVE_PATH);
+        if(!(boolean)map.get("result"))
+            return null;
         Map<String, String> result = new HashMap<>();
         result.put("url", map.get("http_url").toString());
         return result;
@@ -278,6 +282,8 @@ public class InnocentController {
                                         @RequestParam("img")MultipartFile file) {
         // TODO: 2018/9/10 校验管理员身份
         Map map = FTPSSMLoad.upload(file, request, Const.FILE_SAVE_PATH);
+        if(!(boolean)map.get("result"))
+            return ServerResponse.createByErrorMessage("添加产品失败");
         Production production = new Production(Const.ID_INIT,brandId,originId,marketTimeId,name,description,map.get("http_url").toString(),detail,null,null);
         List<ProductionHotspot> productionHotspots = new ArrayList<>();
         for (int i = 0; i < hotspot.length; i++) {
@@ -335,6 +341,8 @@ public class InnocentController {
         if(!brandLogo.isEmpty()){
             try {
                 Map map = FTPSSMLoad.upload(brandLogo, request, Const.FILE_SAVE_PATH);
+                if(!(boolean)map.get("result"))
+                    return ServerResponse.createByErrorMessage("添加品牌失败");
                 imgUrl = map.get("http_url").toString();
             }catch (Exception e){
                 return ServerResponse.createByErrorMessage("编辑品牌失败");
