@@ -45,33 +45,17 @@ $(document).ready(function() {
     $('.popup_de .popup_close').click(function(){
         $('.popup_de').removeClass('bbox');
     });
-    $('.img-display').click(function(){
+    $('#logo-img').click(function(){
         $('#brand_logo').trigger("click");
+        //$('#edit_logo').trigger("click");
+    });
+    $('#edit_logo-img').click(function(){
+        //$('#brand_logo').trigger("click");
+        $('#edit_logo').trigger("click");
     });
     
 });
-function brand_submit() {
-    var formData = new FormData();
-    var brand_logo = $('#brand_logo').get(0).files[0];
-    var select = $('#brand_status').val();
-    var brand_name = $('#brand_name').val();
-    formData.append("logo_img",brand_logo);
-    formData.append("brand_status",select);
-    formData.append("brand_name",brand_name);
-    $.ajax({
-        type : 'post',
-        url : 'http://localhost:8080/production/add_brand.do',
-        cache : false,
-        data : formData,
-        processData : false,
-        contentType : false,
-        dataType : 'json', //请求成功后，后台返回图片访问地址字符串，故此以text格式获取，而不是json格式
-        success : function(result) {
-           alert(result.msg);
-           window.parent.frames["right"].location.reload();
-        }
-    })
-}
+
 var table_id_example = new Vue({
     el : '#table_id_example',
     data :{
@@ -123,12 +107,10 @@ $(function(){
         var objUrl = getObjectURL(this.files[0]);
         //alert("2:"+objUrl);
         if(objUrl){
-            var previewImg =document.getElementById("edit_logo-img");
-            previewImg.src= objUrl;
+            $('#edit_logo-img').attr("src",objUrl);
         }
     });
 })
-
 
 var edit_brand_id;
 function setvalue(obj) {
@@ -145,4 +127,51 @@ function setvalue(obj) {
     }else{
         $('#edit_brand_status').val("0");
     }
+}
+
+function brand_submit() {
+    var formData = new FormData();
+    var brand_logo = $('#brand_logo').get(0).files[0];
+    var select = $('#brand_status').val();
+    var brand_name = $('#brand_name').val();
+    formData.append("logo_img",brand_logo);
+    formData.append("brand_status",select);
+    formData.append("brand_name",brand_name);
+    $.ajax({
+        type : 'post',
+        url : 'http://localhost:8080/production/add_brand.do',
+        cache : false,
+        data : formData,
+        processData : false,
+        contentType : false,
+        dataType : 'json', //请求成功后，后台返回图片访问地址字符串，故此以text格式获取，而不是json格式
+        success : function(result) {
+            alert(result.msg);
+            window.parent.frames["right"].location.reload();
+        }
+    })
+}
+
+function edit_brand() {
+    var formData = new FormData();
+    var brand_logo = $('#edit_logo').get(0).files[0];
+    var select = $('#edit_brand_status').val();
+    var brand_name = $('#edit_brand_name').val();
+    formData.append("brand_id",edit_brand_id);
+    formData.append("logo_img",brand_logo);
+    formData.append("brand_status",select);
+    formData.append("brand_name",brand_name);
+    $.ajax({
+        type : 'post',
+        url : 'http://localhost:8080/production/edit_brand.do',
+        cache : false,
+        data : formData,
+        processData : false,
+        contentType : false,
+        dataType : 'json', //请求成功后，后台返回图片访问地址字符串，故此以text格式获取，而不是json格式
+        success : function(result) {
+            alert(result.msg);
+            window.parent.frames["right"].location.reload();
+        }
+    })
 }
