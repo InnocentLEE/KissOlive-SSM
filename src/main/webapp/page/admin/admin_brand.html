@@ -25,7 +25,7 @@
     <table id="table_id_example" class="table table-bordered">
         <thead>
         <tr>
-            <th style="text-align:center;"><input type="checkbox"  name="all" id="all"></th>
+            <th style="text-align:center;">品牌编号</th>
             <th style="text-align:center;">品牌名</th>
             <th style="text-align:center;">Logo</th>
             <th style="text-align:center;">状态</th>
@@ -34,7 +34,7 @@
         </thead>
         <tbody>
         <tr align="center" v-for="r in datas">
-            <td><input type="checkbox"  name="all" id="all" :value="r.id"></td>
+            <td>{{r.id}}</td>
             <td>{{r.name}}</td>
             <td width="480px">
                 <img :src="r.imgUrl" style="width: 20%"/>
@@ -42,11 +42,11 @@
             <td v-if="r.status==1">已上架</td>
             <td v-else>已下架</td>
             <td v-if="r.status==1">
-                <button class="btn btn-danger btn-sm"><i class="fa fa-download"></i>下架</button>
+                <button class="btn btn-danger btn-sm"  @click="change_status(r.id,0)"><i class="fa fa-download"></i>下架</button>
                 <button class="btn btn-primary btn-sm" data-toggle='modal' data-target='#edit_myModal' onclick="setvalue(this)"><i class="fa fa-pencil-square"></i>编辑</button>
             </td>
             <td v-else>
-                <button class="btn btn-success btn-sm"><i class="fa fa-upload"></i>上架</button>
+                <button class="btn btn-success btn-sm" @click="change_status(r.id,1)"><i class="fa fa-upload"></i>上架</button>
                 <button class="btn btn-primary btn-sm" data-toggle='modal' data-target='#edit_myModal' onclick="setvalue(this)"><i class="fa fa-pencil-square"></i>编辑</button>
             </td>
         </tr>
@@ -56,13 +56,22 @@
 </div>
 
 
-<div class="popup_de xycenter">
+<div class="popup_de xycenter" id="tip">
     <div class="popup_box">
         <span class="popup_close" value="关闭">×</span>
         <span class="show_msg" id="show_msg"></span>
         <div class="btn_box">
-            <div class="popup_btn btn-danger" value="确定">确定</div>
+            <div class="popup_btn btn-danger" value="确定" id="tipbtn">确定</div>
             <div class="popup_btn btn_cancel" value="取消">取消</div>
+        </div>
+    </div>
+</div>
+
+<div class="popup_de xycenter" id="show">
+    <div class="popup_box">
+        <span class="show_msg" id="showmsg"></span>
+        <div class="btn_box">
+            <div class="popup_btn btn-danger" value="确定" id="showbtn">确定</div>
         </div>
     </div>
 </div>

@@ -2,8 +2,8 @@ $(document).ready(function() {
     $('#table_id_example').DataTable({
         "processing": true,
         "aLengthMenu": [5, 10, 20],
-        "aoColumnDefs": [ { "bSortable": false, "aTargets": [ 0 ] }],
-        "order": [[ 1, 'asc' ]],
+        /*"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 0 ] }],*/
+        "order": [[ 0, 'asc' ]],
         "language": {
             "decimal": "",
             "emptyTable": "表中没有可用数据",
@@ -30,13 +30,11 @@ $(document).ready(function() {
         },
         "sDom": "<'col-sm-12' <'row col-sm-12' <'col-sm-2'<'#btn'>> <'col-sm-8'> <'cos-sm-2'f>> t <'col-sm-6'> <'col-sm-6'>>"
     });
-    var btnn = "<button class=\"btn btn-primary btn-sm\" data-toggle='modal' data-target='#myModal'><i class=\"fa fa-plus\"></i>添加</button>\n" +
-        "\t\t\t\t<button class=\"btn btn-success btn-sm\"><i class=\"fa fa-upload\"></i>上架</button>\n" +
-        "\t\t\t\t<button class=\"btn btn-danger btn-sm\"><i class=\"fa fa-download\"></i>下架</button>";
+    var btnn = "<button class=\"btn btn-primary btn-sm\" data-toggle='modal' data-target='#myModal'><i class=\"fa fa-plus\"></i>添加</button>\n";
     $("#btn")[0].innerHTML = btnn;
-    $("#all").click(function(){
+    /*$("#all").click(function(){
         $('[name=all]:checkbox').prop('checked',this.checked);//checked为true时为默认显示的状态
-    });
+    });*/
     //弹出框取消按钮事件
     $('.popup_de .btn_cancel').click(function(){
         $('.popup_de').removeClass('bbox');
@@ -64,18 +62,23 @@ var table_id_example = new Vue({
     created:function () {
         var self = this;
         $.ajax({
-            type : 'post',
-            url : 'http://localhost:8080/production/get_brand_list.do',
-            async : false,
-            dataType : 'json',
-            success : function(result) {
-                if(result.status==0)
+            type: 'post',
+            url: 'http://localhost:8080/production/get_brand_list.do',
+            async: false,
+            dataType: 'json',
+            success: function (result) {
+                if (result.status == 0)
                     self.datas = result.data;
-                else{
-                    alert(result.msg);
+                else {
+                    showmsg(result.msg);
                 }
             }
         })
+    },
+    methods:{
+        change_status:function (id,status) {
+            doChangeStatus(id,status);
+        }
     }
 })
 
@@ -115,7 +118,7 @@ $(function(){
 var edit_brand_id;
 function setvalue(obj) {
     var tds = $(obj).parent().parent().find('td');
-    edit_brand_id = tds.eq(0).find('input').val();
+    edit_brand_id = tds.eq(0).text();
     var edit_brand_name = tds.eq(1).text();
     var edit_brand_imgUrl = tds.eq(2).find('img').attr("src");
     var edit_brand_status = tds.eq(3).text();
@@ -146,8 +149,7 @@ function brand_submit() {
         contentType : false,
         dataType : 'json', //请求成功后，后台返回图片访问地址字符串，故此以text格式获取，而不是json格式
         success : function(result) {
-            alert(result.msg);
-            window.parent.frames["right"].location.reload();
+            showmsg(result.msg);
         }
     })
 }
@@ -170,8 +172,39 @@ function edit_brand() {
         contentType : false,
         dataType : 'json', //请求成功后，后台返回图片访问地址字符串，故此以text格式获取，而不是json格式
         success : function(result) {
-            alert(result.msg);
-            window.parent.frames["right"].location.reload();
+            showmsg(result.msg);
         }
+    })
+}
+function doChangeStatus(id,status) {
+    if(status==0){
+        var text="确定要下架该品牌吗?";
+    }else{
+        var text="确定要上架该品牌吗?";
+    }
+    document.getElementById('show_msg').innerHTML=text;
+    $('#tip').addClass('bbox');
+    $('#tipbtn').one('click',function(){
+        $.ajax({
+            type : 'post',
+            url : 'http://localhost:8080/production/change_brand_put_on_status.do',
+            cache : false,
+            data : {
+                "brand_id":id,
+                "brand_status":status
+            },
+            dataType : 'json', //请求成功后，后台返回图片访问地址字符串，故此以text格式获取，而不是json格式
+            success : function(result) {
+                showmsg(result.msg);
+            }
+        })
+    })
+}
+
+function showmsg(msg) {
+    document.getElementById('showmsg').innerHTML=msg;
+    $('#show').addClass('bbox');
+    $('#showbtn').one('click',function(){
+        window.parent.frames["right"].location.reload();
     })
 }

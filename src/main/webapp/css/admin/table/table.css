@@ -131,7 +131,7 @@ button#btn_look {
     margin-right: 60px;
 }
 span.pass {
-    background: url(../../images/workbench/content/whiteicon/Pass.png)no-repeat;
+    background: url(../../../images/workbench/content/whiteicon/Pass.png)no-repeat;
     background-size: 16px;
     width: 30px;
     height: 10px;
@@ -170,6 +170,7 @@ span.wait {
             display: -webkit-flex;  /* 新版本语法: Chrome 21+ */
             display: -moz-flex;
             display: flex;          /* 新版本语法: Opera 12.1, Firefox 22+ */
+            z-index: 2147483646;
         }
         .bbox.xycenter{
             -moz-box-pack: center; /*Firefox*/
