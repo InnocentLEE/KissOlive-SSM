@@ -314,7 +314,7 @@ function validateTel() {
     telphoneflag = true;
     return true;
 }
-function validateVerifyCode() {
+function validateCode() {
     var id = "verifyCode";
     var value = $("#" + id).val();//获取输入框内容
     var staus = 0; //判断验证情况
