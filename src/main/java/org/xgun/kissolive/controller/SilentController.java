@@ -1,20 +1,30 @@
 package org.xgun.kissolive.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.xgun.kissolive.common.ServerResponse;
+import org.xgun.kissolive.pojo.Activity;
 import org.xgun.kissolive.pojo.Card;
 import org.xgun.kissolive.service.ISilentService;
+import org.xgun.kissolive.utils.FTPSSMLoad;
 import org.xgun.kissolive.vo.CardInfo;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by GvG on 2018/9/10.
@@ -57,12 +67,239 @@ public class SilentController {
      * @param cardIds
      * @return
      */
-    @RequestMapping(value = "/shoppingCart/delete_card_ByBatch.do",method = RequestMethod.POST)
+    @RequestMapping(value = "/shoppingCart/delete_card_ByBatch.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse deleteCard(@RequestParam("cardIds")int[] cardIds){
         if( cardIds==null || cardIds.length==0 ) {
             return ServerResponse.createByErrorMessage("删除失败");
         }
         return iSilentService.deleteCardByBatch(cardIds);
+    }
+
+    /**
+     * 新添加活动，上传海报图，vip等级限制，商品优惠
+     * @param request
+     * @param title:活动标题
+     * @param img:海报图
+     * @param detail:详情富文本
+     * @param beginTime
+     * @param endTime
+     * @param vipLevel:可参与活动会员等级
+     * @param goods:优惠商品ID
+     * @param price:价格
+     * @return
+     */
+    @RequestMapping(value = "/activity/insert.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse insertActivity(HttpServletRequest request, @RequestParam(value="title") String title,
+                                         @RequestParam(value="img",required = false) MultipartFile img,
+                                         @RequestParam(value="detail")String detail, @RequestParam(value="beginTime")String beginTime,
+                                         @RequestParam(value="endTime")String endTime, @RequestParam(value="vipLevel")int[] vipLevel,
+                                         @RequestParam(value="goods",required = false)int[] goods,
+                                         @RequestParam(value="price",required = false) BigDecimal[] price){
+        //判断上传的文件内容是否为图片
+        try {
+            if(!img.isEmpty()) {
+                InputStream inputStream = img.getInputStream();
+                BufferedImage bi = ImageIO.read(inputStream);
+                if (bi == null) {
+                    return ServerResponse.createByErrorMessage("请上传格式正确的图片！");
+                }
+            }else {
+                return ServerResponse.createByErrorMessage("请上传图片！");
+            }
+        }catch (IOException e) {
+            return ServerResponse.createByErrorMessage("IOException error");
+        }catch (Exception e) {
+            return ServerResponse.createByErrorMessage("Exception error");
+        }
+
+        if(StringUtils.isEmpty(title)||StringUtils.isEmpty(detail)||StringUtils.isEmpty(beginTime)||
+                StringUtils.isEmpty(endTime)||vipLevel.length==0||goods.length!=price.length){
+            return ServerResponse.createByErrorMessage("参数出错");
+        }
+
+        Activity activity = new Activity();
+        //活动海报图上传
+        Map fileMap = FTPSSMLoad.upload(img, request, "/activity/coverImg/");
+        activity.setImgUrl(fileMap.get("http_url").toString());
+
+        activity.setTitle(title);
+        activity.setDetail(detail);
+        //日期字符串转日期类型
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            activity.setBegintime(formatter.parse(beginTime));
+            activity.setEndtime(formatter.parse(endTime));
+        }catch (ParseException e) {
+            return ServerResponse.createByErrorMessage("日期格式不对");
+        }
+
+        //insert
+        try {
+            return iSilentService.insertActivity(activity, vipLevel, goods, price);
+        }catch (RuntimeException e){
+            return ServerResponse.createByErrorMessage("添加活动失败");
+        }
+    }
+
+    /**
+     * 删除活动，包括相关会员限制，优惠信息
+     * @param activityIds
+     * @return
+     */
+    @RequestMapping(value = "/activity/delete_ByBatch.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse deleteActivity(@RequestParam("activityIds")int[] activityIds){
+        if(activityIds==null||activityIds.length==0){
+            return ServerResponse.createByErrorMessage("删除失败");
+        }
+        return iSilentService.deleteActivityByBatch(activityIds);
+    }
+
+    /**
+     * 获取活动列表信息
+     * @param page 第几页
+     * @param num 每页显示记录数
+     * @return
+     */
+    @RequestMapping(value = "/activity/get_Menu/{page}/{num}", method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse getActivityMenu(@PathVariable(value = "page")Integer page, @PathVariable(value = "num")Integer num){
+        try {
+            return iSilentService.getActivityMenu(page, num);
+        }catch (Exception e){
+            return ServerResponse.createByErrorMessage("获取失败");
+        }
+    }
+
+    /**
+     * 获取指定活动ID的详细信息
+     * @param activityId
+     * @return
+     */
+    @RequestMapping(value = "/activity/get_Info/{activityId}", method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse getActivityInfo(@PathVariable(value = "activityId")Integer activityId){
+        if(activityId == null){
+            return ServerResponse.createByErrorMessage("查询失败");
+        }
+        return iSilentService.getActivityInfo(activityId);
+    }
+
+    /**
+     * 获取指定活动ID的所有商品优惠信息
+     * @param activityId
+     * @return
+     */
+    @RequestMapping(value = "/activity/get_GoodsInfo/{activityId}", method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse getActivityGoodsInfo(@PathVariable(value = "activityId")Integer activityId){
+        if(activityId == null){
+            return ServerResponse.createByErrorMessage("查询失败");
+        }
+        return iSilentService.getActivityGoodsInfo(activityId);
+    }
+
+    /**
+     * 修改指定活动ID活动信息
+     * @param request
+     * @param title
+     * @param img
+     * @param detail
+     * @param beginTime
+     * @param endTime
+     * @param activityId
+     * @return
+     */
+    @RequestMapping(value = "/activity/update_activityInfo.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse updateActivityInfo(HttpServletRequest request, @RequestParam(value="title", required = false) String title,
+                                             @RequestParam(value="img", required = false) MultipartFile img,
+                                             @RequestParam(value="detail", required = false)String detail, @RequestParam(value="beginTime", required = false)String beginTime,
+                                             @RequestParam(value="endTime", required = false)String endTime,
+                                             @RequestParam(value="activityId")Integer activityId){
+        Activity activity = new Activity();
+        activity.setImgUrl(null);
+        //判断是否有新海报图片上传
+        if(!img.isEmpty()){
+            try {
+                InputStream inputStream = img.getInputStream();
+                BufferedImage bi = ImageIO.read(inputStream);
+                if (bi == null) {
+                    return ServerResponse.createByErrorMessage("请上传格式正确的图片！");
+                }
+            }catch (IOException e) {
+                return ServerResponse.createByErrorMessage("IOException error");
+            }catch (Exception e) {
+                return ServerResponse.createByErrorMessage("Exception error");
+            }
+            //活动海报图上传
+            Map fileMap = FTPSSMLoad.upload(img, request, "/activity/coverImg/");
+            activity.setImgUrl(fileMap.get("http_url").toString());
+        }
+        activity.setId(activityId);
+        activity.setTitle(title);
+        activity.setDetail(detail);
+
+        //日期字符串转日期类型
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        if(beginTime!=null){
+            try {
+                activity.setBegintime(formatter.parse(beginTime));
+            }catch (ParseException e) {
+                return ServerResponse.createByErrorMessage("ParseException error");
+            }
+        }
+        if(endTime!=null){
+            try {
+                activity.setEndtime(formatter.parse(endTime));
+            }catch (ParseException e) {
+                return ServerResponse.createByErrorMessage("ParseException error");
+            }
+        }
+        return iSilentService.updateActivityInfo(activity);
+    }
+
+    /**
+     * 修改活动对应会员等级限制
+     * @param activityId
+     * @param vipIds
+     * @return
+     */
+    @RequestMapping(value = "/activity/update_level.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse updateActivityLevel(@RequestParam(value = "activityId")Integer activityId,
+                                              @RequestParam(value = "vipIds")int[] vipIds){
+        if(activityId==null||vipIds.length==0){
+            return ServerResponse.createByErrorMessage("参数错误");
+        }
+        try {
+            return iSilentService.updateActivityLevel(activityId, vipIds);
+        }catch (DataAccessException e){
+            return ServerResponse.createByErrorMessage("修改失败");
+        }
+    }
+
+    /**
+     * 修改商品优惠信息
+     * @param activityId
+     * @param goods
+     * @param price
+     * @return
+     */
+    @RequestMapping(value = "/activity/update_goods.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse updateActivityGoods(@RequestParam(value = "activityId")Integer activityId,
+                                              @RequestParam(value = "goods")int[] goods,
+                                              @RequestParam(value = "price")BigDecimal[] price){
+        if(activityId==null||goods.length!=price.length){
+            return ServerResponse.createByErrorMessage("参数错误");
+        }
+        try {
+            return iSilentService.updateActivityGoods(activityId, goods, price);
+        }catch (DataAccessException e){
+            return ServerResponse.createByErrorMessage("修改失败");
+        }
     }
 }

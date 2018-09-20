@@ -44,7 +44,7 @@ public class ActivityGoods {
     }
 
     public void setPrice(BigDecimal price) {
-        this.price = price;
+        this.price = price.setScale(2);
     }
 
     public Date getUpdatetime() {

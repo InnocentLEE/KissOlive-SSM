@@ -1,16 +1,24 @@
 package org.xgun.kissolive.service.impl;
 
+import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.dao.SilentMapper;
+import org.xgun.kissolive.pojo.Activity;
+import org.xgun.kissolive.pojo.ActivityGoods;
 import org.xgun.kissolive.pojo.Card;
 import org.xgun.kissolive.service.ISilentService;
+import org.xgun.kissolive.vo.ActivityGoodsInfo;
+import org.xgun.kissolive.vo.ActivityMenuInfo;
 import org.xgun.kissolive.vo.CardInfo;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by GvG on 2018/9/10.
@@ -68,6 +76,141 @@ public class SilentServiceImpl implements ISilentService {
             return ServerResponse.createBySuccessMessage("购物车删除成功");
         }else {
             return ServerResponse.createBySuccessMessage("购物车删除失败");
+        }
+    }
+
+    @Transactional
+    @Override
+    public ServerResponse getActivityMenu(int page, int num) {
+        if (page <= 0) {
+            page = 1;
+        }
+        if (num <= 0) {
+            num = 5;
+        }
+        //总记录数
+        int totalNum = silentMapper.selectActivityCount();
+        //总页数
+        int totalPage = totalNum/num;
+        if(totalNum%num != 0){
+            totalPage++;
+        }
+        //获取活动列表信息
+        List<ActivityMenuInfo> list = silentMapper.selectActivityMenu((page-1)*num,num);
+        Map MenuMap = Maps.newHashMap();
+        MenuMap.put("nowPage", page);
+        MenuMap.put("showNum", num);
+        MenuMap.put("totalNum", totalNum);
+        MenuMap.put("totalPage", totalPage);
+        MenuMap.put("ListInfo",list);
+
+        return ServerResponse.createBySuccess(MenuMap);
+    }
+
+    @Transactional
+    @Override
+    public ServerResponse insertActivity(Activity activity, int[] vipLevel, int[] goods, BigDecimal[] price) {
+        //活动表insert
+        boolean result = false;
+        result = silentMapper.insertActivity(activity)>0;
+        if(!result) {
+            return ServerResponse.createByErrorMessage("创建活动失败");
+        }else {
+            result = false;
+        }
+
+        int activityId = activity.getId();
+        //活动对应会员等级表insert
+        result = silentMapper.insertActivityLevel(activityId,vipLevel)>0;
+        if(result || goods.length != 0) {
+            List<ActivityGoods> list = new ArrayList<ActivityGoods>();
+            for( int i = 0 ; i < goods.length && i < price.length ; i++ ){
+                ActivityGoods activityGoods = new ActivityGoods();
+                activityGoods.setGoodsId(goods[i]);
+                activityGoods.setPrice(price[i]);
+                list.add(activityGoods);
+            }
+            result = silentMapper.insertActivityGoods(activityId,list)>0;
+        }
+        if(result){
+            return ServerResponse.createBySuccessMessage("新添加活动成功");
+        }else{
+            throw new RuntimeException("添加活动失败");
+        }
+    }
+
+    @Override
+    public ServerResponse deleteActivityByBatch(int[] activityIds) {
+        //删除活动信息
+        boolean result = silentMapper.deleteActivity(activityIds)>0;
+        if(result) {
+            return ServerResponse.createBySuccessMessage("活动删除成功");
+        }else {
+            return ServerResponse.createBySuccessMessage("活动删除失败");
+        }
+    }
+
+    @Override
+    public ServerResponse getActivityInfo(Integer activityId) {
+        Activity activity = silentMapper.selectActivity(activityId);
+        if(activity != null){
+            return ServerResponse.createBySuccess("查询活动成功",activity);
+        }
+        return ServerResponse.createByErrorMessage("查询失败");
+    }
+
+    @Override
+    public ServerResponse getActivityGoodsInfo(Integer activityId) {
+        List<ActivityGoodsInfo> list = silentMapper.selectActivityGoodsInfo(activityId);
+        if(list == null){
+            return ServerResponse.createByErrorMessage("获取失败");
+        }else if(list.size()==0){
+            return ServerResponse.createBySuccess("该活动无商品优惠信息！",list);
+        }
+        return ServerResponse.createBySuccess("获取成功", list);
+    }
+
+    @Override
+    public ServerResponse updateActivityInfo(Activity activity) {
+        boolean result = silentMapper.updateActivity(activity)>0;
+        if(result) {
+            return ServerResponse.createBySuccessMessage("修改活动信息成功");
+        }else{
+            return ServerResponse.createByErrorMessage("修改失败");
+        }
+    }
+
+    @Transactional
+    @Override
+    public ServerResponse updateActivityLevel(Integer activityId, int[] vipIds) {
+        //先删除之前信息
+        int[] activityIds = {activityId};
+        silentMapper.deleteActivityLevel(activityIds);
+        boolean result = silentMapper.insertActivityLevel(activityId,vipIds)>0;
+        if(result) {
+            return ServerResponse.createBySuccessMessage("修改活动对应会员等级信息成功");
+        }else{
+            return ServerResponse.createByErrorMessage("修改失败");
+        }
+    }
+
+    @Transactional
+    @Override
+    public ServerResponse updateActivityGoods(Integer activityId, int[] goods, BigDecimal[] price) {
+        //删除之前信息
+        int[]activityIds = {activityId};
+        silentMapper.deleteActivityGoods(activityIds);
+
+        List<ActivityGoods> list = new ArrayList<ActivityGoods>();
+        for(int i = 0 ; i < goods.length ; i++) {
+            ActivityGoods activityGoods = new ActivityGoods(activityId,goods[i],price[i],null);
+            list.add(activityGoods);
+        }
+        boolean result = silentMapper.insertActivityGoods(activityId,list)>0;
+        if(result) {
+            return ServerResponse.createBySuccessMessage("修改活动商品优惠信息成功");
+        }else{
+            return ServerResponse.createByErrorMessage("修改失败");
         }
     }
 }

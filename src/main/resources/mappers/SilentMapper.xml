@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.xgun.kissolive.dao.SilentMapper" >
+  <!-- 购物车模块 -->
   <insert id="insertNewCard" parameterType="org.xgun.kissolive.pojo.Card">
     INSERT INTO tb_card (user_id, goods_id, num, updatetime)
     VALUES (#{userId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER},
       #{num,jdbcType=INTEGER}, now())
   </insert>
-
+  
   <select id="checkCard" parameterType="org.xgun.kissolive.pojo.Card" resultType="Integer">
     SELECT num
     FROM tb_card
@@ -41,4 +42,136 @@
     </foreach>
     AND user_id = #{userId}
   </delete>
+  
+  <!-- 活动模块 -->
+  <resultMap id="activityMenuInfoMap" type="org.xgun.kissolive.vo.ActivityMenuInfo">
+    <id column="id" property="activityId"/>
+    <result column="title" property="title"/>
+    <result column="begintime" property="beginTime"/>
+    <result column="endtime" property="endTime"/>
+    <collection property="vipList" ofType="org.xgun.kissolive.pojo.VipLevel" select="selectActivityVipLevel"
+                column="id">
+    </collection>
+  </resultMap>
+
+  <insert id="insertActivity" parameterType="org.xgun.kissolive.pojo.Activity"
+          useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO tb_activity (title, img_url, detail, begintime, endtime, updatetime)
+    VALUES (#{title,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR},
+    #{detail,jdbcType=VARCHAR}, #{begintime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP},
+    now())
+  </insert>
+
+  <insert id="insertActivityLevel">
+    INSERT INTO tb_activity_vip(activity_id, vip_id)
+    VALUES
+    <foreach collection="vipIds" index="index" item="vipId" separator="), (" open="(" close=")">
+      #{activityId}, #{vipId}
+    </foreach>
+  </insert>
+
+  <insert id="insertActivityGoods">
+    INSERT INTO tb_activity_goods(activity_id, goods_id, price, updatetime)
+    VALUES
+    <foreach collection="goods" index="index" item="good" separator="), (" open="(" close=")">
+      #{activityId}, #{good.goodsId}, #{good.price}, now()
+    </foreach>
+    ON DUPLICATE KEY UPDATE
+    price = VALUES(price),
+    updatetime = now()
+  </insert>
+
+  <select id="selectActivityCount" resultType="Integer">
+    SELECT Count(*) as totalNum
+    FROM tb_activity
+  </select>
+
+  <select id="selectActivityMenu" resultMap="activityMenuInfoMap">
+    SELECT id, title, begintime, endtime
+    FROM tb_activity
+    ORDER BY id DESC
+    LIMIT #{index} , #{num}
+  </select>
+
+  <select id="selectActivityVipLevel" parameterType="int" resultType="org.xgun.kissolive.pojo.VipLevel">
+    SELECT vl.id 'id', vl.logo_url 'logoUrl'
+    FROM tb_activity_vip av
+    LEFT JOIN tb_vip_level vl ON av.vip_id = vl.id
+    WHERE av.activity_id = #{id}
+  </select>
+
+  <select id="selectActivity" resultType="org.xgun.kissolive.pojo.Activity">
+    SELECT id, title, img_url 'imgUrl', detail, begintime, endtime, updatetime
+    FROM tb_activity
+    WHERE id = #{activityId}
+  </select>
+
+  <select id="selectActivityGoods" resultType="org.xgun.kissolive.pojo.ActivityGoods">
+    SELECT activity_id 'activityId', goods_id 'goodsId', price, updatetime
+    FROM tb_activity_goods
+    WHERE activity_id = #{activityId}
+    ORDER BY updatetime DESC
+  </select>
+
+  <select id="selectActivityGoodsInfo" resultType="org.xgun.kissolive.vo.ActivityGoodsInfo" >
+    SELECT ag.activity_id 'activityId', ag.goods_id'goodsId', p.img_url'imgUrl',b.name 'brandName',
+      p.name 'productionName',g.color_name 'colorName', g.color_code 'colorCode', g.price 'oldPrice',
+      ag.price 'nowPrice', g.status 'status', ag.updatetime'updateTime'
+	FROM tb_activity_goods ag
+	LEFT JOIN tb_goods g ON ag.goods_id = g.id
+    LEFT JOIN tb_production p ON g.production_id = p.id
+    LEFT JOIN tb_brand b ON p.brand_id = b.id
+    WHERE ag.activity_id = #{activityId}
+  </select>
+
+  <update id="updateActivity" parameterType="org.xgun.kissolive.pojo.Activity">
+    UPDATE tb_activity
+    <set>
+      <if test="title != null">title = #{title,jdbcType=VARCHAR}, </if>
+      <if test="imgUrl != null"> img_url = #{imgUrl,jdbcType=VARCHAR}, </if>
+      <if test="detail != null"> detail = #{detail,jdbcType=VARCHAR}, </if>
+      <if test="begintime != null"> begintime = #{begintime,jdbcType=TIMESTAMP}, </if>
+      <if test="endtime != null"> endtime = #{endtime,jdbcType=TIMESTAMP}, </if>
+      <if test="true">updatetime = now(), </if>
+    </set>
+    WHERE id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateActivityGoods">
+    UPDATE tb_activity_goods
+    SET updatetime = now(),
+        price = CAST goods_id
+    <foreach collection="goods" item="good" index="good" close=" END">
+      WHEN #{good.goodsId} THEN #{good.price}
+    </foreach>
+    WHERE activity_id IN 
+    <foreach collection="goods" item="good" index="good" open="(" separator=", " close=")">
+      #{good.activityId}
+    </foreach>
+  </update>
+
+  <delete id="deleteActivity">
+    DELETE FROM tb_activity
+    WHERE id IN
+    <foreach collection="activityIds" item="activityId" index="index" open="(" separator="," close=")">
+      #{activityId}
+    </foreach>
+  </delete>
+
+  <delete id="deleteActivityLevel">
+    DELETE FROM tb_activity_vip
+    WHERE activity_id IN
+    <foreach collection="activityIds" item="activityId" index="index" open="(" separator="," close=")">
+      #{activityId}
+    </foreach>
+  </delete>
+
+  <delete id="deleteActivityGoods">
+    DELETE FROM tb_activity_goods
+    WHERE activity_id IN
+    <foreach collection="activityIds" item="activityId" index="index" open="(" separator="," close=")">
+      #{activityId}
+    </foreach>
+  </delete>
+
 </mapper>

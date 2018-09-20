@@ -1,9 +1,12 @@
 package org.xgun.kissolive.pojo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Activity {
     private Integer id;
+
+    private String title;
 
     private String imgUrl;
 
@@ -36,6 +39,14 @@ public class Activity {
         this.id = id;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getImgUrl() {
         return imgUrl;
     }
@@ -52,24 +63,27 @@ public class Activity {
         this.detail = detail == null ? null : detail.trim();
     }
 
-    public Date getBegintime() {
-        return begintime;
+    public String getBegintime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(begintime);
     }
 
     public void setBegintime(Date begintime) {
         this.begintime = begintime;
     }
 
-    public Date getEndtime() {
-        return endtime;
+    public String getEndtime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(endtime);
     }
 
     public void setEndtime(Date endtime) {
         this.endtime = endtime;
     }
 
-    public Date getUpdatetime() {
-        return updatetime;
+    public String getUpdatetime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(updatetime);
     }
 
     public void setUpdatetime(Date updatetime) {
