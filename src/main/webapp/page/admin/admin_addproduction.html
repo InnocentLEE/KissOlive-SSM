@@ -66,55 +66,51 @@
 					<br />
 					<div id="brand" class="brand">
 						<span class="left-span"><strong class="leibie">品牌：</strong></span>
-						<a class="btn btn-default"><img src="../../images/52272A381C3E4DCFB9FFEF7ECBF5DD9B.jpg" class="common"></a>
-						<a class="btn btn-default"><img src="../../images/52272A381C3E4DCFB9FFEF7ECBF5DD9B.jpg" class="common"></a>
-						<a class="btn btn-default"><img src="../../images/52272A381C3E4DCFB9FFEF7ECBF5DD9B.jpg" class="common"></a>
-						<a class="btn btn-default"><img src="../../images/52272A381C3E4DCFB9FFEF7ECBF5DD9B.jpg" class="common"></a>
-					</div>
+						<a class="btn btn-default" v-for="r in brand" :id="r.id" :title="r.name"><img :src="r.imgUrl" class="common"></a>
+						</div>
 					<br />
 					<div id="function" class="brand">
 						<span class="left-span"><strong class="leibie">功能：</strong></span>
-						<a class="btn btn-default"><span class="common">全部</span></a>
-						<a class="btn btn-default"><span class="common">全部1</span></a>
-						<a class="btn btn-default"><span class="common">全部2</span></a>
-						<a class="btn btn-default"><span class="common">全部3</span></a>
+						<a class="btn btn-default" v-for="r in Funct" :id="r.id"><span class="common">{{r.describe}}</span></a>
+						<span id="update"><img src="../../img/admin/添加.png"></span>
+					</div>
+					<div class="brand" style="display:none" id="updatefunction">
+						<form class="edit1" action="#" method="post">
+							功能：
+							<input id="Functionname" type="text"/>
+							<button class="btn save" type="button">保存</button>&nbsp;&nbsp;&nbsp;
+							<button class="btn save" type="button" onclick="cancel()">取消</button>
+						</form>
 					</div>
 					<br />
 					<div id="origin" class="brand">
 						<span class="left-span"><strong class="leibie">产地：</strong></span>
-						<a class="btn btn-default"><span class="common">全部</span></a>
-						<a class="btn btn-default"><span class="common">全部1</span></a>
-						<a class="btn btn-default"><span class="common">全部2</span></a>
-						<a class="btn btn-default"><span class="common">全部3</span></a>
+						<a class="btn btn-default" v-for="r in origin" :id="r.id"><span class="common">{{r.describe}}</span></a>
 					</div>
 					<br />
 					<div id="hot-spot" class="brand">
 						<span class="left-span"><strong class="leibie">选购热点：</strong></span>
-						<a class="btn btn-default"><span class="common">全部</span></a>
-						<a class="btn btn-default"><span class="common">全部1</span></a>
-						<a class="btn btn-default"><span class="common">全部2</span></a>
-						<a class="btn btn-default"><span class="common">全部3</span></a>
+						<a class="btn btn-default" v-for="r in hotspot" :id="r.id"><span class="common">{{r.describe}}</span></a>
 					</div>
 					<br />
 					<div id="market-time" class="brand">
 						<span class="left-span"><strong class="leibie">上市时间：</strong></span>
-						<a class="btn btn-default"><span class="common">全部</span></a>
-						<a class="btn btn-default"><span class="common">全部1</span></a>
-						<a class="btn btn-default"><span class="common">全部2</span></a>
-						<a class="btn btn-default"><span class="common">全部3</span></a>
+						<a class="btn btn-default" v-for="r in markettime" :id="r.id"><span class="common">{{r.describe}}</span></a>
 					</div>
 					<br />
 					<div id="skin" class="brand">
 						<span class="left-span"><strong class="leibie">适应肤质：</strong></span>
-						<a class="btn btn-default"><span class="common">全部</span></a>
-						<a class="btn btn-default"><span class="common">全部1</span></a>
-						<a class="btn btn-default"><span class="common">全部2</span></a>
-						<a class="btn btn-default"><span class="common">全部3</span></a>
+						<a class="btn btn-default" v-for="r in skin" :id="r.id"><span class="common">{{r.describe}}</span></a>
 					</div>
 					<br />
 					<div class="brand">
 						<span class="left-span"><strong class="leibie">产品名：</strong></span>
 						<input type="text" id="product-name"/>
+					</div>
+					<br />
+					<div class="brand">
+						<span class="left-span"><strong class="leibie">产品描述：</strong></span>
+						<input type="text" id="description"/>
 					</div>
 					<br />
 				</div>
@@ -133,7 +129,7 @@
 	</div>
 	</form>
 
-   
+   <script type="text/javascript" src="../../js/vue.js"></script>
    <script type="text/javascript" src="../../js/activity/jquery.min.js"></script>
    <script type="text/javascript" src="../../js/activity/bootstrap.min.js"></script>
    <script type="text/javascript" src="../../js/activity/summernote.js"></script>

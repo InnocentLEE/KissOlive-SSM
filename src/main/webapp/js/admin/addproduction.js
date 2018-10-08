@@ -1,61 +1,225 @@
-$(function() {
-	$("#brand a").click(function() {
-		if($("#brand a").eq($(this).index() - 1).hasClass("bgColor")) {
-			$("#brand a").eq($(this).index() - 1).removeClass("bgColor");
-		} else {
-			$("#brand a").eq($(this).index() - 1).addClass("bgColor").siblings().removeClass("bgColor");
-		}
-	})
+var brand = new Vue({
+    el:"#brand",
+    data:{
+        brand:[]
+    },
+    created:function () {
+        var self = this;
+        $.ajax({
+            type:'post',
+            url:'http://localhost:8080/production/get_brand_put_on.do',
+            cache: false,
+            dataType:'json',
+            success: function(data) {
+                if(data.status==0) {
+                    self.brand = data.data;
+                    self.updateBrand();
+                }
+            },
+            error:function(){
+                alert("获取异常");
+            }
+        });
 
-	$("#hot-spot a").click(function() {
-		if($("#hot-spot a").eq($(this).index() - 1).hasClass("bgColor")) {
-			$("#hot-spot a").eq($(this).index() - 1).removeClass("bgColor");
-		} else {
-			$("#hot-spot a").eq($(this).index() - 1).addClass("bgColor");
-		}
-	})
-
-	$("#function a").click(function() {
-		if($("#function a").eq($(this).index() - 1).hasClass("bgColor")) {
-			$("#function a").eq($(this).index() - 1).removeClass("bgColor");
-		} else {
-			$("#function a").eq($(this).index() - 1).addClass("bgColor");
-		}
-	})
-	
-	$("#origin a").click(function(){
-    if($("#origin a").eq($(this).index()-1).hasClass("bgColor")){
-    	$("#origin a").eq($(this).index()-1).removeClass("bgColor");
-    }else{
-    	$("#origin a").eq($(this).index()-1).addClass("bgColor").siblings().removeClass("bgColor");
-    }  
-  })
-	
-	$("#market-time a").click(function(){
-    if($("#market-time a").eq($(this).index()-1).hasClass("bgColor")){
-    	$("#market-time a").eq($(this).index()-1).removeClass("bgColor");
-    }else{
-    	$("#market-time a").eq($(this).index()-1).addClass("bgColor").siblings().removeClass("bgColor");
-    }  
-  })
-	
-	$("#skin a").click(function(){
-    if($("#skin a").eq($(this).index()-1).hasClass("bgColor")){
-    	$("#skin a").eq($(this).index()-1).removeClass("bgColor");
-    }else{
-    	$("#skin a").eq($(this).index()-1).addClass("bgColor").siblings().removeClass("bgColor");
-    }  
-  })
-
+    },
+    methods:{
+        updateBrand:function () {
+            this.$nextTick(function () {
+                $("#brand a").click(function() {
+                    if($("#brand a").eq($(this).index() - 1).hasClass("bgColor")) {
+                        $("#brand a").eq($(this).index() - 1).removeClass("bgColor");
+                    } else {
+                        $("#brand a").eq($(this).index() - 1).addClass("bgColor").siblings().removeClass("bgColor");
+                    }
+                })
+            })
+        }
+    }
 })
 
+var Funct = new Vue({
+    el:"#function",
+    data:{
+        Funct:[]
+    },
+    created:function () {
+        var self = this;
+        $.ajax({
+            type:'post',
+            url:'http://localhost:8080/production/get_function_list.do',
+            cache: false,
+            dataType:'json',
+            success: function(data) {
+                if(data.status==0) {
+                    self.Funct = data.data;
+                    self.updateFunction();
+                }
+            },
+            error:function(){
+                alert("获取异常");
+            }
+        });
+    },
+    methods:{
+        updateFunction:function () {
+            this.$nextTick(function () {
+                $("#function a").click(function() {
+                    if($("#function a").eq($(this).index() - 1).hasClass("bgColor")) {
+                        $("#function a").eq($(this).index() - 1).removeClass("bgColor");
+                    } else {
+                        $("#function a").eq($(this).index() - 1).addClass("bgColor");
+                    }
+                })
+            })
+        }
+    }
+})
+
+var origin = new Vue({
+    el:"#origin",
+    data:{
+        origin:[]
+    },
+    created:function () {
+        var self = this;
+        $.ajax({
+            type:'post',
+            url:'http://localhost:8080/production/get_origin_list.do',
+            cache: false,
+            dataType:'json',
+            success: function(data) {
+                if(data.status==0) {
+                    self.origin = data.data;
+                    self.updateOrigin();
+                }
+            }
+        });
+    },
+    methods:{
+        updateOrigin:function () {
+            this.$nextTick(function () {
+                $("#origin a").click(function(){
+                    if($("#origin a").eq($(this).index()-1).hasClass("bgColor")){
+                        $("#origin a").eq($(this).index()-1).removeClass("bgColor");
+                    }else{
+                        $("#origin a").eq($(this).index()-1).addClass("bgColor").siblings().removeClass("bgColor");
+                    }
+                })
+            })
+        }
+    }
+})
+
+var hotspot = new Vue({
+    el:"#hot-spot",
+    data:{
+        hotspot:[]
+    },
+    created:function () {
+        var self = this;
+        $.ajax({
+            type:'post',
+            url:'http://localhost:8080/production/get_hotspot_list.do',
+            cache: false,
+            dataType:'json',
+            success: function(data) {
+                if(data.status==0) {
+                    self.hotspot = data.data;
+                    self.updateHotspot();
+                }
+            }
+        });
+    },
+    methods:{
+        updateHotspot:function () {
+            this.$nextTick(function () {
+                $("#hot-spot a").click(function() {
+                    if($("#hot-spot a").eq($(this).index() - 1).hasClass("bgColor")) {
+                        $("#hot-spot a").eq($(this).index() - 1).removeClass("bgColor");
+                    } else {
+                        $("#hot-spot a").eq($(this).index() - 1).addClass("bgColor");
+                    }
+                })
+            })
+        }
+    }
+})
+
+var markettime = new Vue({
+    el:"#market-time",
+    data:{
+        markettime:[]
+    },
+    created:function () {
+        var self = this;
+        $.ajax({
+            type:'post',
+            url:'http://localhost:8080/production/get_market_time_list.do',
+            cache: false,
+            dataType:'json',
+            success: function(data) {
+                if(data.status==0) {
+                    self.markettime = data.data;
+                    self.updateMarketTime();
+                }
+            }
+        });
+    },
+    methods:{
+        updateMarketTime:function () {
+            this.$nextTick(function () {
+                $("#market-time a").click(function(){
+                    if($("#market-time a").eq($(this).index()-1).hasClass("bgColor")){
+                        $("#market-time a").eq($(this).index()-1).removeClass("bgColor");
+                    }else{
+                        $("#market-time a").eq($(this).index()-1).addClass("bgColor").siblings().removeClass("bgColor");
+                    }
+                })
+            })
+        }
+    }
+})
+
+var skin = new Vue({
+    el:"#skin",
+    data:{
+        skin:[]
+    },
+    created:function () {
+        var self = this;
+        $.ajax({
+            type:'post',
+            url:'http://localhost:8080/production/get_skin_list.do',
+            cache: false,
+            dataType:'json',
+            success: function(data) {
+                if(data.status==0) {
+                    self.skin = data.data;
+                    self.updateSkin();
+                }
+            }
+        });
+    },
+    methods:{
+        updateSkin:function () {
+            this.$nextTick(function () {
+                $("#skin a").click(function(){
+                    if($("#skin a").eq($(this).index()-1).hasClass("bgColor")){
+                        $("#skin a").eq($(this).index()-1).removeClass("bgColor");
+                    }else{
+                        $("#skin a").eq($(this).index() - 1).addClass("bgColor");
+                    }
+                })
+            })
+        }
+    }
+})
 
 //加载编辑器及自定义配置
 $(document).ready(function() {
     $('#summernote').summernote({
         height: 400,//初始化默认高度
         width:630,
-        focus: true,//是否定位
         lang:'zh-CN',//注意这里，若要设置语言，则需要引入该语言配置js
         placeholder:"请在这里写下您的内容",
         fontSize:"16",
@@ -100,27 +264,113 @@ function sendarticle(){
     var formData = new FormData();
     var sendFile = $('#file-upload').get(0).files[0];
     if (typeof (sendFile) != "undefined") {
-        formData.append("coverpath", sendFile);
+        formData.append("img", sendFile);
     }else{
-        formData.append("coverpath", "");
-    }
-    var title = null;
-    var content = null;
-    title = $('#title').val();
-    content = $('#summernote').summernote('code');
-    if(title == ""){
-        alert("标题不能为空！");
+        alert("品牌图片不能为空！");
         return;
     }
-    if(content == "<p><br></p>"){
+
+    var brandlinks =document.getElementById("brand").getElementsByTagName("a");
+    var brand_id = null;
+    for(var i=0;i<brandlinks.length;i++){
+        if(brandlinks[i].className=="btn btn-default bgColor"){
+            brand_id = brandlinks[i].id;
+            break;
+        }
+    }
+    if(brand_id == "" || brand_id == null){
+        alert("品牌不能为空！");
+        return;
+    }
+    formData.append("brand_id", brand_id);
+
+
+    var functionlinks =document.getElementById("function").getElementsByTagName("a");
+    var functions = new Array();
+    for(var i=0;i<functionlinks.length;i++){
+        if(functionlinks[i].className=="btn btn-default bgColor"){
+            functions.push(functionlinks[i].id);
+        }
+    }
+    if(functions == "" || functions == null){
+        alert("功能不能为空！");
+        return;
+    }
+    formData.append("functions", functions);
+
+    var originlinks =document.getElementById("origin").getElementsByTagName("a");
+    var origin_id = null;
+    for(var i=0;i<originlinks.length;i++){
+        if(originlinks[i].className=="btn btn-default bgColor"){
+            origin_id = originlinks[i].id;
+            break;
+        }
+    }
+    if(origin_id == "" || origin_id == null){
+        alert("产地不能为空！");
+        return;
+    }
+    formData.append("origin_id", origin_id);
+
+    var hotspotlinks =document.getElementById("hot-spot").getElementsByTagName("a");
+    var hotspots = new Array();
+    for(var i=0;i<hotspotlinks.length;i++){
+        if(hotspotlinks[i].className=="btn btn-default bgColor"){
+            hotspots.push(hotspotlinks[i].id);
+        }
+    }
+    if(hotspots == "" || hotspots == null){
+        alert("热点不能为空！");
+        return;
+    }
+    formData.append("hotspots", hotspots);
+
+    var markettimelinks =document.getElementById("market-time").getElementsByTagName("a");
+    var market_time_id = null;
+    for(var i=0;i<markettimelinks.length;i++){
+        if(markettimelinks[i].className=="btn btn-default bgColor"){
+            market_time_id = markettimelinks[i].id;
+            break;
+        }
+    }
+    if(market_time_id == "" || market_time_id == null){
+        alert("上市时间不能为空！");
+        return;
+    }
+    formData.append("market_time_id", market_time_id);
+
+    var skinlinks =document.getElementById("skin").getElementsByTagName("a");
+    var skins = new Array();
+    for(var i=0;i<skinlinks.length;i++){
+        if(skinlinks[i].className=="btn btn-default bgColor"){
+            skins.push(skinlinks[i].id);
+        }
+    }
+    if(skins == "" || skins == null){
+        alert("适应肤质不能为空！");
+        return;
+    }
+    formData.append("skins", skins);
+
+    var production_name = null;
+    var detail = null;
+    var description = null;
+    production_name = $('#product-name').val();
+    description = $('#description').val();
+    detail = $('#summernote').summernote('code');
+    if(production_name == ""){
+        alert("产品名不能为空！");
+        return;
+    }
+    if(detail == "<p><br></p>"){
         alert("内容不能为空！");
         return;
     }
-    formData.append("title", title);
-    formData.append("content", content);
-    formData.append("source", "计算机学院");
-    var url = "../../publicityManage/insertNews";
-    //submit(formData,url);
+    formData.append("production_name", production_name);
+    formData.append("description", description);
+    formData.append("detail", detail);
+    var url = "http://localhost:8080/production/add_production.do";
+    submit(formData,url);
 }
 function submit(data,url){
     $.ajax({
@@ -135,10 +385,11 @@ function submit(data,url){
             alert(data.msg);
         },
         error : function() {
-            alert("发布失败");
+            alert("添加失败");
         }
     });
 }
+
 window.onload=function(){
     var imgArea=document.getElementById("imgArea");
     imgArea.ondragenter=function(){
@@ -293,3 +544,13 @@ $(".WriteCover-deleteButton").click(function(){
     fileUpload.style.display="block";
 
 });
+$(function () {
+    $("#update").click(function() {
+        $("#function").slideToggle();
+        $("#updatefunction").slideToggle();
+    });
+})
+function cancel() {
+    $("#function").slideToggle();
+    $("#updatefunction").slideToggle();
+}

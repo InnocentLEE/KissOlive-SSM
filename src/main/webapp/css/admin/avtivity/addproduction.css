@@ -166,7 +166,7 @@ input#file-upload {
 }
 .editorWrap {
 	margin: 0 auto;
-	width: fit-content;
+	width: 630px;
 }
 .note-editor.note-frame {
 	border: transparent;
@@ -284,7 +284,7 @@ h4#pModalLabel {
 .brand {
 	display: block;
     padding: 5px;
-	margin-left: -110px;
+
 } 
 
 #main {
@@ -317,5 +317,10 @@ h4#pModalLabel {
 .left-span{
 	width: 71px;
     display: inline-block;
+}
+
+a.btn-default {
+	margin-right: 10px;
+	margin-bottom: 10px;
 }
 
