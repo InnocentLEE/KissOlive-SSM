@@ -46,4 +46,6 @@ public interface IInnocentService {
     ServerResponse editBrand(Brand brand);
 
     ServerResponse getProductions(int page, int pageNum);
+
+    ServerResponse getProductionsByBrand(Integer brandId);
 }

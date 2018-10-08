@@ -354,16 +354,24 @@ public class InnocentController {
 
     /**
      * 查找全部产品详细列表
-     * @param session
      * @param page 第几页
      * @param pageNum 每页记录条数
      * @return
      */
     @RequestMapping(value = "/production/get_productions.do", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse getProductions(HttpSession session,Integer page,@RequestParam("page_num")Integer pageNum) {
-        // TODO: 2018/9/10 校验管理员身份
+    public ServerResponse getProductions(Integer page,@RequestParam("page_num")Integer pageNum) {
         return iInnocentService.getProductions(page,pageNum);
     }
-    
+
+    /**
+     * 返回某个品牌的所有产品详细列表
+     * @param brandId
+     * @return
+     */
+    @RequestMapping(value = "/production/get_productions_by_brand.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse getProductionsByBrand(@RequestParam("brand_id")Integer brandId){
+        return iInnocentService.getProductionsByBrand(brandId);
+    }
 }

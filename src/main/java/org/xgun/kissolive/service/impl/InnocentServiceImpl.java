@@ -267,4 +267,38 @@ public class InnocentServiceImpl implements IInnocentService {
             return ServerResponse.createByErrorMessage("查找过程出错");
         return ServerResponse.createBySuccess("查找成功",resultMap);
     }
+
+    @Override
+    @Transactional
+    public ServerResponse getProductionsByBrand(Integer brandId){
+        List<Production> productionList = innocentMapper.selectProductionByBrand(brandId);
+        Brand brand = innocentMapper.selectBrandById(brandId);
+        List<ProductionDetails> productionDetailsList = Lists.newArrayList();
+        int productionSize = productionList.size();
+        for (int i = 0; i < productionSize; i++) {
+            ProductionDetails productionDetails = new ProductionDetails();
+            productionDetails.setId(productionList.get(i).getId());
+            productionDetails.setName(productionList.get(i).getName());
+            productionDetails.setDescription(productionList.get(i).getDescription());
+            productionDetails.setDetail(productionList.get(i).getDetail());
+            productionDetails.setImgUrl(productionList.get(i).getImgUrl());
+            productionDetails.setBrand(brand);
+            Origin origin = innocentMapper.selectOriginById(productionList.get(i).getOriginId());
+            productionDetails.setOrigin(origin);
+            MarketTime marketTime = innocentMapper.selectMarketTimeById(productionList.get(i).getMarketTimeId());
+            productionDetails.setMarketTime(marketTime);
+            List<Hotspot> hotspots = innocentMapper.selectHotspotByProduction(productionList.get(i).getId());
+            productionDetails.setHotspots(hotspots);
+            List<Function> functions = innocentMapper.selectFunctionByProduction(productionList.get(i).getId());
+            productionDetails.setFunctions(functions);
+            List<Skin> skins = innocentMapper.selectSkinByProduction(productionList.get(i).getId());
+            productionDetails.setSkins(skins);
+            List<Goods> goodses = innocentMapper.selectGoodsByProduction(productionList.get(i).getId());
+            productionDetails.setGoodses(goodses);
+            productionDetailsList.add(productionDetails);
+        }
+        if (TransactionAspectSupport.currentTransactionStatus().isRollbackOnly())
+            return ServerResponse.createByErrorMessage("查找过程出错");
+        return ServerResponse.createBySuccess("查找成功",productionDetailsList);
+    }
 }

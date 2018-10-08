@@ -253,4 +253,10 @@
     WHERE production_id = #{production_id,jdbcType=INTEGER}
     ORDER BY id
   </select>
+  <select id="selectProductionByBrand" resultType="org.xgun.kissolive.pojo.Production">
+    SELECT id, brand_id AS brandId, origin_id AS originId, market_time_id AS marketTimeId, `name`, description, img_url, detail, search, updatetime
+    FROM tb_production
+    WHERE brand_id = #{brand_id,jdbcType=INTEGER}
+    ORDER BY id
+  </select>
 </mapper>

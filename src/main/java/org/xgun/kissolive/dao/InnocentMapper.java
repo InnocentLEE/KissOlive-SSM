@@ -136,4 +136,7 @@ public interface InnocentMapper {
 
     // 根据产品查找商品
     List<Goods> selectGoodsByProduction(@Param("production_id")int productionId);
+
+    // 根据品牌查找产品列表
+    List<Production> selectProductionByBrand(@Param("brand_id")int brandId);
 }
