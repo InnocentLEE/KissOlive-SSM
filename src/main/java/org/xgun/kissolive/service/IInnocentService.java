@@ -48,4 +48,6 @@ public interface IInnocentService {
     ServerResponse getProductions(int page, int pageNum);
 
     ServerResponse getProductionsByBrand(Integer brandId);
+
+    ServerResponse searchProductions(String search);
 }

@@ -13,6 +13,7 @@ import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.pojo.*;
 import org.xgun.kissolive.service.IInnocentService;
 import org.xgun.kissolive.utils.FTPSSMLoad;
+import org.xgun.kissolive.utils.IKAnalyzerUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -373,5 +374,16 @@ public class InnocentController {
     @ResponseBody
     public ServerResponse getProductionsByBrand(@RequestParam("brand_id")Integer brandId){
         return iInnocentService.getProductionsByBrand(brandId);
+    }
+
+    /**
+     * 搜索产品
+     * @param search
+     * @return
+     */
+    @RequestMapping(value = "/production/search_productions.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse searchProductions(@RequestParam("search")String search){
+        return iInnocentService.searchProductions(search);
     }
 }

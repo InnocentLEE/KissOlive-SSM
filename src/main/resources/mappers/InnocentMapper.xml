@@ -259,4 +259,9 @@
     WHERE brand_id = #{brand_id,jdbcType=INTEGER}
     ORDER BY id
   </select>
+  <select id="selectProductionSearch" resultType="org.xgun.kissolive.vo.ProductionSame">
+    SELECT id, search
+    FROM tb_production
+    ORDER BY id
+  </select>
 </mapper>

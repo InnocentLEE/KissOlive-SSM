@@ -3,6 +3,7 @@ package org.xgun.kissolive.dao;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.xgun.kissolive.pojo.*;
+import org.xgun.kissolive.vo.ProductionSame;
 
 import java.util.List;
 
@@ -139,4 +140,7 @@ public interface InnocentMapper {
 
     // 根据品牌查找产品列表
     List<Production> selectProductionByBrand(@Param("brand_id")int brandId);
+
+    // 获取产品搜索描述
+    List<ProductionSame> selectProductionSearch();
 }

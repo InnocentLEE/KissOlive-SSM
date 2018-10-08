@@ -14,7 +14,9 @@ import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.dao.InnocentMapper;
 import org.xgun.kissolive.pojo.*;
 import org.xgun.kissolive.service.IInnocentService;
+import org.xgun.kissolive.utils.IKAnalyzerUtil;
 import org.xgun.kissolive.vo.ProductionDetails;
+import org.xgun.kissolive.vo.ProductionSame;
 
 import java.util.List;
 import java.util.Map;
@@ -181,7 +183,7 @@ public class InnocentServiceImpl implements IInnocentService {
         for (int i = 0; i < productionSkins.size(); i++) {
             skinDescribe += innocentMapper.selectSkinById(productionSkins.get(i).getSkinId()).getDescribe() + " ";
         }
-        String search = brandName + " " + originDescribe + " " + marketTimeDescribe + " " + hotspotDescribe + functionDescribe + skinDescribe;
+        String search = production.getName() + "" + brandName + " " + originDescribe + " " + marketTimeDescribe + " " + hotspotDescribe + functionDescribe + skinDescribe;
         production.setSearch(search);
         innocentMapper.insertProduction(production);
         Integer id = production.getId();
@@ -300,5 +302,12 @@ public class InnocentServiceImpl implements IInnocentService {
         if (TransactionAspectSupport.currentTransactionStatus().isRollbackOnly())
             return ServerResponse.createByErrorMessage("查找过程出错");
         return ServerResponse.createBySuccess("查找成功",productionDetailsList);
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse searchProductions(String search){
+        List<ProductionSame> productionSameList = innocentMapper.selectProductionSearch();
+        return ServerResponse.createBySuccess("查找成功",IKAnalyzerUtil.Compare(search,productionSameList.get(0).getSearch()));
     }
 }
