@@ -39,9 +39,11 @@ public interface IInnocentService {
 
     ServerResponse getSkinList();
 
-    ServerResponse addProduction(Production production,List<ProductionHotspot> productionHotspots,List<ProductionFunction> productionFunctions,List<ProductionSkin> productionSkins);
+    ServerResponse addProduction(Production production, List<ProductionHotspot> productionHotspots, List<ProductionFunction> productionFunctions, List<ProductionSkin> productionSkins);
 
     ServerResponse addGoods(Goods goods);
 
     ServerResponse editBrand(Brand brand);
+
+    ServerResponse getProductions(int page, int pageNum);
 }

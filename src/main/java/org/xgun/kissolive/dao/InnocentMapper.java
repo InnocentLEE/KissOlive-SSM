@@ -116,5 +116,24 @@ public interface InnocentMapper {
     // 根据id查找商品记录
     Goods selectGoodsById(Integer id);
 
+    // 更新品牌信息
     int updateBrandByIdSelective(Brand brand);
+
+    // 统计产品总数量
+    int countProduction();
+
+    // 分页查找产品列表
+    List<Production> selectProduction(@Param("index")int index, @Param("num")int num);
+
+    // 根据产品查找选购热点
+    List<Hotspot> selectHotspotByProduction(@Param("production_id")int productionId);
+
+    // 根据产品查找功能
+    List<Function> selectFunctionByProduction(@Param("production_id")int productionId);
+
+    // 根据产品查找适用肤质
+    List<Skin> selectSkinByProduction(@Param("production_id")int productionId);
+
+    // 根据产品查找商品
+    List<Goods> selectGoodsByProduction(@Param("production_id")int productionId);
 }

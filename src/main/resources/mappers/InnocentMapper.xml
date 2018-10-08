@@ -220,4 +220,37 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="countProduction" resultType="int">
+    SELECT COUNT(1) FROM tb_production
+  </select>
+  <select id="selectProduction" resultType="org.xgun.kissolive.pojo.Production">
+    SELECT id, brand_id AS brandId, origin_id AS originId, market_time_id AS marketTimeId, `name`, description, img_url, detail, search, updatetime
+    FROM tb_production
+    ORDER BY id
+    limit #{index}, #{num}
+  </select>
+  <select id="selectHotspotByProduction" resultType="org.xgun.kissolive.pojo.Hotspot">
+    SELECT id, `describe`
+    FROM tb_hotspot
+    WHERE id IN (SELECT hotspot_id FROM tb_production_hotspot WHERE production_id = #{production_id,jdbcType=INTEGER})
+    ORDER BY id
+  </select>
+  <select id="selectFunctionByProduction" resultType="org.xgun.kissolive.pojo.Function">
+    SELECT id, `describe`
+    FROM tb_function
+    WHERE id IN (SELECT function_id FROM tb_production_function WHERE production_id = #{production_id,jdbcType=INTEGER})
+    ORDER BY id
+  </select>
+  <select id="selectSkinByProduction" resultType="org.xgun.kissolive.pojo.Skin">
+    SELECT id, `describe`
+    FROM tb_skin
+    WHERE id IN (SELECT skin_id FROM tb_production_skin WHERE production_id = #{production_id,jdbcType=INTEGER})
+    ORDER BY id
+  </select>
+  <select id="selectGoodsByProduction" resultType="org.xgun.kissolive.pojo.Goods">
+    SELECT id, production_id AS productionId, color_code AS colorCode, color_name AS colorName, price, status, updatetime
+    FROM tb_goods
+    WHERE production_id = #{production_id,jdbcType=INTEGER}
+    ORDER BY id
+  </select>
 </mapper>
