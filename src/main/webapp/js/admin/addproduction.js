@@ -4,25 +4,26 @@ var brand = new Vue({
         brand:[]
     },
     created:function () {
-        var self = this;
-        $.ajax({
-            type:'post',
-            url:'http://localhost:8080/production/get_brand_put_on.do',
-            cache: false,
-            dataType:'json',
-            success: function(data) {
-                if(data.status==0) {
-                    self.brand = data.data;
-                    self.updateBrand();
-                }
-            },
-            error:function(){
-                alert("获取异常");
-            }
-        });
-
+        this.getBrand();
     },
     methods:{
+        getBrand:function () {
+            $.ajax({
+                type:'post',
+                url:'http://localhost:8080/production/get_brand_put_on.do',
+                cache: false,
+                dataType:'json',
+                success: function(data) {
+                    if(data.status==0) {
+                        brand.brand = data.data;
+                        brand.updateBrand();
+                    }
+                },
+                error:function(){
+                    alert("获取异常");
+                }
+            });
+        },
         updateBrand:function () {
             this.$nextTick(function () {
                 $("#brand a").click(function() {
@@ -43,24 +44,26 @@ var Funct = new Vue({
         Funct:[]
     },
     created:function () {
-        var self = this;
-        $.ajax({
-            type:'post',
-            url:'http://localhost:8080/production/get_function_list.do',
-            cache: false,
-            dataType:'json',
-            success: function(data) {
-                if(data.status==0) {
-                    self.Funct = data.data;
-                    self.updateFunction();
-                }
-            },
-            error:function(){
-                alert("获取异常");
-            }
-        });
+        this.getFunction();
     },
     methods:{
+        getFunction:function () {
+            $.ajax({
+                type:'post',
+                url:'http://localhost:8080/production/get_function_list.do',
+                cache: false,
+                dataType:'json',
+                success: function(data) {
+                    if(data.status==0) {
+                        Funct.Funct = data.data;
+                        Funct.updateFunction();
+                    }
+                },
+                error:function(){
+                    alert("获取异常");
+                }
+            });
+        },
         updateFunction:function () {
             this.$nextTick(function () {
                 $("#function a").click(function() {
@@ -81,21 +84,23 @@ var origin = new Vue({
         origin:[]
     },
     created:function () {
-        var self = this;
-        $.ajax({
-            type:'post',
-            url:'http://localhost:8080/production/get_origin_list.do',
-            cache: false,
-            dataType:'json',
-            success: function(data) {
-                if(data.status==0) {
-                    self.origin = data.data;
-                    self.updateOrigin();
-                }
-            }
-        });
+        this.getOrigin();
     },
     methods:{
+        getOrigin:function (){
+            $.ajax({
+                type:'post',
+                url:'http://localhost:8080/production/get_origin_list.do',
+                cache: false,
+                dataType:'json',
+                success: function(data) {
+                    if(data.status==0) {
+                        origin.origin = data.data;
+                        origin.updateOrigin();
+                    }
+                }
+            });
+        },
         updateOrigin:function () {
             this.$nextTick(function () {
                 $("#origin a").click(function(){
@@ -116,21 +121,23 @@ var hotspot = new Vue({
         hotspot:[]
     },
     created:function () {
-        var self = this;
-        $.ajax({
-            type:'post',
-            url:'http://localhost:8080/production/get_hotspot_list.do',
-            cache: false,
-            dataType:'json',
-            success: function(data) {
-                if(data.status==0) {
-                    self.hotspot = data.data;
-                    self.updateHotspot();
-                }
-            }
-        });
+        this.getHotspot();
     },
     methods:{
+        getHotspot:function () {
+            $.ajax({
+                type:'post',
+                url:'http://localhost:8080/production/get_hotspot_list.do',
+                cache: false,
+                dataType:'json',
+                success: function(data) {
+                    if(data.status==0) {
+                        hotspot.hotspot = data.data;
+                        hotspot.updateHotspot();
+                    }
+                }
+            });
+        },
         updateHotspot:function () {
             this.$nextTick(function () {
                 $("#hot-spot a").click(function() {
@@ -151,21 +158,23 @@ var markettime = new Vue({
         markettime:[]
     },
     created:function () {
-        var self = this;
-        $.ajax({
-            type:'post',
-            url:'http://localhost:8080/production/get_market_time_list.do',
-            cache: false,
-            dataType:'json',
-            success: function(data) {
-                if(data.status==0) {
-                    self.markettime = data.data;
-                    self.updateMarketTime();
-                }
-            }
-        });
+        this.getMarkettime();
     },
     methods:{
+        getMarkettime:function () {
+            $.ajax({
+                type:'post',
+                url:'http://localhost:8080/production/get_market_time_list.do',
+                cache: false,
+                dataType:'json',
+                success: function(data) {
+                    if(data.status==0) {
+                        markettime.markettime = data.data;
+                        markettime.updateMarketTime();
+                    }
+                }
+            });
+        },
         updateMarketTime:function () {
             this.$nextTick(function () {
                 $("#market-time a").click(function(){
@@ -186,21 +195,23 @@ var skin = new Vue({
         skin:[]
     },
     created:function () {
-        var self = this;
-        $.ajax({
-            type:'post',
-            url:'http://localhost:8080/production/get_skin_list.do',
-            cache: false,
-            dataType:'json',
-            success: function(data) {
-                if(data.status==0) {
-                    self.skin = data.data;
-                    self.updateSkin();
-                }
-            }
-        });
+        this.getSkin();
     },
     methods:{
+        getSkin:function () {
+            $.ajax({
+                type:'post',
+                url:'http://localhost:8080/production/get_skin_list.do',
+                cache: false,
+                dataType:'json',
+                success: function(data) {
+                    if(data.status==0) {
+                        skin.skin = data.data;
+                        skin.updateSkin();
+                    }
+                }
+            });
+        },
         updateSkin:function () {
             this.$nextTick(function () {
                 $("#skin a").click(function(){
@@ -545,12 +556,154 @@ $(".WriteCover-deleteButton").click(function(){
 
 });
 $(function () {
-    $("#update").click(function() {
+    $("#updateFun").click(function() {
         $("#function").slideToggle();
         $("#updatefunction").slideToggle();
+    });
+    $("#updateOri").click(function() {
+        $("#origin").slideToggle();
+        $("#updateorigin").slideToggle();
+    });
+    $("#updateHot").click(function() {
+        $("#hot-spot").slideToggle();
+        $("#updatehotspot").slideToggle();
+    });
+    $("#updateTime").click(function() {
+        $("#market-time").slideToggle();
+        $("#updatemarkettime").slideToggle();
+    });
+    $("#updateSki").click(function() {
+        $("#skin").slideToggle();
+        $("#updateskin").slideToggle();
     });
 })
 function cancel() {
     $("#function").slideToggle();
     $("#updatefunction").slideToggle();
+}
+function cancel1() {
+    $("#origin").slideToggle();
+    $("#updateorigin").slideToggle();
+}
+function cancel2() {
+    $("#hot-spot").slideToggle();
+    $("#updatehotspot").slideToggle();
+}
+function cancel3() {
+    $("#market-time").slideToggle();
+    $("#updatemarkettime").slideToggle();
+}
+function cancel4() {
+    $("#skin").slideToggle();
+    $("#updateskin").slideToggle();
+}
+function add() {
+    var function_describe = $('#function_describe').val();
+    if(function_describe == "" || function_describe == null){
+        alert("功能不能为空");
+        return;
+    }
+    $.ajax({
+        type:'post',
+        url:'http://localhost:8080/production/add_function.do',
+        data:{
+            function_describe:function_describe
+        },
+        dataType:'json',
+        success: function(data) {
+            alert(data.msg);
+            Funct.getFunction();
+            Funct.updateFunction();
+            $("#function").slideToggle();
+            $("#updatefunction").slideToggle();
+        }
+    });
+}
+function add1() {
+    var origin_describe = $('#origin_describe').val();
+    if(origin_describe == "" || origin_describe == null){
+        alert("产地不能为空");
+        return;
+    }
+    $.ajax({
+        type:'post',
+        url:'http://localhost:8080/production/add_origin.do',
+        data:{
+            origin_describe:origin_describe
+        },
+        dataType:'json',
+        success: function(data) {
+            alert(data.msg);
+            origin.getOrigin()
+            origin.updateOrigin()
+            $("#origin").slideToggle();
+            $("#updateorigin").slideToggle();
+        }
+    });
+}
+function add2() {
+    var hotspot_describe = $('#hotspot_describe').val();
+    if(hotspot_describe == "" || hotspot_describe == null){
+        alert("热点不能为空");
+        return;
+    }
+    $.ajax({
+        type:'post',
+        url:'http://localhost:8080/production/add_hotspot.do',
+        data:{
+            hotspot_describe:hotspot_describe
+        },
+        dataType:'json',
+        success: function(data) {
+            alert(data.msg);
+            hotspot.getHotspot()
+            hotspot.updateHotspot()
+            $("#hot-spot").slideToggle();
+            $("#updatehotspot").slideToggle();
+        }
+    });
+}
+function add3() {
+    var market_time_describe = $('#market_time_describe').val();
+    if(market_time_describe == "" || market_time_describe == null){
+        alert("上市时间不能为空");
+        return;
+    }
+    $.ajax({
+        type:'post',
+        url:'http://localhost:8080/production/add_market_time.do',
+        data:{
+            market_time_describe:market_time_describe
+        },
+        dataType:'json',
+        success: function(data) {
+            alert(data.msg);
+            markettime.getMarkettime()
+            markettime.updateMarketTime()
+            $("#market-time").slideToggle();
+            $("#updatemarkettime").slideToggle();
+        }
+    });
+}
+function add4() {
+    var skin_describe = $('#skin_describe').val();
+    if(skin_describe == "" || skin_describe == null){
+        alert("适应肤质不能为空");
+        return;
+    }
+    $.ajax({
+        type:'post',
+        url:'http://localhost:8080/production/add_skin.do',
+        data:{
+            skin_describe:skin_describe
+        },
+        dataType:'json',
+        success: function(data) {
+            alert(data.msg);
+            skin.getSkin()
+            skin.updateSkin()
+            $("#skin").slideToggle();
+            $("#updateskin").slideToggle();
+        }
+    });
 }

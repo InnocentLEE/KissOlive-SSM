@@ -69,40 +69,72 @@
 						<a class="btn btn-default" v-for="r in brand" :id="r.id" :title="r.name"><img :src="r.imgUrl" class="common"></a>
 						</div>
 					<br />
+
 					<div id="function" class="brand">
 						<span class="left-span"><strong class="leibie">功能：</strong></span>
 						<a class="btn btn-default" v-for="r in Funct" :id="r.id"><span class="common">{{r.describe}}</span></a>
-						<span id="update"><img src="../../img/admin/添加.png"></span>
+						<span id="updateFun"><img src="../../img/admin/添加.png" class="addspan"></span>
 					</div>
 					<div class="brand" style="display:none" id="updatefunction">
-						<form class="edit1" action="#" method="post">
-							功能：
-							<input id="Functionname" type="text"/>
-							<button class="btn save" type="button">保存</button>&nbsp;&nbsp;&nbsp;
-							<button class="btn save" type="button" onclick="cancel()">取消</button>
-						</form>
+						<span class="left-span"><strong class="leibie">功能：</strong></span>
+						<input id="function_describe" type="text"/>&nbsp;&nbsp;&nbsp;
+						<button class="btn save" type="button" onclick="add()">保存</button>&nbsp;&nbsp;&nbsp;
+						<button class="btn save" type="button" onclick="cancel()">取消</button>
 					</div>
 					<br />
+
 					<div id="origin" class="brand">
 						<span class="left-span"><strong class="leibie">产地：</strong></span>
 						<a class="btn btn-default" v-for="r in origin" :id="r.id"><span class="common">{{r.describe}}</span></a>
+						<span id="updateOri"><img src="../../img/admin/添加.png" class="addspan"></span>
+					</div>
+					<div class="brand" style="display:none" id="updateorigin">
+						<span class="left-span"><strong class="leibie">产地：</strong></span>
+						<input id="origin_describe" type="text"/>&nbsp;&nbsp;&nbsp;
+						<button class="btn save" type="button" onclick="add1()">保存</button>&nbsp;&nbsp;&nbsp;
+						<button class="btn save" type="button" onclick="cancel1()">取消</button>
 					</div>
 					<br />
+
 					<div id="hot-spot" class="brand">
 						<span class="left-span"><strong class="leibie">选购热点：</strong></span>
 						<a class="btn btn-default" v-for="r in hotspot" :id="r.id"><span class="common">{{r.describe}}</span></a>
-					</div>
+                        <span id="updateHot"><img src="../../img/admin/添加.png" class="addspan"></span>
+                    </div>
+                    <div class="brand" style="display:none" id="updatehotspot">
+                        <span class="left-span"><strong class="leibie">选购热点：</strong></span>
+                        <input id="hotspot_describe" type="text"/>&nbsp;&nbsp;&nbsp;
+                        <button class="btn save" type="button" onclick="add2()">保存</button>&nbsp;&nbsp;&nbsp;
+                        <button class="btn save" type="button" onclick="cancel2()">取消</button>
+                    </div>
 					<br />
+
 					<div id="market-time" class="brand">
 						<span class="left-span"><strong class="leibie">上市时间：</strong></span>
 						<a class="btn btn-default" v-for="r in markettime" :id="r.id"><span class="common">{{r.describe}}</span></a>
-					</div>
+                        <span id="updateTime"><img src="../../img/admin/添加.png" class="addspan"></span>
+                    </div>
+                    <div class="brand" style="display:none" id="updatemarkettime">
+                        <span class="left-span"><strong class="leibie">上市时间：</strong></span>
+                        <input id="market_time_describe" type="text"/>&nbsp;&nbsp;&nbsp;
+                        <button class="btn save" type="button" onclick="add3()">保存</button>&nbsp;&nbsp;&nbsp;
+                        <button class="btn save" type="button" onclick="cancel3()">取消</button>
+                    </div>
 					<br />
+
 					<div id="skin" class="brand">
 						<span class="left-span"><strong class="leibie">适应肤质：</strong></span>
-						<a class="btn btn-default" v-for="r in skin" :id="r.id"><span class="common">{{r.describe}}</span></a>
-					</div>
+                        <a class="btn btn-default" v-for="r in skin" :id="r.id"><span class="common">{{r.describe}}</span></a>
+                        <span id="updateSki"><img src="../../img/admin/添加.png" class="addspan"></span>
+                    </div>
+                    <div class="brand" style="display:none" id="updateskin">
+                        <span class="left-span"><strong class="leibie">适应肤质：</strong></span>
+                        <input id="skin_describe" type="text"/>&nbsp;&nbsp;&nbsp;
+                        <button class="btn save" type="button" onclick="add4()">保存</button>&nbsp;&nbsp;&nbsp;
+                        <button class="btn save" type="button" onclick="cancel4()">取消</button>
+                    </div>
 					<br />
+
 					<div class="brand">
 						<span class="left-span"><strong class="leibie">产品名：</strong></span>
 						<input type="text" id="product-name"/>
