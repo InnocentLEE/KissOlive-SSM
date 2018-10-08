@@ -5,9 +5,7 @@ import org.xgun.kissolive.pojo.Activity;
 import org.xgun.kissolive.pojo.ActivityGoods;
 import org.xgun.kissolive.pojo.Card;
 import org.xgun.kissolive.pojo.VipLevel;
-import org.xgun.kissolive.vo.ActivityGoodsInfo;
-import org.xgun.kissolive.vo.ActivityMenuInfo;
-import org.xgun.kissolive.vo.CardInfo;
+import org.xgun.kissolive.vo.*;
 
 import java.util.List;
 
@@ -74,5 +72,17 @@ public interface SilentMapper {
     //删除活动对应商品优惠信息
     int deleteActivityGoods(@Param("activityIds")int[] activityIds);
 
+    /* 数据统计模块 */
+    //获取某年每月的销售总额
+    List<SalesCountByMonth> selectSalesByMonth(@Param("year")Integer year);
 
+    //获取月份各个产品的商品销售量情况
+    List<BrandProductionShopInfo> selectBrandShopInfo(@Param("year")String year, @Param("month")String month);
+
+    //获取销售量前几的产品
+    List<ProductionNum> selectPShopByRank(@Param("num")Integer num);
+
+    //获取某个产品某年的销量走势
+    List<ShopCountByMonth> selectShopInfoByPOneYear(@Param("productionId")Integer productionId,
+                                                    @Param("year")Integer year);
 }

@@ -35,6 +35,8 @@ public class SilentController {
     @Autowired
     private ISilentService iSilentService;
 
+    /*购物车模块*/
+
     /**
      * 将商品添加入购物车 或者 对已存在于购物车的商品改变数量
      * @param goodsId
@@ -75,6 +77,9 @@ public class SilentController {
         }
         return iSilentService.deleteCardByBatch(cardIds);
     }
+
+
+    /*活动模块*/
 
     /**
      * 新添加活动，上传海报图，vip等级限制，商品优惠
@@ -301,5 +306,75 @@ public class SilentController {
         }catch (DataAccessException e){
             return ServerResponse.createByErrorMessage("修改失败");
         }
+    }
+
+
+    /*数据统计模块*/
+
+    /**
+     * 获取某年份每个月的销售总额
+     * @param year
+     * @return
+     */
+    @RequestMapping(value = "/statistics/get_sales_all/{year}", method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse getSalesByMonthOneYear(@PathVariable(value = "year")Integer year){
+        if(year == null){
+            return ServerResponse.createByErrorMessage("参数错误");
+        }
+        return iSilentService.getAllSalesByMonthOneYear(year);
+    }
+
+    /**
+     * 获取某月份所有产品各个商品的销售量
+     * @param year_month
+     * @return
+     */
+    @RequestMapping(value = "/statistics/get_brandShopInfo/{year_month}", method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse getSalesByMonthOneYear(@PathVariable(value = "year_month")String year_month){
+        if(StringUtils.isEmpty(year_month)){
+            return ServerResponse.createByErrorMessage("参数错误");
+        }
+        String year = year_month.substring(0,year_month.indexOf("-"));
+        String month = year_month.substring(year_month.indexOf("-")+1);
+        try {
+            new SimpleDateFormat("yyyy").parse(year);
+            new SimpleDateFormat("MM").parse(month);
+        }catch (ParseException e){
+            return ServerResponse.createByErrorMessage("参数错误");
+        }
+        return iSilentService.getBrandShopInfo(year,month);
+    }
+
+    /**
+     * 获取某个产品的销售走势，一年内
+     * @param productionId
+     * @param year
+     * @return
+     */
+    @RequestMapping(value = "/statistics/get_ShopTrend/{productionId}/{year}", method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse getProductShopTrend(@PathVariable(value = "productionId")Integer productionId,
+                                              @PathVariable(value = "year")Integer year){
+        if(productionId == null||year == null){
+            return ServerResponse.createByErrorMessage("参数错误");
+        }
+        return iSilentService.getProductShopTrend(productionId,year);
+    }
+
+    /**
+     * 获取产品销售前几
+     * @param num
+     * @return
+     */
+    @RequestMapping(value = "/statistics/get_ShopRank/{num}", method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse getProductionShopRank(@PathVariable(value = "num")Integer num){
+        if(num == null || num <= 0){
+            return ServerResponse.createByErrorMessage("参数错误");
+        }
+
+        return iSilentService.getProductionShopRank(num);
     }
 }

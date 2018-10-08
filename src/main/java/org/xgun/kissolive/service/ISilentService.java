@@ -32,4 +32,12 @@ public interface ISilentService {
     ServerResponse updateActivityLevel(Integer activityId, int[] vipIds);
 
     ServerResponse updateActivityGoods(Integer activityId, int[] goods, BigDecimal[] price);
+
+    ServerResponse getAllSalesByMonthOneYear(Integer year);
+
+    ServerResponse getBrandShopInfo(String year, String month);
+
+    ServerResponse getProductShopTrend(Integer productionId, Integer year);
+
+    ServerResponse getProductionShopRank(Integer num);
 }

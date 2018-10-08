@@ -11,9 +11,7 @@ import org.xgun.kissolive.pojo.Activity;
 import org.xgun.kissolive.pojo.ActivityGoods;
 import org.xgun.kissolive.pojo.Card;
 import org.xgun.kissolive.service.ISilentService;
-import org.xgun.kissolive.vo.ActivityGoodsInfo;
-import org.xgun.kissolive.vo.ActivityMenuInfo;
-import org.xgun.kissolive.vo.CardInfo;
+import org.xgun.kissolive.vo.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -212,5 +210,134 @@ public class SilentServiceImpl implements ISilentService {
         }else{
             return ServerResponse.createByErrorMessage("修改失败");
         }
+    }
+
+    @Override
+    public ServerResponse getAllSalesByMonthOneYear(Integer year) {
+        //获取数据列表
+        List<SalesCountByMonth> list = silentMapper.selectSalesByMonth(year);
+        //存储完整数据列表
+        List<SalesCountByMonth> newlist = new ArrayList<SalesCountByMonth>();
+        if(list == null){
+            return ServerResponse.createByErrorMessage("获取失败");
+        }else if(list.size() < 12){
+            int i = 1;
+            //遍历存储，若没有相应月份数据，则在新列表中添加该月份数据
+            for(SalesCountByMonth sales : list) {
+                String month = "";
+                if(i<10)
+                    month = "0"+i;
+                else if(i>=10&&i<=12)
+                    month = ""+i;
+                else
+                    break;
+                while(!sales.getMonth().equals(month)){
+                    newlist.add(new SalesCountByMonth(month,new BigDecimal(0)));
+                    i++;
+                    if(i<10)
+                        month = "0"+i;
+                    else if(i>=10&&i<=12)
+                        month = ""+i;
+                    else
+                        break;
+                }
+                newlist.add(sales);
+
+                i++;
+                if(i>12){
+                    break;
+                }
+            }
+            i = newlist.size()+1;
+            while(i<=12){
+                String month = "";
+                if(i<10)
+                    month = "0"+i;
+                else if(i>=10&&i<=12)
+                    month = ""+i;
+                else
+                    break;
+                newlist.add(new SalesCountByMonth(month,new BigDecimal(0)));
+                i++;
+            }
+        }
+
+        return ServerResponse.createBySuccess("获取数据成功",newlist);
+    }
+
+    @Override
+    public ServerResponse getBrandShopInfo(String year, String month) {
+        List<BrandProductionShopInfo> list = silentMapper.selectBrandShopInfo(year,month);
+        if(list == null){
+            return ServerResponse.createByErrorMessage("获取失败");
+        }else if (list.size()==0){
+            return ServerResponse.createBySuccessMessage("数据为空");
+        }
+        return ServerResponse.createBySuccess("获取数据成功",list);
+    }
+
+    @Override
+    public ServerResponse getProductShopTrend(Integer productionId, Integer year) {
+        //获取数据列表
+        List<ShopCountByMonth> list = silentMapper.selectShopInfoByPOneYear(productionId,year);
+        //存储完整数据列表
+        List<ShopCountByMonth> newlist = new ArrayList<ShopCountByMonth>();
+        if(list == null){
+            return ServerResponse.createByErrorMessage("获取失败");
+        }else if(list.size() < 12){
+            int i = 1;
+            //遍历存储，若没有相应月份数据，则在新列表中添加该月份数据
+            for(ShopCountByMonth count : list) {
+                String month = "";
+                if(i<10)
+                    month = "0"+i;
+                else if(i>=10&&i<=12)
+                    month = ""+i;
+                else
+                    break;
+                while(!count.getMonth().equals(month)){
+                    newlist.add(new ShopCountByMonth(month,0));
+                    i++;
+                    if(i<10)
+                        month = "0"+i;
+                    else if(i>=10&&i<=12)
+                        month = ""+i;
+                    else
+                        break;
+                }
+                newlist.add(count);
+
+                i++;
+                if(i>12){
+                    break;
+                }
+            }
+            i = newlist.size()+1;
+            while(i<=12){
+                String month = "";
+                if(i<10)
+                    month = "0"+i;
+                else if(i>=10&&i<=12)
+                    month = ""+i;
+                else
+                    break;
+                newlist.add(new ShopCountByMonth(month,0));
+                i++;
+            }
+        }
+
+        return ServerResponse.createBySuccess("获取数据成功",newlist);
+    }
+
+    @Override
+    public ServerResponse getProductionShopRank(Integer num) {
+        List<ProductionNum> list = silentMapper.selectPShopByRank(num);
+        if(list == null){
+            return  ServerResponse.createByErrorMessage("获取失败");
+        }
+        if(list.size() == 0){
+            return  ServerResponse.createBySuccessMessage("数据为空");
+        }
+        return ServerResponse.createBySuccess("获取成功",list);
     }
 }
