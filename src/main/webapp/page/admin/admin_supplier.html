@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Kiss Olive 供应商管理</title>
+ 		<link rel="stylesheet" type="text/css" href="../../css/admin/table/dataTables.bootstrap.css">
+ 		<link rel="stylesheet" type="text/css" href="../../css/admin/table/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../../css/validform/style.css">
+		<link rel="stylesheet" type="text/css" href="../../css/user/slide-unlock.css">
+		<link rel="stylesheet" type="text/css" href="../../css/user/sign_login1.css">
+		<link rel="stylesheet" type="text/css" href="../../css/admin/table/dataTables.responsive.css">
+		<link rel="stylesheet" type="text/css" href="../../css/admin/table/sb-admin-2.css">
+		<link rel="stylesheet" type="text/css" href="../../css/admin/font-awesome.css">
+	</head>
+	<body>
+		<div class="page-wrapper">
+		<!-- start:供应商管理 -->
+		<div class="row">
+			<div class="col-lg-10">
+				<h1 class="page-header">供应商管理</h1> 
+			</div>
+		</div>
+		<table id="table_id_example" class="table table-bordered">
+       <thead>
+           <tr>
+               <th style="text-align:center;">供应商编号</th>
+               <th style="text-align:center;">供应商名称</th>
+               <th style="text-align:center;">操作</th>
+           </tr>
+       </thead>
+       <tbody>
+           <tr align="center">
+               <td>001</td><td>002</td><td></td>
+           </tr>
+           <tr align="center">
+               <td>002</td><td>003</td><td></td>
+           </tr>
+           <tr align="center">
+               <td>003</td><td>007</td><td></td>
+           </tr>
+           <tr align="center">
+               <td>004</td><td>005</td><td></td>
+           </tr>
+            <tr align="center">
+              <td>005</td><td>006</td><td></td>
+           </tr>
+           <tr align="center">
+              <td>006</td><td>003</td><td></td>
+           </tr>
+           <tr align="center">
+               <td>007</td><td>002</td><td></td>
+           </tr>
+           <tr align="center">
+               <td>008</td><td>002</td><td></td>
+           </tr>
+            <tr align="center">
+               <td>009</td><td>002</td><td></td>
+           </tr>
+           <tr align="center">
+               <td>010</td><td>002</td><td></td>
+           </tr>
+           <tr align="center">
+               <td>011</td><td>002</td><td></td>
+           </tr>
+           <tr align="center">
+               <td>012</td><td>002</td><td></td>
+           </tr>		
+       </tbody>
+</table>
+<!--模态框1-->
+<div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+				</button>
+				<h4 class="modal-title" id="myModalLabel">供应商入库</h4>
+			</div>
+			<form role="form">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">供应商名称</label>
+				<input type="text" id="supplier" name="supname">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" class="btn btn-default" onclick="">提交</button>
+			</div>
+			</form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
+<!--模态框2-->
+<div>
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+				</button>
+				<h4 class="modal-title" id="myModalLabel2">修改供应商信息</h4>
+			</div>
+			<form role="form">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">供应商名称</label>
+				<input type="text" id="supplier2" name="supname">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" class="btn btn-default" onclick="">提交</button>
+			</div>
+			</form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<!--DataTables 核心 js-->
+<script type="text/javascript" src="../../js/table/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/login_verify.js"></script>
+<script type="text/javascript" src="../../js/valid.js"></script>
+<script type="text/javascript" src="../../js/table/dataTables.bootstrap.min.js"></script>
+<!--datatables的配置-->
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#table_id_example').DataTable({
+		"jQueryUI": true,
+		"processing": true,
+		"aLengthMenu": [ 5, 10, 20],
+		"language": {
+			"decimal": "",	
+			"emptyTable": "表中没有可用数据",
+			"info": "显示 _START_ 到 _END_ 的 _TOTAL_ 条数",
+			"infoEmpty": "没有记录",
+			"infoFiltered": "(filtered from _MAX_ total entries)",
+			"infoPostFix": "",
+			"thousands": ",",
+			"lengthMenu": " 每页显示 _MENU_ 条",
+			"loadingRecords": "加载中...",
+			"processing": "处理中...",
+			"search": "搜索：",
+			"zeroRecords": "没有找到符合条件的数据",
+			"paginate": {
+				"first": "首页",
+				"last": "尾页",
+				"next": "下一页",
+				"previous": "上一页"
+			},
+			"aria": {
+				"sortAscending": ": activate to sort column ascending",
+				"sortDescending": ": activate to sort column descending"
+			}
+		},
+
+		"columnDefs" : [ {
+				"targets" : 2,//操作按钮目标列
+				"data" : null,
+				"render" : function(data, type,row) {
+				var html = "<a class='btn btn-success btn-xs' data-toggle='modal' data-target='#myModal2' onclick='edit(this)'><i class='fa fa-arrow-up'></i> 编辑</a>"
+				html += "<a class='btn btn-danger btn-xs' onclick='delete1(this)'><i class='fa fa-arrow-down'></i> 删除</a>"
+				return html;
+				}
+		} ],
+		"sDom": "<'col-sm-12' <'row col-sm-12' <'col-sm-2'l> <'col-sm-8'<'#btn'>> <'cos-sm-2' f>> t <'col-sm-6' i> <'col-sm-6'p>>"
+	});
+	var btnn = "<button class='btn btn-default' type='button' data-toggle='modal' data-target='#myModal' >入库</button>";
+	$("#btn")[0].innerHTML = btnn;
+/*		$("#delete1").click(function(){
+		alert("sas");
+	});*/
+});
+</script>
+
+<script type="text/javascript">
+	<!--编辑按钮功能 -->
+	function edit(btn)
+	{
+		var tr = btn.parentElement.parentElement;
+		var td = tr.cells[1];
+		document.getElementById("supplier2").value=td.innerText;
+	}
+	<!--删除按钮功能-->
+	
+	function delete1(btn)
+	{
+		if (confirm("确认要删除？")) { 
+	        var tr = btn.parentElement.parentElement;
+			var td = tr.cells[0];
+			alert(td.innerText);
+       } 
+	}
+</script>
+        </div>
+	</body>
+</html>
