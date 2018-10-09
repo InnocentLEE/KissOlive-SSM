@@ -377,4 +377,34 @@ public class SilentController {
 
         return iSilentService.getProductionShopRank(num);
     }
+
+    /**
+     * 获取产品购物车添加数量排名前几
+     * @param num
+     * @return
+     */
+    @RequestMapping(value = "/statistics/get_CardRank/{num}", method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse getProductionCardRank(@PathVariable(value = "num")Integer num){
+        if(num == null || num <= 0){
+            return ServerResponse.createByErrorMessage("参数错误");
+        }
+
+        return iSilentService.getProductionCardRank(num);
+    }
+
+    /**
+     * 获取产品浏览量排名前几
+     * @param num
+     * @return
+     */
+    @RequestMapping(value = "/statistics/get_BrowseRank/{num}", method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse getProductionBrowseRank(@PathVariable(value = "num")Integer num){
+        if(num == null || num <= 0){
+            return ServerResponse.createByErrorMessage("参数错误");
+        }
+
+        return iSilentService.getProductionBrowseRank(num);
+    }
 }
