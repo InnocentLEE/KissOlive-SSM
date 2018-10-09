@@ -490,8 +490,8 @@ $("#filebtn").on("change",function(){
     };
 });
 $("#file-upload").on("change",function(){
-    var Max_Width = 630;
-    var Max_Height = 350;
+    var Max_Width = 200;
+    var Max_Height = 200;
     var isAllow =false;
     var reads= new FileReader();
     f=document.getElementById('file-upload').files[0];
