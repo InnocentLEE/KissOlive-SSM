@@ -143,4 +143,7 @@ public interface InnocentMapper {
 
     // 获取产品搜索描述
     List<ProductionSame> selectProductionSearch();
+
+    // 根据产品id查找产品
+    Production selectProductionById(@Param("id")int id);
 }
