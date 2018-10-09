@@ -23,10 +23,10 @@
 		<link rel="stylesheet" href="../../css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../css/admin/fontawesome-all.css">
 		<link rel="stylesheet" href="../../css/user/home.css">
+		<link rel="stylesheet" href="../../css/user/OnlineConsiltbase.css" />
+		<link rel="stylesheet" href="../../css/user/OnlineConsilt.css" />
+		<link rel="stylesheet" href="../../css/user/jquery.sinaEmotion.css">
 		<link rel="stylesheet" href="../../css/user/user_lips.css">
-		<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
 
 	</head>
 
@@ -304,7 +304,69 @@
 		</div>
 		</div>
 		<!-- end of 内容 -->
+		<!-- start of 侧边栏 -->
+		<div class="global_toolbar">
+			<div class="toolbar_btn center" style="top: 50%; margin-top: -150px;">
+				<a id="needtohelp_0_Consult" class="bar_consult " data-id="global_toolbar">
+					<samp>
+						<i class="iconi icon-LiveChat1">
+							<img src="../../img/user/user_prointro/car-4.png" alt="">
+						</i>
+					</samp>
+					<em>
+						<i>客服咨询</i>
+					</em>
+					<!--<span id="lmliCount" style="display: block;">5</span>-->
+				</a>
+				<a id="needtohelp_0_top" class="bar_forum bar_top" href="#">
+					<samp>
+						<i class="iconi icon-LiveChat1">
+							<img src="../../img/user/user_prointro/top.png" alt="">
+						</i>
+					</samp>
+					<em>
+						<i>回到顶部</i>
+					</em>
+				</a>
+			</div>
+			<div class="toolbar_content">
+				<div class="css_column cart_column js_column" id="shop_cart">
+					<h4 style="text-align: center">
+						客服咨询<a href="javascript:void(0)" class="icon-close" onclick="closeBar()">X</a>
+					</h4>
+					<div id="chat-content">
+						<div class='clearfloat'>
+							<div class='time-column'>
+								<small class='chat-date'>2015-06-08 16:00</small>
+							</div>
+							<div class='left'>
+								<div class='chat-nickname'>Olive小姐</div>
+								<div class='chat-avatars'><img src="../../img/user/user_prointro/missolive.png" alt=""></div>
+								<div class='chat-message'>请在此留言，我们的咨询顾问将在最快时间内直接回复您。</div>
+							</div>
+						</div>
+						<div class='clearfloat'>
+							<div class='time-column'>
+								<small class='chat-date'>2015-06-08 16:01</small>
+							</div>
+							<div class='right'>
+								<div class='chat-nickname'>我</div>
+								<div class='chat-message'>这个口红最近有什么促销活动吗？</div>
+							</div>
+						</div>
+					</div>
+					<div id="msgpanel">
+						<textarea autoHeight="true" class="chatinput emotion" id="chatinput" placeholder="输入你想咨询的问题？"></textarea>
+						<div class="tools-box">
+							<span class="face-icon tool-icon" id="face">☺</span>
+							<span class="fa fa-paper-plane tool-icon" id="analytic" onclick="out()"></span>
+						</div>
+					</div>
 
+				</div>
+			</div>
+		</div>
+        <!-- end of 侧边栏 -->
 		<!-- start of 尾部  -->
 		<footer class="contaniner content">
 			<div class="footer-top">
@@ -472,7 +534,48 @@
 		<script type="text/javascript" src="../../js/jquery.js"></script>
 		<script src="../../js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../../js/user/prefixfree.min.js"></script>
+		<script type="text/javascript" src="../../js/user/Consultcommon.js"></script>
+		<script type="text/javascript" src="../../js/user/jquery.sinaEmotion.js"></script>
+		<script type="text/javascript">
+            // 绑定表情
 
+            $('#face').SinaEmotion($('.emotion'));
+
+            // 测试本地解析
+            function out() {
+
+                var inputText = $('.emotion').val();
+                $("#chat-content").append("" +
+                    "<div class='clearfloat'>" +
+                    "   <div class='time-column'>" +
+                    "       <small class='chat-date'>2018-08-29 17:27</small>" +
+                    "   </div>" +
+                    "   <div class='right'>" +
+                    "       <div class='chat-nickname'> 我 </div>" +
+                    "       <div class='chat-message'>" + AnalyticEmotion(inputText) + "</div>" +
+                    "   </div>" +
+                    "</div>");
+                $("#chatinput").val("");
+
+            }
+
+            $(function() {
+                $.fn.autoHeight = function() {
+                    function autoHeight(elem) {
+                        elem.style.height = 'auto';
+                        //elem.scrollTop = 0; //防抖动
+                        elem.style.height = elem.scrollHeight + 'px';
+                    }
+                    this.each(function() {
+                        autoHeight(this);
+                        $(this).on('keyup', function() {
+                            autoHeight(this);
+                        });
+                    });
+                }
+                $('textarea[autoHeight]').autoHeight();
+            })
+		</script>
 		<script type="text/javascript">
 			$(function() {
 				document.getElementById("gprice").innerHTML = "选择颜色查看价钱";

@@ -261,3 +261,20 @@ img.img-circle.user-head-image{
 ul.nav>li>a {
     font-size: 15px;
 }
+
+/*手机大小适配*/
+
+@media (min-width: 400px) {
+    div#navbar-collapse {
+        padding: 0;
+    }
+
+    div#navbar-collapse > ul > li > a {
+        padding: 15px 0;
+    }
+
+    .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+        background: #000;
+        margin-top: -7.5px;
+    }
+}
