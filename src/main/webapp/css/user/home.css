@@ -256,3 +256,8 @@ img.img-circle.user-head-image{
     width: 34px;
     margin-top: -7px;
 }
+
+/*跳转“我的订单和购物袋”的文字大小*/
+ul.nav>li>a {
+    font-size: 15px;
+}
