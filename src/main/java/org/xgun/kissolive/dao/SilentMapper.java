@@ -85,4 +85,10 @@ public interface SilentMapper {
     //获取某个产品某年的销量走势
     List<ShopCountByMonth> selectShopInfoByPOneYear(@Param("productionId")Integer productionId,
                                                     @Param("year")Integer year);
+
+    //获取购物车里数量前几的产品
+    List<ProductionNum> selectPCardByRank(@Param("num")Integer num);
+
+    //获取浏览量前几的产品
+    List<ProductionNum> selectPBrowseByRank(@Param("num")Integer num);
 }

@@ -40,4 +40,8 @@ public interface ISilentService {
     ServerResponse getProductShopTrend(Integer productionId, Integer year);
 
     ServerResponse getProductionShopRank(Integer num);
+
+    ServerResponse getProductionCardRank(Integer num);
+
+    ServerResponse getProductionBrowseRank(Integer num);
 }

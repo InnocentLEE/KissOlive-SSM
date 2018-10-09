@@ -244,4 +244,23 @@
   	AND str_to_date(CONCAT(#{year},'-12-31 23:59:59'), '%Y-%m-%d %H:%i:%s')
 		GROUP BY months
   </select>
+
+  <select id="selectPCardByRank" resultType="org.xgun.kissolive.vo.ProductionNum">
+    SELECT p.id as productionId , p.name as productionName , SUM(tc.num) as num
+    FROM tb_card tc
+    LEFT JOIN tb_goods g ON g.id = tc.goods_id
+    LEFT JOIN tb_production p ON g.production_id = p.id
+    GROUP BY productionId
+    ORDER BY num DESC
+  	LIMIT #{num}
+  </select>
+
+  <select id="selectPBrowseByRank" resultType="org.xgun.kissolive.vo.ProductionNum">
+    SELECT p.id as productionId , p.name as productionName , COUNT(tbc.user_id) as num
+    FROM tb_browse_count tbc
+    LEFT JOIN tb_production p ON tbc.production_id = p.id
+    GROUP BY productionId
+    ORDER BY num DESC
+  	LIMIT #{num}
+  </select>
 </mapper>

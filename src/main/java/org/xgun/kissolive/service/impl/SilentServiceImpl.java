@@ -340,4 +340,28 @@ public class SilentServiceImpl implements ISilentService {
         }
         return ServerResponse.createBySuccess("获取成功",list);
     }
+
+    @Override
+    public ServerResponse getProductionCardRank(Integer num) {
+        List<ProductionNum> list = silentMapper.selectPCardByRank(num);
+        if(list == null){
+            return  ServerResponse.createByErrorMessage("获取失败");
+        }
+        if(list.size() == 0){
+            return  ServerResponse.createBySuccessMessage("数据为空");
+        }
+        return ServerResponse.createBySuccess("获取成功",list);
+    }
+
+    @Override
+    public ServerResponse getProductionBrowseRank(Integer num) {
+        List<ProductionNum> list = silentMapper.selectPBrowseByRank(num);
+        if(list == null){
+            return  ServerResponse.createByErrorMessage("获取失败");
+        }
+        if(list.size() == 0){
+            return  ServerResponse.createBySuccessMessage("数据为空");
+        }
+        return ServerResponse.createBySuccess("获取成功",list);
+    }
 }
