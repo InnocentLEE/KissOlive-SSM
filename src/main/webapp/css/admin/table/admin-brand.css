@@ -31,3 +31,7 @@ img.img-display {
     top: 7%;
     z-index: 0;
 }
+
+[v-cloak] {
+    display: none;
+}
