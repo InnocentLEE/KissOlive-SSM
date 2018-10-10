@@ -386,4 +386,26 @@ public class InnocentController {
     public ServerResponse searchProductions(@RequestParam("search")String search){
         return iInnocentService.searchProductions(search);
     }
+
+    /**
+     * 根据id查找产品
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/production/get_production_show.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse getProductionShow(@RequestParam("production_id")Integer id){
+        return iInnocentService.getProductionShow(id);
+    }
+
+    /**
+     * 根据产品id查找产品的评价
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/production/get_production_assess.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse getProductionAssess(@RequestParam("production_id")Integer id){
+        return iInnocentService.getProductionAssess(id);
+    }
 }
