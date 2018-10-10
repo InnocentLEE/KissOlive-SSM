@@ -30,7 +30,7 @@ $(document).ready(function() {
         },
         "sDom": "<'col-sm-12' <'row col-sm-12' <'col-sm-2'l> <'col-sm-8'<'#btn'>> <'col-sm-8'> <'cos-sm-2'f>> t <'col-sm-6' i> <'col-sm-6' p>>"
     });
-    var btnn = "<button class=\"btn btn-primary btn-sm\" data-toggle='modal' data-target='#myModal'><i class=\"fa fa-plus\"></i>添加</button>\n";
+    var btnn = "<a class=\"btn btn-primary btn-sm\" href='admin_addproduction.html' target='right'><i class=\"fa fa-plus\"></i>添加</a>\n";
     $("#btn")[0].innerHTML = btnn;
     /*$("#all").click(function(){
         $('[name=all]:checkbox').prop('checked',this.checked);//checked为true时为默认显示的状态
