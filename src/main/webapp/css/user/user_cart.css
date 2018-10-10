@@ -1,6 +1,6 @@
 /*选项卡样式*/
 .leadertab.row {
-    margin: 65 auto;
+    margin: 65px auto;
 }
 ul#myTab {
     width: fit-content;
@@ -8,13 +8,13 @@ ul#myTab {
     margin: 0 auto;
 }
 li#step1Li,#step2Li,#step3Li {
-    padding-bottom: 10;
+    padding-bottom: 10px;
    /* border-bottom: 1px solid #ccc;*/
     border-radius: 3px;
-    border-width: 5;
+    border-width: 5px;
     width: 300px;
-    margin: 0 40;
-    height: 68;
+    margin: 0 40px;
+    height: 68px;
 }
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
 	border: 1px solid transparent;
@@ -48,15 +48,15 @@ div#myTabContent {
 a.back {
     font-size: 19px;
     font-family: montserrat light,sans-serif,microsoft yahei;
-    padding: 0 0 0 25;
+    padding: 0 0 0 25px;
 }
 .back {
-    margin: 50 0;
+    margin: 50px 0;
 }
 label.labelhead {
 	font-family: montserrat light,sans-serif,microsoft yahei;
     font-size: 25px;
-    margin: 10 0 20 20;
+    margin: 10px 0 20px 20px;
 }
 thead {
     background: #ccc;
@@ -65,49 +65,49 @@ thead {
 input#all {
     width: 25px;
     height: 20px;
-    margin: 0 20;
+    margin: 0 20px;
 }
 input.son_check {
     width: 25px;
     height: 20px;
-    margin: 70 20;
+    margin: 70px 20px;
 }
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
     padding: 20px 0;
     border:0;
-        width: 500;
+        width: 500px;
 }
 div.list_img>a>img {
-    width: 280;
+    width: 280px;
     margin: 0 auto;
-    padding: 0 40 0 0;
+    padding: 0 40px 0 0;
 }
 th.headth {
-    padding: 20 0;
+    padding: 20px 0;
 }
 p.del {
-    width: 100;
-    margin: 30 0 0 0;
+    width: 100px;
+    margin: 30px 0 0 0;
 }
 p.price {
-    padding: 78 20;
+    padding: 78px 20px;
 }
 p.sum_price,p.order-sum_price{
-    padding: 78 0;
+    padding: 78px 0;
 }
 .amount_box {
-    padding: 65 0;
-    margin-left: -40;
+    padding: 65px 0;
+    margin-left: -40px;
 }
 p.goodname {
-    padding: 20 0;
+    padding: 20px 0;
 }
 button.reduce.btn, .plus.btn {
     background: #000;
     color: #fff;
     font-weight: 900;
-    width: 30;
-    margin: 10 0 11 0;
+    width: 30px;
+    margin: 10px 0 11px 0;
 }
 button.reduce.reSty.btn {
     background: #000;
@@ -119,8 +119,8 @@ tr.order_lists {
     border-bottom: 1px solid #ccccccd4;
 }
 input.sum {
-    width: 50;
-    height: 33;
+    width: 50px;
+    height: 33px;
     border: 0;
 }
 .table>tbody>tr.bordertop{
@@ -128,15 +128,15 @@ input.sum {
 }
 .calBtn,.sumbitbtn,button.add_addr,button.save_addr,button#surecid,button.vieworder {
     text-align: center;
-    padding: 8;
+    padding: 8px;
     border: none;
-    width: 150;
+    width: 150px;
     height: 40px;
-    margin: 0 0 0 20;
+    margin: 0 0 0 20px;
     background: #000;
     color: #fff;
     font-weight: bolder;
-    font-size: 20;
+    font-size: 20px;
 }
 input.sum {
     text-align: center;
@@ -144,51 +144,51 @@ input.sum {
 
 /*模态框*/
 .modal-body {
-    height: 60;
+    height: 60px;
     vertical-align: middle;
-    padding: 20;
+    padding: 20px;
     font-size: 18px;
 }
 /*支付及物流页面*/
 table.table {
-    margin-top: 80;
+    margin-top: 80px;
 }
 .titleborder {
     /* padding: 40 10 20 10; */
-    margin: 50 0 50 50;
+    margin: 50px 0 50px 50px;
     border-bottom: 1px solid #ccc;
-    border-width: 2;
+    border-width: 2px;
 }
 ul.addr {
     display: flex;
-    height: 100;
-    padding: 30 40 30 40;
+    height: 100px;
+    padding: 30px 40px 30px 40px;
     vertical-align: middle;
     line-height: 3;
     border: 1px solid #ccc;
-    margin-left: 50;
-    margin-bottom: 20;
+    margin-left: 50px;
+    margin-bottom: 20px;
 }
 button.add_addr{
-    margin: 20 0 50 0;
+    margin: 20px 0 50px 0;
     float: right;
 }
 button.save_addr {
-    margin: 10 50 50 0;
+    margin: 10px 50px 50px 0;
     float: right;
 }
 ul.addr.add {
-    height: 200;
+    height: 200px;
     border: none;
 }
 .div_add_addr {
     height: auto;
     border: 1px solid #ccc;
-    margin-bottom: 80;
-    margin-left: 50;
+    margin-bottom: 80px;
+    margin-left: 50px;
 }
 ul.addr>li{
-	    padding: 0 25 0 15;
+	    padding: 0 25px 0 15px;
 }
 input#name,#tel{
     width: 200px;
@@ -197,8 +197,8 @@ input#detail {
 	width:600px;
 }
 select#province, .city, .dist {
-    width: 100;
-    height: 32;
+    width: 100px;
+    height: 32px;
 }
 /*新建地址验证*/
 label#nameError,#telError,#detailError {
@@ -212,31 +212,31 @@ label#nameCorrect,#telCorrect,#detailCorrect {
     height: auto;
 }
 div.modal-body.code>img {
-	width: 400;
+	width: 400px;
     padding: 0 0 0 0;
 }
 /*成功页面样式*/
 div.paysuccess>img {
-    width: 500;
-    height: 500;
-    margin: 100 50;
+    width: 500px;
+    height: 500px;
+    margin: 100px 50px;
 }
 .successtext {
-    margin: 200 50 80 50;
+    margin: 200px 50px 80px 50px;
     height: fit-content;
     width: fit-content;
 }
 div.successtext>p {
     font-size: 20px;
     font-weight: bold;
-    padding: 10;
+    padding: 10px;
 }
 button.vieworder {
-    margin-top: 50;
-    margin-right: 30;
+    margin-top: 50px;
+    margin-right: 30px;
 }
 div.successtext>a {
-    font-size: 20;
+    font-size: 20px;
 }
 .list_img {
     width: 300px;

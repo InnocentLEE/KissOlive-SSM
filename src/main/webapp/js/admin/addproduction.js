@@ -233,6 +233,7 @@ $(document).ready(function() {
         width:630,
         lang:'zh-CN',//注意这里，若要设置语言，则需要引入该语言配置js
         placeholder:"请在这里写下您的内容",
+
         fontSize:"16",
         toolbar: [
             ['color', ['color']],
@@ -244,13 +245,13 @@ $(document).ready(function() {
             ['view',['codeview','fullscreen']],
         ],//配置工具栏
         callbacks: {
-            onImageUpload: function(file) {  //图片默认以二进制的形式存储到数据库，调用此方法将请求后台将图片存储到服务器，返回图片请求地址到前端
+            onImageUpload: function(file, editor, $editable) {  //图片默认以二进制的形式存储到数据库，调用此方法将请求后台将图片存储到服务器，返回图片请求地址到前端
                 returnImageUrl(file);
             }
         }
     });
 });
-function returnImageUrl(file){
+function returnImageUrl(file, editor, $editable){
     //将图片放入Formdate对象中
     var formData = new FormData();
     formData.append("img", file[0]);
@@ -264,10 +265,21 @@ function returnImageUrl(file){
         dataType:'json',
         success: function(picture) {
             //console.log(picture);
-            $('#summernote').summernote('insertImage',picture.url);
+
+          // $('#summernote').summernote('editor.insertImage',picture.url);
+            //$('<img src=\"'+picture.url+'\">').after($('.loading'));
+            $('.loading').remove();
+            $('.note-editable').append('<img src=\"'+picture.url+'\">');
+            //$('#summernote').summernote('editor.insertText', '上传成功,请等待加载');
+            // $('.note-placeholder').html("上传成功,请等待加载");
+
         },
         error:function(){
             alert("上传失败");
+        },
+        beforeSend:function () {
+            alert("开始上传");
+            $('.note-editable').append('<img class="loading" src="../../img/user/black.gif" style="width: 100px;height: 100px"> ');
         }
     });
 }
