@@ -50,4 +50,8 @@ public interface IInnocentService {
     ServerResponse getProductionsByBrand(Integer brandId);
 
     ServerResponse searchProductions(String search);
+
+    ServerResponse getProductionShow(int id);
+
+    ServerResponse getProductionAssess(int id);
 }

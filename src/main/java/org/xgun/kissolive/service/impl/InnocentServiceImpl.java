@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.sun.org.apache.bcel.internal.generic.PUSH;
 import com.sun.org.apache.xpath.internal.operations.Or;
+import org.omg.PortableServer.SERVANT_RETENTION_POLICY_ID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,7 @@ import org.xgun.kissolive.dao.InnocentMapper;
 import org.xgun.kissolive.pojo.*;
 import org.xgun.kissolive.service.IInnocentService;
 import org.xgun.kissolive.utils.IKAnalyzerUtil;
+import org.xgun.kissolive.vo.ProductionAssess;
 import org.xgun.kissolive.vo.ProductionDetails;
 import org.xgun.kissolive.vo.ProductionSame;
 
@@ -342,4 +344,55 @@ public class InnocentServiceImpl implements IInnocentService {
             return ServerResponse.createByErrorMessage("查找过程出错");
         return ServerResponse.createBySuccess("查找成功",productionDetailsList);
     }
+
+
+    @Override
+    @Transactional
+    public ServerResponse getProductionShow(int id){
+        Production production = innocentMapper.selectProductionById(id);
+        ProductionDetails productionDetails = new ProductionDetails();
+        productionDetails.setId(production.getId());
+        productionDetails.setName(production.getName());
+        productionDetails.setDescription(production.getDescription());
+        productionDetails.setDetail(production.getDetail());
+        productionDetails.setImgUrl(production.getImgUrl());
+        productionDetails.setBrand(innocentMapper.selectBrandById(production.getBrandId()));
+        Origin origin = innocentMapper.selectOriginById(production.getOriginId());
+        productionDetails.setOrigin(origin);
+        MarketTime marketTime = innocentMapper.selectMarketTimeById(production.getMarketTimeId());
+        productionDetails.setMarketTime(marketTime);
+        List<Hotspot> hotspots = innocentMapper.selectHotspotByProduction(production.getId());
+        productionDetails.setHotspots(hotspots);
+        List<Function> functions = innocentMapper.selectFunctionByProduction(production.getId());
+        productionDetails.setFunctions(functions);
+        List<Skin> skins = innocentMapper.selectSkinByProduction(production.getId());
+        productionDetails.setSkins(skins);
+        List<Goods> goodses = innocentMapper.selectGoodsByProduction(production.getId());
+        productionDetails.setGoodses(goodses);
+        if (TransactionAspectSupport.currentTransactionStatus().isRollbackOnly())
+            return ServerResponse.createByErrorMessage("查找过程出错");
+        return ServerResponse.createBySuccess("查找成功",productionDetails);
+    }
+
+    @Override
+    @Transactional
+    public ServerResponse getProductionAssess(int id){
+        List<Assess> assessList = innocentMapper.selectAssessByProduction(id);
+        List<ProductionAssess> productionAssessList = Lists.newArrayList();
+        int assessListSize = assessList.size();
+        for (int i = 0; i < assessListSize; i++) {
+            ProductionAssess productionAssess = new ProductionAssess();
+            productionAssess.setId(assessList.get(i).getId());
+            productionAssess.setProductionId(id);
+            productionAssess.setContent(assessList.get(i).getContent());
+            productionAssess.setUpdatetime(assessList.get(i).getUpdatetime());
+            productionAssess.setUser(innocentMapper.selectUserNameAndImgById(assessList.get(i).getUserId()));
+            productionAssess.setGoods(innocentMapper.selectGoodsById(assessList.get(i).getGoodsId()));
+            productionAssessList.add(productionAssess);
+        }
+        if (TransactionAspectSupport.currentTransactionStatus().isRollbackOnly())
+            return ServerResponse.createByErrorMessage("查找过程出错");
+        return ServerResponse.createBySuccess("查找成功",productionAssessList);
+    }
+
 }

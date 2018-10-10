@@ -224,7 +224,7 @@
     SELECT COUNT(1) FROM tb_production
   </select>
   <select id="selectProduction" resultType="org.xgun.kissolive.pojo.Production">
-    SELECT id, brand_id AS brandId, origin_id AS originId, market_time_id AS marketTimeId, `name`, description, img_url, detail, search, updatetime
+    SELECT id, brand_id AS brandId, origin_id AS originId, market_time_id AS marketTimeId, `name`, description, img_url AS imgUrl, detail, search, updatetime
     FROM tb_production
     ORDER BY id
     limit #{index}, #{num}
@@ -254,7 +254,7 @@
     ORDER BY id
   </select>
   <select id="selectProductionByBrand" resultType="org.xgun.kissolive.pojo.Production">
-    SELECT id, brand_id AS brandId, origin_id AS originId, market_time_id AS marketTimeId, `name`, description, img_url, detail, search, updatetime
+    SELECT id, brand_id AS brandId, origin_id AS originId, market_time_id AS marketTimeId, `name`, description, img_url AS imgUrl, detail, search, updatetime
     FROM tb_production
     WHERE brand_id = #{brand_id,jdbcType=INTEGER}
     ORDER BY id
@@ -265,8 +265,18 @@
     ORDER BY id
   </select>
   <select id="selectProductionById" resultType="org.xgun.kissolive.pojo.Production">
-    SELECT id, brand_id AS brandId, origin_id AS originId, market_time_id AS marketTimeId, `name`, description, img_url, detail, search, updatetime
+    SELECT id, brand_id AS brandId, origin_id AS originId, market_time_id AS marketTimeId, `name`, description, img_url AS imgUrl, detail, search, updatetime
     FROM tb_production
+    WHERE id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAssessByProduction" resultType="org.xgun.kissolive.pojo.Assess">
+    SELECT id, goods_id AS goodsId, production_id AS productionId, user_id AS userId, content, updatetime
+    FROM tb_assess
+    WHERE production_id = #{production_id,jdbcType=INTEGER}
+  </select>
+  <select id="selectUserNameAndImgById" resultType="org.xgun.kissolive.pojo.User">
+    SELECT id, username, imgurl
+    FROM tb_user
     WHERE id = #{id,jdbcType=INTEGER}
   </select>
 </mapper>

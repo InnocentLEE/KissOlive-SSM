@@ -146,4 +146,10 @@ public interface InnocentMapper {
 
     // 根据产品id查找产品
     Production selectProductionById(@Param("id")int id);
+
+    // 查找产品的评价
+    List<Assess> selectAssessByProduction(@Param("production_id")int productionId);
+
+    // 根据id查找用户信息
+    User selectUserNameAndImgById(@Param("id")int id);
 }
