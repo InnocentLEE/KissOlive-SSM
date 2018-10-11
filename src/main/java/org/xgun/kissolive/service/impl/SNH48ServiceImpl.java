@@ -1,5 +1,6 @@
 package org.xgun.kissolive.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import org.apache.catalina.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -227,5 +228,37 @@ public class SNH48ServiceImpl implements ISNH48Service {
     //根据商品ID查订单所需的商品名称（名称+色号名称）
     String getGoodsName(Integer goodsID) {
         return mapper.getGoodsName(goodsID);
+    }
+
+    @Override
+    public ServerResponse<List<ListOrder>> getOrders(Integer status, Integer page, Integer size) {
+
+        //TODO 用户ID
+        Integer userID = 1;
+        PageHelper.startPage(page,size);
+        List<Order> orders = mapper.listOrder(userID, status);
+        if (orders == null || orders.size() == 0) {
+            return ServerResponse.createBySuccess("订单为空", null);
+        }
+        List<ListOrder> listOrder = new ArrayList<>();
+        //遍历每一个订单
+        for (Order order : orders) {
+            ListOrder lo = new ListOrder();
+            Integer orderID = order.getId();
+            lo.setOrderId(orderID);
+            lo.setOrderNumber(order.getNumber());
+            lo.setPrice(order.getPrice());
+
+            List<OrderGoods> listOG = new ArrayList<>();
+            List<OrderItem> listOrderItem = mapper.listOrderItem(orderID);
+            for (OrderItem oi : listOrderItem) {
+                String name = getGoodsName(oi.getGoodsId());
+                OrderGoods og = new OrderGoods(oi, name);
+                listOG.add(og);
+            }
+            lo.setGoods(listOG);
+            listOrder.add(lo);
+        }
+        return ServerResponse.createBySuccess(listOrder);
     }
 }

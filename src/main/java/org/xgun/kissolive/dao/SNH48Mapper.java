@@ -61,4 +61,8 @@ public interface SNH48Mapper {
     String getGoodsName(@Param("goodsID")Integer goodsID);
 
     int updateOrderStatus(@Param("orderID")Integer orderID, @Param("status")Integer status);
+
+    List<Order> listOrder(@Param("userID")Integer userID, @Param("status")Integer status);
+
+    List<OrderItem> listOrderItem(@Param("orderID")Integer orderID);
 }

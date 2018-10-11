@@ -1,5 +1,6 @@
 package org.xgun.kissolive.controller;
 
+import org.apache.catalina.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.WebDataBinder;
@@ -117,6 +118,20 @@ public class SNH48Controller {
     public ServerResponse updateOrderStatus(@PathVariable Integer orderID, @PathVariable Integer status) {
 
         return service.updateOrderStatus(orderID, status);
+    }
+
+    /**
+     * 获取不同状态的订单列表
+     * @param status 订单状态
+     * @param page 第几页
+     * @param size 每页条数
+     * @return
+     */
+    @GetMapping("/orders/{status}/{page}/{size}")
+    public ServerResponse<List<ListOrder>> getOrders(@PathVariable Integer status, @PathVariable Integer page,
+                                                     @PathVariable Integer size) {
+
+        return service.getOrders(status, page, size);
     }
 
 }
