@@ -8,6 +8,8 @@ import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.pojo.Stock;
 import org.xgun.kissolive.pojo.Supplier;
 import org.xgun.kissolive.service.ISNH48Service;
+import org.xgun.kissolive.vo.ListOrder;
+import org.xgun.kissolive.vo.ListOrderItem;
 import org.xgun.kissolive.vo.ListStock;
 
 import java.text.SimpleDateFormat;
@@ -90,4 +92,19 @@ public class SNH48Controller {
 
         return service.listStock();
     }
+
+    /**
+     * 下订单，如果库存不足会返回失败, 成功返回订单数据
+     * @param orderItems
+     * @return
+     */
+    @PostMapping("/order")
+    public ServerResponse<ListOrder> addOrder(@RequestBody(required = false) ListOrderItem orderItems) {
+
+        if (orderItems == null || orderItems.getItems().size() == 0) {
+            return ServerResponse.createByErrorMessage("订单信息不能为空");
+        }
+        return service.addOrder(orderItems);
+    }
+
 }
