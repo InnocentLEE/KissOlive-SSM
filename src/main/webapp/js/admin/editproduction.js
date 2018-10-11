@@ -288,7 +288,7 @@ function sendarticle(){
         alert("品牌图片不能为空！");
         return;
     }
-
+    formData.append("id", id);
     var brandlinks =document.getElementById("brand").getElementsByTagName("a");
     var brand_id = null;
     for(var i=0;i<brandlinks.length;i++){

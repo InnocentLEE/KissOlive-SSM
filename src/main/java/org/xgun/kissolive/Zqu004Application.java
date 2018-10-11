@@ -38,8 +38,8 @@ public class Zqu004Application {
         return "page/admin/activitypublished.html";
     }
 
-	@RequestMapping("/admin")
-	String admin(){
-		return "page/admin/frameset.html";
+	@RequestMapping("/search")
+	String search(){
+		return "page/user/user_search.html";
 	}
 }
