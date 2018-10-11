@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="../../css/admin/fontawesome-all.css">
     <link rel="stylesheet" href="../../css/user/home.css">
     <link rel="stylesheet" href="../../css/user/user_cart.css">
+    <link rel="stylesheet" href="../../css/user/user_successed.css">
 
 </head>
 
@@ -103,20 +104,57 @@
             <li id="step3Li" class="active black">3<br>成功提交订单
             </li>
         </ul>
+
         <div id="myTabContent" class="tab-content">
+            <div>
+                <span class="span-status">订单状态</span>
+            </div>
             <!-- 订单成功页面 -->
             <div id="step3" class="tab-pane fade active in">
-                <div class="paysuccess" style="display:flex">
+                <div class="paysuccess">
                     <img alt="" src="../../img/user/success.png">
                     <div class="successtext">
-                        <p>恭喜你订单成功！</p>
-                        <p>订单编号为：45451845151444</p>
-                        <button class="vieworder">查看订单</button>
-                        <a href="index.jsp'/>">&lt;&nbsp;&lt;&nbsp;返回首页</a>
+                        <p>您的订单已经下单成功！</p>
                     </div>
                 </div>
             </div>
             <!-- 订单成功页面 -->
+            <div class="product-info">
+                <img class="item-left" src="../../img/user/ordericon.png" alt="">
+                <div class="item-right">
+                    <span class="info-text" id="info">收货信息：</span>
+                    <div class="div-row">
+                        <span class="infotext" id="name">娜丽丝</span>
+                        <span class="infotext" id="tel">136****5683</span>
+                        <span class="infotext" id="addr">内蒙古自治区 呼伦贝尔市 莫力达瓦达斡尔族自治旗 杜拉尔鄂温克民族乡 尼西空海拉松村××号</span>
+                    </div>
+                    <div class="div-row">
+                        <span class="infotext" id="money">应付金额 ：</span>
+                        <span class="infotext" ><strong>￥355.00</strong></span>
+                    </div>
+                    <div class="div-row">
+                        <label class="label-gray">您的订单号 554465456485415132122</label>&nbsp;&nbsp;|&nbsp;&nbsp;
+                        <label class="label-gray"><a href="#">查看订单详情</a></label>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <span class="span-method">支付方式</span>
+            </div>
+            <div>
+                <div class="alipay">
+                    <img class="alipay-text" src="../../img/user/alipayicon.png" alt="alipay">
+                </div>
+            </div>
+            <div class="paycode-content">
+                <div class="paycode-item">
+                <span class="code-tip">请使用支付宝扫一扫扫描二维码支付</span>
+                <img class="code-png"src="../../img/user/alipay.png" alt="">
+                </div>
+                <div class="paycode-item">
+                    <img src="../../img/user/alipaysaoyisao.png" alt="">
+                </div>
+            </div>
 
         </div>
     </div>
