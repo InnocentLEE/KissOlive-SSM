@@ -64,4 +64,9 @@
         LEFT JOIN tb_production ON tb_production.id = tb_goods.production_id
         WHERE tb_goods.id = #{goodsID}
     </select>
+    <update id="updateOrderStatus">
+        UPDATE tb_order
+        SET status = #{status}, updatetime = now()
+        WHERE id = #{orderID}
+    </update>
 </mapper>

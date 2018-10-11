@@ -107,4 +107,16 @@ public class SNH48Controller {
         return service.addOrder(orderItems);
     }
 
+    /**
+     * 改变订单状态
+     * @param orderID 订单ID
+     * @param status 订单状态(0提交了未付款;1付款了未发货;2发货了未收货3;收货了未评价;4评价了即完成;-1取消)
+     * @return
+     */
+    @PutMapping("/order/{orderID}/{status}")
+    public ServerResponse updateOrderStatus(@PathVariable Integer orderID, @PathVariable Integer status) {
+
+        return service.updateOrderStatus(orderID, status);
+    }
+
 }

@@ -24,4 +24,6 @@ public interface ISNH48Service {
     ServerResponse<List<ListStock>> listStock();
 
     ServerResponse<ListOrder> addOrder(ListOrderItem OrderItems);
+
+    ServerResponse updateOrderStatus(Integer orderID, Integer status);
 }

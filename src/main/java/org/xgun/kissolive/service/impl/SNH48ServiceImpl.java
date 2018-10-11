@@ -145,6 +145,18 @@ public class SNH48ServiceImpl implements ISNH48Service {
       return ServerResponse.createBySuccess(result);
     }
 
+    @Override
+    public ServerResponse updateOrderStatus(Integer orderID, Integer status) {
+
+        if (status < -1 || status > 4) {
+            return ServerResponse.createByErrorMessage("订单状态码错误");
+        }
+        if (mapper.updateOrderStatus(orderID, status) == 0) {
+            return ServerResponse.createByErrorMessage("更新订单状态失败");
+        }
+        return ServerResponse.createBySuccess();
+    }
+
     //生成订单，返回订单ID和编号（此时不存地址）
     Map generateOrder(Integer userID, BigDecimal price) {
 

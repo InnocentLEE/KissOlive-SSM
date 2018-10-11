@@ -59,4 +59,6 @@ public interface SNH48Mapper {
     int insertOrderItemShipment(@Param("orderItemShipment")OrderItemShipment orderItemShipment);
 
     String getGoodsName(@Param("goodsID")Integer goodsID);
+
+    int updateOrderStatus(@Param("orderID")Integer orderID, @Param("status")Integer status);
 }
