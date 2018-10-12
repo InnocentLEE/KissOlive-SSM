@@ -1,0 +1,162 @@
+.leadertab.row {
+    margin-top: 0;
+}
+
+.titleborder {
+    margin: 50px 0 50px 0;
+}
+
+ul.addr {
+    margin-left: 0;
+}
+
+/*快递流程图*/
+ul.delivery-process {
+    display: flex;
+    margin-left: 4em;
+}
+li.progress-item {
+    font-size: 1em;
+    display: flex;
+    flex-direction: column;
+    font-style: normal;
+    font-family: sans-serif;
+}
+li.progress-connection {
+    padding: 0;
+    width: 17%;
+    height: 3em;
+    border-bottom-color: #000;
+    border-bottom-width: 0.3em;
+    margin-left: 15px;
+    border-bottom-style: dashed;
+}
+em.iconfont {
+    font-size: 3em;
+    border: 0.05em solid #000;
+    border-radius: 100%;
+    /*padding: 15% 22%;*/
+    /*padding: 0.20em 0.35em;*/
+    padding: 0.8em 0.55em;
+}
+em.progress-item-text {
+    font-style: normal;
+    font-size: 16px;
+    text-align: center;
+    padding: 10%;
+}
+label.label-title {
+    font-size: 16px;
+    color: #777;
+    font-weight: normal;
+    padding-left: 2em;
+}
+.delivery-content {
+    padding-top: 2.5em;
+    border-top: 0.1em solid #f5f5f5;
+    margin-top: 0.5em;
+    padding-bottom: 2.5em;
+    margin-bottom: 1.5em;
+    border-bottom: 1px solid #f5f5f5;
+}
+.div-text {
+    padding: 15px;
+    margin-right: 7.1em;
+    margin-left: 4.5em;
+    background: #f5f5f5;
+    font-size: 1.3em;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+.timeline-content {
+    margin-left: 2em;
+}
+.timeline-content {
+    background: #f5f5f5;
+    /* margin: 0 auto; */
+    margin-right: 9.2em;
+    margin-left: 6em;
+}
+/*重写jq22.css (时间轴css)*/
+
+/*.history {
+    margin-top: 2em;
+}*/
+.history-date h2 a {
+    color: #000;
+    display: inline-block;
+    display: inline;
+    zoom: 1;
+    margin: 0;
+    padding: 0;
+}
+.history-date ul li {
+   background-size: 20px;
+}
+.history {
+    background: url(../../img/user/line.png) repeat-y 183px 0;
+    overflow: hidden;
+    position: relative;
+    background-size: 14px;
+}
+.history-date ul li.green h3 {
+    color: #000;
+    margin-top:20px;
+}
+.history-date ul li.green h3 span {
+    color: #333;
+}
+.history-date ul li.green {
+    font-size: 18px;
+    font-family: 微软雅黑;
+    font-weight: 400;
+    cursor: pointer;
+}
+.history-date ul li.green {
+    background: #f5f5f5 url(../../img/user/waitcircle.png) no-repeat 174px 15px;
+    font-family: 微软雅黑;
+    font-weight: 400;
+    /* padding-left: 45px; */
+    /*margin-bottom: 74px;*/
+    background-size: 35px;
+    padding-bottom: 0;
+    /*height: 60px;*/
+}
+.history-date ul li.green dl {
+    margin-top: 15px;
+}
+.history-date ul li.green dl dt span {
+    display: block;
+    color: #333;
+    font-size: 12px;
+}
+.history-date ul li h3 {
+    float: left;
+    width: 168px;
+    text-align: right;
+    /*padding-right: 19px;*/
+
+    padding-right: 10px;
+    color: #c3c3c3;
+    font: normal 18px/16px Arial;
+    margin-top: 0px;
+}
+.history-date ul {
+    margin-bottom: 0px;
+    margin-top: 0;
+}
+.history-date li.line {
+    background: none;
+}
+/*商品清单*/
+table.table {
+    margin-top: 15px;
+}
+label.label-title.label-right {
+    float: right;
+    padding-right: 32px;
+}
+.history-date ul li dl {
+    padding-left: 60px;
+    margin-top: -2px;
+}

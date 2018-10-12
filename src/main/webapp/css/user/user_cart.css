@@ -161,7 +161,8 @@ table.table {
 }
 ul.addr {
     display: flex;
-    height: 100px;
+    /*height: 100px;*/
+    height: auto;
     padding: 30px 40px 30px 40px;
     vertical-align: middle;
     line-height: 3;
