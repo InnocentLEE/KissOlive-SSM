@@ -55,7 +55,7 @@ h4.sortname {
 	right: -6px;
 	top: 1px;
 }
-//登录模态框样式
+/*登录模态框样式*/
   h3.h3_titile {
 	  padding: 40px;
 	  font-weight: lighter;
@@ -234,11 +234,13 @@ button.signin.modal_btn {
 .correctClass {
 	color: #7bcc29;
 	font-weight: 540;
+	font-size: 1.5rem;
 }
 
 .errorClass {
 	color: #e02323;
 	font-weight: 540;
+	font-size: 1.5rem;
 }
 
 label#passwordError,

@@ -103,13 +103,13 @@ public interface InnocentMapper {
     void insertProduction(@Param("production")Production production);
 
     // 插入产品选购热点
-    void inserProductionHotspot(@Param("list")List<ProductionHotspot> list);
+    void insertProductionHotspot(@Param("list")List<ProductionHotspot> list);
 
     // 插入产品功能
-    void inserProductionFunction(@Param("list")List<ProductionFunction> list);
+    void insertProductionFunction(@Param("list")List<ProductionFunction> list);
 
     // 插入产品适用肤质
-    void inserProductionSkin(@Param("list")List<ProductionSkin> list);
+    void insertProductionSkin(@Param("list")List<ProductionSkin> list);
 
     // 插入一条商品记录
     void insertGoods(@Param("goods")Goods goods);
@@ -152,4 +152,19 @@ public interface InnocentMapper {
 
     // 根据id查找用户信息
     User selectUserNameAndImgById(@Param("id")int id);
+
+    // 更新产品信息
+    int updateProductionById(Production production);
+
+    // 删除产品选购热点
+    int deleteProductionHotspot(@Param("production_id")int id);
+
+    // 删除产品功能
+    int deleteProductionFunction(@Param("production_id")int id);
+
+    // 删除产品适用肤质
+    int deleteProductionSkin(@Param("production_id")int id);
+
+    // 修改商品上架状态
+    int updateGoodsStatus(@Param("id")int id,@Param("status")int status);
 }

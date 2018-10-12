@@ -13,7 +13,6 @@ import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.pojo.*;
 import org.xgun.kissolive.service.IInnocentService;
 import org.xgun.kissolive.utils.FTPSSMLoad;
-import org.xgun.kissolive.utils.IKAnalyzerUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -372,7 +371,7 @@ public class InnocentController {
      */
     @RequestMapping(value = "/production/get_productions_by_brand.do", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse getProductionsByBrand(@RequestParam("brand_id")Integer brandId){
+    public ServerResponse getProductionsByBrand(@RequestParam("brand_ids")Integer[] brandId){
         return iInnocentService.getProductionsByBrand(brandId);
     }
 
@@ -408,4 +407,84 @@ public class InnocentController {
     public ServerResponse getProductionAssess(@RequestParam("production_id")Integer id){
         return iInnocentService.getProductionAssess(id);
     }
+
+    /**
+     * 编辑产品
+     * @param session
+     * @param request
+     * @param productionId :产品id
+     * @param brandId :品牌id
+     * @param originId:产地id
+     * @param marketTimeId:上市时间id
+     * @param hotspot:选购热点数组
+     * @param function:功能数组
+     * @param skin:适用肤质数组
+     * @param name:产品名
+     * @param description:描述
+     * @param detail:详情
+     * @param file
+     * @return
+     */
+    @RequestMapping(value = "/production/edit_production.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse editProduction(HttpSession session, HttpServletRequest request,
+                                         @RequestParam("production_id") int productionId,
+                                        @RequestParam("brand_id") int brandId,
+                                        @RequestParam("origin_id") int originId,
+                                        @RequestParam("market_time_id") int marketTimeId,
+                                        @RequestParam("hotspots")int hotspot[],
+                                        @RequestParam("functions")int function[],
+                                        @RequestParam("skins")int skin[],
+                                        @RequestParam("production_name")String name,
+                                        @RequestParam("description")String description,
+                                        @RequestParam("detail")String detail,
+                                        @RequestParam("img")MultipartFile file) {
+        // TODO: 2018/9/10 校验管理员身份
+        String imgUrl = null;
+        if(!file.isEmpty()){
+            Map map = FTPSSMLoad.upload(file, request, Const.FILE_SAVE_PATH);
+            if(!(boolean)map.get("result"))
+                imgUrl = map.get("http_url").toString();
+                return ServerResponse.createByErrorMessage("编辑产品失败");
+        }
+        Production production = new Production(productionId,brandId,originId,marketTimeId,name,description,imgUrl,detail,null,null);
+        List<ProductionHotspot> productionHotspots = new ArrayList<>();
+        for (int i = 0; i < hotspot.length; i++) {
+            productionHotspots.add(new ProductionHotspot(hotspot[i],productionId));
+        }
+        List<ProductionFunction> productionFunctions = new ArrayList<>();
+        for (int i = 0; i < function.length; i++) {
+            productionFunctions.add(new ProductionFunction(function[i],productionId));
+        }
+        List<ProductionSkin> productionSkins = new ArrayList<>();
+        for (int i = 0; i < skin.length; i++) {
+            productionSkins.add(new ProductionSkin(skin[i],productionId));
+        }
+        return iInnocentService.editProduction(production,productionHotspots,productionFunctions,productionSkins);
+    }
+
+    /**
+     * 商品下架
+     * @param session
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/production/goods_put_off.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse goodsPutOff(HttpSession session, @RequestParam("goods_id")Integer id){
+        return iInnocentService.goodsPutOff(id);
+    }
+
+    /**
+     * 商品上架
+     * @param session
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/production/goods_put_on.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse goodsPutOn(HttpSession session, @RequestParam("goods_id")Integer id){
+        return iInnocentService.goodsPutOn(id);
+    }
+
 }

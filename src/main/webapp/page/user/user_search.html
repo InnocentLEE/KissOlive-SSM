@@ -83,15 +83,15 @@
 					<div class="col-md-4 col-lg-4">
 						<a href="user_home.html"><img src="../../img/kissolive.png" class="icon-olive" /></a>
 					</div>
-					<div class="col-md-4 col-lg-4">
+					<div class="col-md-4 col-lg-4" id="search">
 						<form action="/KissOlive/MainServlet" method="post">
 							<input type="hidden" name="method" value="search" />
 							<div class="nav-search">
 								<div class="input-group">
-									<input type="text" class="form-control" name="search" placeholder="Search for..."> <span class="input-group-btn">
-									<button class="btn btn-default glyphicon glyphicon-search"
-										type="submit"></button>
-								</span>
+									<input type="text" class="form-control" name="search" placeholder="Search for..." v-model="search">
+									<span class="input-group-btn">
+								<a class="btn btn-default glyphicon glyphicon-search" :href="'search?search='+search"></a>
+							</span>
 								</div>
 								<!-- /input-group -->
 							</div>
@@ -112,35 +112,14 @@
 						<span class="">产品筛选</span>
 					</div>
 
-					<div class="left-list">
+					<div class="left-list" id="brandlist">
 
 						<a data-toggle="collapse" aria-expanded="false" data-parent="#accordion" href="#collapseOne" id="a_brandlist">品牌 <span class="addicon"></span></a>
 
 						<div id="collapseOne" class="panel-collapse collapse">
 							<ul class="brand-list list-collapse">
-								<li>
-									<input type="checkbox"  name="brand" value="1" id="1"><label for="1">Kiss Olive</label>
-								</li>
-								<li>
-									<input type="checkbox" name="brand" value="2" id="2"/><label for="2">阿玛尼</label>
-								</li>
-								<li>
-									<input type="checkbox" name="brand" value="3" id="3"/><label for="3">香奈儿</label>
-								</li>
-								<li>
-									<input type="checkbox" name="brand" value="3" id="4"/><label for="4">美宝莲</label>
-								</li>
-								<li>
-									<input type="checkbox" name="brand" value="3" id="5"/><label for="5">欧莱雅</label>
-								</li>
-								<li>
-									<input type="checkbox" name="brand" value="3" id="6"/><label for="6">圣罗兰</label>
-								</li>
-								<li>
-									<input type="checkbox" name="brand" value="3" id="7"/><label for="7">迪奥</label>
-								</li>
-								<li>
-									<input type="checkbox" name="brand" value="3" id="8"/><label for="8">欧莱雅</label>
+								<li v-for="r in brand">
+									<input type="checkbox"  name="brand" :value="r.id" :id="r.id"><label :for="r.id">{{r.name}}</label>
 								</li>
 							</ul>
 						</div>
@@ -150,134 +129,27 @@
 					<div class="left-list">价格</div>
 				</div>
 			</div>
-			<div class="rcontent">
+			<!-- 商品内容 -->
+			<div class="rcontent" id="rcontent">
 				<div class="rcontent-top">
 					<div class="top top-list">
-						<span class="product">产品&nbsp;(10)</span>
+						<span class="product">产品&nbsp;({{ContentLength}})</span>
 					</div>
 				</div>
 				<div class="rcontent-list">
 
-					<div class="card">
+					<div class="card" v-for="r in rcontent">
 						<figure>
-							<a href="<c:url value='/MainServlet?method=detailsLipstick&lid=${lipstickAvgPrice.lipstick.lid }'/>">
-								<img alt="" class="card-good" src="../../images/43BA9650F414402B8472A33881DEF788.png">
+							<a :href="r.id">
+								<img alt="" class="card-good" :src="r.imgUrl">
 							</a>
 							<figcaption class="goods_text">
-								<a href="<c:url value='/MainServlet?method=detailsLipstick&lid=${lipstickAvgPrice.lipstick.lid }'/>">
-									<span class="mh4">ROUGE ALLURE</span>
+								<a :href="r.id">
+									<span class="mh4">{{r.name}}</span>
 									<p></p>
-									<span class="mh5">香奈儿炫亮魅力唇膏限量版</span>
+									<span class="mh5">{{r.description}}</span>
 									<p></p>
-									<span class="price">￥&nbsp;198.50</span>
-									<p></p>
-									<button type="button" class="book">订&nbsp;购</button>
-								</a>
-							</figcaption>
-						</figure>
-					</div>
-					<div class="card">
-						<figure>
-							<a href="<c:url value='/MainServlet?method=detailsLipstick&lid=${lipstickAvgPrice.lipstick.lid }'/>">
-								<img alt="" class="card-good" src="../../images/43BA9650F414402B8472A33881DEF788.png">
-							</a>
-							<figcaption class="goods_text">
-								<a href="<c:url value='/MainServlet?method=detailsLipstick&lid=${lipstickAvgPrice.lipstick.lid }'/>">
-									<span class="mh4">ROUGE ALLURE</span>
-									<p></p>
-									<span class="mh5">香奈儿炫亮魅力唇膏限量版</span>
-									<p></p>
-									<span class="price">￥&nbsp;198.50</span>
-									<p></p>
-									<button type="button" class="book">订&nbsp;购</button>
-								</a>
-							</figcaption>
-						</figure>
-					</div>
-					<div class="card">
-						<figure>
-							<a href="<c:url value='/MainServlet?method=detailsLipstick&lid=${lipstickAvgPrice.lipstick.lid }'/>">
-								<img alt="" class="card-good" src="../../images/43BA9650F414402B8472A33881DEF788.png">
-							</a>
-							<figcaption class="goods_text">
-								<a href="<c:url value='/MainServlet?method=detailsLipstick&lid=${lipstickAvgPrice.lipstick.lid }'/>">
-									<span class="mh4">ROUGE ALLURE</span>
-									<p></p>
-									<span class="mh5">香奈儿炫亮魅力唇膏限量版</span>
-									<p></p>
-									<span class="price">￥&nbsp;198.50</span>
-									<p></p>
-									<button type="button" class="book">订&nbsp;购</button>
-								</a>
-							</figcaption>
-						</figure>
-					</div>
-					<div class="card">
-						<figure>
-							<a href="<c:url value='/MainServlet?method=detailsLipstick&lid=${lipstickAvgPrice.lipstick.lid }'/>">
-								<img alt="" class="card-good" src="../../images/43BA9650F414402B8472A33881DEF788.png">
-							</a>
-							<figcaption class="goods_text">
-								<a href="<c:url value='/MainServlet?method=detailsLipstick&lid=${lipstickAvgPrice.lipstick.lid }'/>">
-									<span class="mh4">ROUGE ALLURE</span>
-									<p></p>
-									<span class="mh5">香奈儿炫亮魅力唇膏限量版</span>
-									<p></p>
-									<span class="price">￥&nbsp;198.50</span>
-									<p></p>
-									<button type="button" class="book">订&nbsp;购</button>
-								</a>
-							</figcaption>
-						</figure>
-					</div>
-					<div class="card">
-						<figure>
-							<a href="<c:url value='/MainServlet?method=detailsLipstick&lid=${lipstickAvgPrice.lipstick.lid }'/>">
-								<img alt="" class="card-good" src="../../images/43BA9650F414402B8472A33881DEF788.png">
-							</a>
-							<figcaption class="goods_text">
-								<a href="<c:url value='/MainServlet?method=detailsLipstick&lid=${lipstickAvgPrice.lipstick.lid }'/>">
-									<span class="mh4">ROUGE ALLURE</span>
-									<p></p>
-									<span class="mh5">香奈儿炫亮魅力唇膏限量版</span>
-									<p></p>
-									<span class="price">￥&nbsp;198.50</span>
-									<p></p>
-									<button type="button" class="book">订&nbsp;购</button>
-								</a>
-							</figcaption>
-						</figure>
-					</div>
-					<div class="card">
-						<figure>
-							<a href="<c:url value='/MainServlet?method=detailsLipstick&lid=${lipstickAvgPrice.lipstick.lid }'/>">
-								<img alt="" class="card-good" src="../../images/43BA9650F414402B8472A33881DEF788.png">
-							</a>
-							<figcaption class="goods_text">
-								<a href="<c:url value='/MainServlet?method=detailsLipstick&lid=${lipstickAvgPrice.lipstick.lid }'/>">
-									<span class="mh4">ROUGE ALLURE</span>
-									<p></p>
-									<span class="mh5">香奈儿炫亮魅力唇膏限量版</span>
-									<p></p>
-									<span class="price">￥&nbsp;198.50</span>
-									<p></p>
-									<button type="button" class="book">订&nbsp;购</button>
-								</a>
-							</figcaption>
-						</figure>
-					</div>
-					<div class="card">
-						<figure>
-							<a href="<c:url value='/MainServlet?method=detailsLipstick&lid=${lipstickAvgPrice.lipstick.lid }'/>">
-								<img alt="" class="card-good" src="../../images/43BA9650F414402B8472A33881DEF788.png">
-							</a>
-							<figcaption class="goods_text">
-								<a href="<c:url value='/MainServlet?method=detailsLipstick&lid=${lipstickAvgPrice.lipstick.lid }'/>">
-									<span class="mh4">ROUGE ALLURE</span>
-									<p></p>
-									<span class="mh5">香奈儿炫亮魅力唇膏限量版</span>
-									<p></p>
-									<span class="price">￥&nbsp;198.50</span>
+									<span class="price" v-for="(t,index) in r.goodses" v-if="index<1">￥&nbsp;{{t.price}}</span>
 									<p></p>
 									<button type="button" class="book">订&nbsp;购</button>
 								</a>
@@ -435,7 +307,7 @@
 							<input type="text" class="username modal_input" id="tel" name="tel" placeholder="登陆账号" />
 							<div class="div_label">
 								<label class="errorClass" id="telError">用户不存在！！！</label>
-								<label class="correctClass" id="telError"></label>
+								<label class="correctClass" id="telError1"></label>
 							</div>
 						</div>
 						<div id="mpanel2"></div>
@@ -458,60 +330,8 @@
 		<script type="text/javascript" src="../../js/slideunlock.js"></script>
 		<script type="text/javascript" src="../../js/login_verify.js"></script>
 		<script type="text/javascript" src="../../js/valid.js"></script>
-		<script>
-			$("#li_login").click(function() {
-				$('#loginModal').modal('show');
-			});
-
-			function regis() {
-				window.location.href = "http://localhost:8080/KissOlive/page/user/user_register.jsp";
-			}
-			/*
-			 * 登录滑动验证码验证结果判断
-			 */
-			$(function() {
-				var slider = new SliderUnlock("#slider", {
-					successLabelTip: "验证通过"
-				}, function() {
-					//alert("验证成功,即将跳转至商城首页");
-					//window.location.href="http://localhost:8080/KissOlive/page/user/user_home.jsp"
-					//document.getElementByIdx("btn").disabled=true;
-					$("#submit").attr("disabled", false);
-				});
-				slider.init();
-			})
-
-			$('#mpanel2').codeVerify({
-				type: 1,
-				width: '200px',
-				height: '50px',
-				fontSize: '30px',
-				codeLength: 6,
-				btnId: 'check-btn',
-				ready: function() {},
-				success: function() {
-
-					$('#myModal').modal('hide');
-
-				},
-				error: function() {
-					alert('验证码不匹配！');
-				}
-			});
-			//$(function () { $('#collapseOne').collapse('hide')});
-
-			$("#a_brandlist").click(function(){
-				
-					if($("#collapseOne").attr("class")=="panel-collapse collapse"){
-							$(this).find("span").removeClass("addicon");
-						    $(this).find("span").addClass("minusicon");
-							
-					}else{
-						$(this).find("span").removeClass("minusicon");
-						$(this).find("span").addClass("addicon");
-					}			
-			});
-		</script>
+		<script type="text/javascript" src="../../js/vue.js"></script>
+		<script type="text/javascript" src="../../js/user/user_search.js"></script>
 
 	</body>
 

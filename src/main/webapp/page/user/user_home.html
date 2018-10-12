@@ -192,15 +192,15 @@
 			<div class="col-md-4 col-lg-4" id="home_icon">
 				<a href="user_home.html"><img src="../../img/kissolive.png" class="icon-olive" /></a>
 			</div>
-			<div class="col-md-4 col-lg-4">
+			<div class="col-md-4 col-lg-4" id="search">
 				<form action="/KissOlive/MainServlet" method="post">
 					<input type="hidden" name="method" value="search" />
 					<div class="nav-search">
 						<div class="input-group">
-							<input type="text" class="form-control" name="search" placeholder="Search for..."> <span class="input-group-btn">
-									<button class="btn btn-default glyphicon glyphicon-search"
-											type="submit"></button>
-								</span>
+							<input type="text" class="form-control" name="search" placeholder="Search for..." v-model="search">
+							<span class="input-group-btn">
+								<a class="btn btn-default glyphicon glyphicon-search" :href="'search?search='+search"></a>
+							</span>
 						</div>
 						<!-- /input-group -->
 					</div>
@@ -841,6 +841,8 @@
 <script type="text/javascript" src="../../js/valid.js"></script>
 <script type="text/javascript" src="../../js/login.js"></script>
 <script type="text/javascript" src="../../js/hover.js"></script>
+<script type="text/javascript" src="../../js/vue.js"></script>
+<script type="text/javascript" src="../../js/user/user_home.js"></script>
 <script>
     $("#home_icon").hover(function() {
         $(".dropdownList").css("opacity", "1");

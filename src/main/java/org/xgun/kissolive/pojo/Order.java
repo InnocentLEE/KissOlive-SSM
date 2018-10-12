@@ -1,5 +1,6 @@
 package org.xgun.kissolive.pojo;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Order {
@@ -17,7 +18,17 @@ public class Order {
 
     private Date updatetime;
 
-    public Order(Integer id, Integer addressId, Integer userId, String number, Integer status, Date time, Date updatetime) {
+    private BigDecimal price;
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Order(Integer id, Integer addressId, Integer userId, String number, Integer status, Date time, Date updatetime, BigDecimal price) {
         this.id = id;
         this.addressId = addressId;
         this.userId = userId;
@@ -25,6 +36,7 @@ public class Order {
         this.status = status;
         this.time = time;
         this.updatetime = updatetime;
+        this.price = price;
     }
 
     public Order() {

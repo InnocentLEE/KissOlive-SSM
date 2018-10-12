@@ -8,7 +8,6 @@
 <link href="../../css/admin/avtivity/summernote.css" rel="stylesheet" >
 <link rel="stylesheet" href="../../css/admin/main.css" />
 <link href="../../css/admin/avtivity/addproduction.css" rel="stylesheet">
-
 </head>
 <body>
     <form>
@@ -161,13 +160,31 @@
 	</div>
 	</form>
 
+	<!-- 加载提示  Modal -->
+	<div class="modal fade" id="LoadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel">
+		<div class="modal-dialog div-loadingdialog" role="document">
+			<div class="modal-content div-loadingmodal-content">
+				<div class="modal-body div-loadingmodal-body">
+					<div class="pieProgress" role="progressbar" data-goal="100" aria-valuemin="0" aria-valuemax="100">
+						<span class="pie_progress__number">0%</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
    <script type="text/javascript" src="../../js/vue.js"></script>
    <script type="text/javascript" src="../../js/activity/jquery.min.js"></script>
    <script type="text/javascript" src="../../js/activity/bootstrap.min.js"></script>
    <script type="text/javascript" src="../../js/activity/summernote.js"></script>
    <script type="text/javascript" src="../../js/activity/bootstrap-treeview.js"></script>
-   <script type="text/javascript" src="../../js/admin/addproduction.js"></script>
-   
-  
+	<script type="text/javascript" src="../../js/user/echo.min.js"></script>
+	<script type="text/javascript" src="../../js/admin/addproduction.js"></script>
+	<script>
+        Echo.init({
+            offset: 0,
+            throttle: 0
+        });
+	</script>
 </body>
 </html>

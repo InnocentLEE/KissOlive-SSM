@@ -47,11 +47,17 @@ public interface IInnocentService {
 
     ServerResponse getProductions(int page, int pageNum);
 
-    ServerResponse getProductionsByBrand(Integer brandId);
+    ServerResponse getProductionsByBrand(Integer[] brandId);
 
     ServerResponse searchProductions(String search);
 
     ServerResponse getProductionShow(int id);
 
     ServerResponse getProductionAssess(int id);
+
+    ServerResponse editProduction(Production production, List<ProductionHotspot> productionHotspots, List<ProductionFunction> productionFunctions, List<ProductionSkin> productionSkins);
+
+    ServerResponse goodsPutOff(int id);
+
+    ServerResponse goodsPutOn(int id);
 }

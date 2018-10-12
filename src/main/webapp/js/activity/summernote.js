@@ -4242,6 +4242,8 @@ var Editor = /** @class */ (function () {
                 $image.css('width', Math.min(_this.$editable.width(), $image.width()));
             }
             $image.show();
+            // $(".lazy").remove();
+            ///setTimeout(function(){$(".lazy").remove();},20000);
             range.create(_this.editable).insertNode($image[0]);
             range.createFromNodeAfter($image[0]).select();
             _this.afterCommand();
@@ -4254,6 +4256,7 @@ var Editor = /** @class */ (function () {
      * @param {File[]} files
      */
     Editor.prototype.insertImages = function (files) {
+
         var _this = this;
         $$1.each(files, function (idx, file) {
             var filename = file.name;
@@ -4262,6 +4265,7 @@ var Editor = /** @class */ (function () {
             }
             else {
                 readFileAsDataURL(file).then(function (dataURL) {
+                    console.log("show2222");
                     return _this.insertImage(dataURL, filename);
                 }).fail(function () {
                     _this.context.triggerEvent('image.upload.error');

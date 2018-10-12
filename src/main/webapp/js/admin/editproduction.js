@@ -1,3 +1,11 @@
+function getUrlParam(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.parent.frames["right"].location.search.substr(1).match(reg);
+    if (r != null) return decodeURI(r[2]); return null;
+}
+var id=getUrlParam('id');
+var production;
+
 var brand = new Vue({
     el:"#brand",
     data:{
@@ -233,7 +241,6 @@ $(document).ready(function() {
         width:630,
         lang:'zh-CN',//注意这里，若要设置语言，则需要引入该语言配置js
         placeholder:"请在这里写下您的内容",
-
         fontSize:"16",
         toolbar: [
             ['color', ['color']],
@@ -245,13 +252,13 @@ $(document).ready(function() {
             ['view',['codeview','fullscreen']],
         ],//配置工具栏
         callbacks: {
-            onImageUpload: function(file, editor, $editable) {  //图片默认以二进制的形式存储到数据库，调用此方法将请求后台将图片存储到服务器，返回图片请求地址到前端
+            onImageUpload: function(file) {  //图片默认以二进制的形式存储到数据库，调用此方法将请求后台将图片存储到服务器，返回图片请求地址到前端
                 returnImageUrl(file);
             }
         }
     });
 });
-function returnImageUrl(file, editor, $editable){
+function returnImageUrl(file){
     //将图片放入Formdate对象中
     var formData = new FormData();
     formData.append("img", file[0]);
@@ -265,21 +272,10 @@ function returnImageUrl(file, editor, $editable){
         dataType:'json',
         success: function(picture) {
             //console.log(picture);
-
-          // $('#summernote').summernote('editor.insertImage',picture.url);
-            //$('<img src=\"'+picture.url+'\">').after($('.loading'));
-            $('.loading').remove();
-            $('.note-editable').append('<img src=\"'+picture.url+'\">');
-            //$('#summernote').summernote('editor.insertText', '上传成功,请等待加载');
-            // $('.note-placeholder').html("上传成功,请等待加载");
-
+            $('#summernote').summernote('insertImage',picture.url);
         },
         error:function(){
             alert("上传失败");
-        },
-        beforeSend:function () {
-            alert("开始上传");
-            $('.note-editable').append('<img class="loading" src="../../img/user/black.gif" style="width: 100px;height: 100px"> ');
         }
     });
 }
@@ -292,7 +288,7 @@ function sendarticle(){
         alert("品牌图片不能为空！");
         return;
     }
-
+    formData.append("id", id);
     var brandlinks =document.getElementById("brand").getElementsByTagName("a");
     var brand_id = null;
     for(var i=0;i<brandlinks.length;i++){
@@ -567,28 +563,6 @@ $(".WriteCover-deleteButton").click(function(){
     fileUpload.style.display="block";
 
 });
-$(function () {
-    $("#updateFun").click(function() {
-        $("#function").slideToggle();
-        $("#updatefunction").slideToggle();
-    });
-    $("#updateOri").click(function() {
-        $("#origin").slideToggle();
-        $("#updateorigin").slideToggle();
-    });
-    $("#updateHot").click(function() {
-        $("#hot-spot").slideToggle();
-        $("#updatehotspot").slideToggle();
-    });
-    $("#updateTime").click(function() {
-        $("#market-time").slideToggle();
-        $("#updatemarkettime").slideToggle();
-    });
-    $("#updateSki").click(function() {
-        $("#skin").slideToggle();
-        $("#updateskin").slideToggle();
-    });
-})
 function cancel() {
     $("#function").slideToggle();
     $("#updatefunction").slideToggle();
@@ -718,4 +692,99 @@ function add4() {
             $("#updateskin").slideToggle();
         }
     });
+}
+
+$(function () {
+    $.ajax({
+        type:'post',
+        url:'http://localhost:8080/production/get_production_show.do?production_id='+id,
+        cache: false,
+        dataType:'json',
+        success: function(data) {
+            if(data.status==0) {
+                production = data.data;
+                init();
+            }
+        },
+        error:function(){
+            alert("获取异常");
+        }
+    });
+    $("#updateFun").click(function() {
+        $("#function").slideToggle();
+        $("#updatefunction").slideToggle();
+    });
+    $("#updateOri").click(function() {
+        $("#origin").slideToggle();
+        $("#updateorigin").slideToggle();
+    });
+    $("#updateHot").click(function() {
+        $("#hot-spot").slideToggle();
+        $("#updatehotspot").slideToggle();
+    });
+    $("#updateTime").click(function() {
+        $("#market-time").slideToggle();
+        $("#updatemarkettime").slideToggle();
+    });
+    $("#updateSki").click(function() {
+        $("#skin").slideToggle();
+        $("#updateskin").slideToggle();
+    });
+})
+function init() {
+    var brandlinks =$("#brand a");
+    for(var i=0;i<brandlinks.length;i++){
+        if(brandlinks[i].id==production.brand.id){
+            brandlinks[i].className = "btn btn-default bgColor";
+            break;
+        }
+    }
+
+    var funlinks = $("#function a");
+    for(var i=0;i<funlinks.length;i++){
+        for(var j=0;j<production.functions.length;j++){
+            if(funlinks[i].id==production.functions[j].id){
+                funlinks[i].className = "btn btn-default bgColor";
+            }
+        }
+    }
+
+    var orginlinks = $("#origin a");
+    for(var i=0;i<orginlinks.length;i++){
+        if(orginlinks[i].id==production.origin.id){
+            orginlinks[i].className = "btn btn-default bgColor";
+            break;
+        }
+    }
+
+    var hotspotlinks = $("#hot-spot a");
+    for(var i=0;i<hotspotlinks.length;i++){
+        for(var j=0;j<production.hotspots.length;j++){
+            if(hotspotlinks[i].id==production.hotspots[j].id){
+                hotspotlinks[i].className = "btn btn-default bgColor";
+            }
+        }
+    }
+
+    var marlinks = $("#market-time a");
+    for(var i=0;i<marlinks.length;i++){
+        if(marlinks[i].id==production.marketTime.id){
+            marlinks[i].className = "btn btn-default bgColor";
+            break;
+        }
+    }
+
+    var skinlinks = $("#skin a");
+    for(var i=0;i<skinlinks.length;i++){
+        for(var j=0;j<production.skins.length;j++){
+            if(skinlinks[i].id==production.skins[j].id){
+                skinlinks[i].className = "btn btn-default bgColor";
+            }
+        }
+    }
+
+    $('#product-name').val(production.name);
+    $('#description').val(production.description);
+    showTip(true,production.imgUrl);
+    $('#summernote').summernote('code',production.detail);
 }

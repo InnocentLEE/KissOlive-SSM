@@ -2,8 +2,7 @@ package org.xgun.kissolive.dao;
 
 
 import org.apache.ibatis.annotations.Param;
-import org.xgun.kissolive.pojo.Stock;
-import org.xgun.kissolive.pojo.Supplier;
+import org.xgun.kissolive.pojo.*;
 import org.xgun.kissolive.vo.ListStock;
 
 import java.util.List;
@@ -23,4 +22,47 @@ public interface SNH48Mapper {
     //获取库存列表
     //XXX 修改sql语句
     List<ListStock> listStock();
+
+    /**
+     * 查找商品ID的所有库存信息
+     * @param goodsID 商品ID
+     * @return
+     */
+    List<Stock> listStockByGoodsID(@Param("goodsID")Integer goodsID);
+
+    /**
+     * 生成订单
+     * @param order 订单信息
+     * @return
+     */
+    int addOrder(@Param("order")Order order);
+
+    /**
+     * 更新库存
+     * @param stock
+     * @return
+     */
+    int updateStock(@Param("stock")Stock stock);
+
+    /**
+     * 存订单项目信息表
+     * @param orderItem
+     * @return
+     */
+    int insertOrderItem(@Param("orderItem")OrderItem orderItem);
+
+    /**
+     * 存订单项目出货信息
+     * @param orderItemShipment
+     * @return
+     */
+    int insertOrderItemShipment(@Param("orderItemShipment")OrderItemShipment orderItemShipment);
+
+    String getGoodsName(@Param("goodsID")Integer goodsID);
+
+    int updateOrderStatus(@Param("orderID")Integer orderID, @Param("status")Integer status);
+
+    List<Order> listOrder(@Param("userID")Integer userID, @Param("status")Integer status);
+
+    List<OrderItem> listOrderItem(@Param("orderID")Integer orderID);
 }

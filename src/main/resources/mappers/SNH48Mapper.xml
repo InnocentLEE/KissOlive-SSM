@@ -31,4 +31,52 @@
         LEFT JOIN tb_goods ON tb_goods.id = goods_id
         LEFT JOIN  tb_production ON tb_goods.production_id = tb_production.id
     </select>
+    <select id="listStockByGoodsID" resultType="org.xgun.kissolive.pojo.Stock">
+        SELECT *
+        FROM tb_stock
+        WHERE goods_id = #{goodsID}
+    </select>
+    <insert id="addOrder" parameterType="org.xgun.kissolive.pojo.Order" useGeneratedKeys="true" keyProperty="order.id">
+        INSERT INTO tb_order(user_id, number, status, time, price, updatetime)
+        VALUES (#{order.userId,jdbcType=INTEGER}, #{order.number,jdbcType=VARCHAR}, #{order.status,jdbcType=INTEGER},
+          #{order.time,jdbcType=TIMESTAMP}, #{order.price,jdbcType=DECIMAL}, now())
+    </insert>
+    <update id="updateStock" parameterType="org.xgun.kissolive.pojo.Stock">
+        UPDATE tb_stock
+        SET number = #{stock.number}
+        WHERE id = #{stock.id} AND updatetime = #{stock.updatetime}
+    </update>
+    <insert id="insertOrderItem" parameterType="org.xgun.kissolive.pojo.OrderItem" useGeneratedKeys="true" keyProperty="orderItem.id">
+        insert into tb_order_item (order_id, goods_id,
+        number, price, updatetime)
+        values (#{orderItem.orderId,jdbcType=INTEGER}, #{orderItem.goodsId,jdbcType=INTEGER},
+        #{orderItem.number,jdbcType=INTEGER}, #{orderItem.price,jdbcType=DECIMAL}, now())
+    </insert>
+    <insert id="insertOrderItemShipment" parameterType="org.xgun.kissolive.pojo.OrderItemShipment" >
+        insert into tb_order_item_shipment (order_item_id, stock_id, number,
+        updatetime)
+        values (#{orderItemShipment.orderItemId,jdbcType=INTEGER}, #{orderItemShipment.stockId,jdbcType=INTEGER},
+          #{orderItemShipment.number,jdbcType=INTEGER},now())
+    </insert>
+    <select id="getGoodsName" resultType="java.lang.String">
+        SELECT GROUP_CONCAT(name,color_name) AS GoodsName
+        FROM tb_goods
+        LEFT JOIN tb_production ON tb_production.id = tb_goods.production_id
+        WHERE tb_goods.id = #{goodsID}
+    </select>
+    <update id="updateOrderStatus">
+        UPDATE tb_order
+        SET status = #{status}, updatetime = now()
+        WHERE id = #{orderID}
+    </update>
+    <select id="listOrder" resultType="org.xgun.kissolive.pojo.Order">
+        SELECT *
+        FROM tb_order
+        WHERE user_id = #{userID} AND status = #{status}
+    </select>
+    <select id="listOrderItem" resultType="org.xgun.kissolive.pojo.OrderItem">
+        SELECT id, order_id AS orderId, goods_id AS goodsId, number, price, updatetime
+        FROM tb_order_item
+        WHERE order_id = #{orderID}
+    </select>
 </mapper>

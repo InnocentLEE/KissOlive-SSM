@@ -184,21 +184,21 @@
     FROM tb_goods
     WHERE id = #{id,jdbcType=INTEGER}
   </select>
-  <insert id="inserProductionHotspot" parameterType="list">
+  <insert id="insertProductionHotspot" parameterType="list">
     INSERT INTO tb_production_hotspot(hotspot_id,production_id)
     VALUES
     <foreach item="item" collection="list" separator="," open="" close=";" index="">
       (#{item.hotspotId,jdbcType=INTEGER}, #{item.productionId,jdbcType=INTEGER})
     </foreach>
   </insert>
-  <insert id="inserProductionFunction" parameterType="list">
+  <insert id="insertProductionFunction" parameterType="list">
     INSERT INTO tb_production_function(function_id,production_id)
     VALUES
     <foreach item="item" collection="list" separator="," open="" close=";" index="">
       (#{item.functionId,jdbcType=INTEGER}, #{item.productionId,jdbcType=INTEGER})
     </foreach>
   </insert>
-  <insert id="inserProductionSkin" parameterType="list">
+  <insert id="insertProductionSkin" parameterType="list">
     INSERT INTO tb_production_skin(skin_id,production_id)
     VALUES
     <foreach item="item" collection="list" separator="," open="" close=";" index="">
@@ -279,4 +279,54 @@
     FROM tb_user
     WHERE id = #{id,jdbcType=INTEGER}
   </select>
+  <update id="updateProductionById" parameterType="org.xgun.kissolive.pojo.Production" >
+    update tb_production
+    <set >
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="originId != null" >
+        origin_id = #{originId,jdbcType=INTEGER},
+      </if>
+      <if test="marketTimeId != null" >
+        market_time_id = #{marketTimeId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        `description` = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null" >
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null" >
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="search != null" >
+        search = #{search,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteProductionHotspot" parameterType="java.lang.Integer" >
+    delete from tb_production_hotspot
+    where production_id = #{production_id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteProductionFunction" parameterType="java.lang.Integer" >
+    delete from tb_production_function
+    where production_id = #{production_id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteProductionSkin" parameterType="java.lang.Integer" >
+    delete from tb_production_skin
+    where production_id = #{production_id,jdbcType=INTEGER}
+  </delete>
+  <update id="updateGoodsStatus">
+    UPDATE tb_goods
+    SET status = #{status,jdbcType=INTEGER}
+    WHERE id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>
