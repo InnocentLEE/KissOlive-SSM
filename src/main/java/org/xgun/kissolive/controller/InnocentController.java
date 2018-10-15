@@ -469,6 +469,7 @@ public class InnocentController {
     @RequestMapping(value = "/production/goods_put_off.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse goodsPutOff(HttpSession session, @RequestParam("goods_id")Integer id){
+        // TODO: 18-10-15  
         return iInnocentService.goodsPutOff(id);
     }
 
@@ -481,6 +482,7 @@ public class InnocentController {
     @RequestMapping(value = "/production/goods_put_on.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse goodsPutOn(HttpSession session, @RequestParam("goods_id")Integer id){
+        // TODO: 18-10-15  
         return iInnocentService.goodsPutOn(id);
     }
 
@@ -498,6 +500,7 @@ public class InnocentController {
     public ServerResponse editGoods(HttpSession session, @RequestParam("goods_id")Integer id,
                                     @RequestParam("color_name")String colorName,
                                     @RequestParam("color_code")String colorCode, Double price){
+        // TODO: 18-10-15  
         Goods goods = new Goods(id,null,colorCode,colorName,new BigDecimal(price),null,null);
         return iInnocentService.editGoods(goods);
     }
