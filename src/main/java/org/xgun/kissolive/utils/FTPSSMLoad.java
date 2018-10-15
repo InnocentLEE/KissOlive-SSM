@@ -2,6 +2,7 @@ package org.xgun.kissolive.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -43,7 +44,20 @@ public class FTPSSMLoad {
             return null;
         }
     }
-    
+    public static Map uploadQr(String remotePath, File targetFile){
+        try {
+            boolean result = FTPUtil.uploadFile(remotePath,Lists.newArrayList(targetFile));
+            targetFile.delete();
+            Map fileMap = Maps.newHashMap();
+            fileMap.put("uri",targetFile.getName());
+            fileMap.put("http_url",Const.HTTP_PREFIX+remotePath+targetFile.getName());
+            fileMap.put("result",result);
+            return fileMap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     public static void download(HttpServletResponse response, String filePath, String fileName) {
         try {
             FTPUtil.downloadFile(filePath, fileName, response);

@@ -337,4 +337,26 @@
       updatetime = now()
     WHERE id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectOrderByUserAndId" resultType="org.xgun.kissolive.pojo.Order">
+    SELECT id, address_id AS addressId, user_id as userId, `number`, status, `time`, price, updatetime
+    FROM tb_order
+    WHERE id = #{id,jdbcType=INTEGER} AND user_id = #{user_id,jdbcType=INTEGER}
+  </select>
+  <select id="selectOrderById" resultType="org.xgun.kissolive.pojo.Order">
+    SELECT id, address_id AS addressId, user_id as userId, `number`, status, `time`, updatetime
+    FROM tb_order
+    WHERE id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectOrderItemByOrderId" resultType="org.xgun.kissolive.pojo.OrderItem">
+    SELECT id, order_id AS orderId, goods_id AS goodsId, `number`, price, updatetime
+    FROM tb_order_item
+    WHERE order_id = #{order_id,jdbcType=INTEGER}
+  </select>
+  <update id="updateOrderPayStatusById" parameterType="org.xgun.kissolive.pojo.Order">
+    UPDATE tb_order
+    SET status = #{status,jdbcType=INTEGER},
+      `time` = #{time,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    WHERE id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

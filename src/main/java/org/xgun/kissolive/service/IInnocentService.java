@@ -4,6 +4,7 @@ import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.pojo.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -62,4 +63,10 @@ public interface IInnocentService {
     ServerResponse goodsPutOn(int id);
 
     ServerResponse editGoods(Goods goods);
+
+    ServerResponse pay(Integer orderId, Integer userId, String path);
+
+    ServerResponse aliCallback(Map<String,String> params);
+
+    ServerResponse queryOrderPayStatus(Integer userId,Integer orderId);
 }

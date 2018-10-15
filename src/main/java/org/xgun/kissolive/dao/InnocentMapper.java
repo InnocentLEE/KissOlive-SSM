@@ -170,4 +170,16 @@ public interface InnocentMapper {
 
     // 修改商品信息
     int updateGoods(Goods goods);
+
+    // 根据用户id和订单号查询订单
+    Order selectOrderByUserAndId(@Param("user_id")Integer userId,@Param("id")Integer id);
+
+    // 根据订单id查找订单信息
+    Order selectOrderById(@Param("id")Integer id);
+
+    // 获取订单项目
+    List<OrderItem> selectOrderItemByOrderId(@Param("order_id")Integer orderId);
+
+    // 更新订单支付状态
+    Integer updateOrderPayStatusById(Order order);
 }
