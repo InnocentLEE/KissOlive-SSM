@@ -47,4 +47,9 @@ public class Zqu004Application {
 	String myshoppingcart(){
 		return "page/user/user_myshoppingcart.html";
 	}
+
+	@RequestMapping("/admin")
+	String admin(){
+		return "page/admin/frameset.html";
+	}
 }
