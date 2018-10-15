@@ -42,4 +42,9 @@ public class Zqu004Application {
 	String search(){
 		return "page/user/user_search.html";
 	}
+
+	@RequestMapping("/myshoppingcart")
+	String myshoppingcart(){
+		return "page/user/user_myshoppingcart.html";
+	}
 }

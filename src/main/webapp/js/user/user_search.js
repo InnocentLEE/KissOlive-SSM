@@ -3,9 +3,10 @@ function getUrlParam(name) {
     var r = window.location.search.substr(1).match(reg);
     if (r != null) return decodeURI(r[2]); return null;
 }
-var search=getUrlParam('search');
+var search = getUrlParam('search');
+var brands = getUrlParam('brand');
 var search1 = new Vue({
-    el:"#search",
+    el:"#searchform",
     data:{
         search:[]
     }
@@ -22,25 +23,27 @@ var rcontent = new Vue({
     methods:{
         init:function () {
             if(search!=null){
-                this.getSearchContent();
+                this.getSearchContent(search);
             }else{
-                this.getBrandContent();
+                this.getBrandContent(brands);
             }
         },
-        getSearchContent:function () {
-            doGetSearchContent();
+        getSearchContent:function (searchcontent) {
+            doGetSearchContent(searchcontent);
         },
-        getBrandContent:function () {
-            doGetBrandContent();
+        getBrandContent:function (brandslist) {
+            var formdata = new FormData();
+            formdata.append("brand_ids",brandslist);
+            doGetBrandContent(formdata);
         }
     }
 })
-function doGetSearchContent() {
+function doGetSearchContent(searchcontent) {
     $.ajax({
         type:'post',
         url:'http://localhost:8080/production/search_productions.do',
         data:{
-            search:search
+            search:searchcontent
         },
         cache: false,
         dataType:'json',
@@ -55,15 +58,19 @@ function doGetSearchContent() {
         }
     });
 }
-function doGetBrandContent() {
+function doGetBrandContent(formdata) {
     $.ajax({
         type:'post',
-        url:'http://localhost:8080/production/get_brand_put_on.do',
+        url:'http://localhost:8080/production/get_productions_by_brand.do',
+        data:formdata,
         cache: false,
+        processData:false,
+        contentType : false,
         dataType:'json',
         success: function(data) {
             if(data.status==0) {
                 rcontent.rcontent = data.data;
+                rcontent.ContentLength = data.data.length;
             }
         },
         error:function(){
@@ -89,22 +96,32 @@ var brand = new Vue({
                 success: function(data) {
                     if(data.status==0) {
                         brand.brand = data.data;
+                        brand.updateBrand();
                     }
                 },
                 error:function(){
                     alert("获取异常");
                 }
             });
+        },
+        updateBrand:function () {
+            this.$nextTick(function () {
+                $(".checkboxbrand").click(function () {
+                    var select = $(".checkboxbrand");
+                    var brandselect = new Array();
+                    for(var i=0;i<select.length;i++){
+                        if(select[i].checked){
+                            brandselect.push(select[i].value);
+                        }
+                    }
+                    var formdata = new FormData();
+                    formdata.append("brand_ids",brandselect);
+                    doGetBrandContent(formdata);
+                });
+            })
         }
     }
 })
-
-
-
-
-
-
-
 
 
 
@@ -134,6 +151,10 @@ $(function() {
     slider.init();
     $("#li_login").click(function() {
         $('#loginModal').modal('show');
+    });
+    $(".checkboxbrand").click(function () {
+        var select = $(".checkboxbrand");
+        alert(select.length);
     });
 })
 

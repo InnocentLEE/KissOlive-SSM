@@ -315,7 +315,7 @@ function sendarticle(){
             functions.push(functionlinks[i].id);
         }
     }
-    if(functions == "" || functions == null){
+    if(functionlinks.length==0){
         alert("功能不能为空！");
         return;
     }
@@ -342,7 +342,7 @@ function sendarticle(){
             hotspots.push(hotspotlinks[i].id);
         }
     }
-    if(hotspots == "" || hotspots == null){
+    if(hotspotlinks.length==0){
         alert("热点不能为空！");
         return;
     }
@@ -369,7 +369,7 @@ function sendarticle(){
             skins.push(skinlinks[i].id);
         }
     }
-    if(skins == "" || skins == null){
+    if(skinlinks.length==0){
         alert("适应肤质不能为空！");
         return;
     }
