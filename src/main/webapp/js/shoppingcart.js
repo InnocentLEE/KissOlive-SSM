@@ -21,6 +21,7 @@ var myTabContent = new Vue({
         updateMyShoppingCart:function () {
             this.$nextTick(function (){
                 doUpdate();
+                totalMoney();
             })
         },
         toId:function (id) {
@@ -30,6 +31,29 @@ var myTabContent = new Vue({
 })
 function del() {
     //alert(selectid);
+    var cardIds = new Array();
+    cardIds.push(selectid);
+    $.ajax({
+        type:'post',
+        url:'http://localhost:8080/shoppingCart/delete_card_ByBatch.do',
+        data:{
+            cardIds: cardIds
+        },
+        cache: false,
+        traditional: true,
+        dataType:'json',
+        success: function(data) {
+            if(data.status==0) {
+                alert(data.msg);
+                $("#"+selectid).remove();
+                $("#myModal1").modal('hide');
+                myTabContent.getMyShoppingCart();
+            }
+        },
+        error:function(){
+            alert("删除异常");
+        }
+    });
 }
 function doGetMyShoppingCart(){
     $.ajax({
@@ -40,7 +64,10 @@ function doGetMyShoppingCart(){
         success: function(data) {
             if(data.status==0) {
                 myTabContent.myTabContent = data.data;
-                myTabContent.ContentLength = data.data.length;
+                if(typeof(data.data) != "undefined")
+                    myTabContent.ContentLength = data.data.length;
+                else
+                    myTabContent.ContentLength = 0;
                 myTabContent.updateMyShoppingCart();
             }
         },
@@ -97,7 +124,6 @@ function doUpdate(){
             }
             totalMoney();
         })
-
     });
 
     //=================================================商品数量==============================================
@@ -208,6 +234,7 @@ function totalMoney() {
     });
     total_money = total_money.toFixed(2);
 
+    //alert(total_money+"    "+total_count);
     $('.total_text').html('￥' + total_money);
     $('.piece_num').html(total_count);
 

@@ -126,7 +126,7 @@
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th style=" width: 110px;">
+                            <th>
                                 <input type="checkbox" id="all" class="whole_check">
                                 <label for="all" class="lcheck"></label>全选
                             </th>
@@ -139,10 +139,9 @@
                         </thead>
                         <tbody>
 
-                        <tr class="order_lists" v-for="r in myTabContent" :id="r.goodsId">
+                        <tr class="order_lists" v-for="r in myTabContent" :id="r.cardId">
                             <th class="headth" scope="row">
-                                <input type="checkbox" :value="r.goodsId" class="son_check" name="cart" :id="'checkbox_'+r.goodsId">
-                                <label :for="'checkbox_'+r.goodsId"></label>
+                                <input type="checkbox" :value="r.goodsId" class="son_check" name="cart" :id="'checkbox_'+r.cardId">
                             </th>
                             <th>
                                 <div class="list_img">
@@ -153,7 +152,7 @@
                                 <p class="goodname"><span class="mh4">{{r.productionName}}</span></p>
                                 <p class="goodcolor">{{r.colorName}}{{r.colorCode}}</p>
                                 <p class="del">
-                                    <a href="#" class="delBtn" :id="r.cardId" data-toggle="modal" data-target="#myModal1" @click="toId(r.cardId)">删除</a>
+                                    <a href="#" class="delBtn" data-toggle="modal" data-target="#myModal1" @click="toId(r.cardId)">删除</a>
                                 </p>
                             </td>
                             <td>
@@ -177,7 +176,7 @@
                                 订单总结
                             </th>
                             <td>商品价格</td>
-                            <td><strong class="total_text">0.00</strong></td>
+                            <td><strong class="total_text">￥0.00</strong></td>
                         </tr>
                         <tr>
                             <td>运费</td>
@@ -201,7 +200,7 @@
                             </td>
                             <td>
                                 <div class="totalMoney">
-                                    <strong class="total_text">0.00</strong>
+                                    <strong class="total_text">￥0.00</strong>
                                 </div>
                             </td>
                         </tr>
