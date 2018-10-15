@@ -329,4 +329,12 @@
     SET status = #{status,jdbcType=INTEGER}
     WHERE id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="updateGoods" parameterType="org.xgun.kissolive.pojo.Goods">
+    UPDATE tb_goods
+    SET color_code = #{colorCode,jdbcType=VARCHAR},
+      color_name = #{colorName,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      updatetime = now()
+    WHERE id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

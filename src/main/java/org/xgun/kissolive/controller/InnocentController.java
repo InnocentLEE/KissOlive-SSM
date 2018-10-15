@@ -3,10 +3,7 @@ package org.xgun.kissolive.controller;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.xgun.kissolive.common.Const;
 import org.xgun.kissolive.common.ServerResponse;
@@ -485,6 +482,24 @@ public class InnocentController {
     @ResponseBody
     public ServerResponse goodsPutOn(HttpSession session, @RequestParam("goods_id")Integer id){
         return iInnocentService.goodsPutOn(id);
+    }
+
+    /**
+     * 编辑商品信息
+     * @param session
+     * @param id
+     * @param colorName
+     * @param colorCode
+     * @param price
+     * @return
+     */
+    @RequestMapping(value = "/production/edit_goods.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse editGoods(HttpSession session, @RequestParam("goods_id")Integer id,
+                                    @RequestParam("color_name")String colorName,
+                                    @RequestParam("color_code")String colorCode, Double price){
+        Goods goods = new Goods(id,null,colorCode,colorName,new BigDecimal(price),null,null);
+        return iInnocentService.editGoods(goods);
     }
 
 }

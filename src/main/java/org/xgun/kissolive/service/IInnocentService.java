@@ -60,4 +60,6 @@ public interface IInnocentService {
     ServerResponse goodsPutOff(int id);
 
     ServerResponse goodsPutOn(int id);
+
+    ServerResponse editGoods(Goods goods);
 }

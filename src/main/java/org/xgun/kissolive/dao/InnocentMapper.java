@@ -167,4 +167,7 @@ public interface InnocentMapper {
 
     // 修改商品上架状态
     int updateGoodsStatus(@Param("id")int id,@Param("status")int status);
+
+    // 修改商品信息
+    int updateGoods(Goods goods);
 }

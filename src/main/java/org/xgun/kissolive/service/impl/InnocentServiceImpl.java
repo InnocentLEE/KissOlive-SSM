@@ -320,27 +320,29 @@ public class InnocentServiceImpl implements IInnocentService {
         Collections.sort(productionSameList);
         List<ProductionDetails> productionDetailsList = Lists.newArrayList();
         for (int i = 0; i < productionSameListSize; i++) {
-            Production production = innocentMapper.selectProductionById(productionSameList.get(i).getId());
-            ProductionDetails productionDetails = new ProductionDetails();
-            productionDetails.setId(production.getId());
-            productionDetails.setName(production.getName());
-            productionDetails.setDescription(production.getDescription());
-            productionDetails.setDetail(production.getDetail());
-            productionDetails.setImgUrl(production.getImgUrl());
-            productionDetails.setBrand(innocentMapper.selectBrandById(production.getBrandId()));
-            Origin origin = innocentMapper.selectOriginById(production.getOriginId());
-            productionDetails.setOrigin(origin);
-            MarketTime marketTime = innocentMapper.selectMarketTimeById(production.getMarketTimeId());
-            productionDetails.setMarketTime(marketTime);
-            List<Hotspot> hotspots = innocentMapper.selectHotspotByProduction(production.getId());
-            productionDetails.setHotspots(hotspots);
-            List<Function> functions = innocentMapper.selectFunctionByProduction(production.getId());
-            productionDetails.setFunctions(functions);
-            List<Skin> skins = innocentMapper.selectSkinByProduction(production.getId());
-            productionDetails.setSkins(skins);
-            List<Goods> goodses = innocentMapper.selectGoodsByProduction(production.getId());
-            productionDetails.setGoodses(goodses);
-            productionDetailsList.add(productionDetails);
+            if(productionSameList.get(i).getSame()>0.600){
+                Production production = innocentMapper.selectProductionById(productionSameList.get(i).getId());
+                ProductionDetails productionDetails = new ProductionDetails();
+                productionDetails.setId(production.getId());
+                productionDetails.setName(production.getName());
+                productionDetails.setDescription(production.getDescription());
+                productionDetails.setDetail(production.getDetail());
+                productionDetails.setImgUrl(production.getImgUrl());
+                productionDetails.setBrand(innocentMapper.selectBrandById(production.getBrandId()));
+                Origin origin = innocentMapper.selectOriginById(production.getOriginId());
+                productionDetails.setOrigin(origin);
+                MarketTime marketTime = innocentMapper.selectMarketTimeById(production.getMarketTimeId());
+                productionDetails.setMarketTime(marketTime);
+                List<Hotspot> hotspots = innocentMapper.selectHotspotByProduction(production.getId());
+                productionDetails.setHotspots(hotspots);
+                List<Function> functions = innocentMapper.selectFunctionByProduction(production.getId());
+                productionDetails.setFunctions(functions);
+                List<Skin> skins = innocentMapper.selectSkinByProduction(production.getId());
+                productionDetails.setSkins(skins);
+                List<Goods> goodses = innocentMapper.selectGoodsByProduction(production.getId());
+                productionDetails.setGoodses(goodses);
+                productionDetailsList.add(productionDetails);
+            }
         }
         if (TransactionAspectSupport.currentTransactionStatus().isRollbackOnly())
             return ServerResponse.createByErrorMessage("查找过程出错");
@@ -446,5 +448,13 @@ public class InnocentServiceImpl implements IInnocentService {
         if (TransactionAspectSupport.currentTransactionStatus().isRollbackOnly())
             return ServerResponse.createByErrorMessage("上架失败,过程出错");
         return ServerResponse.createBySuccessMessage("上架成功");
+    }
+
+    @Override
+    public ServerResponse editGoods(Goods goods){
+        int result = innocentMapper.updateGoods(goods);
+        if(result>0)
+            return ServerResponse.createBySuccessMessage("修改成功");
+        return ServerResponse.createByErrorMessage("修改失败");
     }
 }
