@@ -118,24 +118,6 @@
 	<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../../js/login_verify.js"></script>
 	<script type="text/javascript" src="../../js/login_valid.js"></script>
-	<!--判断验证码-->
-	<script type="text/javascript">
-		$('#mpanel2').codeVerify({
-			type : 1,
-			width : '400px',
-			height : '50px',
-			fontSize : '30px',
-			codeLength : 6,
-			btnId : 'check-btn',
-			ready : function() {
-			},
-			success : function() {
-				$('#myModal').modal('hide');
-			},
-			error : function() {
-				alert('验证码不匹配！');
-			}
-		});
-	</script>
+	<script type="text/javascript" src="../../js/admin/login.js"></script>
 </body>
 </html>
