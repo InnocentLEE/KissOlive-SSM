@@ -4,9 +4,52 @@ var search1 = new Vue({
         search:[]
     }
 })
-
-
-$(function () {
+var selectid = null;
+var myTabContent = new Vue({
+    el:"#myTabContent",
+    data:{
+        myTabContent:[],
+        ContentLength:[]
+    },
+    created:function () {
+        this.getMyShoppingCart();
+    },
+    methods:{
+        getMyShoppingCart:function () {
+            doGetMyShoppingCart();
+        },
+        updateMyShoppingCart:function () {
+            this.$nextTick(function (){
+                doUpdate();
+            })
+        },
+        toId:function (id) {
+            selectid = id;
+        }
+    }
+})
+function del() {
+    //alert(selectid);
+}
+function doGetMyShoppingCart(){
+    $.ajax({
+        type:'get',
+        url:'http://localhost:8080/shoppingCart/get_myCard.do',
+        cache: false,
+        dataType:'json',
+        success: function(data) {
+            if(data.status==0) {
+                myTabContent.myTabContent = data.data;
+                myTabContent.ContentLength = data.data.length;
+                myTabContent.updateMyShoppingCart();
+            }
+        },
+        error:function(){
+            alert("获取异常");
+        }
+    });
+}
+function doUpdate(){
 
     //全局的checkbox选中和未选中的样式
     var $allCheckbox = $('input[type="checkbox"]'),     //全局的全部checkbox
@@ -147,30 +190,31 @@ $(function () {
         $priceTotalObj.html('￥' + $priceTotal);
         totalMoney();
     })
+}
 
-    //======================================总计==========================================
+//======================================总计==========================================
 
-    function totalMoney() {
-        var total_money = 0.00;
-        var total_count = 0.00;
-        var calBtn = $('.calBtn a');
-        $sonCheckBox.each(function () {
-            if ($(this).is(':checked')) {
-                var goods = parseFloat($(this).parents('.order_lists').find('.sum_price').html().substring(1));
-                var num = parseFloat($(this).parents('.order_lists').find('.sum').val());
-                total_money += goods;
-                total_count += num;
-            }
-        });
-        total_money = total_money.toFixed(2);
+function totalMoney() {
+    var total_money = 0.00;
+    var total_count = 0.00;
+    var calBtn = $('.calBtn a');
+    $sonCheckBox.each(function () {
+        if ($(this).is(':checked')) {
+            var goods = parseFloat($(this).parents('.order_lists').find('.sum_price').html().substring(1));
+            var num = parseFloat($(this).parents('.order_lists').find('.sum').val());
+            total_money += goods;
+            total_count += num;
+        }
+    });
+    total_money = total_money.toFixed(2);
 
-        $('.total_text').html('￥' + total_money);
-        $('.piece_num').html(total_count);
+    $('.total_text').html('￥' + total_money);
+    $('.piece_num').html(total_count);
 
-        // console.log(total_money,total_count);
+    // console.log(total_money,total_count);
 
-    }
-});
+}
+
 $(document).ready(function () {
 
     //点击立即购买触发函数
@@ -206,37 +250,6 @@ $(function () {
         nodata: "none"
     });
 });
-
-/*
- * 每个checkbox的id为cid，每个删除后面都要有一个跟checkbox一样的id名，确保删除的时候能够判断返回数据
- * 点击立即结算，预判所有checkbox是否被勾选，var cid值只等于有勾选的checkbox的id值
- */
-
-function del() {
-
-    var cid = $("a[class='delBtn']").attr("id"); //获取购物车商品的cid
-
-    $.ajax({
-        url: "/KissOlive/MainServlet", //要请求的servlet
-        data: {
-            method: "ajaxAddCart",
-            cid: cid
-        }, //给服务器的参数
-        type: "POST",
-        dataType: "json",
-        async: false, //是否异步请求，如果是异步，那么不会等服务器返回，这个函数就向下运行了。
-        cache: false,
-        success: function (result) {
-            if (!result) { //如果校验失败
-                alert("无法删除！请重试！");
-                return false;
-            } else {
-                $('#myModal').modal('hide');
-                //alert("删除成功！");
-            }
-        }
-    });
-}
 
 $(".add_addr").click(function () {
     $(".div_add_addr").slideToggle();

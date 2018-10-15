@@ -120,7 +120,7 @@
                         <span class="glyphicon glyphicon-shopping-cart"></span>
                     </a>
                 </div>
-                <label class="labelhead">我的购物袋&nbsp;(10)</label>
+                <label class="labelhead">我的购物袋&nbsp;({{ContentLength}})</label>
                 <form action="/KissOlive/MainServlet" method="post">
                     <input type="hidden" name="method" value="sentCartItem">
                     <table class="table table-hover">
@@ -138,169 +138,42 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="order_lists" id="cid">
-                            <th class="headth" scope="row"><input type="checkbox" value="${cartItem.cart.cid }"
-                                                                  class="son_check" name="cart"> <label
-                                    for="checkbox_2"></label>
-                            </th>
-                            <th>
-                                <div class="list_img">
-                                    <img src="../../images/6E43A08923604C1397CBF20FE1225ABC.png" alt="">
-                                </div>
-                            </th>
-                            <td>
-                                <p class="goodname"><span class="mh4">ROUGE ALLURE</span></p>
-                                <p class="goodcolor">朱砂梦纱#997</p>
-                                <p class="del">
-                                    <a href="#" class="delBtn" id="cid2">删除</a>
-                                </p>
-                            </td>
-                            <td>
-                                <p class="price">￥250.00</p>
-                            </td>
-                            <td>
-                                <div class="amount_box">
-                                    <button class="reduce reSty btn" type="button" id="">-</button>
-                                    <input type="text" value="1" class="sum" disabled>
-                                    <button class="plus btn" type="button" id="">+</button>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="sum_price">￥250.00</p>
-                            </td>
-                        </tr>
 
-                        <tr class="order_lists" id="cid">
-                            <th class="headth" scope="row"><input type="checkbox" value="${cartItem.cart.cid }"
-                                                                  class="son_check" name="cart"> <label
-                                    for="checkbox_2"></label>
+                        <tr class="order_lists" v-for="r in myTabContent" :id="r.goodsId">
+                            <th class="headth" scope="row">
+                                <input type="checkbox" :value="r.goodsId" class="son_check" name="cart" :id="'checkbox_'+r.goodsId">
+                                <label :for="'checkbox_'+r.goodsId"></label>
                             </th>
                             <th>
                                 <div class="list_img">
-                                    <img src="../../images/6E43A08923604C1397CBF20FE1225ABC.png" alt="">
+                                    <img :src="r.imgUrl" >
                                 </div>
                             </th>
                             <td>
-                                <p class="goodname"><span class="mh4">ROUGE ALLURE</span></p>
-                                <p class="goodcolor">朱砂梦纱#997</p>
+                                <p class="goodname"><span class="mh4">{{r.productionName}}</span></p>
+                                <p class="goodcolor">{{r.colorName}}{{r.colorCode}}</p>
                                 <p class="del">
-                                    <a href="#" class="delBtn" id="cid2">删除</a>
+                                    <a href="#" class="delBtn" :id="r.cardId" data-toggle="modal" data-target="#myModal1" @click="toId(r.cardId)">删除</a>
                                 </p>
                             </td>
                             <td>
-                                <p class="price">￥250.00</p>
+                                <p class="price">￥{{r.price}}</p>
                             </td>
                             <td>
                                 <div class="amount_box">
-                                    <button class="reduce reSty btn" type="button" id="">-</button>
-                                    <input type="text" value="1" class="sum" disabled>
-                                    <button class="plus btn" type="button" id="">+</button>
+                                    <button class="reduce reSty btn" type="button" >-</button>
+                                    <input type="text" :value="r.num" class="sum" disabled>
+                                    <button class="plus btn" type="button" >+</button>
                                 </div>
                             </td>
                             <td>
-                                <p class="sum_price">￥250.00</p>
-                            </td>
-                        </tr>
-
-                        <tr class="order_lists" id="cid">
-                            <th class="headth" scope="row"><input type="checkbox" value="${cartItem.cart.cid }"
-                                                                  class="son_check" name="cart"> <label
-                                    for="checkbox_2"></label>
-                            </th>
-                            <th>
-                                <div class="list_img">
-                                    <img src="../../images/6E43A08923604C1397CBF20FE1225ABC.png" alt="">
-                                </div>
-                            </th>
-                            <td>
-                                <p class="goodname"><span class="mh4">ROUGE ALLURE</span></p>
-                                <p class="goodcolor">朱砂梦纱#997</p>
-                                <p class="del">
-                                    <a href="#" class="delBtn" id="cid2">删除</a>
-                                </p>
-                            </td>
-                            <td>
-                                <p class="price">￥250.00</p>
-                            </td>
-                            <td>
-                                <div class="amount_box">
-                                    <button class="reduce reSty btn" type="button" id="">-</button>
-                                    <input type="text" value="1" class="sum" disabled>
-                                    <button class="plus btn" type="button" id="">+</button>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="sum_price">￥250.00</p>
-                            </td>
-                        </tr>
-
-                        <tr class="order_lists" id="cid">
-                            <th class="headth" scope="row"><input type="checkbox" value="${cartItem.cart.cid }"
-                                                                  class="son_check" name="cart"> <label
-                                    for="checkbox_2"></label>
-                            </th>
-                            <th>
-                                <div class="list_img">
-                                    <img src="../../images/6E43A08923604C1397CBF20FE1225ABC.png" alt="">
-                                </div>
-                            </th>
-                            <td>
-                                <p class="goodname"><span class="mh4">ROUGE ALLURE</span></p>
-                                <p class="goodcolor">朱砂梦纱#997</p>
-                                <p class="del">
-                                    <a href="#" class="delBtn" id="cid2">删除</a>
-                                </p>
-                            </td>
-                            <td>
-                                <p class="price">￥250.00</p>
-                            </td>
-                            <td>
-                                <div class="amount_box">
-                                    <button class="reduce reSty btn" type="button" id="">-</button>
-                                    <input type="text" value="1" class="sum" disabled>
-                                    <button class="plus btn" type="button" id="">+</button>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="sum_price">￥250.00</p>
-                            </td>
-                        </tr>
-
-                        <tr class="order_lists" id="cid">
-                            <th class="headth" scope="row"><input type="checkbox" value="${cartItem.cart.cid }"
-                                                                  class="son_check" name="cart"> <label
-                                    for="checkbox_2"></label>
-                            </th>
-                            <th>
-                                <div class="list_img">
-                                    <img src="../../images/6E43A08923604C1397CBF20FE1225ABC.png" alt="">
-                                </div>
-                            </th>
-                            <td>
-                                <p class="goodname"><span class="mh4">ROUGE ALLURE</span></p>
-                                <p class="goodcolor">朱砂梦纱#997</p>
-                                <p class="del">
-                                    <a href="#" class="delBtn" id="cid2">删除</a>
-                                </p>
-                            </td>
-                            <td>
-                                <p class="price">￥250.00</p>
-                            </td>
-                            <td>
-                                <div class="amount_box">
-                                    <button class="reduce reSty btn" type="button" id="">-</button>
-                                    <input type="text" value="1" class="sum" disabled>
-                                    <button class="plus btn" type="button" id="">+</button>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="sum_price">￥250.00</p>
+                                <p class="sum_price">￥{{r.totalPrice}}</p>
                             </td>
                         </tr>
 
                         <tr>
                             <th rowspan="2" colspan="4"
-                                style="vertical-align: middle;padding: 0 0 0 50;font-size: 20px;font-weight: normal; ">
+                                style="vertical-align: middle;padding: 0 0 0 50px;font-size: 20px;font-weight: normal; ">
                                 订单总结
                             </th>
                             <td>商品价格</td>
@@ -340,16 +213,17 @@
                         <tr>
                     </table>
                 </form>
+
                 <!-- 删除物品模态框提示是否删除 -->
                 <!-- Start of Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-                                <h4 class="modal-title" id="myModalLabel">删除商品</h4>
+                                <h4 class="modal-title">删除商品</h4>
                             </div>
                             <!-- end of modal-header -->
                             <div class="modal-body">
@@ -359,7 +233,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" data-dismiss="modal" id="cancel">取消
                                 </button>
-                                <button type="button" class="btn btn-primary" id="check-btn" name="check-btn"
+                                <button type="button" class="btn btn-primary" name="check-btn"
                                         onclick="del();">确定
                                 </button>
                             </div>
