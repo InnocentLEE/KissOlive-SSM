@@ -69,4 +69,7 @@ public interface SNH48Mapper {
     List<Permit> listPermit();
 
     int updatePermit(Permit permit);
+
+    //获取该用户的权限信息
+    Permit getPermit(@Param("userID")Integer userID);
 }

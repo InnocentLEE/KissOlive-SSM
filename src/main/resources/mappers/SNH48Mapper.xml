@@ -118,4 +118,9 @@
         </set>
         WHERE user_id = #{userId}
     </update>
+    <select id="getPermit" resultType="org.xgun.kissolive.pojo.Permit" resultMap="PermitResultMap">
+        SELECT *
+        FROM tb_permit
+        WHERE user_id = #{userID}
+    </select>
 </mapper>

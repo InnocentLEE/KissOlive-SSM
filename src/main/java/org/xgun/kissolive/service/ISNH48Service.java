@@ -33,4 +33,7 @@ public interface ISNH48Service {
     ServerResponse<List<Permit>> getPermits();
 
     ServerResponse updatePermit(Permit permit);
+
+    //判断用户是否拥有权限（0：homeManage；1：brandManage；2：goodsManage；3：stockManage；4：orderManage；5：activityManage）
+    boolean hasPermit(Integer userID, Integer permitCode);
 }

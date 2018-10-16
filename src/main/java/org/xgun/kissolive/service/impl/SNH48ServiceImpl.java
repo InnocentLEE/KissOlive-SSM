@@ -281,4 +281,23 @@ public class SNH48ServiceImpl implements ISNH48Service {
         }
         return ServerResponse.createBySuccess();
     }
+
+    @Override
+    public boolean hasPermit(Integer userID, Integer permitCode) {
+
+        Permit permit = mapper.getPermit(userID);
+        if (permit == null) {
+            return false;
+        }
+        switch (permitCode) {
+            case 0 : if (permit.getHomeManage() == 0) return false; break;
+            case 1 : if (permit.getBrandManage() == 0) return false; break;
+            case 2 : if (permit.getGoodsManage() == 0) return false; break;
+            case 3 : if (permit.getStockManage() == 0) return false; break;
+            case 4 : if (permit.getOrderManage() == 0) return false; break;
+            case 5 : if (permit.getActivityManage() == 0) return false; break;
+            default: break;
+        }
+        return true;
+    }
 }
