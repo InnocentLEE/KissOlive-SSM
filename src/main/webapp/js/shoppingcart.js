@@ -44,10 +44,10 @@ function del() {
         dataType:'json',
         success: function(data) {
             if(data.status==0) {
-                alert(data.msg);
                 $("#"+selectid).remove();
+                alert(data.msg);
                 $("#myModal1").modal('hide');
-                myTabContent.getMyShoppingCart();
+                totalMoney();
             }
         },
         error:function(){
@@ -215,6 +215,7 @@ function doUpdate(){
         $priceTotal = $priceTotal.toFixed(2);
         $priceTotalObj.html('￥' + $priceTotal);
         totalMoney();
+
     })
 }
 
@@ -223,17 +224,15 @@ function doUpdate(){
 function totalMoney() {
     var total_money = 0.00;
     var total_count = 0.00;
-    var calBtn = $('.calBtn a');
-    $sonCheckBox.each(function () {
-        if ($(this).is(':checked')) {
-            var goods = parseFloat($(this).parents('.order_lists').find('.sum_price').html().substring(1));
-            var num = parseFloat($(this).parents('.order_lists').find('.sum').val());
-            total_money += goods;
-            total_count += num;
+    var select = $(".son_check");
+    for(var i=0;i<select.length;i++){
+        if(select[i].checked){
+            var temp = $(select[i]).parents("td").siblings();
+            total_count += parseFloat($(temp[3]).find(".sum").val());
+            total_money += parseFloat($(temp[4]).find('.sum_price').html().substring(1));
         }
-    });
+    }
     total_money = total_money.toFixed(2);
-
     //alert(total_money+"    "+total_count);
     $('.total_text').html('￥' + total_money);
     $('.piece_num').html(total_count);
@@ -242,57 +241,56 @@ function totalMoney() {
 
 }
 
-$(document).ready(function () {
-
-    //点击立即购买触发函数
-    $(".calBtn").click(function () {
-        var judge = 0;
-        $(".son_check").each(function () { //遍历每个元素
-            if ($('.son_check').is(':checked')) {
-                // 如果该商品被选中
-                judge = 1;
-            }
-        });
-        if (judge == 0)
-            alert("您未选中任何商品，请选择商品再点击购买！！");
-
-
-    });
-
-    //点击支付成功触发函数
-    $(".surepay").click(function () {
-        $('#codeModal').modal('hide');
-        $('#step3').addClass("active in");
-    });
-
-
-});
-
-$(function () {
-
-    $("#city").citySelect({
-        prov: "广东",
-        city: "肇庆",
-        dist: "端州区",
-        nodata: "none"
-    });
-});
-
-$(".add_addr").click(function () {
-    $(".div_add_addr").slideToggle();
-});
-
-function judge() {
-    var i = 0;
-    $("input[name='selectaddr']").each(function () {
-        if ($(this).is(':checked')) {
-            i = 1;
-            $('#codeModal').modal('show');
+function settlement(){
+    var judge = 0;
+    $(".son_check").each(function () { //遍历每个元素
+        if ($('.son_check').is(':checked')) {
+            // 如果该商品被选中
+            judge = 1;
         }
     });
-    if (i == 0)
-        alert("请选择收货地址！！！");
+    if (judge == 0)
+        alert("您未选中任何商品，请选择商品再点击购买！！");
+    else {
+        doSettlement();
+    }
 }
-   
-	  
-	   
+function doSettlement() {
+    var jsonObj = new Array();
+    var select = $(".son_check");
+    var card = new Array();
+    for(var i=0;i<select.length;i++){
+        if(select[i].checked){
+            var temp = $(select[i]).parents("td").siblings();
+            var id = $(select[i]).parents("tr").prop("id");
+            var temp = {
+                id : id,
+                goodsId : $(select[i]).val(),
+                number: parseFloat($(temp[3]).find(".sum").val()),
+                price:parseFloat($(temp[4]).find('.sum_price').html().substring(1)),
+            };
+            card.push(temp);
+        }
+    }
+    var price = parseFloat($('.total_text').html().substring(1));
+    var temp = {
+        price : price,
+        items : card
+    };
+    console.log(JSON.stringify(temp));
+    $.ajax({
+        type : "post",
+        url : "http://localhost:8080/order",
+        data : JSON.stringify(temp),//将orderItems转换为JSON字符串
+        contentType : 'application/json;charset=utf-8',
+        dataType : "json",// 数据类型可以为 text xml json script jsonp
+        success : function(result) {// 返回的参数就是 action里面所有的有get和set方法的参数
+           if(result.status==0){
+               alert("下单成功！");
+               window.location.href = "http://localhost:8080/pay?id="+result.data.orderId;
+           }else {
+               alert(result.msg);
+           }
+        }
+    });
+}

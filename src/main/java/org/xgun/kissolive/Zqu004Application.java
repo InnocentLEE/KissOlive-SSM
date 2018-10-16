@@ -52,4 +52,9 @@ public class Zqu004Application {
 	String admin(){
 		return "page/admin/frameset.html";
 	}
+
+	@RequestMapping("/pay")
+	String pay(){
+		return "page/user/user_pay.html";
+	}
 }
