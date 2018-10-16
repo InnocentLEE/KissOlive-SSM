@@ -261,4 +261,24 @@ public class SNH48ServiceImpl implements ISNH48Service {
         }
         return ServerResponse.createBySuccess(listOrder);
     }
+
+    @Override
+    public ServerResponse<List<Permit>> getPermits() {
+
+        List<Permit> listPermit = mapper.listPermit();
+        if (listPermit == null || listPermit.size() == 0) {
+            return ServerResponse.createBySuccess("权限表为空",null);
+        }
+        return ServerResponse.createBySuccess(listPermit);
+    }
+
+    @Override
+    public ServerResponse updatePermit(Permit permit) {
+
+        int result = mapper.updatePermit(permit);
+        if (result == 0) {
+            return ServerResponse.createByErrorMessage("更新权限失败");
+        }
+        return ServerResponse.createBySuccess();
+    }
 }

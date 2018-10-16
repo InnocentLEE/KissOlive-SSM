@@ -6,6 +6,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.xgun.kissolive.common.ServerResponse;
+import org.xgun.kissolive.pojo.Permit;
 import org.xgun.kissolive.pojo.Stock;
 import org.xgun.kissolive.pojo.Supplier;
 import org.xgun.kissolive.service.ISNH48Service;
@@ -132,6 +133,29 @@ public class SNH48Controller {
                                                      @PathVariable Integer size) {
 
         return service.getOrders(status, page, size);
+    }
+
+    /**
+     * 获取权限列表
+     * @return
+     */
+    @GetMapping("/permit")
+    public ServerResponse<List<Permit>> getPermits() {
+
+        return service.getPermits();
+    }
+
+    /**
+     * 修改权限（只修改更改的值）
+     * @param userID 用户ID
+     * @param permit 权限信息
+     * @return
+     */
+    @PutMapping("/permit/{userID}")
+    public ServerResponse updatePermit(@PathVariable Integer userID, Permit permit) {
+
+        permit.setUserId(userID);
+        return service.updatePermit(permit);
     }
 
 }

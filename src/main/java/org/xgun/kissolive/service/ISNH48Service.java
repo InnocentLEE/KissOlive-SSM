@@ -1,6 +1,7 @@
 package org.xgun.kissolive.service;
 
 import org.xgun.kissolive.common.ServerResponse;
+import org.xgun.kissolive.pojo.Permit;
 import org.xgun.kissolive.pojo.Stock;
 import org.xgun.kissolive.pojo.Supplier;
 import org.xgun.kissolive.vo.ListOrder;
@@ -28,4 +29,8 @@ public interface ISNH48Service {
     ServerResponse updateOrderStatus(Integer orderID, Integer status);
 
     ServerResponse<List<ListOrder>> getOrders(Integer status, Integer page, Integer size);
+
+    ServerResponse<List<Permit>> getPermits();
+
+    ServerResponse updatePermit(Permit permit);
 }
