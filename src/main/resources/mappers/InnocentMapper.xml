@@ -360,12 +360,12 @@
     WHERE id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectUserByPhoneAndPassword" parameterType="org.xgun.kissolive.pojo.User" resultType="org.xgun.kissolive.pojo.User">
-    SELECT id, username, password, telphone,  imgUrl, score, role
+    SELECT id, username, password, telphone,  img_url AS imgUrl, score, role
     FROM tb_user
     WHERE telphone = #{telphone,jdbcType=VARCHAR} AND password = #{password,jdbcType=VARCHAR}
   </select>
   <select id="selectUserById" parameterType="org.xgun.kissolive.pojo.User" resultType="org.xgun.kissolive.pojo.User">
-    SELECT id, username, password, telphone,  imgUrl, score, role
+    SELECT id, username, password, telphone,  img_url AS imgUrl, score, role
     FROM tb_user
     WHERE id = #{id,jdbcType=INTEGER}
   </select>

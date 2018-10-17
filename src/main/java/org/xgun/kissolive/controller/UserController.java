@@ -105,7 +105,7 @@ public class UserController {
         if(!( b1 && b2 )){
             return ServerResponse.createByErrorMessage("验证码错误");
         }
-        User user = new User(0,"Olive"+phoneNumber,password,phoneNumber,null,0,Const.Role.ROLE_CUSTOMER);
+        User user = new User(0,"Olive"+phoneNumber,password,phoneNumber,Const.USER_IMG_URL_DEFAULT,0,Const.Role.ROLE_CUSTOMER);
         Address address = new Address(0,0,province,city,district,detail,null,consignee,telphone);
         return iUserService.register(user,address);
     }
@@ -156,6 +156,11 @@ public class UserController {
         return iUserService.getInfo(user.getId());
     }
 
+    /**
+     * 获取用户地址
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "get_address_list.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse getAddressList(HttpSession session){
