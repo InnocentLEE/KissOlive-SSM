@@ -72,4 +72,12 @@ public interface SNH48Mapper {
 
     //获取该用户的权限信息
     Permit getPermit(@Param("userID")Integer userID);
+
+    List<VipLevel> listVipLevel();
+
+    int updateVipLevel(VipLevel vipLevel);
+
+    Integer getScore(@Param("userID")Integer userID);
+
+    VipLevel getVipLevel(@Param("score")Integer score);
 }

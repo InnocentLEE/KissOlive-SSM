@@ -9,6 +9,7 @@ import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.pojo.Permit;
 import org.xgun.kissolive.pojo.Stock;
 import org.xgun.kissolive.pojo.Supplier;
+import org.xgun.kissolive.pojo.VipLevel;
 import org.xgun.kissolive.service.ISNH48Service;
 import org.xgun.kissolive.vo.ListOrder;
 import org.xgun.kissolive.vo.ListOrderItem;
@@ -156,6 +157,29 @@ public class SNH48Controller {
 
         permit.setUserId(userID);
         return service.updatePermit(permit);
+    }
+
+    /**
+     * 获取VIP信息列表
+     * @return
+     */
+    @GetMapping("/vip")
+    public ServerResponse<List<VipLevel>> getVipLevel() {
+
+        return service.getVipLevel();
+    }
+
+    /**
+     * 修改VIP信息
+     * @param vipID id
+     * @param vipLevel 信息（只修改更改的值）
+     * @return
+     */
+    @PutMapping("/vip/{vipID}")
+    public ServerResponse updateVipLevel(@PathVariable Integer vipID, VipLevel vipLevel) {
+
+        vipLevel.setId(vipID);
+        return service.updateVipLevel(vipLevel);
     }
 
 }

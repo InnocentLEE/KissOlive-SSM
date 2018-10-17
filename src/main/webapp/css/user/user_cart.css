@@ -35,7 +35,7 @@ label {
     color: #000;
 }
 label.active{
-	content:<i class="far fa-check-square"></i>
+	content: "<i class='far fa-check-square'></i>";
 }
 label.labelhead {
     color: #000;
@@ -96,8 +96,8 @@ p.sum_price,p.order-sum_price{
     padding: 78px 0;
 }
 .amount_box {
-    padding: 65px 0;
-    margin-left: -40px;
+    padding: 72px 0;
+    margin-left: -8px;
 }
 p.goodname {
     padding: 20px 0;

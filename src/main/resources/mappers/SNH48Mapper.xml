@@ -123,4 +123,45 @@
         FROM tb_permit
         WHERE user_id = #{userID}
     </select>
+    <resultMap id="VipResultMap" type="org.xgun.kissolive.pojo.VipLevel" >
+        <constructor >
+            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="score_low" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="score_high" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="logo_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+        </constructor>
+    </resultMap>
+    <select id="listVipLevel" resultType="org.xgun.kissolive.pojo.VipLevel" resultMap="VipResultMap">
+        SELECT *
+        FROM tb_vip_level
+    </select>
+    <update id="updateVipLevel" parameterType="org.xgun.kissolive.pojo.VipLevel">
+        UPDATE tb_vip_level
+        <set>
+            <if test="name != null" >
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="scoreLow != null" >
+                score_low = #{scoreLow,jdbcType=INTEGER},
+            </if>
+            <if test="scoreHigh != null" >
+                score_high = #{scoreHigh,jdbcType=INTEGER},
+            </if>
+            <if test="logoUrl != null" >
+                logo_url = #{logoUrl,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <select id="getScore" resultType="java.lang.Integer">
+        SELECT score
+        FROM tb_user
+        WHERE id = #{userID}
+    </select>
+    <select id="getVipLevel" resultMap="VipResultMap">
+        SELECT *
+        FROM tb_vip_level
+        WHERE score_low &lt;= #{score} AND score_high &gt;= #{score}
+    </select>
 </mapper>

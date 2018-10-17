@@ -24,59 +24,64 @@
 <div class="header-main-bar">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container header">
-                 <div class="navbar-header">
-                        <ul class="nav navbar-nav navbar-left ">
-                            <li id="li_login">
-                                <a href="#" class="navbar-brand">登录</a>
-                            </li>
-                            <li>
-                                <a href="#" class="navbar-brand">注册</a>
-                            </li>
-                            <!--<li>
-                            <a href="" class="navbar-brand"><img class="img-circle user-head-image" src="../../images/yadianna.png"></img></a>
-                            </li>
-                            <li>
-                                <a href="" class="navbar-brand">星矢</a>
-                            </li>
-                            <li><a  href=""   class="navbar-brand">[退出]</a></li>-->
-                            <!-- 响应式布局按钮-下拉框 -->
-                            <button type="button" class="navbar-toggle"
-                                    data-toggle="collapse" data-target="#navbar-collapse">
-                                <span class="icon-bar"></span> <span class="icon-bar"></span>
-                            </button>
-                        </ul>
-                 </div>
-                    <div class="collapse navbar-collapse" id="navbar-collapse">
-                        <ul class="nav navbar-nav navbar-right" style="margin: 0">
-                            <li>
-                                <a href="user_myshoppingcart.html"><span class="glyphicon glyphicon-shopping-cart">&nbsp;<span>我的购物车</span></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="user_orderlist.html"><span class="glyphicon glyphicon-list">&nbsp;<span>我的订单</span></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+            <div class="navbar-header">
+                <ul class="nav navbar-nav navbar-left ">
+                    <li id="li_login">
+                        <a href="#" class="navbar-brand">登录</a>
+                    </li>
+                    <li>
+                        <a href="user_register.jsp" class="navbar-brand">注册</a>
+                    </li>
+
+                    <!--<li>
+                        <a href="" class="navbar-brand"><img class="img-circle user-head-image" src="../../images/yadianna.png"></img></a>
+                    </li>
+                    <li>
+                        <a href="" class="navbar-brand">星矢</a>
+                    </li>
+                    <li><a
+                        href=""
+                        class="navbar-brand">[退出]</a></li>-->
+                    <!-- 响应式布局按钮-下拉框 -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    </button>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right" style="margin: 0">
+                    <li>
+                        <a href="myshoppingcart"><span
+                                class="glyphicon glyphicon-shopping-cart">&nbsp;<span>我的购物袋</span></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orderlist"><span
+                                class="glyphicon glyphicon-list">&nbsp;<span>我的订单</span></span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
         </div>
     </nav>
     <div class="main-bar-content">
         <div class="header-logo row">
             <div class="col-md-4 col-lg-4"></div>
             <div class="col-md-4 col-lg-4">
-                <a href="user_home.html"><img src="../../img/kissolive.png" class="icon-olive" /></a>
+                <a href="home"><img src="../../img/kissolive.png" class="icon-olive"/></a>
             </div>
-            <div class="col-md-4 col-lg-4">
-                <form action="/KissOlive/MainServlet" method="post">
-                    <input type="hidden" name="method" value="search" />
+            <div class="col-md-4 col-lg-4" id="searchform">
+                <form :action="'search?search='+search" method="get">
                     <div class="nav-search">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="search"
-                                   placeholder="Search for..."> <span
-                                class="input-group-btn">
-									<button class="btn btn-default glyphicon glyphicon-search"
-                                            type="submit"></button>
-								</span>
+                            <input type="text" class="form-control" name="search" placeholder="Search for..."
+                                   v-model="search" id="search">
+                            <span class="input-group-btn">
+								<a class="btn btn-default glyphicon glyphicon-search"
+                                   :href="'search?search='+search"></a>
+							</span>
                         </div>
                         <!-- /input-group -->
                     </div>
@@ -84,9 +89,11 @@
             </div>
         </div>
     </div>
+
     <!-- end of main-bar-content -->
 </div>
-<!-- start of 头部 -->
+<!-- end of 头部 -->
+
 <!-- start of 内容 -->
 <div class="container content">
     <div class="leadertab row">
@@ -145,9 +152,7 @@
                                 <td><p class="price">￥120</p></td>
                                 <td>
                                     <div class="amount_box">
-                                        <button class="reduce reSty btn" disabled>-</button>
                                         <input type="text" value="1" class="sum" id="gnumber" disabled>
-                                        <button class="plus btn" disabled>+</button>
                                     </div>
                                 </td>
                                 <td><p class="order-sum_price">￥120</p></td>
@@ -273,6 +278,7 @@
 <!-- end of 尾部 -->
 
 <script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/vue.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../../js/jquery.cityselect.js"></script>
 <script type="text/javascript" src="../../js/shoppingcart.js"></script>

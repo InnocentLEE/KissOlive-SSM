@@ -300,4 +300,35 @@ public class SNH48ServiceImpl implements ISNH48Service {
         }
         return true;
     }
+
+    @Override
+    public ServerResponse<List<VipLevel>> getVipLevel() {
+
+        List<VipLevel> listVipLevel = mapper.listVipLevel();
+        if (listVipLevel == null || listVipLevel.size() == 0) {
+            return ServerResponse.createBySuccess("VIP列表为空", null);
+        }
+        return ServerResponse.createBySuccess(listVipLevel);
+    }
+
+    @Override
+    public ServerResponse updateVipLevel(VipLevel vipLevel) {
+
+        if (mapper.updateVipLevel(vipLevel) == 0) {
+            return ServerResponse.createBySuccess("VIP信息更新失败");
+        }
+        return ServerResponse.createBySuccess();
+    }
+
+    @Override
+    public VipLevel getVIPLevel(Integer userID) {
+
+        Integer score = mapper.getScore(userID);
+        if (score == null) {
+
+            return null;
+        }
+        VipLevel vipLevel = mapper.getVipLevel(score);
+        return vipLevel;
+    }
 }

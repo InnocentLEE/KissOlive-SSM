@@ -121,7 +121,7 @@
                     </a>
                 </div>
                 <label class="labelhead">我的购物袋&nbsp;({{ContentLength}})</label>
-                <form action="/KissOlive/MainServlet" method="post">
+
                     <input type="hidden" name="method" value="sentCartItem">
                     <table class="table table-hover">
                         <thead>
@@ -140,14 +140,14 @@
                         <tbody>
 
                         <tr class="order_lists" v-for="r in myTabContent" :id="r.cardId">
-                            <th class="headth" scope="row">
+                            <td class="headth" scope="row">
                                 <input type="checkbox" :value="r.goodsId" class="son_check" name="cart" :id="'checkbox_'+r.cardId">
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 <div class="list_img">
                                     <img :src="r.imgUrl" >
                                 </div>
-                            </th>
+                            </td>
                             <td>
                                 <p class="goodname"><span class="mh4">{{r.productionName}}</span></p>
                                 <p class="goodcolor">{{r.colorName}}{{r.colorCode}}</p>
@@ -207,11 +207,11 @@
                         <tr>
                             <th colspan="4"></th>
                             <td colspan="2">
-                                <input style="color: #fff;" type="submit" class="calBtn" id="buycid" value="立即结算"/>
+                                <input style="color: #fff;" type="submit" class="calBtn" id="buycid" value="立即结算" onclick="settlement()"/>
                             </td>
                         <tr>
                     </table>
-                </form>
+
 
                 <!-- 删除物品模态框提示是否删除 -->
                 <!-- Start of Modal -->
@@ -422,7 +422,6 @@
 <script type="text/javascript" src="../../js/jquery.js"></script>
 <script type="text/javascript" src="../../js/vue.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../../js/jquery.cityselect.js"></script>
 <script type="text/javascript" src="../../js/slideunlock.js"></script>
 <script type="text/javascript" src="../../js/login_verify.js"></script>
 <script type="text/javascript" src="../../js/valid.js"></script>
