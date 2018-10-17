@@ -1,0 +1,56 @@
+i.fa.fa-pencil-square {
+    padding-right: 0.5em;
+}
+.body-top {
+    font-size: 1.8em;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #ddd;
+}
+table.table.table-hover.myTable {
+    font-size: 14px;
+    vertical-align: middle;
+}
+table.table.table-hover.myTable>tbody>tr>td {
+    vertical-align: middle;
+    width: 10%;
+}
+table.table.table-hover.myTable>thead>tr>th.operator {
+    width: 15%;
+}
+.modal-footer.editGoodModal-footer {
+    margin-top: 0;
+    padding-right: 20px;
+    border: none;
+}
+/*.modal-body.editGoodModal-body{*/
+    /*padding-bottom: 10px;*/
+/*}*/
+div.body-top>span:first-child{
+    color: #555;
+    font-weight: 600;
+}
+div.body-top>span:last-child {
+    padding-left: 10px;
+    font-weight: 600;
+    font-size: 15px;
+}
+em.color-display {
+    padding: 0px 10px;
+    margin-right: 5px;
+}
+@media (min-width: 768px) {
+    div#editGoodModal>.modal-dialog {
+        width: 700px;
+        margin: 30px auto;
+    }
+}
+input.td-input {
+    width: 100%;
+    text-align: center;
+}
+.tr-edit{
+    display: none;
+}
+i.fa.fa-save, i.fa, fa-warning {
+    padding-right: 5px;
+}
