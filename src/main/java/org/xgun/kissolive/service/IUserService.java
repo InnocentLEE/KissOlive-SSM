@@ -13,4 +13,5 @@ public interface IUserService {
     ServerResponse register(User user, Address address);
     ServerResponse login(String telphone, String password);
     ServerResponse getInfo(int userid);
+    ServerResponse getAddressList(int userid);
 }

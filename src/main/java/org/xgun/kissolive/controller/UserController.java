@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.xgun.kissolive.common.Const;
+import org.xgun.kissolive.common.ResponseCode;
 import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.pojo.Address;
 import org.xgun.kissolive.pojo.User;
@@ -150,6 +151,18 @@ public class UserController {
     @ResponseBody
     public ServerResponse getInfo(HttpSession session){
         User user = (User)session.getAttribute(Const.CURRENT_USER);
+        if(user==null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"还没登录，请先登录");
         return iUserService.getInfo(user.getId());
     }
+
+    @RequestMapping(value = "get_address_list.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse getAddressList(HttpSession session){
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        if(user==null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"还没登录，请先登录");
+        return iUserService.getAddressList(user.getId());
+    }
+
 }

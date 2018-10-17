@@ -72,4 +72,10 @@ public class UserServiceImpl implements IUserService {
         UserInfo userInfo = new UserInfo(user,addressList);
         return ServerResponse.createBySuccess("查找用户信息成功",userInfo);
     }
+
+    @Override
+    public ServerResponse getAddressList(int userid){
+        List<Address> addressList = innocentMapper.selectAddressByUserid(userid);
+        return ServerResponse.createBySuccess("查找用户地址成功",addressList);
+    }
 }
