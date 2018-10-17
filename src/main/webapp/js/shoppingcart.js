@@ -1,9 +1,3 @@
-var search1 = new Vue({
-    el:"#searchform",
-    data:{
-        search:[]
-    }
-})
 var selectid = null;
 var myTabContent = new Vue({
     el:"#myTabContent",
