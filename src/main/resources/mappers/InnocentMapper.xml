@@ -359,4 +359,19 @@
       updatetime = #{updatetime,jdbcType=TIMESTAMP}
     WHERE id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectUserByPhoneAndPassword" parameterType="org.xgun.kissolive.pojo.User" resultType="org.xgun.kissolive.pojo.User">
+    SELECT id, username, password, telphone,  imgUrl, score, role
+    FROM tb_user
+    WHERE telphone = #{telphone,jdbcType=VARCHAR} AND password = #{password,jdbcType=VARCHAR}
+  </select>
+  <select id="selectUserById" parameterType="org.xgun.kissolive.pojo.User" resultType="org.xgun.kissolive.pojo.User">
+    SELECT id, username, password, telphone,  imgUrl, score, role
+    FROM tb_user
+    WHERE id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAddressByUserid" resultType="org.xgun.kissolive.pojo.Address">
+    SELECT id, user_id AS userId, province, city, district, detail, postcode, consignee, telphone
+    FROM tb_address
+    WHERE user_id = #{user_id,jdbcType=INTEGER}
+  </select>
 </mapper>

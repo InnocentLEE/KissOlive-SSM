@@ -108,4 +108,48 @@ public class UserController {
         Address address = new Address(0,0,province,city,district,detail,null,consignee,telphone);
         return iUserService.register(user,address);
     }
+
+    /**
+     * 登录接口
+     * @param session
+     * @param phoneNumber
+     * @param password
+     * @return
+     */
+    @RequestMapping(value="login.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse login(HttpSession session, @RequestParam(value = "phone_number")String phoneNumber,
+                                @RequestParam(value = "password")String password){
+
+        ServerResponse response = iUserService.login(phoneNumber,password);
+        if (response.isSuccess()) {
+            session.removeAttribute(Const.CURRENT_USER);
+            session.setAttribute(Const.CURRENT_USER, response.getData());
+        }
+        return response;
+    }
+
+    /**
+     * 退出登录
+     * @param session
+     * @return
+     */
+    @RequestMapping(value = "logout.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse logout(HttpSession session) {
+        session.removeAttribute(Const.CURRENT_USER);
+        return ServerResponse.createBySuccess();
+    }
+
+    /**
+     * 获取用户信息
+     * @param session
+     * @return
+     */
+    @RequestMapping(value = "get_info.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse getInfo(HttpSession session){
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        return iUserService.getInfo(user.getId());
+    }
 }

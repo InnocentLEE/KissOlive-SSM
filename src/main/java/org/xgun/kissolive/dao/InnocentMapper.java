@@ -182,4 +182,13 @@ public interface InnocentMapper {
 
     // 更新订单支付状态
     Integer updateOrderPayStatusById(Order order);
+
+    // 根据手机号和密码查找用户
+    User selectUserByPhoneAndPassword(User user);
+
+    // 根据id查找用户
+    User selectUserById(Integer id);
+
+    // 根据用户id查找地址
+    List<Address> selectAddressByUserid(@Param("user_id") Integer userId);
 }

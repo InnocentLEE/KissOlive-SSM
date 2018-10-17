@@ -10,6 +10,9 @@ import org.xgun.kissolive.pojo.Address;
 import org.xgun.kissolive.pojo.User;
 import org.xgun.kissolive.service.IUserService;
 import org.xgun.kissolive.utils.MD5Util;
+import org.xgun.kissolive.vo.UserInfo;
+
+import java.util.List;
 
 /**
  * Created by Lee on 2018/9/7.
@@ -48,5 +51,25 @@ public class UserServiceImpl implements IUserService {
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             return ServerResponse.createByErrorMessage("注册失败！");
         }
+    }
+
+    @Override
+    public ServerResponse login(String telphone, String password){
+        String MD5password = MD5Util.MD5EncodeUtf8(password);
+        User user = new User();
+        user.setTelphone(telphone);
+        user.setPassword(MD5password);
+        User resultUser = innocentMapper.selectUserByPhoneAndPassword(user);
+        if(resultUser==null)
+            return ServerResponse.createByErrorMessage("手机号或密码错误");
+        return ServerResponse.createBySuccess("登录成功",resultUser);
+    }
+
+    @Override
+    public ServerResponse getInfo(int userid){
+        User user = innocentMapper.selectUserById(userid);
+        List<Address> addressList = innocentMapper.selectAddressByUserid(userid);
+        UserInfo userInfo = new UserInfo(user,addressList);
+        return ServerResponse.createBySuccess("查找用户信息成功",userInfo);
     }
 }
