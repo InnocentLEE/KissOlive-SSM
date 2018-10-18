@@ -57,4 +57,9 @@ public class Zqu004Application {
 	String pay(){
 		return "page/user/user_pay.html";
 	}
+
+    @RequestMapping("/info")
+    String info(){
+        return "page/user/userinfo.html";
+    }
 }

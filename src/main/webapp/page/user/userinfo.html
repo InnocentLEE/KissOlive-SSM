@@ -46,10 +46,11 @@
 
                 <ul class="nav navbar-nav navbar-left" v-else>
                     <li>
-                        <a href="" class="navbar-brand"><img class="img-circle user-head-image" :src="user.imgUrl"></img></a>
+                        <a href="" class="navbar-brand"><img class="img-circle user-head-image"
+                                                             :src="user.imgUrl"></img></a>
                     </li>
                     <li>
-                        <a href="" class="navbar-brand">{{user.username}}</a>
+                        <a href="info" class="navbar-brand">{{user.username}}</a>
                     </li>
                     <li><a href="" class="navbar-brand" onclick="logout()">[退出]</a></li>
                     <!-- 响应式布局按钮-下拉框 -->
@@ -62,7 +63,8 @@
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right" style="margin: 0">
                     <li>
-                        <a href="myshoppingcart"><span class="glyphicon glyphicon-shopping-cart">&nbsp;<span>我的购物袋</span></span>
+                        <a href="myshoppingcart"><span
+                                class="glyphicon glyphicon-shopping-cart">&nbsp;<span>我的购物袋</span></span>
                         </a>
                     </li>
                     <li>
@@ -138,155 +140,64 @@
             </div>
         </div>
     </div>
-    <div class="part2">
+    <div class="part2" id="addresslist">
         <p id="pick">收货地址</p>
 
-        <div class="addr" id="addr1">
-            <ul>
-                <li>收件人：圣斗士星矢</li>
-                <li>联系方式：17876253477</li>
-                <li>收货地址：广东省肇庆市端州区肇庆学院主校区</li>
-                <li>
-                    <button class="btn defalut cancel addr_update" type="button" onclick="editaddr(1)">修改</button>
-                </li>
-            </ul>
-        </div>
-        <div class="div_edit_addr" style="display:none" id="editaddr1">
-            <form action="">
-                <input type="hidden" name="method" value="addAddress">
-                <ul class="addr add">
-                    <li>收件人：
-                        <input type="text" id="name" name="name" class="form-control inputClass " placeholder="请输入收件人姓名"
-                               value="圣斗士星矢"/>
-                        <label class="errorClass" id="nameError"></label>
-                        <label class="correctClass" id="nameCorrect"></label>
-                    </li>
-                    <li>联系方式：
-                        <input type="text" id="tel" name="tel" class="form-control inputClass " placeholder="请输入联系方式"
-                               value="17876253477"/>
-                        <label class="errorClass" id="telError"></label>
-                        <label class="correctClass" id="telCorrect"></label>
-                    </li>
-                    <li>收货地址：
-                        <div class="addr_choice">
-                            <select class="prov" id="province" name="province"></select>
-                            <select class="city" id="city" name="city" disabled="disabled"></select>
-                            <select class="dist" id="district" name="district" disabled="disabled"></select>
-                        </div>
-                    </li>
-                    <li>详细地址：
-                        <input type="text" class="inputClass form-control " id="detail" name="detail"
-                               placeholder="请输入详细地址" value="广东省肇庆市端州区肇庆学院主校区"/>
-                        <label class="errorClass" id="detailError"></label>
-                        <label class="correctClass" id="detailCorrect"></label>
+        <div v-for="r in addresslist">
+            <div class="addr" :id="'addr'+r.id">
+                <ul>
+                    <li>收件人：{{r.consignee}}</li>
+                    <li>联系方式：{{r.telphone}}</li>
+                    <li>收货地址：{{r.province}}{{r.city}}{{r.district}}{{r.detail}}</li>
+                    <li>
+                        <button class="btn defalut cancel addr_update" type="button" @click="editaddr(r.id)">修改</button>
                     </li>
                 </ul>
-                <div class="btn_save_addr">
-                    <button type="button" class="save_addr" onclick="canceladdr(1)">取消修改</button>&nbsp;&nbsp;&nbsp;
-                    <button type="button" class="save_addr">保存地址</button>
-                    <div class="clearfix"></div>
-                </div>
-            </form>
-        </div>
-
-
-        <div class="addr" id="addr2">
-            <ul>
-                <li>收件人：护弟狂魔-一辉</li>
-                <li>联系方式：17876253477</li>
-                <li>收货地址：广东省肇庆市端州区肇庆学院主校区</li>
-                <li>
-                    <button class="btn defalut cancel addr_update" type="button" onclick="editaddr(2)">修改</button>
-                </li>
-            </ul>
-        </div>
-        <div class="div_edit_addr" style="display:none" id="editaddr2">
-            <form action="">
-                <input type="hidden" name="method" value="addAddress">
-                <ul class="addr add">
-                    <li>收件人：
-                        <input type="text" id="name2" name="name" class="form-control inputClass "
-                               placeholder="请输入收件人姓名"/>
-                        <label class="errorClass" id="nameError2"></label>
-                        <label class="correctClass" id="nameCorrect2"></label>
-                    </li>
-                    <li>联系方式：
-                        <input type="text" id="tel2" name="tel" class="form-control inputClass " placeholder="请输入联系方式"/>
-                        <label class="errorClass" id="telError2"></label>
-                        <label class="correctClass" id="telCorrect2"></label>
-                    </li>
-                    <li>收货地址：
-                        <div class="addr_choice">
-                            <select class="prov" id="province2" name="province"></select>
-                            <select class="city" id="city2" name="city" disabled="disabled"></select>
-                            <select class="dist" id="district2" name="district" disabled="disabled"></select>
-                        </div>
-                    </li>
-                    <li>详细地址：
-                        <input type="text" class="inputClass form-control " id="detail2" name="detail"
-                               placeholder="请输入详细地址"/>
-                        <label class="errorClass" id="detailError2"></label>
-                        <label class="correctClass" id="detailCorrect2"></label>
-                    </li>
-                </ul>
-                <div class="btn_save_addr">
-                    <button type="button" class="save_addr" onclick="canceladdr(2)">取消修改</button>&nbsp;&nbsp;&nbsp;
-                    <button type="button" class="save_addr">保存地址</button>
-                    <div class="clearfix"></div>
-                </div>
-            </form>
-        </div>
-
-        <div class="addr" id="addr3">
-            <ul>
-                <li>收件人：脱衣Buff-紫龙</li>
-                <li>联系方式：17876253477</li>
-                <li>收货地址：广东省肇庆市端州区肇庆学院主校区</li>
-                <li>
-                    <button class="btn defalut cancel addr_update" type="button" onclick="editaddr(3)">修改</button>
-                </li>
-            </ul>
-        </div>
-        <div class="div_edit_addr" style="display:none" id="editaddr3">
-            <form action="">
-                <input type="hidden" name="method" value="addAddress">
-                <ul class="addr add">
-                    <li>收件人：
-                        <input type="text" id="name3" name="name" class="form-control inputClass "
-                               placeholder="请输入收件人姓名"/>
-                        <label class="errorClass" id="nameError3"></label>
-                        <label class="correctClass" id="nameCorrect3"></label>
-                    </li>
-                    <li>联系方式：
-                        <input type="text" id="tel3" name="tel" class="form-control inputClass " placeholder="请输入联系方式"/>
-                        <label class="errorClass" id="telError3"></label>
-                        <label class="correctClass" id="telCorrect3"></label>
-                    </li>
-                    <li>收货地址：
-                        <div class="addr_choice">
-                            <select class="prov" id="province3" name="province"></select>
-                            <select class="city" id="city3" name="city" disabled="disabled"></select>
-                            <select class="dist" id="district3" name="district" disabled="disabled"></select>
-                        </div>
-                    </li>
-                    <li>详细地址：
-                        <input type="text" class="inputClass form-control " id="detail" name="detail"
-                               placeholder="请输入详细地址"/>
-                        <label class="errorClass" id="detailError3"></label>
-                        <label class="correctClass" id="detailCorrect3"></label>
-                    </li>
-                </ul>
-                <div class="btn_save_addr">
-                    <button type="button" class="save_addr" onclick="canceladdr(3)">取消修改</button>&nbsp;&nbsp;&nbsp;
-                    <button type="button" class="save_addr">保存地址</button>
-                    <div class="clearfix"></div>
-                </div>
-            </form>
+            </div>
+            <div class="div_edit_addr" style="display:none" :id="'editaddr'+r.id">
+                <form action="">
+                    <input type="hidden" name="method" value="addAddress">
+                    <ul class="addr add">
+                        <li>收件人：
+                            <input type="text" :id="'editname'+r.id" name="name" class="form-control inputClass "
+                                   placeholder="请输入收件人姓名"
+                                   :value="r.consignee"/>
+                            <label class="errorClass" id="nameError"></label>
+                            <label class="correctClass" id="nameCorrect"></label>
+                        </li>
+                        <li>联系方式：
+                            <input type="text" :id="'edittel'+r.id" name="tel" class="form-control inputClass "
+                                   placeholder="请输入联系方式"
+                                   :value="r.telphone"/>
+                            <label class="errorClass" id="telError"></label>
+                            <label class="correctClass" id="telCorrect"></label>
+                        </li>
+                        <li>收货地址：
+                            <div class="addr_choice">
+                                <select class="prov" :id="'eitdprovince'+r.id" name="province"></select>
+                                <select class="city" :id="'eitdcity'+r.id" name="city" disabled="disabled"></select>
+                                <select class="dist" :id="'eitddistrict'+r.id" name="district" disabled="disabled"></select>
+                            </div>
+                        </li>
+                        <li>详细地址：
+                            <input type="text" class="inputClass form-control " :id="'eitddetail'+r.id" name="detail"
+                                   placeholder="请输入详细地址" :value="r.detail"/>
+                            <label class="errorClass" id="detailError"></label>
+                            <label class="correctClass" id="detailCorrect"></label>
+                        </li>
+                    </ul>
+                    <div class="btn_save_addr">
+                        <button type="button" class="save_addr" @click="canceladdr(r.id)">取消修改</button>&nbsp;&nbsp;&nbsp;
+                        <button type="button" class="save_addr">保存地址</button>
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+            </div>
         </div>
 
 
         <div class="btn_add_addr">
-            <button class="add_addr" type="button">新增地址</button>
+            <button class="add_addr" type="button" onclick="add_addr()">新增地址</button>
             <div class="clearfix"></div>
         </div>
 
@@ -302,7 +213,8 @@
                         <label class="correctClass" id="addnameCorrect"></label>
                     </li>
                     <li>联系方式：
-                        <input type="text" id="addtel" name="tel" class="form-control inputClass " placeholder="请输入联系方式"/>
+                        <input type="text" id="addtel" name="tel" class="form-control inputClass "
+                               placeholder="请输入联系方式"/>
                         <label class="errorClass" id="addtelError"></label>
                         <label class="correctClass" id="addtelCorrect"></label>
                     </li>
@@ -416,57 +328,7 @@
 <script src="../../js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../../js/jquery.cityselect.js"></script>
 <script type="text/javascript" src="../../js/valid.js"></script>
-
-<script type="text/javascript">
-    $(function () {
-
-        $(".addr_choice").citySelect({
-            prov: "广东",
-            city: "肇庆",
-            dist: "端州区",
-            nodata: "none"
-        });
-
-    });
-
-    $(".add_addr").click(function () {
-        $(".div_add_addr").slideToggle();
-    });
-
-    $("#update").click(function () {
-        $(".editname").slideToggle();
-        $("#update_username").slideToggle();
-    });
-    $("button[class='edit']").click(function () {
-        $('#addrModal').modal('show');
-
-    });
-    $("button[class='sure']").click(function () {
-        $('#addrModal').modal('hide');
-
-    });
-
-
-    function cancel() {
-        $(".editname").slideToggle();
-        $("#update_username").slideToggle();
-    }
-
-    function editaddr(index) {
-        editindex = index;
-        $("#editaddr" + index).slideToggle();
-        $("#addr" + index).slideToggle();
-    }
-
-    function canceladdr(index) {
-        $("#editaddr" + index).slideToggle();
-        $("#addr" + index).slideToggle();
-    }
-
-    function cancel_add_addr() {
-        $(".div_add_addr").slideToggle();
-    }
-</script>
+<script type="text/javascript" src="../../js/user/userinfo.js"></script>
 
 </body>
 
