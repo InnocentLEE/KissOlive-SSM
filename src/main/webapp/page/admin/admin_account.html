@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Kiss Olive 账号权限管理</title>
+        <link rel="stylesheet" type="text/css" href="../../css/admin/table/dataTables.bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="../../css/admin/table/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/validform/style.css">
+        <link rel="stylesheet" type="text/css" href="../../css/user/slide-unlock.css">
+        <link rel="stylesheet" type="text/css" href="../../css/user/sign_login1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/admin/table/dataTables.responsive.css">
+        <link rel="stylesheet" type="text/css" href="../../css/admin/table/sb-admin-2.css">
+        <link rel="stylesheet" type="text/css" href="../../css/admin/font-awesome.css">
+	</head>
+	<body>
+		
+		<div class="page-wrapper" >
+		<!-- start:权限管理 -->
+		<div class="row" >
+			<div class="col-lg-10">
+				<h1 class="page-header">账号权限管理</h1> 
+			</div>
+		</div>
+		<table id="per_table" class="table table-bordered" >
+       <thead>
+           <tr>
+               <th style="text-align:center;">用户ID</th>
+               <th style="text-align:center;">首页管理</th>
+               <th style="text-align:center;">品牌管理</th>
+               <th style="text-align:center;">商品管理</th>
+               <th style="text-align:center;">订单管理</th>
+               <th style="text-align:center;">库存管理</th>
+               <th style="text-align:center;">活动管理</th>
+               <th style="text-align:center;">权限修改</th>
+           </tr>
+       </thead>
+       <tbody>
+           <tr align="center" v-for="r in datas">
+               <td></td><td>&radic;</td><td>&radic;</td><td>&radic;</td><td></td><td></td><td></td></td><td>
+           </tr>
+           <tr align="center">
+               <td>002</td><td>&radic;</td><td></td><td></td><td></td><td></td><td></td></td><td>
+           </tr>
+           <tr align="center">
+               <td>003</td><td>&radic;</td><td></td><td></td><td></td><td></td><td></td></td><td>
+           </tr>
+           <tr align="center">
+               <td>004</td><td>&radic;</td><td></td><td></td><td></td><td></td><td></td></td><td>
+           </tr>
+            <tr align="center">
+              <td>005</td><td>&radic;</td><td></td><td></td><td></td><td></td><td></td></td><td>
+           </tr>
+           <tr align="center">
+              <td>006</td><td>&radic;</td><td></td><td></td><td></td><td></td><td></td></td><td>
+           </tr>
+           <tr align="center">
+               <td>007</td><td>&radic;</td><td></td><td></td><td></td><td></td><td></td></td><td>
+           </tr>
+           <tr align="center">
+               <td>008</td><td>&radic;</td><td></td><td></td><td></td><td></td><td></td></td><td>
+           </tr>
+            <tr align="center">
+               <td>009</td><td>&radic;</td><td></td><td></td><td></td><td></td><td></td></td><td>
+           </tr>
+           <tr align="center">
+               <td>010</td><td>&radic;</td><td></td><td></td><td></td><td></td><td></td></td><td>
+           </tr>
+           <tr align="center">
+               <td>011</td><td>&radic;</td><td></td><td></td><td></td><td></td><td></td></td><td>
+           </tr>
+           <tr align="center">
+               <td>012</td><td>&radic;</td><td></td><td></td><td></td><td></td><td></td></td><td>
+           </tr>		
+       </tbody>
+</table>
+
+<div>
+<div class="modal fade" id="per_myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+				</button>
+				<h4 class="modal-title" id="myModalLabel">修改账户权限</h4>
+			</div>
+			<form role="form">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">管理列表</label>
+				<input type="checkbox" name="home_admin" value="1">首页管理 &nbsp;
+				<input type="checkbox" name="brand_admin" value="1">品牌管理 &nbsp;
+				<input type="checkbox" name="product_admin" value="1">商品管理 &nbsp;
+				<input type="checkbox" name="inventory_admin" value="1">库存管理 &nbsp;
+				<input type="checkbox" name="activity_admin" value="1">活动发布 
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" class="btn btn-default" id="update_account">提交</button>
+			</div>
+			</form>
+		</div> 
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
+            <script type="text/javascript" src="../../js/vue.js"></script>
+            <script type="text/javascript" src="../../js/jquery.js"></script>
+            <!--DataTables 核心 js-->
+            <script type="text/javascript" src="../../js/table/jquery.dataTables.min.js"></script>
+            <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="../../js/login_verify.js"></script>
+            <script type="text/javascript" src="../../js/valid.js"></script>
+            <script type="text/javascript" src="../../js/table/dataTables.bootstrap.min.js"></script>
+            <script type="text/javascript" src="../../js/vue.js"></script>
+            <script type="text/javascript" src="../../js/admin/account.js"></script>
+</div>
+</body>
+</html>
