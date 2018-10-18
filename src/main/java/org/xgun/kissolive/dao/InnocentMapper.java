@@ -191,4 +191,7 @@ public interface InnocentMapper {
 
     // 根据用户id查找地址
     List<Address> selectAddressByUserid(@Param("user_id") Integer userId);
+
+    // 更新用户名
+    int updateUsername(User user);
 }

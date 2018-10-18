@@ -78,4 +78,13 @@ public class UserServiceImpl implements IUserService {
         List<Address> addressList = innocentMapper.selectAddressByUserid(userid);
         return ServerResponse.createBySuccess("查找用户地址成功",addressList);
     }
+
+    @Override
+    public ServerResponse updateUsername(User user){
+        int result = innocentMapper.updateUsername(user);
+        if(result > 0)
+            return ServerResponse.createBySuccessMessage("修改用户名成功");
+        else
+            return ServerResponse.createByErrorMessage("修改失败");
+    }
 }

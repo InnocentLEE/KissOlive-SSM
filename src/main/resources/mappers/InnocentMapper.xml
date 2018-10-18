@@ -356,7 +356,7 @@
     UPDATE tb_order
     SET status = #{status,jdbcType=INTEGER},
       `time` = #{time,jdbcType=TIMESTAMP},
-      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+      updatetime = now()
     WHERE id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectUserByPhoneAndPassword" parameterType="org.xgun.kissolive.pojo.User" resultType="org.xgun.kissolive.pojo.User">
@@ -374,4 +374,9 @@
     FROM tb_address
     WHERE user_id = #{user_id,jdbcType=INTEGER}
   </select>
+  <update id="updateUsername">
+    UPDATE tb_user
+    SET username = #{username,jdbcType=VARCHAR}
+    WHERE id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>
