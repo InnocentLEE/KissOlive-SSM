@@ -13,7 +13,8 @@ ul.addr {
 /*快递流程图*/
 ul.delivery-process {
     display: flex;
-    margin-left: 4em;
+    /*margin-left: 4em;*/
+    margin-left: 0em;
 }
 li.progress-item {
     font-size: 1em;
@@ -160,3 +161,6 @@ label.label-title.label-right {
     padding-left: 60px;
     margin-top: -2px;
 }
+/*
+*   2018.10.12
+*/

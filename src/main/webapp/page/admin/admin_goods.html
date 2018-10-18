@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Kiss Olive 商品管理</title>
+    <link rel="stylesheet" type="text/css" href="../../css/admin/table/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../css/admin/table/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/validform/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/user/slide-unlock.css">
+    <link rel="stylesheet" type="text/css" href="../../css/user/sign_login1.css">
+    <link rel="stylesheet" type="text/css" href="../../css/admin/table/dataTables.responsive.css">
+    <link rel="stylesheet" type="text/css" href="../../css/admin/table/sb-admin-2.css">
+    <link rel="stylesheet" type="text/css" href="../../css/admin/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="../../css/admin/table/table.css">
+    <link rel="stylesheet" type="text/css" href="../../css/admin/table/admin-brand.css">
+    <link rel="stylesheet" type="text/css" href="../../css/admin/table/admin-goods.css">
+</head>
+<body>
+<div class="page-wrapper">
+    <!-- start:商品管理 -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header" style="margin-left: 20px">商品管理</h1>
+        </div>
+    </div>
+    <table id="table_id_example" class="table table-bordered">
+        <thead>
+        <tr>
+            <th style="text-align:center;">商品名</th>
+            <th style="text-align:center;">商品图片</th>
+            <th style="text-align:center;">品牌</th>
+            <th style="text-align:center;">商品描述</th>
+            <th style="text-align:center;">管理</th>
+        </tr>
+        </thead>
+        <tbody>
+       <tr align="center" v-for="r in datas" v-cloak>
+            <td>{{titleformat(r.name)}}</td>
+            <td width="240px">
+                <img :src="r.imgUrl" style="width: 65%"/>
+            </td>
+            <td width="240px">
+                <img :src="r.brand.imgUrl" style="width: 75%" :title="r.brand.name"/>
+            </td>
+            <td>{{titleformat(r.description)}}</td>
+            <td>
+                <a class="btn btn-primary btn-sm" target="right" data-toggle="modal" data-target="#editGoodModal"><i class="fa fa-pencil-square"></i>管理商品</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div class="popup_de xycenter" id="tip">
+    <div class="popup_box">
+        <span class="popup_close" value="关闭">×</span>
+        <span class="show_msg" id="show_msg"></span>
+        <div class="btn_box">
+            <div class="popup_btn btn-danger" value="确定" id="tipbtn">确定</div>
+            <div class="popup_btn btn_cancel" value="取消">取消</div>
+        </div>
+    </div>
+</div>
+
+<div class="popup_de xycenter" id="show">
+    <div class="popup_box">
+        <span class="show_msg" id="showmsg"></span>
+        <div class="btn_box">
+            <div class="popup_btn btn-danger" value="确定" id="showbtn">确定</div>
+        </div>
+    </div>
+</div>
+
+<!-- 管理商品 - 模态框（Modal） -->
+<div class="modal fade" id="editGoodModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header editGoodModal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">商品列表管理</h4>
+            </div>
+            <div class="modal-body editGoodModal-body">
+                <div class="body-top">
+                    <span>CLIO柯莱欧</span><span>商品列表</span>
+                </div>
+                <div class="body-top">
+                    <div class="table-responsive">
+                        <table class="table table-hover myTable" id="goodstable">
+                       <!--     <caption>响应式表格布局</caption>-->
+                            <thead>
+                            <tr>
+                                <th>商品id</th>
+                                <th>商品色值</th>
+                                <th>商品色号</th>
+                                <th>商品价格</th>
+                                <th>状态</th>
+                                <th class="operator">管理</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr id="tr-goods">
+                                <td>003</td>
+                                <td><em class="color-display" style="background:#FF4F81"></em>#FF4F81</td>
+                                <td>#10粉红色</td>
+                                <td>168</td>
+                                <td>上架</td>
+                                <td><a class="btn btn-primary btn-sm" id="aedit"><i class="fa fa-pencil-square" ></i>编辑</a></td>
+                            </tr>
+                            <tr class="tr-edit" id="tr-editgoods">
+                                <td><input type="text" value="003" class="input-group td-input"></td>
+                                <td><input type="text"name="color" class="input-group td-input color" value="#FF4F81"></td>
+                                <td><input type="text" value="#10粉红色" class="input-group td-input"></td>
+                                <td><input type="text" value="168" class="input-group td-input"></td>
+                                <td><input type="text" value="上架" class="input-group td-input"></td>
+                                <td>
+                                    <a class="btn btn-success btn-sm" id="asave" onclick="cancel()"><i class="fa fa-save"></i>保存</a>
+                                    <a class="btn btn-warning btn-sm" id="acancel" onclick="cancel()"><i class="fa fa-warning"></i>取消</a></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<!--DataTables 核心 js-->
+<script type="text/javascript" src="../../js/table/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/login_verify.js"></script>
+<script type="text/javascript" src="../../js/valid.js"></script>
+<script type="text/javascript" src="../../js/table/dataTables.bootstrap.min.js"></script>
+<!--datatables的配置-->
+<script type="text/javascript" src="../../js/vue.js"></script>
+<script type="text/javascript" src="../../js/admin/goods.js"></script>
+<script>
+  $("#aedit").click(function (){
+      $("#tr-goods").fadeToggle();
+      $("#tr-editgoods").slideToggle();
+  })
+    function cancel() {
+        $("#tr-editgoods").fadeToggle();
+        $("#tr-goods").slideToggle();
+    }
+</script>
+</body>
+</html>
