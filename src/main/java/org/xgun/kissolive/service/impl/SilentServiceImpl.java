@@ -10,6 +10,7 @@ import org.xgun.kissolive.dao.SilentMapper;
 import org.xgun.kissolive.pojo.Activity;
 import org.xgun.kissolive.pojo.ActivityGoods;
 import org.xgun.kissolive.pojo.Card;
+import org.xgun.kissolive.pojo.ChatMessage;
 import org.xgun.kissolive.service.ISilentService;
 import org.xgun.kissolive.vo.*;
 
@@ -363,5 +364,57 @@ public class SilentServiceImpl implements ISilentService {
             return  ServerResponse.createBySuccessMessage("数据为空");
         }
         return ServerResponse.createBySuccess("获取成功",list);
+    }
+
+    @Override
+    public ServerResponse getNewMessageNumByUser(Integer userId) {
+        Integer num = silentMapper.selectNewMessageNum(userId);
+        if(num == null){
+            return  ServerResponse.createByErrorMessage("获取失败");
+        }
+        return ServerResponse.createBySuccess("获取成功",num);
+    }
+
+    @Transactional
+    @Override
+    public ServerResponse getChatAllMessage(Integer userId, Integer type) {
+        boolean result = false;
+        result = silentMapper.setMessageStatus(userId,type)>=0;
+        List<ChatMessage> chatInfo = silentMapper.selectAllMessage(userId,null,null);
+        if( !result || chatInfo == null){
+            throw new RuntimeException("修改未读状态出错或获取出错");
+        }
+        if(chatInfo.size() == 0){
+            return  ServerResponse.createBySuccessMessage("暂无信息");
+        }
+        return ServerResponse.createBySuccess("获取成功", chatInfo );
+    }
+
+    @Override
+    public ServerResponse sendingNewMessage(ChatMessage chatMessage) {
+        boolean result = false;
+        result = silentMapper.sendingNewMessage(chatMessage)>0;
+        if(!result) {
+            return ServerResponse.createByErrorMessage("发送信息失败");
+        }
+        return ServerResponse.createBySuccessMessage("发送成功");
+    }
+
+    @Override
+    public ServerResponse getMessageUserList() {
+        List<ChatUserList> list = silentMapper.getChatUserList();
+        if(list == null) {
+            return ServerResponse.createByErrorMessage("获取失败");
+        }
+        return ServerResponse.createBySuccess("获取成功",list);
+    }
+
+    @Override
+    public ServerResponse setMessageStatus(Integer userId, Integer source) {
+        boolean result = silentMapper.setMessageStatus(userId,source)>=0;
+        if(!result){
+            return ServerResponse.createByErrorMessage("设置消息已读状态失败");
+        }
+        return ServerResponse.createBySuccessMessage("设置消息已读状态成功");
     }
 }

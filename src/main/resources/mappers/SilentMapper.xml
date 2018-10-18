@@ -263,4 +263,56 @@
     ORDER BY num DESC
   	LIMIT #{num}
   </select>
+  
+  <!-- 客服模块 -->
+  <select id="selectNewMessageNum" resultType="Integer">
+    SELECT COUNT(1)
+    FROM tb_chat_message
+    WHERE user_id = #{userId}
+    AND source = 2
+    AND status = 0
+  </select>
+
+  <select id="selectAllMessage" resultType="org.xgun.kissolive.pojo.ChatMessage">
+    SELECT *
+    FROM tb_chat_message
+    WHERE user_id = #{userId}
+    <if test="status != null">
+    AND status = #{status}
+    </if>
+    <if test="source != null">
+      AND source  = #{source}
+    </if>
+    ORDER BY updatetime ASC
+  </select>
+  
+  <insert id="sendingNewMessage" parameterType="org.xgun.kissolive.pojo.ChatMessage">
+    INSERT INTO tb_chat_message(message, status, user_id, source, updatetime)
+    VALUES (#{message,jdbcType=VARCHAR}, 0, #{userId,jdbcType=INTEGER},
+            #{source,jdbcType=INTEGER}, now())
+  </insert>
+
+  <update id="setMessageStatus">
+    UPDATE tb_chat_message
+    SET status = 1
+    WHERE user_id = #{userId}
+    AND source = #{source}
+    AND status = 0
+  </update>
+
+  <select id="getChatUserList" resultType="org.xgun.kissolive.vo.ChatUserList">
+    SELECT cm.user_id 'userId', u.username 'name', u.img_url 'imgUrl' , COUNT(IF(cm.status=0,true,null)) as num
+    FROM tb_chat_message cm
+    LEFT JOIN tb_user u ON u.id = cm.user_id
+    WHERE cm.source = 1
+    GROUP BY cm.user_id
+    ORDER BY num DESC,updatetime
+  </select>
+
+  <delete id="deleteMessage">
+    DELETE FROM tb_chat_message
+    WHERE status = 1
+    AND updatetime &lt; #{updatetime,jdbcType=TIMESTAMP}
+  </delete>
+
 </mapper>

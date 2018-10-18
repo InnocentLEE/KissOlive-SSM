@@ -3,6 +3,7 @@ package org.xgun.kissolive.service;
 import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.pojo.Activity;
 import org.xgun.kissolive.pojo.Card;
+import org.xgun.kissolive.pojo.ChatMessage;
 
 import java.math.BigDecimal;
 
@@ -44,4 +45,14 @@ public interface ISilentService {
     ServerResponse getProductionCardRank(Integer num);
 
     ServerResponse getProductionBrowseRank(Integer num);
+
+    ServerResponse getNewMessageNumByUser(Integer userId);
+
+    ServerResponse getChatAllMessage(Integer userId,  Integer type);
+
+    ServerResponse sendingNewMessage(ChatMessage chatMessage);
+
+    ServerResponse getMessageUserList();
+
+    ServerResponse setMessageStatus(Integer userId, Integer source);
 }

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<link rel="stylesheet" href="../../css/admin/bootstrap.min.css" />
+<link rel="stylesheet" href="../../css/admin/fontawesome-all.css" />
+<link rel="stylesheet" href="../../css/user/OnlineConsilt.css" />
+<link rel="stylesheet" href="../../css/user/OnlineConsiltbase.css" />
+<link rel="stylesheet" href="../../css/user/jquery.sinaEmotion.css" />
+<link rel="stylesheet" href="../../css/user/user_lips.css" />
+<style>
+    .tab-pane{
+        position: relative;
+        z-index: 1000;
+        overflow: hidden;
+        min-width: 280px;
+        background: #fafafa;
+        top: 0;
+        left: 0;
+        height: 100%;
+    }
+    .row{
+        height: 100%;
+    }
+    .chat-content{
+        height: 100%;
+    }
+</style>
+<body>
+<div class="container" style="width: 800px; height: 600px; background-color: #FAF2CC;margin: 0;">
+    <div class="row" style="height: 100%;">
+        <div id="chatlist" class="col-xs-4 tab-list" style="background-color: #87CEFA; padding: 0;height: 100%;overflow: scroll;white-space: nowrap;font-size: 18px;">
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation"  v-for="user in userlist">
+                    <a :href="'#U'+user.userId" data-toggle="pill" onclick="build_chatDIV(this)">{{user.name}}<span class="badge">{{user.num}}</span></a>
+                </li>
+            </ul>
+<!--            <ul class="nav nav-pills nav-stacked" >
+                <li role="presentation">
+                    <a href="#user1" data-toggle="pill">Home<span class="badge">5</span></a>
+                </li>
+            </ul>-->
+        </div>
+        <div id="myTabContent"class="col-xs-8 tab-content " style="padding: 0;background-color: #FFFFFF;height: 100%;">
+            <div id="tab-pane" class="tab-pane fade " id="U1" >
+                <div id="chat-content" style="max-height: 500px ">
+<!--                    <div class='clearfloat'>
+                        <div class='time-column'>
+                            <small class='chat-date'>2015-06-08 16:00</small>
+                        </div>
+                        <div class='left'>
+                            <div class='chat-nickname'>Olive小姐</div>
+                            <div class='chat-avatars'><img src="../../img/user/user_prointro/missolive.png" alt=""></div>
+                            <div class='chat-message'>请在此留言，我们的咨询顾问将在最快时间内直接回复您。</div>
+                        </div>
+                    </div>
+                    <div class='clearfloat'>
+                        <div class='time-column'>
+                            <small class='chat-date'>2015-06-08 16:01</small>
+                        </div>
+                        <div class='right'>
+                            <div class='chat-nickname'>我</div>
+                            <div class='chat-message'>这个口红最近有什么促销活动吗？</div>
+                        </div>
+                    </div>-->
+                </div>
+                <div id="msgpanel">
+                    <textarea autoHeight="true" class="chatinput emotion" id="chatinput" placeholder="输入回复信息.."></textarea>
+                    <div class="tools-box">
+                        <span class="face-icon tool-icon" id="face">☺</span>
+                        <span class="fa fa-paper-plane tool-icon" id="analytic" onclick="out()"></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<!--GvG test-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.js"></script>
+<script type="application/javascript" src="http://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/user/prefixfree.min.js"></script>
+<script type="text/javascript" src="../../js/user/Consultcommon.js"></script>
+<script type="text/javascript" src="../../js/user/jquery.sinaEmotion.js"></script>
+<script type="text/javascript" src="../../js/vue.js"></script>
+<script type="text/javascript" src="../../js/admin/chat.js"></script>
+<script type="text/javascript">
+    // 绑定表情
+    $('#face').SinaEmotion($('.emotion'));
+    $(function() {
+        $.fn.autoHeight = function() {
+            function autoHeight(elem) {
+                elem.style.height = 'auto';
+                //elem.scrollTop = 0; //防抖动
+                elem.style.height = elem.scrollHeight + 'px';
+            }
+            this.each(function() {
+                autoHeight(this);
+                $(this).on('keyup', function() {
+                    autoHeight(this);
+                });
+            });
+        }
+/*        $('textarea[autoHeight]').autoHeight();*/
+    })
+</script>
+</html>
