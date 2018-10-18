@@ -15,4 +15,5 @@ public interface IUserService {
     ServerResponse getInfo(int userid);
     ServerResponse getAddressList(int userid);
     ServerResponse updateUsername(User user);
+    ServerResponse addAddress(Address address);
 }

@@ -87,4 +87,13 @@ public class UserServiceImpl implements IUserService {
         else
             return ServerResponse.createByErrorMessage("修改失败");
     }
+
+    @Override
+    public ServerResponse addAddress(Address address){
+        int result = innocentMapper.insertAddress(address);
+        if(result > 0)
+            return ServerResponse.createBySuccessMessage("添加地址成功");
+        else
+            return ServerResponse.createByErrorMessage("添加地址失败");
+    }
 }

@@ -193,4 +193,28 @@ public class UserController {
         }
         return response;
     }
+
+    /**
+     * 新增收货地址
+     * @param session
+     * @param province
+     * @param city
+     * @param district
+     * @param detail
+     * @param consignee
+     * @param telphone
+     * @return
+     */
+    @RequestMapping(value = "add_address.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse addAddress(HttpSession session,@RequestParam(value = "address_province")String province,
+                                     @RequestParam(value = "address_city")String city, @RequestParam(value = "address_district")String district,
+                                     @RequestParam(value = "address_detail")String detail, @RequestParam(value = "address_consignee")String consignee,
+                                     @RequestParam(value = "address_telphone")String telphone){
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        if(user==null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"还没登录，请先登录");
+        Address address = new Address(0,user.getId(),province,city,district,detail,null,consignee,telphone);
+        return iUserService.addAddress(address);
+    }
 }
