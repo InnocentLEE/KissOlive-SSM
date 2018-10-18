@@ -1,15 +1,15 @@
 package org.xgun.kissolive.controller;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.pojo.Activity;
 import org.xgun.kissolive.pojo.Card;
+import org.xgun.kissolive.pojo.ChatMessage;
 import org.xgun.kissolive.service.ISilentService;
 import org.xgun.kissolive.utils.FTPSSMLoad;
 import org.xgun.kissolive.vo.CardInfo;
@@ -406,5 +406,91 @@ public class SilentController {
         }
 
         return iSilentService.getProductionBrowseRank(num);
+    }
+
+
+    /*客服模块*/
+
+    /**
+     * 提示用户 信息未读数量
+     * @param userId
+     * @return num 新消息数量
+     */
+    @RequestMapping(value = "/chat/get_NewMessageNum/{userId}", method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse getNewMessageNum(@PathVariable(value = "userId")Integer userId){
+        if(userId == null){
+            return ServerResponse.createByErrorMessage("参数错误");
+        }
+        return iSilentService.getNewMessageNumByUser(userId);
+    }
+
+    /**
+     * 用户—获取所有历史信息
+     * @param userId
+     * @return
+     */
+    @RequestMapping(value = "/chat/user/get_AllMessage/{userId}", method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse getAllMessageByUser(@PathVariable(value = "userId")Integer userId){
+        if(userId == null){
+            return ServerResponse.createByErrorMessage("参数错误");
+        }
+        try {
+            return iSilentService.getChatAllMessage(userId, 2);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ServerResponse.createByErrorMessage("获取失败");
+        }
+    }
+
+    /**
+     * 管理员-获取该用户的所有历史信息
+     * @param userId
+     * @return
+     */
+    @RequestMapping(value = "/chat/admin/get_AllMessage/{userId}", method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse getAllMessageByAdmin(@PathVariable(value = "userId")Integer userId){
+        if(userId == null){
+            return ServerResponse.createByErrorMessage("参数错误");
+        }
+        try {
+            return iSilentService.getChatAllMessage(userId, 1);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ServerResponse.createByErrorMessage("获取失败");
+        }
+    }
+
+    /**
+     * 管理员端获取需要处理的用户消息列表
+     * @return
+     */
+    @RequestMapping(value = "/chat/admin/get_userList.do", method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse getUserList(){
+        //获取userId
+        //验证管理员权限
+
+        //获取用户信息列表
+        return iSilentService.getMessageUserList();
+    }
+
+    /**
+     * 设置消息已读
+     * @param userId
+     * @param source 1为用户消息，2为管理员消息
+     * @return
+     */
+    @RequestMapping(value = "/chat/update_MessageStatus/{userId}/{source}", method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse setMessageStatus(@PathVariable(value = "userId")Integer userId,
+                                           @PathVariable(value = "source")Integer source){
+        if( source != 1 && source != 2){
+            return ServerResponse.createByErrorMessage("设置失败");
+        }
+
+        return iSilentService.setMessageStatus(userId, source);
     }
 }

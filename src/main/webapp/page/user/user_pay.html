@@ -24,29 +24,35 @@
 <div class="header-main-bar">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container header">
-            <div class="navbar-header">
-                <ul class="nav navbar-nav navbar-left ">
+            <div class="navbar-header" id="head">
+
+                <ul class="nav navbar-nav navbar-left" v-if="loginflag==0">
                     <li id="li_login">
                         <a href="#" class="navbar-brand">登录</a>
                     </li>
                     <li>
-                        <a href="user_register.jsp" class="navbar-brand">注册</a>
+                        <a href="#" class="navbar-brand">注册</a>
                     </li>
-
-                    <!--<li>
-                        <a href="" class="navbar-brand"><img class="img-circle user-head-image" src="../../images/yadianna.png"></img></a>
-                    </li>
-                    <li>
-                        <a href="" class="navbar-brand">星矢</a>
-                    </li>
-                    <li><a
-                        href=""
-                        class="navbar-brand">[退出]</a></li>-->
                     <!-- 响应式布局按钮-下拉框 -->
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
                         <span class="icon-bar"></span> <span class="icon-bar"></span>
                     </button>
                 </ul>
+
+                <ul class="nav navbar-nav navbar-left" v-else>
+                    <li>
+                        <a href="" class="navbar-brand"><img class="img-circle user-head-image" :src="user.imgUrl"></img></a>
+                    </li>
+                    <li>
+                        <a href="info" class="navbar-brand">{{user.username}}</a>
+                    </li>
+                    <li><a href="" class="navbar-brand" onclick="logout()">[退出]</a></li>
+                    <!-- 响应式布局按钮-下拉框 -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    </button>
+                </ul>
+
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right" style="margin: 0">
@@ -279,6 +285,7 @@
 
 <script type="text/javascript" src="../../js/jquery.js"></script>
 <script type="text/javascript" src="../../js/vue.js"></script>
+<script type="text/javascript" src="../../js/user/user_home.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../../js/jquery.cityselect.js"></script>
 <script type="text/javascript" src="../../js/shoppingcart.js"></script>

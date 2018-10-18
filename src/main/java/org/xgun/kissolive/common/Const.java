@@ -7,6 +7,7 @@ public class Const {
     public static final String VERIFY_CODE = "verifyCode";//验证码
     public static final String PHONE_NUMBER = "phoneNumber";//手机
     public static final String CURRENT_USER = "current_user";
+    public static final String USER_IMG_URL_DEFAULT = "http://119.23.253.135:9090/kissolive/default.png";
 
     public static final String FTP_SERVER_IP = "119.23.253.135";//ftp服务器ip地址
     public static final String FTP_USERNAME = "innocent";//ftp服务器用户名

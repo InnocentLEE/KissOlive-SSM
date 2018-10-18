@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.mybatis.spring.annotation.MapperScan;
 
@@ -57,4 +58,30 @@ public class Zqu004Application {
 	String pay(){
 		return "page/user/user_pay.html";
 	}
+
+    @RequestMapping("/info")
+    String info(){
+        return "page/user/userinfo.html";
+    }
+
+	@RequestMapping("/production_detail")
+	String productionDetail(){
+		return "page/user/user_productiondetail.html";
+	}
+
+	@RequestMapping("/order_detail")
+	String orderDetail(){
+		return "page/user/user_detailorder.html";
+	}
+
+	@RequestMapping("/pay_success")
+	String paySuccess(){
+		return "page/user/user_successed.html";
+	}
+
+	@RequestMapping("/order_list")
+	String orderList(){
+		return "page/user/user_orderlist.html";
+	}
+
 }

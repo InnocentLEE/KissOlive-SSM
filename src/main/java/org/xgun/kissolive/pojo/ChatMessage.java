@@ -1,5 +1,8 @@
 package org.xgun.kissolive.pojo;
 
+import org.xgun.kissolive.utils.DateTimeUtil;
+import org.xgun.kissolive.utils.DateUtil;
+
 import java.util.Date;
 
 public class ChatMessage {
@@ -68,8 +71,8 @@ public class ChatMessage {
         this.source = source;
     }
 
-    public Date getUpdatetime() {
-        return updatetime;
+    public String getUpdatetime() {
+        return DateTimeUtil.dateToStr(this.updatetime,"yyyy-MM-dd hh:mm:ss");
     }
 
     public void setUpdatetime(Date updatetime) {

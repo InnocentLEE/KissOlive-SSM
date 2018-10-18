@@ -1,12 +1,10 @@
 package org.xgun.kissolive.dao;
 
 import org.apache.ibatis.annotations.Param;
-import org.xgun.kissolive.pojo.Activity;
-import org.xgun.kissolive.pojo.ActivityGoods;
-import org.xgun.kissolive.pojo.Card;
-import org.xgun.kissolive.pojo.VipLevel;
+import org.xgun.kissolive.pojo.*;
 import org.xgun.kissolive.vo.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -91,4 +89,24 @@ public interface SilentMapper {
 
     //获取浏览量前几的产品
     List<ProductionNum> selectPBrowseByRank(@Param("num")Integer num);
+
+    /* 客服模块 */
+    //用户获取客服回复信息的未读数量
+    Integer selectNewMessageNum(@Param("userId")Integer userId);
+
+    //获取所有对话信息
+    List<ChatMessage> selectAllMessage(@Param("userId")Integer userId, @Param("status")Integer status,
+                                       @Param("source")Integer source);
+
+    //发送新信息
+    int sendingNewMessage(ChatMessage chatMessage);
+
+    //设置消息已读
+    int setMessageStatus(@Param("userId")Integer userId, @Param("source")Integer source);
+
+    //获取客服用户列表信息
+    List<ChatUserList> getChatUserList();
+
+    //删除这个日期时间前的所有已读信息
+    int deleteMessage(@Param("updatetime")Date updatetime);
 }

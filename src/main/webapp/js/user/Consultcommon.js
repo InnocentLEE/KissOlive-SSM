@@ -17,6 +17,7 @@ function openCart() {
         $(".shop_cart").addClass("bg")
 }
 function openBar() {
+    connect();
     toolbar.hasClass("open") || (toolbar.addClass("open"),
         $("#shop_cart .lazyload").removeClass("hidden").find("img").trigger("appear"),
         $(".global_toolbar").removeClass("default"),
@@ -28,6 +29,7 @@ function openBar() {
         $(".toolbar_btn").removeClass("default")
 }
 function closeBar() {
+    disconnect();
     $(".toolbar_btn a").removeClass("current"),
         toolbar.removeClass("open"),
         $(".toolbar_btn").removeClass("default")
@@ -83,7 +85,7 @@ $(function() {
             AllUpdateOrderShoppingCar()
         }),
         $(window).resize(function() {
-            autoShopcartH()
+            autoShopcartH();
         }),
         $(".compare_table tr:odd").addClass("gray_bg"),
         $(".compare_table tr td:last-child").addClass("last");
@@ -182,6 +184,170 @@ $(function() {
             closeBar()
         })
 });
+
+//WebSocket
+$(function () {
+    //判断是否登录
+    //if(login) {
+    //  connect();
+    //}
+})
+var stompClient;
+function connect() {
+    var socket = new SockJS("/endpointChat");
+    stompClient = Stomp.over(socket);
+    stompClient.connect(
+        {
+            name: "1"//userId
+        },
+        function connectCallback(frame){
+            console.log("link success!"),
+            //获取历史信息
+            $.ajax({
+                type:'get',
+                url:'http://localhost:8080/chat/user/get_AllMessage/'+'1',//userId
+                cache: false,
+                dataType:'json',
+                success: function(data) {
+                    if(data.status === 0) {
+                        console.log("获取历史消息成功");
+                        //将数据渲染聊天框
+
+                        for ( var i in data.data ){
+                            if(data.data[i].source === 1) {
+                                $("#chat-content").append("" +
+                                    "<div class='clearfloat'>" +
+                                    "   <div class='time-column'>" +
+                                    "       <small class='chat-date'>" +data.data[i].updatetime+ "</small>" +
+                                    "   </div>" +
+                                    "   <div class='right'>" +
+                                    "       <div class='chat-nickname'> 我 </div>" +
+                                    "       <div class='chat-message'>" + AnalyticEmotion(data.data[i].message) + "</div>" +
+                                    "       <div class='chat-avatars'><img src='../../img/user/user_prointro/missolive.png' alt=''></div>" +
+                                    "   </div>" +
+                                    "</div>");
+                            }else if(data.data[i].source === 2){
+                                $("#chat-content").append("" +
+                                    "<div class='clearfloat'>" +
+                                    "   <div class='time-column'>" +
+                                    "       <small class='chat-date'>" +data.data[i].updatetime+ "</small>" +
+                                    "   </div>" +
+                                    "   <div class='left'>" +
+                                    "       <div class='chat-nickname'> KissOlive客服 </div>" +
+                                    "       <div class='chat-avatars'><img src='../../img/user/user_prointro/missolive.png' alt=''></div>" +
+                                    "       <div class='chat-message'>" + AnalyticEmotion(data.data[i].message) + "</div>" +
+                                    "   </div>" +
+                                    "</div>");
+                            }
+                        }
+                        var chatC = document.getElementById("chat-content");
+                        chatC.scrollTop = chatC.scrollHeight;
+                    }
+                },
+                error:function(){
+                    console.log("获取历史消息错误！")
+                }
+            });
+            //链接成功后订阅通信
+            stompClient.subscribe("/user/topic/message",function(data) {
+                console.log("收到信息"+data.body);
+                //收到信息判断：
+                var message = $.parseJSON(data.body);
+                if( message.type === 2) //为管理员发来信息
+                {
+                    showMessage(message);
+                    var chatC = document.getElementById("chat-content");
+                    chatC.scrollTop = chatC.scrollHeight;
+                    $.ajax({
+                        type:'get',
+                        url:'http://localhost:8080/chat/update_MessageStatus/'+message.to+'/2',
+                        cache: false,
+                        dataType:'json',
+                        success: function(data) {
+                            if(data.status==0) {
+                                console.log("设置已读成功");
+                            }
+                        },
+                        error:function(){
+                            console.log("客服获取用户列表错误！")
+                        }
+                    });
+                }
+            })
+            },
+        function errorCallBack(response){console.log("link error!");}
+    );
+}
+
+function disconnect() {
+    stompClient.disconnect(
+        function(){
+            console.log("已断开链接");
+        });
+}
+
+
+function showMessage(data) {
+    console.log("收到信息已显示");
+    if (data.type === 1 ) {
+        $("#chat-content").append("" +
+            "<div class='clearfloat'>" +
+            "   <div class='time-column'>" +
+            "       <small class='chat-date'>" + data.datetime + "</small>" +
+            "   </div>" +
+            "   <div class='right'>" +
+            "       <div class='chat-nickname'>" + "我" + "</div>" +
+            "       <div class='chat-message'>" + AnalyticEmotion(data.message) + "</div>" +
+            "       <div class='chat-avatars'><img src='../../img/user/user_prointro/missolive.png' alt=''></div>" +
+            "       <div class='chat-avatars'></div>" +
+            "   </div>" +
+            "</div>");
+    } else {
+        $("#chat-content").append("" +
+            "<div class='clearfloat'>" +
+            "   <div class='time-column'>" +
+            "       <small class='chat-date'>" + data.datetime + "</small>" +
+            "   </div>" +
+            "   <div class='left'>" +
+            "       <div class='chat-nickname'>" + "KissOlive客服" + "</div>" +
+            "       <div class='chat-avatars'><img src='../../img/user/user_prointro/missolive.png' alt=''></div>" +
+            "       <div class='chat-message'>" + AnalyticEmotion(data.message) + "</div>" +
+            "   </div>" +
+            "</div>");
+    }
+};
+
+function currentTime() {
+    var d = new Date(),
+        str = '';
+    str += d.getFullYear() + '-';
+    var month = d.getMonth()+1;
+    if(month < 10){
+        str += '0'+month + '-';
+    }else{
+        str += month +'-';
+    }
+    var date = d.getDate();
+    if(date < 10){
+        str += '0'+date + ' ';
+    }else{
+        str += date +' ';
+    }
+    if( d.getHours() < 10){
+        str += '0'+d.getHours()+':'
+    }else
+        str += d.getHours() + ':';
+    if( d.getMinutes() < 10){
+        str += '0'+d.getMinutes()+':'
+    }else
+        str += d.getMinutes() + ':';
+    if( d.getSeconds() < 10){
+        str += '0'+d.getSeconds()+''
+    }else
+        str += d.getSeconds() + '';
+    return str;
+}
+
 
 //聊天室
 //$(function () {

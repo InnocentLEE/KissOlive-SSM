@@ -85,7 +85,10 @@ function checkform(){
             async:false,//是否异步请求，如果是异步，那么不会等服务器返回，这个函数就向下运行了。
             cache:false,
             success:function(result) {
-                  alert(result.msg);
+                  if(result.status==0){
+                      alert(result.msg+"  跳转到首页");
+                      window.location.href = "http://localhost:8080/home";
+                  }
             }
         });
     }

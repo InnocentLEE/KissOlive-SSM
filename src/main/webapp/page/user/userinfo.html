@@ -1,442 +1,335 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 
-	<head>
+<head>
 
-		<title>Kiss OLive 个人资料</title>
+    <title>Kiss OLive 个人资料</title>
 
-		<meta http-equiv="pragma" content="no-cache">
-		<meta http-equiv="cache-control" content="no-cache">
-		<meta http-equiv="expires" content="0">
-		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-		<meta http-equiv="description" content="This is my page">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="This is my page">
 
-		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-		<link rel="stylesheet" href="../../css/bootstrap.min.css">
-		<link rel="stylesheet" href="../../css/admin/fontawesome-all.css">
-		<link rel="stylesheet" href="../../css/user/home.css">
-		<link rel="stylesheet" href="../../css/user/userinfo.css">
-		<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/admin/fontawesome-all.css">
+    <link rel="stylesheet" href="../../css/user/home.css">
+    <link rel="stylesheet" href="../../css/user/userinfo.css">
+    <!--
+<link rel="stylesheet" type="text/css" href="styles.css">
+-->
 
-	</head>
+</head>
 
-	<body>
-		<!-- start of 头部 -->
-		<div class="header-main-bar">
-			<nav class="navbar navbar-default navbar-fixed-top">
-				<div class="container header">
-					<div class="navbar-header">
-						<ul class="nav navbar-nav navbar-left ">
-							<!--<li id="li_login">
-								<a href="#" class="navbar-brand">登录</a>
-							</li>
-							<li>
-								<a href="#" class="navbar-brand">注册</a>
-							</li>-->
+<body>
+<!-- start of 头部 -->
+<div class="header-main-bar">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container header">
+            <div class="navbar-header" id="head">
 
-							<li>
-								<a href="" class="navbar-brand"><img class="img-circle user-head-image" src="../../images/yadianna.png"></img>
-								</a>
-							</li>
-							<li>
-								<a href="" class="navbar-brand">星矢</a>
-							</li>
-							<li>
-								<a href="" class="navbar-brand">[退出]</a>
-							</li>
-							<!-- 响应式布局按钮-下拉框 -->
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-								<span class="icon-bar"></span> <span class="icon-bar"></span>
-							</button>
-						</ul>
-					</div>
-					<div class="collapse navbar-collapse" id="navbar-collapse">
-						<ul class="nav navbar-nav navbar-right" style="margin: 0">
-							<li>
-								<a href="user_myshoppingcart.html"><span class="glyphicon glyphicon-shopping-cart">&nbsp;<span>我的购物车</span></span>
-								</a>
-							</li>
-							<li>
-								<a href="user_orderlist.html"><span class="glyphicon glyphicon-list">&nbsp;<span>我的订单</span></span>
-								</a>
-							</li>
+                <ul class="nav navbar-nav navbar-left" v-if="loginflag==0">
+                    <li id="li_login">
+                        <a href="#" class="navbar-brand">登录</a>
+                    </li>
+                    <li>
+                        <a href="#" class="navbar-brand">注册</a>
+                    </li>
+                    <!-- 响应式布局按钮-下拉框 -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    </button>
+                </ul>
 
-						</ul>
-					</div>
+                <ul class="nav navbar-nav navbar-left" v-else>
+                    <li>
+                        <a href="" class="navbar-brand"><img class="img-circle user-head-image"
+                                                             :src="user.imgUrl"></img></a>
+                    </li>
+                    <li>
+                        <a href="info" class="navbar-brand">{{user.username}}</a>
+                    </li>
+                    <li><a href="" class="navbar-brand" onclick="logout()">[退出]</a></li>
+                    <!-- 响应式布局按钮-下拉框 -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    </button>
+                </ul>
 
-				</div>
-			</nav>
-			<div class="main-bar-content">
-				<div class="header-logo row">
-					<div class="col-md-4 col-lg-4"></div>
-					<div class="col-md-4 col-lg-4">
-						<a href="user_home.html"><img src="../../img/kissolive.png" class="icon-olive" /></a>
-					</div>
-					<div class="col-md-4 col-lg-4">
-						<form action="/KissOlive/MainServlet" method="post">
-							<input type="hidden" name="method" value="search" />
-							<div class="nav-search">
-								<div class="input-group">
-									<input type="text" class="form-control" name="search" placeholder="Search for..."> <span class="input-group-btn">
-									<button class="btn btn-default glyphicon glyphicon-search"
-										type="submit"></button>
-								</span>
-								</div>
-								<!-- /input-group -->
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-			<!-- end of main-bar-content -->
-		</div>
-		<!-- end of 头部 -->
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right" style="margin: 0">
+                    <li>
+                        <a href="myshoppingcart"><span
+                                class="glyphicon glyphicon-shopping-cart">&nbsp;<span>我的购物袋</span></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orderlist"><span
+                                class="glyphicon glyphicon-list">&nbsp;<span>我的订单</span></span>
+                        </a>
+                    </li>
 
-		<!-- start of 内容 -->
-		<div class="container content">
-			<div class="line"><span class="header">个人资料</span></div>
-			<div class="part1">
-				<div style="float:left;">
-					<img class="img-circle detail-image" src="../../images/yadianna.png"></img>
-				</div>
-				<div class="pp-father">
-					<div class="pp">
-						<div class="qq" id="update_username">
-							<p>用户名：星矢&nbsp;&nbsp;&nbsp;<img src="../../img/user/user_prointro/V6.png" class="user_level"></p>
-							<button class="btn btn-link update" type="button" id="update">修改</button>
-						</div>
+                </ul>
+            </div>
 
-						<!-- 修改用户名  -->
-						<div class="editname" style="display:none">
-							<form class="edit1" action="#" method="post">
-								<input type="hidden" name="method" value="updateUsername"> 用户名：
-								<input class="edit-name form-control" id="username" name="username" />
-								<button class="btn save" type="button">保存</button>&nbsp;&nbsp;&nbsp;
-								<button class="btn save" type="button" onclick="cancel()">取消</button>
-							</form>
-						</div>
-						<!-- 修改用户名  -->
+        </div>
+    </nav>
+    <div class="main-bar-content">
+        <div class="header-logo row">
+            <div class="col-md-4 col-lg-4"></div>
+            <div class="col-md-4 col-lg-4">
+                <a href="home"><img src="../../img/kissolive.png" class="icon-olive"/></a>
+            </div>
+            <div class="col-md-4 col-lg-4" id="search">
+                <form :action="'search?search='+search" method="get">
+                    <div class="nav-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="search" placeholder="Search for..."
+                                   v-model="search">
+                            <span class="input-group-btn">
+								<a class="btn btn-default glyphicon glyphicon-search"
+                                   :href="'search?search='+search"></a>
+							</span>
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-					</div>
-					<div class="pp">
-						<div class="qq">
-							<p>绑定手机号：17876253477</p>
-							<button class="btn btn-link update_phone" type="button">更换手机号</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="part2">
-				<p id="pick">收货地址</p>
+    <!-- end of main-bar-content -->
+</div>
+<!-- end of 头部 -->
 
-				<div class="addr" id="addr1">
-					<ul>
-						<li>收件人：圣斗士星矢</li>
-						<li>联系方式：17876253477</li>
-						<li>收货地址：广东省肇庆市端州区肇庆学院主校区</li>
-						<li><button class="btn defalut cancel addr_update" type="button" onclick="editaddr(1)">修改</button></li>
-					</ul>					
-				</div>	
-				<div class="div_edit_addr" style="display:none" id="editaddr1">
-						<form action="">
-							<input type="hidden" name="method" value="addAddress">
-							<ul class="addr add">
-								<li>收件人：
-									<input type="text" id="name" name="name" class="form-control inputClass " placeholder="请输入收件人姓名" value="圣斗士星矢"/>
-									<label class="errorClass" id="nameError"></label>
-									<label class="correctClass" id="nameCorrect"></label>
-								</li>
-								<li>联系方式：
-									<input type="text" id="tel" name="tel" class="form-control inputClass " placeholder="请输入联系方式" value="17876253477"/>
-									<label class="errorClass" id="telError"></label>
-									<label class="correctClass" id="telCorrect"></label>
-								</li>
-								<li>收货地址：
-									<div class="addr_choice">
-										<select class="prov" id="province" name="province"></select>
-										<select class="city" id="city" name="city" disabled="disabled"></select>
-										<select class="dist" id="district" name="district" disabled="disabled"></select>
-									</div>
-								</li>
-								<li>详细地址：
-									<input type="text" class="inputClass form-control " id="detail" name="detail" placeholder="请输入详细地址" value="广东省肇庆市端州区肇庆学院主校区"/>
-									<label class="errorClass" id="detailError"></label>
-									<label class="correctClass" id="detailCorrect"></label>
-								</li>
-							</ul>
-							<div class="btn_save_addr">
-								<button type="button" class="save_addr" onclick="canceladdr(1)">取消修改</button>&nbsp;&nbsp;&nbsp;
-								<button type="button" class="save_addr">保存地址</button>				
-								<div class="clearfix"></div>
-							</div>
-						</form>
-				</div>
-				
-				
-				<div class="addr" id="addr2">
-					<ul>
-						<li>收件人：护弟狂魔-一辉</li>
-						<li>联系方式：17876253477</li>
-						<li>收货地址：广东省肇庆市端州区肇庆学院主校区</li>
-						<li><button class="btn defalut cancel addr_update" type="button" onclick="editaddr(2)">修改</button></li>
-					</ul>					
-				</div>
-				<div class="div_edit_addr" style="display:none" id="editaddr2">
-						<form action="">
-							<input type="hidden" name="method" value="addAddress">
-							<ul class="addr add">
-								<li>收件人：
-									<input type="text" id="name" name="name" class="form-control inputClass " placeholder="请输入收件人姓名" />
-									<label class="errorClass" id="nameError"></label>
-									<label class="correctClass" id="nameCorrect"></label>
-								</li>
-								<li>联系方式：
-									<input type="text" id="tel" name="tel" class="form-control inputClass " placeholder="请输入联系方式" />
-									<label class="errorClass" id="telError"></label>
-									<label class="correctClass" id="telCorrect"></label>
-								</li>
-								<li>收货地址：
-									<div class="addr_choice">
-										<select class="prov" id="province" name="province"></select>
-										<select class="city" id="city" name="city" disabled="disabled"></select>
-										<select class="dist" id="district" name="district" disabled="disabled"></select>
-									</div>
-								</li>
-								<li>详细地址：
-									<input type="text" class="inputClass form-control " id="detail" name="detail" placeholder="请输入详细地址" />
-									<label class="errorClass" id="detailError"></label>
-									<label class="correctClass" id="detailCorrect"></label>
-								</li>
-							</ul>
-							<div class="btn_save_addr">
-								<button type="button" class="save_addr" onclick="canceladdr(2)">取消修改</button>&nbsp;&nbsp;&nbsp;
-								<button type="button" class="save_addr">保存地址</button>				
-								<div class="clearfix"></div>
-							</div>
-						</form>
-				</div>
-				
-				<div class="addr" id="addr3">
-					<ul>
-						<li>收件人：脱衣Buff-紫龙</li>
-						<li>联系方式：17876253477</li>
-						<li>收货地址：广东省肇庆市端州区肇庆学院主校区</li>
-						<li><button class="btn defalut cancel addr_update" type="button" onclick="editaddr(3)">修改</button></li>
-					</ul>					
-				</div>
-				<div class="div_edit_addr" style="display:none" id="editaddr3">
-						<form action="">
-							<input type="hidden" name="method" value="addAddress">
-							<ul class="addr add">
-								<li>收件人：
-									<input type="text" id="name" name="name" class="form-control inputClass " placeholder="请输入收件人姓名" />
-									<label class="errorClass" id="nameError"></label>
-									<label class="correctClass" id="nameCorrect"></label>
-								</li>
-								<li>联系方式：
-									<input type="text" id="tel" name="tel" class="form-control inputClass " placeholder="请输入联系方式" />
-									<label class="errorClass" id="telError"></label>
-									<label class="correctClass" id="telCorrect"></label>
-								</li>
-								<li>收货地址：
-									<div class="addr_choice">
-										<select class="prov" id="province" name="province"></select>
-										<select class="city" id="city" name="city" disabled="disabled"></select>
-										<select class="dist" id="district" name="district" disabled="disabled"></select>
-									</div>
-								</li>
-								<li>详细地址：
-									<input type="text" class="inputClass form-control " id="detail" name="detail" placeholder="请输入详细地址" />
-									<label class="errorClass" id="detailError"></label>
-									<label class="correctClass" id="detailCorrect"></label>
-								</li>
-							</ul>
-							<div class="btn_save_addr">
-								<button type="button" class="save_addr" onclick="canceladdr(3)">取消修改</button>&nbsp;&nbsp;&nbsp;
-								<button type="button" class="save_addr">保存地址</button>				
-								<div class="clearfix"></div>
-							</div>
-						</form>
-				</div>
-				
+<!-- start of 内容 -->
+<div class="container content">
+    <div class="line"><span class="header">个人资料</span></div>
+    <div class="part1">
+        <div style="float:left;">
+            <img class="img-circle detail-image" src="../../images/yadianna.png"></img>
+        </div>
+        <div class="pp-father">
+            <div class="pp">
+                <div class="qq" id="update_username">
+                    <p>用户名：星矢&nbsp;&nbsp;&nbsp;<img src="../../img/user/user_prointro/V6.png" class="user_level"></p>
+                    <button class="btn btn-link update" type="button" id="update">修改</button>
+                </div>
 
-				<div class="btn_add_addr"><button class="add_addr" type="button">新增地址</button>
-					<div class="clearfix"></div>
-				</div>
+                <!-- 修改用户名  -->
+                <div class="editname" style="display:none">
+                    <form class="edit1" action="#" method="post">
+                        <input type="hidden" name="method" value="updateUsername"> 用户名：
+                        <input class="edit-name form-control" id="username" name="username"/>
+                        <button class="btn save" type="button">保存</button>&nbsp;&nbsp;&nbsp;
+                        <button class="btn save" type="button" onclick="cancel()">取消</button>
+                    </form>
+                </div>
+                <!-- 修改用户名  -->
 
-				<!-- 新增地址div -->
-				<div class="div_add_addr" style="display:none">
-					<form action="/KissOlive/servlet/UserServlet">
-						<input type="hidden" name="method" value="addAddress">
-						<ul class="addr add">
-							<li>收件人：
-								<input type="text" id="name" name="name" class="form-control inputClass " placeholder="请输入收件人姓名" />
-								<label class="errorClass" id="nameError"></label>
-								<label class="correctClass" id="nameCorrect"></label>
-							</li>
-							<li>联系方式：
-								<input type="text" id="tel" name="tel" class="form-control inputClass " placeholder="请输入联系方式" />
-								<label class="errorClass" id="telError"></label>
-								<label class="correctClass" id="telCorrect"></label>
-							</li>
-							<li>收货地址：
-								<div class="addr_choice">
-									<select class="prov" id="province" name="province"></select>
-									<select class="city" id="city" name="city" disabled="disabled"></select>
-									<select class="dist" id="district" name="district" disabled="disabled"></select>
-								</div>
-							</li>
-							<li>详细地址：
-								<input type="text" class="inputClass form-control " id="detail" name="detail" placeholder="请输入详细地址" />
-								<label class="errorClass" id="detailError"></label>
-								<label class="correctClass" id="detailCorrect"></label>
-							</li>
-						</ul>
-						<div class="btn_save_addr">
-							<button type="button" class="save_addr" onclick="cancel_add_addr()">取消修改</button>&nbsp;&nbsp;&nbsp;
-							<button type="button" class="save_addr">保存地址</button>				
-							<div class="clearfix"></div>
-							<div class="clearfix"></div>
-						</div>
-					</form>
-				</div>
-				<!-- 新增地址div -->
-			</div>
-		</div>
-		<!-- end of 内容 -->
+            </div>
+            <div class="pp">
+                <div class="qq">
+                    <p>绑定手机号：17876253477</p>
+                    <button class="btn btn-link update_phone" type="button">更换手机号</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="part2" id="addresslist">
+        <p id="pick">收货地址</p>
 
-		<!-- start of 尾部  -->
-		<footer class="contaniner content">
-			<div class="footer-top">
-				<div class="row">
-					<div class="col-md-3">
-						<!-- <span><h6 class="logoname">KISS OLIVE</h6><p>&nbsp;口&nbsp;红&nbsp;热&nbsp;门&nbsp;商&nbsp;城&nbsp;</p></span>
-			           -->
-						<span class="logoname"><img
-					src="../../img/user_home/logo_black.png"></span>
-					</div>
-					<div class="col-md-9">
-						<ul style="display:flex">
+        <div v-for="r in addresslist">
+            <div class="addr" :id="'addr'+r.id">
+                <ul>
+                    <li>收件人：{{r.consignee}}</li>
+                    <li>联系方式：{{r.telphone}}</li>
+                    <li>收货地址：{{r.province}}{{r.city}}{{r.district}}{{r.detail}}</li>
+                    <li>
+                        <button class="btn defalut cancel addr_update" type="button" @click="editaddr(r.id)">修改</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="div_edit_addr" style="display:none" :id="'editaddr'+r.id">
+                <form action="">
+                    <input type="hidden" name="method" value="addAddress">
+                    <ul class="addr add">
+                        <li>收件人：
+                            <input type="text" :id="'editname'+r.id" name="name" class="form-control inputClass "
+                                   placeholder="请输入收件人姓名"
+                                   :value="r.consignee"/>
+                            <label class="errorClass" id="nameError"></label>
+                            <label class="correctClass" id="nameCorrect"></label>
+                        </li>
+                        <li>联系方式：
+                            <input type="text" :id="'edittel'+r.id" name="tel" class="form-control inputClass "
+                                   placeholder="请输入联系方式"
+                                   :value="r.telphone"/>
+                            <label class="errorClass" id="telError"></label>
+                            <label class="correctClass" id="telCorrect"></label>
+                        </li>
+                        <li>收货地址：
+                            <div class="addr_choice">
+                                <select class="prov" :id="'eitdprovince'+r.id" name="province"></select>
+                                <select class="city" :id="'eitdcity'+r.id" name="city" disabled="disabled"></select>
+                                <select class="dist" :id="'eitddistrict'+r.id" name="district" disabled="disabled"></select>
+                            </div>
+                        </li>
+                        <li>详细地址：
+                            <input type="text" class="inputClass form-control " :id="'eitddetail'+r.id" name="detail"
+                                   placeholder="请输入详细地址" :value="r.detail"/>
+                            <label class="errorClass" id="detailError"></label>
+                            <label class="correctClass" id="detailCorrect"></label>
+                        </li>
+                    </ul>
+                    <div class="btn_save_addr">
+                        <button type="button" class="save_addr" @click="canceladdr(r.id)">取消修改</button>&nbsp;&nbsp;&nbsp;
+                        <button type="button" class="save_addr">保存地址</button>
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
 
-							<li class="branditem">
-								<a href="">圣罗兰</a>
-							</li>
-							<li class="branditem">
-								<a href="">圣斗士</a>
-							</li>
-							<li class="branditem">
-								<a href="">罗兰</a>
-							</li>
-							<li class="branditem">
-								<a href="">圣兰</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="footer-bottom">
-				<div class="footer-bottom-border">
-					<div class="row">
-						<div class="col-md-1"></div>
-						<div class="col-md-3">
-							<span class="title-footer-section">客户服务</span>
-							<div class="nav-footer">
-								<span class="title-footer-section"><a href="#">联系我们</a></span> <span class="title-footer-section wechat"><img
-							class="wechat-img"
-							src="../../img/user_home/wechat.jpg"></span>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<span class="title-footer-section">&nbsp;</span>
-							<div class="nav-footer">
-								<ul class="ul_top">
-									<li class="item">
-										<a href="#">精品店</a>
-									</li>
-									<li class="item">
-										<a href="#">工作机会</a>
-									</li>
-									<li class="item">
-										<a href="#">使用条款</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<span class="title-footer-section1">电子通讯</span>
-							<div class="nav-footer">
+
+        <div class="btn_add_addr">
+            <button class="add_addr" type="button" onclick="add_addr()">新增地址</button>
+            <div class="clearfix"></div>
+        </div>
+
+        <!-- 新增地址div -->
+        <div class="div_add_addr" style="display:none">
+            <form action="/KissOlive/servlet/UserServlet">
+                <input type="hidden" name="method" value="addAddress">
+                <ul class="addr add">
+                    <li>收件人：
+                        <input type="text" id="addname" name="name" class="form-control inputClass "
+                               placeholder="请输入收件人姓名"/>
+                        <label class="errorClass" id="addnameError"></label>
+                        <label class="correctClass" id="addnameCorrect"></label>
+                    </li>
+                    <li>联系方式：
+                        <input type="text" id="addtel" name="tel" class="form-control inputClass "
+                               placeholder="请输入联系方式"/>
+                        <label class="errorClass" id="addtelError"></label>
+                        <label class="correctClass" id="addtelCorrect"></label>
+                    </li>
+                    <li>收货地址：
+                        <div class="addr_choice">
+                            <select class="prov" id="addprovince" name="province"></select>
+                            <select class="city" id="addcity" name="city" disabled="disabled"></select>
+                            <select class="dist" id="adddistrict" name="district" disabled="disabled"></select>
+                        </div>
+                    </li>
+                    <li>详细地址：
+                        <input type="text" class="inputClass form-control " id="detail" name="detail"
+                               placeholder="请输入详细地址"/>
+                        <label class="errorClass" id="adddetailError"></label>
+                        <label class="correctClass" id="adddetailCorrect"></label>
+                    </li>
+                </ul>
+                <div class="btn_save_addr">
+                    <button type="button" class="save_addr" onclick="cancel_add_addr()">取消修改</button>&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="save_addr">保存地址</button>
+                    <div class="clearfix"></div>
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+        </div>
+        <!-- 新增地址div -->
+    </div>
+</div>
+<!-- end of 内容 -->
+
+<!-- start of 尾部  -->
+<footer class="contaniner content">
+    <div class="footer-top">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- <span><h6 class="logoname">KISS OLIVE</h6><p>&nbsp;口&nbsp;红&nbsp;热&nbsp;门&nbsp;商&nbsp;城&nbsp;</p></span>
+               -->
+                <span class="logoname"><img
+                        src="../../img/user_home/logo_black.png"></span>
+            </div>
+            <div class="col-md-9">
+                <ul style="display:flex">
+
+                    <li class="branditem">
+                        <a href="">圣罗兰</a>
+                    </li>
+                    <li class="branditem">
+                        <a href="">圣斗士</a>
+                    </li>
+                    <li class="branditem">
+                        <a href="">罗兰</a>
+                    </li>
+                    <li class="branditem">
+                        <a href="">圣兰</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-border">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <span class="title-footer-section">客户服务</span>
+                    <div class="nav-footer">
+                        <span class="title-footer-section"><a href="#">联系我们</a></span> <span
+                            class="title-footer-section wechat"><img
+                            class="wechat-img"
+                            src="../../img/user_home/wechat.jpg"></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <span class="title-footer-section">&nbsp;</span>
+                    <div class="nav-footer">
+                        <ul class="ul_top">
+                            <li class="item">
+                                <a href="#">精品店</a>
+                            </li>
+                            <li class="item">
+                                <a href="#">工作机会</a>
+                            </li>
+                            <li class="item">
+                                <a href="#">使用条款</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <span class="title-footer-section1">电子通讯</span>
+                    <div class="nav-footer">
 								<span class="title-footer-section font">率先获取最新商品的信息及KISS
 							OLIVE的独家优惠：</a>
 						</span>
-								<div class="input-group title-footer-section">
-									<input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="basic-addon2"> <span class="input-group-addon" id="basic-addon2">@example.com</span>
-								</div>
-							</div>
-						</div>
+                        <div class="input-group title-footer-section">
+                            <input type="text" class="form-control" placeholder="Recipient's username"
+                                   aria-describedby="basic-addon2"> <span class="input-group-addon" id="basic-addon2">@example.com</span>
+                        </div>
+                    </div>
+                </div>
 
-					</div>
-				</div>
-			</div>
-		</footer>
-		<!-- end of 尾部 -->
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- end of 尾部 -->
 
-		<script type="text/javascript" src="../../js/jquery.js"></script>
-		<script src="../../js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../../js/jquery.cityselect.js"></script>
-		<script type="text/javascript" src="../../js/valid.js"></script>
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/vue.js"></script>
+<script type="text/javascript" src="../../js/user/user_home.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.cityselect.js"></script>
+<script type="text/javascript" src="../../js/valid.js"></script>
+<script type="text/javascript" src="../../js/user/userinfo.js"></script>
 
-		<script type="text/javascript">
-			$(function() {
-
-				$(".addr_choice").citySelect({
-					prov: "广东",
-					city: "肇庆",
-					dist: "端州区",
-					nodata: "none"
-				});
-
-			});
-
-			$(".add_addr").click(function() {
-				$(".div_add_addr").slideToggle();
-			});
-
-			$("#update").click(function() {
-				$(".editname").slideToggle();
-				$("#update_username").slideToggle();
-			});
-			$("button[class='edit']").click(function() {
-				$('#addrModal').modal('show');
-
-			});
-			$("button[class='sure']").click(function() {
-				$('#addrModal').modal('hide');
-
-			});
-			
-
-			function cancel() {
-				$(".editname").slideToggle();
-				$("#update_username").slideToggle();
-			}
-			function editaddr(index){
-				editindex = index;
-				$("#editaddr"+index).slideToggle();
-				$("#addr"+index).slideToggle();
-			}
-			function canceladdr(index){
-				$("#editaddr"+index).slideToggle();
-				$("#addr"+index).slideToggle();
-			}
-			function cancel_add_addr(){
-				$(".div_add_addr").slideToggle();
-			}
-		</script>
-
-	</body>
+</body>
 
 </html>

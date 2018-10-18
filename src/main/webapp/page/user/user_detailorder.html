@@ -1,404 +1,418 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 
-	<head>
+<head>
 
-		<title>Kiss OLive 订单详情</title>
+    <title>Kiss OLive 订单详情</title>
 
-		<meta http-equiv="pragma" content="no-cache">
-		<meta http-equiv="cache-control" content="no-cache">
-		<meta http-equiv="expires" content="0">
-		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-		<meta http-equiv="description" content="This is my page">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="This is my page">
 
-		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-		<link rel="stylesheet" href="../../css/bootstrap.min.css">
-		<link rel="stylesheet" href="../../css/admin/fontawesome-all.css">
-		<link rel="stylesheet" href="../../css/user/home.css">
-		<link rel="stylesheet" href="../../css/user/user_cart.css">
-		<link rel="stylesheet" type="text/css"  href="//at.alicdn.com/t/font_869596_titepeckeo.css">
-		<link rel="stylesheet" href="../../css/user/jq22.css">
-		<link rel="stylesheet" href="../../css/user/user_detailorder.css">
-		<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-	</head>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/admin/fontawesome-all.css">
+    <link rel="stylesheet" href="../../css/user/home.css">
+    <link rel="stylesheet" href="../../css/user/user_cart.css">
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_869596_titepeckeo.css">
+    <link rel="stylesheet" href="../../css/user/jq22.css">
+    <link rel="stylesheet" href="../../css/user/user_detailorder.css">
+    <!--
+<link rel="stylesheet" type="text/css" href="styles.css">
+-->
+</head>
 
-	<body>
-		<!-- start of 头部 -->
-		<div class="header-main-bar">
-			<nav class="navbar navbar-default navbar-fixed-top">
-				<div class="container header">
-					<div class="navbar-header">
-						<ul class="nav navbar-nav navbar-left ">
-							<!--<li id="li_login">
-								<a href="#" class="navbar-brand">登录</a>
-							</li>
-							<li>
-								<a href="#" class="navbar-brand">注册</a>
-							</li>-->
+<body>
+<!-- start of 头部 -->
+<div class="header-main-bar">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container header">
+            <div class="navbar-header" id="head">
 
-							<li>
-								<a href="" class="navbar-brand"><img class="img-circle user-head-image" src="../../images/yadianna.png"></img></a>
-							</li>
-							<li>
-								<a href="" class="navbar-brand">星矢</a>
-							</li>
-							<li>
-								<a href="" class="navbar-brand">[退出]</a>
-							</li>
-							<!-- 响应式布局按钮-下拉框 -->
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-								<span class="icon-bar"></span> <span class="icon-bar"></span>
-							</button>
-						</ul>
-					</div>
-					<div class="collapse navbar-collapse" id="navbar-collapse">
-						<ul class="nav navbar-nav navbar-right" style="margin: 0">
-							<li>
-								<a href="user_myshoppingcart.html"><span class="glyphicon glyphicon-shopping-cart">&nbsp;<span>我的购物车</span></span>
-								</a>
-							</li>
-							<li>
-								<a href="user_orderlist.html"><span class="glyphicon glyphicon-list">&nbsp;<span>我的订单</span></span>
-								</a>
-							</li>
+                <ul class="nav navbar-nav navbar-left" v-if="loginflag==0">
+                    <li id="li_login">
+                        <a href="#" class="navbar-brand">登录</a>
+                    </li>
+                    <li>
+                        <a href="#" class="navbar-brand">注册</a>
+                    </li>
+                    <!-- 响应式布局按钮-下拉框 -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    </button>
+                </ul>
 
-						</ul>
-					</div>
+                <ul class="nav navbar-nav navbar-left" v-else>
+                    <li>
+                        <a href="" class="navbar-brand"><img class="img-circle user-head-image" :src="user.imgUrl"></img></a>
+                    </li>
+                    <li>
+                        <a href="info" class="navbar-brand">{{user.username}}</a>
+                    </li>
+                    <li><a href="" class="navbar-brand" onclick="logout()">[退出]</a></li>
+                    <!-- 响应式布局按钮-下拉框 -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    </button>
+                </ul>
 
-				</div>
-			</nav>
-			<div class="main-bar-content">
-				<div class="header-logo row">
-					<div class="col-md-4 col-lg-4"></div>
-					<div class="col-md-4 col-lg-4">
-						<a href="user_home.html"><img src="../../img/kissolive.png" class="icon-olive" /></a>
-					</div>
-					<div class="col-md-4 col-lg-4">
-						<form action="/KissOlive/MainServlet" method="post">
-							<input type="hidden" name="method" value="search" />
-							<div class="nav-search">
-								<div class="input-group">
-									<input type="text" class="form-control" name="search" placeholder="Search for..."> <span class="input-group-btn">
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right" style="margin: 0">
+                    <li>
+                        <a href="user_myshoppingcart.html"><span class="glyphicon glyphicon-shopping-cart">&nbsp;<span>我的购物车</span></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="user_orderlist.html"><span
+                                class="glyphicon glyphicon-list">&nbsp;<span>我的订单</span></span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+    <div class="main-bar-content">
+        <div class="header-logo row">
+            <div class="col-md-4 col-lg-4"></div>
+            <div class="col-md-4 col-lg-4">
+                <a href="user_home.html"><img src="../../img/kissolive.png" class="icon-olive"/></a>
+            </div>
+            <div class="col-md-4 col-lg-4">
+                <form action="/KissOlive/MainServlet" method="post">
+                    <input type="hidden" name="method" value="search"/>
+                    <div class="nav-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="search" placeholder="Search for..."> <span
+                                class="input-group-btn">
 									<button class="btn btn-default glyphicon glyphicon-search"
-										type="submit"></button>
+                                            type="submit"></button>
 								</span>
-								</div>
-								<!-- /input-group -->
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-			<!-- end of main-bar-content -->
-		</div>
-		<!-- end of 头部 -->
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- end of main-bar-content -->
+</div>
+<!-- end of 头部 -->
 
-		<!-- start of 内容 -->
-		<div class="container content">
-			<div class="leadertab row">
-				<div id="myTabContent" class="tab-content">
+<!-- start of 内容 -->
+<div class="container content">
+    <div class="leadertab row">
+        <div id="myTabContent" class="tab-content">
 
 
+            <!-- 订单提交页面 -->
+            <form id="myForm" action="MainServlet">
+                <input type="hidden" name="method" value="createOrder">
+                <div id="step2" class="tab-pane fade active in">
 
-					<!-- 订单提交页面 -->
-					<form id="myForm" action="MainServlet">
-						<input type="hidden" name="method" value="createOrder">
-						<div id="step2" class="tab-pane fade active in">
+                    <div class="titleborder">
+                        <label class="labelhead">订单详情</label>
+                    </div>
+                    <!--<div class="back">-->
+                    <!--<a class="back" href="../../page/user/user_home.jsp">&lt;&lt;&nbsp;返回我的订单-->
+                    <!--<span class="glyphicon glyphicon-list"></span>-->
+                    <!--</a>-->
+                    <!--</div>-->
+                    <div class="div-title">
+                        <label class="label-title">收货信息</label>
+                    </div>
+                    <ul class="addr">
+                        <li>收件人：特拉斯夫斯基哇卡拉卡纳里斯</li>
+                        <li>联系方式：0758-2752518</li>
+                        <li>收货地址：内蒙古自治区 呼伦贝尔市 莫力达瓦达斡尔族自治旗 杜拉尔鄂温克民族乡 尼西空海拉松村××号</li>
+                    </ul>
+                    <div class="div-title">
+                        <label class="label-title">订单跟踪详情</label>
+                    </div>
+                    <div class="delivery-content">
+                        <ul class="delivery-process">
+                            <li class="progress-item">
+                                <!--<em class="iconfont icon-delaydelivery"></em>-->
+                                <em class="iconfont icon-daifahuo"></em>
+                                <em class="progress-item-text">待出仓</em>
+                            </li>
+                            <li class="progress-connection"></li>
+                            <li class="progress-item">
+                                <!--<em class="iconfont icon-gerenzhongxindingdandaishouhuo"></em>-->
+                                <em class="iconfont icon-biaoqian-fahuo"></em>
+                                <em class="progress-item-text">运输</em>
+                            </li>
+                            <li class="progress-connection"></li>
+                            <li class="progress-item">
+                                <em class="iconfont icon-delivery"></em>
+                                <em class="progress-item-text">派送</em>
+                            </li>
+                            <li class="progress-connection"></li>
+                            <li class="progress-item">
+                                <em class="iconfont icon-icon-receive"></em>
+                                <em class="progress-item-text">签收</em>
+                            </li>
+                        </ul>
+                        <div class="div-text">
+                            <span class="span-status">状&nbsp;态:&nbsp;&nbsp;签收</span>
+                        </div>
+                        <!--物流信息--时间轴-->
+                        <div class="timeline-content">
+                            <div class="history">
+                                <div class="history-date">
+                                    <ul>
+                                        <li class="green" title="点击展开折叠内容"> <!-- “green为最新物流信息样式”-->
+                                            <a href="#nogo">
+                                                <h3>13:01:14<span>2018-09-23</span></h3>
+                                                <dl>
+                                                    <dt><span>您已签收本次订单包裹，本次配送完成。感谢您在KissOlive商城购物，祝您生活愉快！</span></dt>
+                                                </dl>
+                                            </a>
+                                        </li>
+                                        <li class="line"></li><!-- “连接线条样式”-->
+                                        <li>
+                                            <h3>08:33:54<span>2018-09-23</span></h3>
+                                            <dl>
+                                                <dt><span>订单已到达配送站点，详情请联系配送快递员电话：13527035119，请留意收件</span></dt>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <h3>08:23:00<span>2018-09-23</span></h3>
+                                            <dl>
+                                                <dt><span> 从肇庆端州站入库</span></dt>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <h3>02:23:00<span>2018-09-23</span></h3>
+                                            <dl>
+                                                <dt><span>  订单已装车完成，下一站：肇庆端州站，操作人：李华</span></dt>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <h3>18:24:00<span>2018-09-22</span></h3>
+                                            <dl>
+                                                <dt><span> 订单包裹已经派发给承运商华南广东品骏</span></dt>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <h3>18:00:00<span>2018-09-22</span></h3>
+                                            <dl>
+                                                <dt><span> 从广东大旺分拨中心入库</span></dt>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <h3>17:49:00<span>2018-09-22</span></h3>
+                                            <dl>
+                                                <dt><span> 订单商品已经打包，正在派发给承运商</span></dt>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <h3>17:38:00<span>2018-09-22</span></h3>
+                                            <dl>
+                                                <dt><span> 您订单中的商品已成功匹配到华南仓</span></dt>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <h3>16:35:00<span>2018-09-22</span></h3>
+                                            <dl>
+                                                <dt><span> 您的订单已提交并支付成功，支付方式为：支付宝支付，商品预计在09月24日（周一）送达</span></dt>
+                                            </dl>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!--物流信息--时间轴-->
+                    </div>
+                    <div class="div-title">
+                        <label class="label-title">商品清单</label>
+                        <label class="label-title label-right">订单号：48465164894168481</label>
+                    </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th>产品</th>
+                            <th>&nbsp;&nbsp;&nbsp;&nbsp;单价</th>
+                            <th>数量</th>
+                            <th>价格</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="order_lists">
+                            <!-- 每一个orderlist就是一个购物车商品 -->
+                            <th>
+                                <div class="list_img">
+                                    <img src="../../images/959B06291F454B14A8A663597CC5C077.png" alt="">
+                                </div>
+                            </th>
+                            <td>
+                                <p class="goodname">CLIO少女之吻丝润唇彩唇蜜</p>
+                                <p class="goodcolor">#15201</p>
+                            </td>
+                            <td>
+                                <p class="price">￥250</p>
+                            </td>
+                            <td>
+                                <div class="amount_box">
+                                    <button class="reduce reSty btn" disabled>-</button>
+                                    <input type="text" value="1" class="sum" id="gnumber" disabled>
+                                    <button class="plus btn" disabled>+</button>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="order-sum_price">￥250</p>
+                            </td>
+                        </tr>
+                        <input type="hidden" name="cid" value=${cartItem.cart.cid }>
+                        <tr>
+                            <th rowspan="2" colspan="3"
+                                style="vertical-align: middle;padding: 0 0 0 50px;font-size: 20px;font-weight: normal; ">
+                                订单总结
+                            </th>
+                            <td>商品价格</td>
+                            <td><strong class="order-total_text">250</strong></td>
+                        </tr>
+                        <tr>
+                            <td>运费</td>
+                            <td>免邮</td>
+                        </tr>
+                        <tr class="bordertop">
+                            <th colspan="3"></th>
+                            <td>
+                                已选商品
+                            </td>
+                            <td>
+                                <div class="piece">
+                                    <strong class="order-piece_num">1</strong>件
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="3"></th>
+                            <td>
+                                共计
+                            </td>
+                            <td>
+                                <div class="totalMoney">
+                                    <strong class="order-total_text">250</strong>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- 订单提交页面 -->
+            </form>
+        </div>
+    </div>
+</div>
+<!-- end of 内容 -->
 
-							<div class="titleborder">
-								<label class="labelhead">订单详情</label>
-							</div>
-							<!--<div class="back">-->
-								<!--<a class="back" href="../../page/user/user_home.jsp">&lt;&lt;&nbsp;返回我的订单-->
-									<!--<span class="glyphicon glyphicon-list"></span>-->
-								<!--</a>-->
-							<!--</div>-->
-							<div class="div-title">
-								<label class="label-title">收货信息</label>
-							</div>
-							<ul class="addr">
-								<li>收件人：特拉斯夫斯基哇卡拉卡纳里斯</li>
-								<li>联系方式：0758-2752518</li>
-								<li>收货地址：内蒙古自治区 呼伦贝尔市 莫力达瓦达斡尔族自治旗 杜拉尔鄂温克民族乡 尼西空海拉松村××号</li>
-							</ul>
-							<div class="div-title">
-								<label class="label-title">订单跟踪详情</label>
-							</div>
-							<div class="delivery-content">
-								<ul class="delivery-process">
-									<li class="progress-item">
-										<!--<em class="iconfont icon-delaydelivery"></em>-->
-										<em class="iconfont icon-daifahuo"></em>
-										<em class="progress-item-text">待出仓</em>
-									</li>
-									<li class="progress-connection"></li>
-									<li class="progress-item">
-										<!--<em class="iconfont icon-gerenzhongxindingdandaishouhuo"></em>-->
-										<em class="iconfont icon-biaoqian-fahuo"></em>
-										<em class="progress-item-text">运输</em>
-									</li>
-									<li class="progress-connection"></li>
-									<li class="progress-item">
-										<em class="iconfont icon-delivery"></em>
-										<em class="progress-item-text">派送</em>
-									</li>
-									<li class="progress-connection"></li>
-									<li class="progress-item">
-										<em class="iconfont icon-icon-receive"></em>
-										<em class="progress-item-text">签收</em>
-									</li>
-								</ul>
-								<div class="div-text">
-									<span class="span-status">状&nbsp;态:&nbsp;&nbsp;签收</span>
-								</div>
-								<!--物流信息--时间轴-->
-								<div class="timeline-content">
-									<div class="history">
-										<div class="history-date">
-											<ul>
-												<li class="green" title="点击展开折叠内容"> <!-- “green为最新物流信息样式”-->
-													<a href="#nogo">
-													<h3>13:01:14<span>2018-09-23</span></h3>
-													<dl>
-														<dt><span>您已签收本次订单包裹，本次配送完成。感谢您在KissOlive商城购物，祝您生活愉快！</span></dt>
-													</dl>
-													</a>
-												</li>
-												<li class="line"></li><!-- “连接线条样式”-->
-												<li>
-													<h3>08:33:54<span>2018-09-23</span></h3>
-													<dl>
-														<dt> <span>订单已到达配送站点，详情请联系配送快递员电话：13527035119，请留意收件</span></dt>
-													</dl>
-												</li>
-												<li>
-													<h3>08:23:00<span>2018-09-23</span></h3>
-													<dl>
-														<dt> <span> 从肇庆端州站入库</span></dt>
-													</dl>
-												</li>
-												<li>
-													<h3>02:23:00<span>2018-09-23</span></h3>
-													<dl>
-														<dt> <span>  订单已装车完成，下一站：肇庆端州站，操作人：李华</span></dt>
-													</dl>
-												</li>
-												<li>
-													<h3>18:24:00<span>2018-09-22</span></h3>
-													<dl>
-														<dt> <span> 订单包裹已经派发给承运商华南广东品骏</span></dt>
-													</dl>
-												</li>
-												<li>
-													<h3>18:00:00<span>2018-09-22</span></h3>
-													<dl>
-														<dt> <span> 从广东大旺分拨中心入库</span></dt>
-													</dl>
-												</li>
-												<li>
-													<h3>17:49:00<span>2018-09-22</span></h3>
-													<dl>
-														<dt> <span> 订单商品已经打包，正在派发给承运商</span></dt>
-													</dl>
-												</li>
-												<li>
-													<h3>17:38:00<span>2018-09-22</span></h3>
-													<dl>
-														<dt> <span> 您订单中的商品已成功匹配到华南仓</span></dt>
-													</dl>
-												</li>
-												<li>
-													<h3>16:35:00<span>2018-09-22</span></h3>
-													<dl>
-														<dt> <span> 您的订单已提交并支付成功，支付方式为：支付宝支付，商品预计在09月24日（周一）送达</span></dt>
-													</dl>
-												</li>
-											</ul>
-										</div>
-								</div>
-							</div>
-								<!--物流信息--时间轴-->
-							</div>
-							<div class="div-title">
-								<label class="label-title">商品清单</label>
-								<label class="label-title label-right">订单号：48465164894168481</label>
-							</div>
-							<table class="table">
-								<thead>
-									<tr>
-										<th>&nbsp;</th>
-										<th>产品</th>
-										<th>&nbsp;&nbsp;&nbsp;&nbsp;单价</th>
-										<th>数量</th>
-										<th>价格</th>
-									</tr>
-								</thead>
-								<tbody>
-										<tr class="order_lists">
-											<!-- 每一个orderlist就是一个购物车商品 -->
-											<th>
-												<div class="list_img">
-													<img src="../../images/959B06291F454B14A8A663597CC5C077.png" alt="">
-												</div>
-											</th>
-											<td>
-												<p class="goodname">CLIO少女之吻丝润唇彩唇蜜</p>
-												<p class="goodcolor">#15201</p>
-											</td>
-											<td>
-												<p class="price">￥250</p>
-											</td>
-											<td>
-												<div class="amount_box">
-													<button class="reduce reSty btn" disabled>-</button>
-													<input type="text" value="1" class="sum" id="gnumber" disabled>
-													<button class="plus btn" disabled>+</button>
-												</div>
-											</td>
-											<td>
-												<p class="order-sum_price">￥250</p>
-											</td>
-										</tr>
-										<input type="hidden" name="cid" value=${cartItem.cart.cid }>
-									<tr>
-										<th rowspan="2" colspan="3" style="vertical-align: middle;padding: 0 0 0 50px;font-size: 20px;font-weight: normal; ">订单总结</th>
-										<td>商品价格</td>
-										<td><strong class="order-total_text">250</strong></td>
-									</tr>
-									<tr>
-										<td>运费</td>
-										<td>免邮</td>
-									</tr>
-									<tr class="bordertop">
-										<th colspan="3"></th>
-										<td>
-											已选商品
-										</td>
-										<td>
-											<div class="piece">
-												<strong class="order-piece_num">1</strong>件
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<th colspan="3"></th>
-										<td>
-											共计
-										</td>
-										<td>
-											<div class="totalMoney">
-												<strong class="order-total_text">250</strong>
-											</div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<!-- 订单提交页面 -->
-					</form>
-				</div>
-			</div>
-		</div>
-		<!-- end of 内容 -->
+<!-- start of 尾部  -->
+<footer class="contaniner content">
+    <div class="footer-top">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- <span><h6 class="logoname">KISS OLIVE</h6><p>&nbsp;口&nbsp;红&nbsp;热&nbsp;门&nbsp;商&nbsp;城&nbsp;</p></span>
+               -->
+                <span class="logoname"><img
+                        src="../../img/user_home/logo_black.png"></span>
+            </div>
+            <div class="col-md-9">
+                <ul style="display:flex">
 
-		<!-- start of 尾部  -->
-		<footer class="contaniner content">
-			<div class="footer-top">
-				<div class="row">
-					<div class="col-md-3">
-						<!-- <span><h6 class="logoname">KISS OLIVE</h6><p>&nbsp;口&nbsp;红&nbsp;热&nbsp;门&nbsp;商&nbsp;城&nbsp;</p></span>
-			           -->
-						<span class="logoname"><img
-					src="../../img/user_home/logo_black.png"></span>
-					</div>
-					<div class="col-md-9">
-						<ul style="display:flex">
-
-							<li class="branditem">
-								<a href="">圣罗兰</a>
-							</li>
-							<li class="branditem">
-								<a href="">圣斗士</a>
-							</li>
-							<li class="branditem">
-								<a href="">罗兰</a>
-							</li>
-							<li class="branditem">
-								<a href="">圣兰</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="footer-bottom">
-				<div class="footer-bottom-border">
-					<div class="row">
-						<div class="col-md-1"></div>
-						<div class="col-md-3">
-							<span class="title-footer-section">客户服务</span>
-							<div class="nav-footer">
-								<span class="title-footer-section"><a href="#">联系我们</a></span> <span class="title-footer-section wechat"><img
-							class="wechat-img"
-							src="../../img/user_home/wechat.jpg"></span>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<span class="title-footer-section">&nbsp;</span>
-							<div class="nav-footer">
-								<ul class="ul_top">
-									<li class="item">
-										<a href="#">精品店</a>
-									</li>
-									<li class="item">
-										<a href="#">工作机会</a>
-									</li>
-									<li class="item">
-										<a href="#">使用条款</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<span class="title-footer-section1">电子通讯</span>
-							<div class="nav-footer">
+                    <li class="branditem">
+                        <a href="">圣罗兰</a>
+                    </li>
+                    <li class="branditem">
+                        <a href="">圣斗士</a>
+                    </li>
+                    <li class="branditem">
+                        <a href="">罗兰</a>
+                    </li>
+                    <li class="branditem">
+                        <a href="">圣兰</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-bottom-border">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <span class="title-footer-section">客户服务</span>
+                    <div class="nav-footer">
+                        <span class="title-footer-section"><a href="#">联系我们</a></span> <span
+                            class="title-footer-section wechat"><img
+                            class="wechat-img"
+                            src="../../img/user_home/wechat.jpg"></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <span class="title-footer-section">&nbsp;</span>
+                    <div class="nav-footer">
+                        <ul class="ul_top">
+                            <li class="item">
+                                <a href="#">精品店</a>
+                            </li>
+                            <li class="item">
+                                <a href="#">工作机会</a>
+                            </li>
+                            <li class="item">
+                                <a href="#">使用条款</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <span class="title-footer-section1">电子通讯</span>
+                    <div class="nav-footer">
 								<span class="title-footer-section font">率先获取最新商品的信息及KISS
 							OLIVE的独家优惠：</a>
 						</span>
-								<div class="input-group title-footer-section">
-									<input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="basic-addon2"> <span class="input-group-addon" id="basic-addon2">@example.com</span>
-								</div>
-							</div>
-						</div>
+                        <div class="input-group title-footer-section">
+                            <input type="text" class="form-control" placeholder="Recipient's username"
+                                   aria-describedby="basic-addon2"> <span class="input-group-addon" id="basic-addon2">@example.com</span>
+                        </div>
+                    </div>
+                </div>
 
-					</div>
-				</div>
-			</div>
-		</footer>
-		<!-- end of 尾部 -->
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- end of 尾部 -->
 
-		<script type="text/javascript" src="../../js/jquery.js"></script>
-		<script src="../../js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../../js/jquery.cityselect.js"></script>
-		<script type="text/javascript" src="../../js/user/jq22.js"></script>
-		<script type="text/javascript" src="../../js/shoppingcart.js"></script>
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/vue.js"></script>
+<script type="text/javascript" src="../../js/user/user_home.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.cityselect.js"></script>
+<script type="text/javascript" src="../../js/user/jq22.js"></script>
+<script type="text/javascript" src="../../js/shoppingcart.js"></script>
 
-		<script type="text/javascript">
-			function judge() {
-				var i = 0;
-				$("input[name='selectaddr']").each(function() {
-					if($(this).is(':checked')) {
-						i = 1;
-						document.getElementById("myForm").submit()
-					}
-				});
-				if(i == 0)
-					alert("请选择收货地址！！！");
-			}
-		</script>
-	</body>
+<script type="text/javascript">
+    function judge() {
+        var i = 0;
+        $("input[name='selectaddr']").each(function () {
+            if ($(this).is(':checked')) {
+                i = 1;
+                document.getElementById("myForm").submit()
+            }
+        });
+        if (i == 0)
+            alert("请选择收货地址！！！");
+    }
+</script>
+</body>
 
 </html>

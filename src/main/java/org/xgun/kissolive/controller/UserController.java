@@ -105,7 +105,7 @@ public class UserController {
         if(!( b1 && b2 )){
             return ServerResponse.createByErrorMessage("验证码错误");
         }
-        User user = new User(0,"Olive"+phoneNumber,password,phoneNumber,null,0,Const.Role.ROLE_CUSTOMER);
+        User user = new User(0,"Olive"+phoneNumber,password,phoneNumber,Const.USER_IMG_URL_DEFAULT,0,Const.Role.ROLE_CUSTOMER);
         Address address = new Address(0,0,province,city,district,detail,null,consignee,telphone);
         return iUserService.register(user,address);
     }
@@ -156,6 +156,11 @@ public class UserController {
         return iUserService.getInfo(user.getId());
     }
 
+    /**
+     * 获取用户地址
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "get_address_list.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse getAddressList(HttpSession session){
@@ -165,4 +170,76 @@ public class UserController {
         return iUserService.getAddressList(user.getId());
     }
 
+    /**
+     * 修改用户名
+     * @param session
+     * @param username
+     * @return
+     */
+    @RequestMapping(value = "update_username.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse updateUsername(HttpSession session,@RequestParam("username") String username){
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        if(user==null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"还没登录，请先登录");
+        User updateUser = new User();
+        updateUser.setId(user.getId());
+        updateUser.setUsername(username);
+        ServerResponse response = iUserService.updateUsername(updateUser);
+        if(response.isSuccess()){
+            user.setUsername(username);
+            session.removeAttribute(Const.CURRENT_USER);
+            session.setAttribute(Const.CURRENT_USER, user);
+        }
+        return response;
+    }
+
+    /**
+     * 新增收货地址
+     * @param session
+     * @param province
+     * @param city
+     * @param district
+     * @param detail
+     * @param consignee
+     * @param telphone
+     * @return
+     */
+    @RequestMapping(value = "add_address.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse addAddress(HttpSession session,@RequestParam(value = "address_province")String province,
+                                     @RequestParam(value = "address_city")String city, @RequestParam(value = "address_district")String district,
+                                     @RequestParam(value = "address_detail")String detail, @RequestParam(value = "address_consignee")String consignee,
+                                     @RequestParam(value = "address_telphone")String telphone){
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        if(user==null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"还没登录，请先登录");
+        Address address = new Address(0,user.getId(),province,city,district,detail,null,consignee,telphone);
+        return iUserService.addAddress(address);
+    }
+
+    /**
+     * 修改收货地址
+     * @param session
+     * @param province
+     * @param id
+     * @param city
+     * @param district
+     * @param detail
+     * @param consignee
+     * @param telphone
+     * @return
+     */
+    @RequestMapping(value = "update_address.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse updateAddress(HttpSession session,@RequestParam(value = "address_province")String province,@RequestParam(value = "address_id")int id,
+                                        @RequestParam(value = "address_city")String city, @RequestParam(value = "address_district")String district,
+                                        @RequestParam(value = "address_detail")String detail, @RequestParam(value = "address_consignee")String consignee,
+                                        @RequestParam(value = "address_telphone")String telphone){
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        if(user==null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"还没登录，请先登录");
+        Address address = new Address(id,user.getId(),province,city,district,detail,null,consignee,telphone);
+        return iUserService.updateAddress(address);
+    }
 }

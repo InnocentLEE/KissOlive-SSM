@@ -5,7 +5,7 @@ function getUrlParam(name) {
 }
 var search = getUrlParam('search');
 var brands = getUrlParam('brand');
-var search1 = new Vue({
+var search2 = new Vue({
     el:"#searchform",
     data:{
         search:[]
