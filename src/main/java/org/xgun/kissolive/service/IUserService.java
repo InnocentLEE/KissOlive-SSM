@@ -11,4 +11,8 @@ import org.xgun.kissolive.pojo.User;
 public interface IUserService {
     ServerResponse checkPhoneNumber(String phoneNumber);
     ServerResponse register(User user, Address address);
+    ServerResponse login(String telphone, String password);
+    ServerResponse getInfo(int userid);
+    ServerResponse getAddressList(int userid);
+    ServerResponse updateUsername(User user);
 }

@@ -1,6 +1,7 @@
 package org.xgun.kissolive.controller;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.lucene.queryparser.surround.query.SimpleTerm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -504,5 +505,4 @@ public class InnocentController {
         Goods goods = new Goods(id,null,colorCode,colorName,new BigDecimal(price),null,null);
         return iInnocentService.editGoods(goods);
     }
-
 }

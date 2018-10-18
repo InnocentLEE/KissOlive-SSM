@@ -131,7 +131,7 @@ input.pwd.modal_input:focus::-webkit-input-placeholder {
 	-webkit-transform: translateY(-20px);
 	transform: translateY(-20px);
 }
-.link {
+.fogetlink {
 	text-decoration: none;
 	display: inline-block;
 	margin: 27px 28%;
@@ -193,6 +193,7 @@ span {
 
 button.register.modal_btn {
 	margin-left: 20px;
+	margin-top: 17px;
 }
 
 .slider-lock {

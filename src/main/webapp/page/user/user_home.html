@@ -34,29 +34,35 @@
 <div class="header-main-bar">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container header">
-            <div class="navbar-header">
-                <ul class="nav navbar-nav navbar-left ">
+            <div class="navbar-header" id="head">
+
+                <ul class="nav navbar-nav navbar-left" v-if="loginflag==0">
                     <li id="li_login">
                         <a href="#" class="navbar-brand">登录</a>
                     </li>
                     <li>
                         <a href="#" class="navbar-brand">注册</a>
                     </li>
-
-                    <!--<li>
-                        <a href="" class="navbar-brand"><img class="img-circle user-head-image" src="../../images/yadianna.png"></img></a>
-                    </li>
-                    <li>
-                        <a href="" class="navbar-brand">星矢</a>
-                    </li>
-                    <li><a
-                        href=""
-                        class="navbar-brand">[退出]</a></li>-->
                     <!-- 响应式布局按钮-下拉框 -->
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
                         <span class="icon-bar"></span> <span class="icon-bar"></span>
                     </button>
                 </ul>
+
+                <ul class="nav navbar-nav navbar-left" v-else>
+                    <li>
+                        <a href="" class="navbar-brand"><img class="img-circle user-head-image" :src="user.imgUrl"></img></a>
+                    </li>
+                    <li>
+                        <a href="" class="navbar-brand">{{user.username}}</a>
+                    </li>
+                    <li><a href="" class="navbar-brand" onclick="logout()">[退出]</a></li>
+                    <!-- 响应式布局按钮-下拉框 -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    </button>
+                </ul>
+
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right" style="margin: 0">
@@ -689,29 +695,29 @@
             <div class="modal-body">
 
                 <form>
-                    <input type="text" id="usertel" name="usertel" class="username modal_input" placeholder="登录账号">
+                    <input type="text" id="phone_number" name="usertel" class="username modal_input" placeholder="登录账号">
                     <br/>
-                    <input type="text" id="password" name="password" class="pwd modal_input" placeholder="密码">
+                    <input type="password" id="password" name="password" class="pwd modal_input" placeholder="密码">
                     <div class="div_label">
-                        <label class="errorClass" id="passwordError">密码错误！！！</label>
+                        <label class="errorClass" id="passwordError"></label>
                         <label class="correctClass" id="passwordCorrect"></label>
                     </div>
                 </form>
-                <a href="#" class="link" data-toggle="modal" data-target="#myModal" data-dismiss="modal">
+                <a href="#" class="fogetlink" data-toggle="modal" data-target="#myModal" data-dismiss="modal">
                     忘记密码？
                 </a>
                 <br/>
-                <div class="slider-lock">
+                <!--<div class="slider-lock">
                     <div id="slider">
                         <div id="slider_bg"></div>
                         <span id="label">>></span> <span id="labelTip">向右拖动滑块验证</span>
                     </div>
-                </div>
+                </div>-->
 
                 <button class="register modal_btn" onclick="regis()">
                     <span>注册</span>
                 </button>
-                <button class="signin modal_btn" type="submit" id="submit" disabled="true">
+                <button class="signin modal_btn" type="submit" id="submit" onclick="login()" >
                     <span>登录</span>
                 </button>
             </div>
@@ -769,9 +775,8 @@
 <script type="text/javascript" src="../../js/vue.js"></script>
 <script type="text/javascript" src="../../js/user/user_home.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../../js/slideunlock.js"></script>
+<!--<script type="text/javascript" src="../../js/slideunlock.js"></script>-->
 <script type="text/javascript" src="../../js/login_verify.js"></script>
-<script type="text/javascript" src="../../js/valid.js"></script>
 <script type="text/javascript" src="../../js/login.js"></script>
 <script type="text/javascript" src="../../js/hover.js"></script>
 

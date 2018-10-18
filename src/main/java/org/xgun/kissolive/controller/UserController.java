@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.xgun.kissolive.common.Const;
+import org.xgun.kissolive.common.ResponseCode;
 import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.pojo.Address;
 import org.xgun.kissolive.pojo.User;
@@ -104,8 +105,92 @@ public class UserController {
         if(!( b1 && b2 )){
             return ServerResponse.createByErrorMessage("验证码错误");
         }
-        User user = new User(0,"Olive"+phoneNumber,password,phoneNumber,null,0,Const.Role.ROLE_CUSTOMER);
+        User user = new User(0,"Olive"+phoneNumber,password,phoneNumber,Const.USER_IMG_URL_DEFAULT,0,Const.Role.ROLE_CUSTOMER);
         Address address = new Address(0,0,province,city,district,detail,null,consignee,telphone);
         return iUserService.register(user,address);
+    }
+
+    /**
+     * 登录接口
+     * @param session
+     * @param phoneNumber
+     * @param password
+     * @return
+     */
+    @RequestMapping(value="login.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse login(HttpSession session, @RequestParam(value = "phone_number")String phoneNumber,
+                                @RequestParam(value = "password")String password){
+
+        ServerResponse response = iUserService.login(phoneNumber,password);
+        if (response.isSuccess()) {
+            session.removeAttribute(Const.CURRENT_USER);
+            session.setAttribute(Const.CURRENT_USER, response.getData());
+        }
+        return response;
+    }
+
+    /**
+     * 退出登录
+     * @param session
+     * @return
+     */
+    @RequestMapping(value = "logout.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse logout(HttpSession session) {
+        session.removeAttribute(Const.CURRENT_USER);
+        return ServerResponse.createBySuccess();
+    }
+
+    /**
+     * 获取用户信息
+     * @param session
+     * @return
+     */
+    @RequestMapping(value = "get_info.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse getInfo(HttpSession session){
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        if(user==null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"还没登录，请先登录");
+        return iUserService.getInfo(user.getId());
+    }
+
+    /**
+     * 获取用户地址
+     * @param session
+     * @return
+     */
+    @RequestMapping(value = "get_address_list.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse getAddressList(HttpSession session){
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        if(user==null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"还没登录，请先登录");
+        return iUserService.getAddressList(user.getId());
+    }
+
+    /**
+     * 修改用户名
+     * @param session
+     * @param username
+     * @return
+     */
+    @RequestMapping(value = "update_username.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse updateUsername(HttpSession session,@RequestParam("username") String username){
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        if(user==null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"还没登录，请先登录");
+        User updateUser = new User();
+        updateUser.setId(user.getId());
+        updateUser.setUsername(username);
+        ServerResponse response = iUserService.updateUsername(updateUser);
+        if(response.isSuccess()){
+            user.setUsername(username);
+            session.removeAttribute(Const.CURRENT_USER);
+            session.setAttribute(Const.CURRENT_USER, user);
+        }
+        return response;
     }
 }

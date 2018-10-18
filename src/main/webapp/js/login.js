@@ -21,14 +21,10 @@ $("#li_login").click(function() {
 	$('#loginModal').modal('show');
 });
 
-function regis() {
-	window.location.href = "http://localhost:8080/KissOlive/page/user/user_register.jsp";
-}
-
 /*
  * 登录滑动验证码验证结果判断
  */
-$(function() {
+/*$(function() {
 	var slider = new SliderUnlock("#slider", {
 		successLabelTip: "验证通过"
 	}, function() {
@@ -38,7 +34,7 @@ $(function() {
 		$("#submit").attr("disabled", false);
 	});
 	slider.init();
-})
+})*/
 
 $('#mpanel2').codeVerify({
 	type: 1,
