@@ -66,7 +66,7 @@ public class Zqu004Application {
 
 	@RequestMapping("/production_detail")
 	String productionDetail(){
-		return "page/user/user_productiondetail.html";
+		return "page/user/user_productdetail.html";
 	}
 
 	@RequestMapping("/order_detail")
