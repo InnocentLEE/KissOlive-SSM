@@ -24,6 +24,9 @@ public interface InnocentMapper {
     // 插入一条收货地址记录
     int insertAddress(Address address);
 
+    // 更新收货地址
+    int updateAddress(Address address);
+
     // 插入一条品牌信息记录
     int insertBrand(Brand brand);
 

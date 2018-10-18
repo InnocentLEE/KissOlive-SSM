@@ -29,6 +29,16 @@
     #{postcode,jdbcType=VARCHAR}, #{consignee,jdbcType=VARCHAR}, #{telphone,jdbcType=VARCHAR}
     )
   </insert>
+  <update id="updateAddress" parameterType="org.xgun.kissolive.pojo.Address">
+    update tb_address
+    set province = #{province,jdbcType=VARCHAR},
+    city = #{city,jdbcType=VARCHAR},
+    district = #{district,jdbcType=VARCHAR},
+    detail = #{detail,jdbcType=VARCHAR},
+    consignee = #{consignee,jdbcType=VARCHAR},
+    #{telphone,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER} and user_id = #{userId,jdbcType=INTEGER}
+  </update>
   <insert id="insertBrand" parameterType="org.xgun.kissolive.pojo.Brand">
     INSERT INTO tb_brand (id, `name`, img_url,
       status)
@@ -374,7 +384,7 @@
     FROM tb_address
     WHERE user_id = #{user_id,jdbcType=INTEGER}
   </select>
-  <update id="updateUsername">
+  <update id="updateUsername" parameterType="org.xgun.kissolive.pojo.User">
     UPDATE tb_user
     SET username = #{username,jdbcType=VARCHAR}
     WHERE id = #{id,jdbcType=INTEGER}
