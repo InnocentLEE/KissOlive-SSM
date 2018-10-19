@@ -6,16 +6,19 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.xgun.kissolive.common.Const;
 import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.pojo.Activity;
 import org.xgun.kissolive.pojo.Card;
 import org.xgun.kissolive.pojo.ChatMessage;
+import org.xgun.kissolive.pojo.User;
 import org.xgun.kissolive.service.ISilentService;
 import org.xgun.kissolive.utils.FTPSSMLoad;
 import org.xgun.kissolive.vo.CardInfo;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,12 +48,12 @@ public class SilentController {
      */
     @RequestMapping(value = "/shoppingCart/add_card.do",method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse addCard(@RequestParam("goodsId")Integer goodsId,
+    public ServerResponse addCard(HttpSession session, @RequestParam("goodsId")Integer goodsId,
                                   @RequestParam("num")Integer num){
         //获取当前用户userId
-        Integer userId = 1;//测试用
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        Integer userId = user.getId();
         Card card = new Card(null,userId,goodsId,num,null);
-        System.out.println(card.toString());
         return iSilentService.addACard(card);
     }
 
@@ -60,8 +63,11 @@ public class SilentController {
      */
     @RequestMapping(value = "/shoppingCart/get_myCard.do",method = RequestMethod.GET)
     @ResponseBody
-    public ServerResponse getMyShoppingCart(){
-        return iSilentService.getMyCard();
+    public ServerResponse getMyShoppingCart(HttpSession session){
+        //获取当前用户userId
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        Integer userId = user.getId();
+        return iSilentService.getMyCard(userId);
     }
 
     /**
@@ -71,11 +77,14 @@ public class SilentController {
      */
     @RequestMapping(value = "/shoppingCart/delete_card_ByBatch.do", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse deleteCard(@RequestParam("cardIds")int[] cardIds){
+    public ServerResponse deleteCard(HttpSession session, @RequestParam("cardIds")int[] cardIds){
+        //获取当前用户userId
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        Integer userId = user.getId();
         if( cardIds==null || cardIds.length==0 ) {
             return ServerResponse.createByErrorMessage("删除失败");
         }
-        return iSilentService.deleteCardByBatch(cardIds);
+        return iSilentService.deleteCardByBatch(userId, cardIds);
     }
 
 

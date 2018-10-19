@@ -55,9 +55,7 @@ public class SilentServiceImpl implements ISilentService {
     }
 
     @Override
-    public ServerResponse getMyCard() {
-        //获取当前用户userId
-        Integer userId = 1;//测试用
+    public ServerResponse getMyCard(Integer userId) {
         List<CardInfo> cardList = silentMapper.selectMyCard(userId);
         if(CollectionUtils.isEmpty(cardList)) {
             return ServerResponse.createBySuccess("购物车空空如也~",null);
@@ -67,9 +65,7 @@ public class SilentServiceImpl implements ISilentService {
     }
 
     @Override
-    public ServerResponse deleteCardByBatch(int[] cardIds) {
-        //获取当前用户userId
-        Integer userId = 1;//测试用
+    public ServerResponse deleteCardByBatch(Integer userId, int[] cardIds) {
         boolean result = silentMapper.deleteCardByBatch(cardIds,userId)>0;
         if(result) {
             return ServerResponse.createBySuccessMessage("购物车删除成功");
