@@ -74,6 +74,16 @@ public class SilentServiceImpl implements ISilentService {
         }
     }
 
+    @Override
+    public ServerResponse deleteCardGoodsByBatch(Integer userId, int[] goodsIds) {
+        boolean result = silentMapper.deleteCardGoodsByBatch(goodsIds,userId)>0;
+        if(result) {
+            return ServerResponse.createBySuccessMessage("购物车删除成功");
+        }else {
+            return ServerResponse.createBySuccessMessage("购物车删除失败");
+        }
+    }
+
     @Transactional
     @Override
     public ServerResponse getActivityMenu(int page, int num) {
