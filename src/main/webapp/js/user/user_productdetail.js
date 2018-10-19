@@ -15,7 +15,7 @@ var content = new Vue({
     },
     created:function () {
         this.getProductionDeatail();
-        //this.getProductionAssess();
+        this.getProductionAssess();
     },
     methods:{
         getProductionDeatail:function () {
@@ -44,6 +44,7 @@ var content = new Vue({
                 },
                 dataType:'json',
                 success:function (data) {
+                    //alert(data.msg);
                     content.assess = data.data;
                 },
                 error:function () {

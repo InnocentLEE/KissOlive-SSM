@@ -182,7 +182,7 @@
             <div role="tabpanel" class="tab-pane fade" id="access">
                 <div class="div-access-content">
                     <div id="masonry" class="grid">
-                        <div class="grid-item">
+                        <!--<div class="grid-item">
                             <span class="fa fa-quote-left"></span>
                             <span class="span-text">颜色很正，豆沙色，很适合秋冬的一款口红颜色，包装也很美观，店家包装里面放了冰袋，怕口红化掉，具体看一下图片吧，没有美颜和滤镜的颜色</span>
                             <span class="fa fa-quote-right"></span>
@@ -190,16 +190,16 @@
                                 <span class="span-signature span-name"><i></i>夷陵老祖</span>
                                 <span class="span-signature span-time">2018-10-8 18:00</span>
                             </div>
-                        </div>
-                        <!--<div class="grid-item" v-for="r in access">
+                        </div>-->
+                        <div class="grid-item" v-for="r in assess">
                             <span class="fa fa-quote-left"></span>
-                            <span class="span-text">{{}}</span>
+                            <span class="span-text">{{r.content}}</span>
                             <span class="fa fa-quote-right"></span>
                             <div class="div-signature">
-                                <span class="span-signature span-name"><i></i>夷陵老祖</span>
-                                <span class="span-signature span-time">2018-10-8 18:00</span>
+                                <span class="span-signature span-name"><i></i>{{r.user.username}}</span>
+                                <span class="span-signature span-time">{{r.updatetime}}</span>
                             </div>
-                        </div>-->
+                        </div>
                     </div>
                 </div>
             </div>
