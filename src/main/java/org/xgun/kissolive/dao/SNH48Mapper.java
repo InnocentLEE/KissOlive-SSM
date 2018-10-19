@@ -66,6 +66,8 @@ public interface SNH48Mapper {
 
     List<OrderItem> listOrderItem(@Param("orderID")Integer orderID);
 
+    Order getOrder(@Param("orderID")Integer orderID);
+
     List<Permit> listPermit();
 
     int updatePermit(Permit permit);
@@ -80,4 +82,6 @@ public interface SNH48Mapper {
     Integer getScore(@Param("userID")Integer userID);
 
     VipLevel getVipLevel(@Param("score")Integer score);
+
+
 }

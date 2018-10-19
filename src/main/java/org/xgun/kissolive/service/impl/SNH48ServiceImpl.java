@@ -10,6 +10,7 @@ import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.dao.SNH48Mapper;
 import org.xgun.kissolive.pojo.*;
 import org.xgun.kissolive.service.ISNH48Service;
+import org.xgun.kissolive.service.ISilentService;
 import org.xgun.kissolive.utils.DateUtil;
 import org.xgun.kissolive.vo.ListOrder;
 import org.xgun.kissolive.vo.ListOrderItem;
@@ -24,6 +25,9 @@ public class SNH48ServiceImpl implements ISNH48Service {
 
     @Autowired
     private SNH48Mapper mapper;
+
+    @Autowired
+    private ISilentService silentService;
 
     @Override
     public ServerResponse<List<Supplier>> listSupplier() {
@@ -84,13 +88,12 @@ public class SNH48ServiceImpl implements ISNH48Service {
 
     @Transactional
     @Override
-    public ServerResponse<ListOrder> addOrder(ListOrderItem OrderItems) {
+    public ServerResponse<ListOrder> addOrder(ListOrderItem OrderItems, Integer userID) {
 
         ListOrder result = new ListOrder();
 
-        //TODO 用户ID
         //生成订单
-        Map map = generateOrder(1, OrderItems.getPrice());
+        Map map = generateOrder(userID, OrderItems.getPrice());
         if (map == null) {
             return ServerResponse.createByErrorMessage("生成订单失败");
         }
@@ -99,6 +102,10 @@ public class SNH48ServiceImpl implements ISNH48Service {
         result.setPrice(OrderItems.getPrice());
 
         List<OrderGoods> orderGoods = new ArrayList<>();
+        //购物车商品ID数组
+        int[] goodsIDs = new int[OrderItems.getItems().size()];
+        int i = 0;
+
         //检查每个商品的库存
         for (OrderItem oi : OrderItems.getItems()) {
             //找出该商品下的各个库存
@@ -141,9 +148,42 @@ public class SNH48ServiceImpl implements ISNH48Service {
             String goodsName = getGoodsName(oi.getGoodsId());
             OrderGoods og = new OrderGoods(oi, goodsName);
             orderGoods.add(og);
+
+            goodsIDs[i++] = oi.getGoodsId();
+
+        }
+        //删除购物车
+        ServerResponse d = silentService.deleteCardGoodsByBatch(userID, goodsIDs);
+        if (d.getStatus() == 1) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+            return ServerResponse.createByErrorMessage("删除购物车错误，下订单失败");
         }
         result.setGoods(orderGoods);
-      return ServerResponse.createBySuccess(result);
+        return ServerResponse.createBySuccess(result);
+    }
+
+    @Override
+    public ServerResponse<ListOrder> getListOrder(Integer orderID) {
+
+        ListOrder listOrder = new ListOrder();
+        Order order = mapper.getOrder(orderID);
+        if (order == null) {
+            return ServerResponse.createByErrorMessage("没有此订单");
+        }
+        listOrder.setPrice(order.getPrice());
+        listOrder.setOrderId(orderID);
+        listOrder.setOrderNumber(order.getNumber());
+
+        List<OrderGoods> orderGoods = new ArrayList<>();
+        List<OrderItem> listOrderItem = mapper.listOrderItem(orderID);
+        for (OrderItem oi : listOrderItem) {
+            //获取商品名称
+            String goodsName = getGoodsName(oi.getGoodsId());
+            OrderGoods og = new OrderGoods(oi, goodsName);
+            orderGoods.add(og);
+        }
+        listOrder.setGoods(orderGoods);
+        return ServerResponse.createBySuccess(listOrder);
     }
 
     @Override
