@@ -285,7 +285,7 @@
     WHERE production_id = #{production_id,jdbcType=INTEGER}
   </select>
   <select id="selectUserNameAndImgById" resultType="org.xgun.kissolive.pojo.User">
-    SELECT id, username, imgurl
+    SELECT id, username, img_url as imgUrl
     FROM tb_user
     WHERE id = #{id,jdbcType=INTEGER}
   </select>

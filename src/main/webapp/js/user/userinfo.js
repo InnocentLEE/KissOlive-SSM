@@ -13,10 +13,16 @@ function add_addr() {
     $(".div_add_addr").slideToggle();
 }
 
-$("#update").click(function () {
+function edit_name(){
     $(".editname").slideToggle();
     $("#update_username").slideToggle();
-});
+}
+
+function edit_phone(){
+    $(".editphone").slideToggle();
+    $("#update_userphone").slideToggle();
+}
+
 $("button[class='edit']").click(function () {
     $('#addrModal').modal('show');
 
@@ -25,12 +31,6 @@ $("button[class='sure']").click(function () {
     $('#addrModal').modal('hide');
 
 });
-
-
-function cancel() {
-    $(".editname").slideToggle();
-    $("#update_username").slideToggle();
-}
 
 function cancel_add_addr() {
     $(".div_add_addr").slideToggle();
@@ -74,3 +74,30 @@ var addresslist= new Vue({
         
     }
 })
+var user = new Vue({
+    el:"#user",
+    data:{
+        user:[]
+    },
+    created:function () {
+        this.getUser();
+    },
+    methods:{
+        getUser:function () {
+            $.ajax({
+                type:"post",
+                url:"http://localhost:8080/user/get_info.do",
+                dataType:'json',
+                success: function(data) {
+                    if(data.status==0) {
+                        user.user = data.data.user;
+                    }
+                },
+                error:function(){
+                    alert("登录异常");
+                }
+            });
+        }
+    }
+})
+

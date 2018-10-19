@@ -14,9 +14,9 @@ public interface ISilentService {
 
     ServerResponse addACard(Card card);
 
-    ServerResponse getMyCard();
+    ServerResponse getMyCard(Integer userId);
 
-    ServerResponse deleteCardByBatch(int[] cardIds);
+    ServerResponse deleteCardByBatch(Integer userId, int[] cardIds);
 
     ServerResponse getActivityMenu(int page, int num);
 

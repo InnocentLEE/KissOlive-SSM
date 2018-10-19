@@ -109,34 +109,46 @@
 <!-- start of 内容 -->
 <div class="container content">
     <div class="line"><span class="header">个人资料</span></div>
-    <div class="part1">
+    <div class="part1" id="user">
         <div style="float:left;">
-            <img class="img-circle detail-image" src="../../images/yadianna.png"></img>
+            <img class="img-circle detail-image" :src="user.imgUrl"></img>
         </div>
         <div class="pp-father">
             <div class="pp">
                 <div class="qq" id="update_username">
-                    <p>用户名：星矢&nbsp;&nbsp;&nbsp;<img src="../../img/user/user_prointro/V6.png" class="user_level"></p>
-                    <button class="btn btn-link update" type="button" id="update">修改</button>
+                    <p>用户名：{{user.username}}</p>
+                    <button class="btn btn-link update" type="button" id="update" onclick="edit_name()">修改</button>
                 </div>
 
                 <!-- 修改用户名  -->
                 <div class="editname" style="display:none">
                     <form class="edit1" action="#" method="post">
-                        <input type="hidden" name="method" value="updateUsername"> 用户名：
-                        <input class="edit-name form-control" id="username" name="username"/>
+                        用户名：
+                        <input class="edit form-control" id="username" name="username" :value="user.username"/>
                         <button class="btn save" type="button">保存</button>&nbsp;&nbsp;&nbsp;
-                        <button class="btn save" type="button" onclick="cancel()">取消</button>
+                        <button class="btn save" type="button" onclick="edit_name()">取消</button>
                     </form>
                 </div>
                 <!-- 修改用户名  -->
 
             </div>
             <div class="pp">
-                <div class="qq">
+                <div class="qq" id="update_userphone">
                     <p>绑定手机号：17876253477</p>
-                    <button class="btn btn-link update_phone" type="button">更换手机号</button>
+                    <button class="btn btn-link update_phone" type="button" onclick="edit_phone()">更换手机号</button>
                 </div>
+
+                <!-- 修改手机号  -->
+                <div class="editphone" style="display:none">
+                    <form class="edit1" action="#" method="post">
+                        手机号：
+                        <input class="edit form-control" id="phone"  :value="user.telphone"/>
+                        <button class="btn save" type="button">保存</button>&nbsp;&nbsp;&nbsp;
+                        <button class="btn save" type="button" onclick="edit_phone()">取消</button>
+                    </form>
+                </div>
+                <!-- 修改手机号  -->
+
             </div>
         </div>
     </div>
