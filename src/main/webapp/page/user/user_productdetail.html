@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="../../css/user/OnlineConsilt.css"/>
     <link rel="stylesheet" href="../../css/user/jquery.sinaEmotion.css">
     <link rel="stylesheet" href="../../css/user/user_lips.css">
+    <link rel="stylesheet" href="../../css/user/sign_login.css"/>
 
 </head>
 
@@ -68,11 +69,11 @@
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right" style="margin: 0">
                     <li>
-                        <a href="user_myshoppingcart.html"><span class="glyphicon glyphicon-shopping-cart">&nbsp;<span>我的购物车</span></span>
+                        <a href="myshoppingcart"><span class="glyphicon glyphicon-shopping-cart">&nbsp;<span>我的购物袋</span></span>
                         </a>
                     </li>
                     <li>
-                        <a href="user_orderlist.html"><span
+                        <a href="orderlist"><span
                                 class="glyphicon glyphicon-list">&nbsp;<span>我的订单</span></span>
                         </a>
                     </li>
@@ -86,18 +87,18 @@
         <div class="header-logo row">
             <div class="col-md-4 col-lg-4"></div>
             <div class="col-md-4 col-lg-4">
-                <a href="user_home.html"><img src="../../img/kissolive.png" class="icon-olive"/></a>
+                <a href="home"><img src="../../img/kissolive.png" class="icon-olive"/></a>
             </div>
-            <div class="col-md-4 col-lg-4">
-                <form action="/KissOlive/MainServlet" method="post">
-                    <input type="hidden" name="method" value="search"/>
+            <div class="col-md-4 col-lg-4" id="search">
+                <form :action="'search?search='+search" method="get">
                     <div class="nav-search">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="search" placeholder="Search for..."> <span
-                                class="input-group-btn">
-									<button class="btn btn-default glyphicon glyphicon-search"
-                                            type="submit"></button>
-								</span>
+                            <input type="text" class="form-control" name="search" placeholder="Search for..."
+                                   v-model="search">
+                            <span class="input-group-btn">
+								<a class="btn btn-default glyphicon glyphicon-search"
+                                   :href="'search?search='+search"></a>
+							</span>
                         </div>
                         <!-- /input-group -->
                     </div>
@@ -105,60 +106,35 @@
             </div>
         </div>
     </div>
+
     <!-- end of main-bar-content -->
 </div>
 <!-- end of 头部 -->
 
 <!-- start of 内容 -->
-<div class="container content">
+<div class="container content" id="content" v-cloak>
     <div class="product-pic">
         <img class="pic" src="../../images/959B06291F454B14A8A663597CC5C077.png" alt="">
     </div>
     <div class="product-intro">
-        <h1 class="product-name">CLIO少女之吻丝润唇彩唇蜜</h1>
-        <h2 class="product-disc">丝润质地、丝滑莹润、色泽丰润</h2>
+        <h1 class="product-name">{{content.name}}</h1>
+        <h2 class="product-disc"><span v-for="r in content.hotspots">{{r.describe}}&nbsp;&nbsp;</span></h2>
         <h3 class="product-price" id="gprice"></h3>
         <div class="product-color row" id="wrap">
             <label class="pro-label">颜色分类&nbsp;</label>
             <ul class="color-group">
-                <li class="color-item" value="125.00">
-                    <em title="" style="background: #E32B55">&nbsp;<i></i></em>
+                <li class="color-item" :value="r.price" v-for="r in content.goodses" onclick="selectColor(this)" :id="r.id">
+                    <em :title="r.colorName" :style="'background: '+r.colorCode">&nbsp;<i></i></em>
                     <input type="radio" value="" name="gid" checked>
                     <input type="radio" value="" name="gid" checked>
                 </li>
-                <li class="color-item" value="127.00">
-                    <em title="" style="background: #D54D5F">&nbsp;<i></i></em>
-                    <input type="radio" value="" name="gid" checked>
-                    <input type="radio" value="" name="gid" checked>
-                </li>
-                <li class="color-item" value="119.00">
-                    <em title="" style="background: #D6534F">&nbsp;<i></i></em>
-                    <input type="radio" value="" name="gid" checked>
-                    <input type="radio" value="" name="gid" checked>
-                </li>
-                <!--	<li class="color-item" id="" value="125.00">
-                        <em id="" title="" style="background: #E32B55">&nbsp;<i></i></em>
-                        <input type="radio" id="" value="" name="gid" checked>
-                        <input type="radio" id="" value="" name="gid" checked>
-                    </li>
-                    <li class="color-item" id="" value="127.00">
-                        <em id="" title="" style="background: #D54D5F">&nbsp;<i></i></em>
-                        <input type="radio" id="" value="" name="gid" checked>
-                        <input type="radio" id="" value="" name="gid" checked>
-                    </li>
-                    <li class="color-item" id="" value="119.00">
-                        <em id="" title="" style="background: #D6534F">&nbsp;<i></i></em>
-                        <input type="radio" id="" value="" name="gid" checked>
-                        <input type="radio" id="" value="" name="gid" checked>
-                    </li>-->
-
             </ul>
         </div>
         <div class="product-num row">
             <label class="pro-label num">数量&nbsp;</label>
             <div class="input-group count" style="grid-row-start:1;">
                 <input class="inputclass" id="reduce" type=button value="-">
-                <input class="inputclass" id="gnumber" type=text name=amount value="1" disabled>
+                <input class="inputclass" id="gnumber" type=text name="amount" value="1" disabled>
                 <input class="inputclass" id="plus" type=button value="+">
             </div>
         </div>
@@ -188,18 +164,18 @@
                             <h3>产品参数</h3>
                         </div>
                         <div class="intro-text">
-                            <label class="lip-label">产品名称：&nbsp;CLIO少女之吻丝润唇彩唇蜜&nbsp;</label>
-                            <label class="lip-label">产品品牌：&nbsp;珂莱欧CLIO&nbsp;</label>
-                            <label class="lip-label">产品功能：&nbsp;滋润、持久、防水、不沾杯、提升气色&nbsp;</label>
-                            <label class="lip-label">选购热点：&nbsp;丝润质地、丝滑莹润、色泽丰润&nbsp;</label>
-                            <label class="lip-label">产地：&nbsp;韩国&nbsp;</label>
-                            <label class="lip-label">适合肤质：&nbsp;所有肤质&nbsp;</label>
+                            <label class="lip-label">产品名称：&nbsp;{{content.name}}&nbsp;</label>
+                            <label class="lip-label">产品品牌：&nbsp;{{content.brand.name}}&nbsp;</label>
+                            <label class="lip-label">产品功能：&nbsp;<span v-for="r in content.functions">{{r.describe}}&nbsp;</span>&nbsp;</label>
+                            <label class="lip-label">选购热点：&nbsp;<span v-for="r in content.hotspots">{{r.describe}}&nbsp;</span>&nbsp;</label>
+                            <label class="lip-label">产&nbsp;&nbsp;地：&nbsp;{{content.origin.describe}}&nbsp;</label>
+                            <label class="lip-label">适合肤质：&nbsp;<span v-for="r in content.skins">{{r.describe}}&nbsp;</span>&nbsp;</label>
                             <label class="lip-label">保质期限：&nbsp;3年&nbsp;</label>
                         </div>
                     </div>
                 </div>
-                <div class="product-pic bottom">
-                    <img class="morecontent" src="../../images/7778CBB784CA46889BD89F2A1CC8CB90.png">
+                <div class="product-pic bottom" id="production_detail">
+
                 </div>
             </div>
             <!--用户评价-->
@@ -215,98 +191,15 @@
                                 <span class="span-signature span-time">2018-10-8 18:00</span>
                             </div>
                         </div>
-                        <div class="grid-item">
+                        <!--<div class="grid-item" v-for="r in access">
                             <span class="fa fa-quote-left"></span>
-                            <span class="span-text">听女朋友说这是秋季爆款。前几天去专柜了没买到，淘宝上好多店铺也都没有，看着这家评价啥的都很高 果断下单啦！物流很快！客服小姐姐态度也很好！最重要的是还送了一个礼物盒！本来就想平平常常给女朋友买支口红，有个礼盒女朋友还说我很浪漫哈哈！颜色味道都超正！！！以后这家店就是心腹店啦！很满意的一次购物！超级好评！skrskrskr～</span>
-                            <span class="fa fa-quote-right"></span>
-                            <div class="div-signature">
-                                <span class="span-signature span-name"><i></i>天下无敌可爱小仙女</span>
-                                <span class="span-signature span-time">2018-10-8 18:00</span>
-                            </div>
-                        </div>
-                        <div class="grid-item">
-                            <span class="fa fa-quote-left"></span>
-                            <span class="span-text">这是一条评价！！！</span>
-                            <span class="fa fa-quote-right"></span>
-                            <div class="div-signature">
-                                <span class="span-signature span-name"><i></i>汪机</span>
-                                <span class="span-signature span-time">2018-10-8 18:00</span>
-                            </div>
-                        </div>
-                        <div class="grid-item">
-                            <span class="fa fa-quote-left"></span>
-                            <span class="span-text">这是一条评价！！！这是一条评价！！！这是一条评价！！！这是一条评价！！！这是一条评价！！！这是一条评价！！！这是一条评价！！！这是一条评价！！！</span>
-                            <span class="fa fa-quote-right"></span>
-                            <div class="div-signature">
-                                <span class="span-signature span-name"><i></i>小泉泉</span>
-                                <span class="span-signature span-time">2018-10-8 18:00</span>
-                            </div>
-                        </div>
-                        <div class="grid-item">
-                            <span class="fa fa-quote-left"></span>
-                            <span class="span-text">
-											这是一条评价！！！这是一条评价！！！这是一条评价！！！
-											这是一条评价！！！这是一条评价！！！这是一条评价！！！
-											这是一条评价！！！这是一条评价！！！这是一条评价！！！
-											这是一条评价！！！这是一条评价！！！这是一条评价！！！
-											这是一条评价！！！这是一条评价！！！这是一条评价！！！
-											这是一条评价！！！这是一条评价！！！这是一条评价！！！
-											这是一条评价！！！这是一条评价！！！这是一条评价！！！
-											这是一条评价！！！这是一条评价！！！这是一条评价！！！
-											这是一条评价！！！这是一条评价！！！</span>
-                            <span class="fa fa-quote-right"></span>
-                            <div class="div-signature">
-                                <span class="span-signature span-name"><i></i>傻猫</span>
-                                <span class="span-signature span-time">2018-10-8 18:00</span>
-                            </div>
-                        </div>
-                        <div class="grid-item">
-                            <span class="fa fa-quote-left"></span>
-                            <span class="span-text">
-											这是一条评价！！！这是一条评价！！！这是一条评价！！！
-											这是一条评价！！！这是一条评价！！！这是一条评价！！！
-											这是一条评价！！！这是一条评价！！！这是一条评价！！！
-											这是一条评价！！！这是一条评价！！！这是一条评价！！！
-											这是一条评价！！！这是一条评价！！！这是一条评价！！！
-											这是一条评价！！！这是一条评价！！！这是一条评价！！！
-											这是一条评价！！！这是一条评价！！！这是一条评价！！！
-											这是一条评价！！！这是一条评价！！！这是一条评价！！！
-											这是一条评价！！！这是一条评价！！！</span>
-                            <span class="fa fa-quote-right"></span>
-                            <div class="div-signature">
-                                <span class="span-signature span-name"><i></i>听说名字可以取很长很长很长</span>
-                                <span class="span-signature span-time">2018-10-8 18:00</span>
-                            </div>
-                        </div>
-                        <div class="grid-item">
-                            <span class="fa fa-quote-left"></span>
-                            <span class="span-text">这是一条评价！！！这是一条评价！！！
-										这是一条评价！！！这是一条评价！！！这是一条评价！！！
-										这是一条评价！！！这是一条评价！！！这是一条评价！！！</span>
+                            <span class="span-text">{{}}</span>
                             <span class="fa fa-quote-right"></span>
                             <div class="div-signature">
                                 <span class="span-signature span-name"><i></i>夷陵老祖</span>
                                 <span class="span-signature span-time">2018-10-8 18:00</span>
                             </div>
-                        </div>
-                        <div class="grid-item">
-                            <span class="fa fa-quote-left"></span>
-                            <span class="span-text">这个口红是正品 我买的是哑光 涂上以后妆感很强 气场一下子出来了 而且之前买的diro容易被吃掉 这个吃饭喝水都不影响的 从香港发过来等了好久！客服跟店家都是很贴心的～建议身边女朋友比较御姐类型的可以买这款 男朋友送礼物啊什么的又加分又实惠！开心！</span>
-                            <span class="fa fa-quote-right"></span>
-                            <div class="div-signature">
-                                <span class="span-signature span-name"><i></i>夷陵老祖</span>
-                                <span class="span-signature span-time">2018-10-8 18:00</span>
-                            </div>
-                        </div>
-                        <div class="grid-item">
-                            <span class="fa fa-quote-left"></span>
-                            <span class="span-text">哇哇哇！心心念念的口红终于到货,喜欢拆快递的那一瞬间跟挖宝藏似的，物流很快的，三天就到了 很好,店里服务也很好,客服小姐姐会为你解答每一 个问题,口红颜色非常正,到手了以后一点都不后 悔,嘿嘿嘿,开心的不能自己,自己用送人用都可以 呦,一直用的都是香奈儿的,和专柜买的一样,颜色 非常正,好几个颜色都好喜欢,等着我回购吧,我要 把喜欢的颜色都买断,哈哈哈!</span>
-                            <span class="fa fa-quote-right"></span>
-                            <div class="div-signature">
-                                <span class="span-signature span-name"><i></i>夷陵老祖</span>
-                                <span class="span-signature span-time">2018-10-8 18:00</span>
-                            </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>
@@ -557,6 +450,7 @@
 <script type="text/javascript" src="../../js/user/prefixfree.min.js"></script>
 <script type="text/javascript" src="../../js/user/Consultcommon.js"></script>
 <script type="text/javascript" src="../../js/user/jquery.sinaEmotion.js"></script>
+<script type="text/javascript" src="../../js/user/user_productdetail.js"></script>
 <script type="text/javascript">
     // 绑定表情
 
@@ -610,80 +504,6 @@
         }
         $('textarea[autoHeight]').autoHeight();
     })
-</script>
-<script type="text/javascript">
-    $(function () {
-        document.getElementById("gprice").innerHTML = "选择颜色查看价钱";
-        $("li.color-item").click(
-            function () {
-                $(this).addClass("selected").siblings()
-                    .removeClass("selected");
-                //var value = $('#wrap input[name="gid"]:checked').attr("id");
-                document.getElementById("gprice").innerHTML = "￥ " + $(this).attr("value") + "元";
-            })
-    })
-</script>
-<script>
-    $(document).ready(function () {
-        //获得文本框对象
-        var t = $("#gnumber");
-        //初始化数量为1,并失效减
-        $('#reduce').attr('disabled', true);
-
-        //数量增加操作
-        $("#plus").click(function () {
-            // 给获取的val加上绝对值，避免出现负数
-            t.val(Math.abs(parseInt(t.val())) + 1);
-            if (parseInt(t.val()) != 1) {
-                $('#reduce').attr('disabled', false);
-            }
-            ;
-        })
-        //数量减少操作
-        $("#reduce").click(function () {
-            t.val(Math.abs(parseInt(t.val())) - 1);
-            if (parseInt(t.val()) == 1) {
-                $('#reduce').attr('disabled', true);
-            }
-            ;
-        })
-    });
-
-    function valid() {
-        var islogin = $("input[type='hidden']").val();
-        var price = $('#gprice').text();
-
-        var gid = $("li[class='color-item selected']").attr("id"); //获取商品id
-        var gnumber = $('#gnumber').val(); //获取商品当前数量gnmber
-
-        if (islogin == true) {
-            alert("您还没有登录！");
-        } else if (price == "选择颜色查看价钱") {
-            alert("请选择想购买的口红颜色！");
-        } else {
-            $.ajax({
-                url: "/KissOlive/MainServlet", //要请求的servlet
-                data: {
-                    method: "ajaxAddCart",
-                    gid: gid,
-                    gnumber: gnumber
-                }, //给服务器的参数
-                type: "POST",
-                dataType: "json",
-                async: false, //是否异步请求，如果是异步，那么不会等服务器返回，这个函数就向下运行了。
-                cache: false,
-                success: function (result) {
-                    if (!result) { //如果校验失败
-                        alert("您还没有登录！");
-                        return false;
-                    } else {
-                        alert("添加成功！");
-                        return true;
-                    }
-                }
-            });
-        }
-    }
 </script>
 
 </body>

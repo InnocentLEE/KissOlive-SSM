@@ -150,11 +150,11 @@
 
             <div class="card" v-for="r in rcontent">
                 <figure>
-                    <a :href="r.id">
+                    <a :href="'production_detail?id='+r.id">
                         <img alt="" class="card-good" :src="r.imgUrl">
                     </a>
                     <figcaption class="goods_text">
-                        <a :href="r.id">
+                        <a :href="'production_detail?id='+r.id">
                             <span class="mh4">{{r.name}}</span>
                             <p></p>
                             <span class="mh5">{{r.description}}</span>

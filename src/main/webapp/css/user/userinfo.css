@@ -1,19 +1,19 @@
 .line {
     width: 90%;
-    height: 37;
+    height: 37px;
     border-bottom-color: #000;
     border-bottom: 1px solid #000;
-    margin: 32 auto;
+    margin: 32px auto;
 }
 span.header {
-    padding: 15 30;
+    padding: 15px 30px;
     background: #000;
     font-size: 17px;
     color: #fff;
     font-weight: bold;
 }
 .pp {
-    margin: 40 200 20 200;
+    margin: 40px 200px 20px 200px;
     width: fit-content;
     font-size: 18px;
     font-weight: bold;
@@ -23,48 +23,48 @@ div.pp>button.btn.btn-link {
     padding-top: 0;
     font-size: 18px;
     padding-bottom: 3px;
-    margin-left: 30;
-    margin-top: -10;
+    margin-left: 30px;
+    margin-top: -10px;
 }
 p#pick {
     font-size: 18px;
     color: #000;
     font-weight: bold;
-    margin-left: 80;
-    margin-top: 30;
+    margin-left: 80px;
+    margin-top: 30px;
     border-bottom: 1px solid #000c;
     width: 28%;
 }
 /*新增地址*/
 div.addr{
     display: flex;
-    height: 200;
+    height: 200px;
     border: 1px solid #ccc;
-    margin: 40 70 20 80;
+    margin: 40px 70px 20px 80px;
 }
 ul.addr{
     display: flex;
-    height: 100;
-    padding: 30 40 30 40;
+    height: 100px;
+    padding: 30px 40px 30px 40px;
     vertical-align: middle;
     line-height: 3;
     border: 1px solid #ccc;
-    margin: 40 70 20 80;
+    margin: 40px 70px 20px 80px;
 }
 button.add_addr{
-    margin: 20 0 50 0;
+    margin: 20px 0px 50px 0px;
     float: right;
 }
 button.save_addr {
-    margin: 10 50 50 0;
+    margin: 10px 50px 50px 0px;
     float: right;
 }
 ul.addr.add {
-    height: 200;
+    height: 200px;
     border: none;
 }
 ul.addr>li{
-	    padding: 0 25 0 15;
+	    padding: 0px 25px 0px 15px;
 }
 input#name,#tel{
     width: 200px;
@@ -73,8 +73,8 @@ input#detail {
 	width:600px;
 }
 select#province, .city, .dist {
-    width: 100;
-    height: 32;
+    width: 100px;
+    height: 32px;
 }
 button.edit, button.setdefault {
     width: 100px;
@@ -83,11 +83,11 @@ button.edit, button.setdefault {
     font-weight: bold;
     background: #000;
     border: none;
-    margin: 0 20;
+    margin: 0 20px;
 }
 button.btn.btn-link.update {
     float: left;
-    margin: -43px 0px 0px 190px;
+    margin: -43px 0px 0px 240px;
     font-size: 18px;
 }
 button.btn.btn-link.update_phone{
@@ -95,26 +95,26 @@ button.btn.btn-link.update_phone{
     margin: -43px 0px 0px 240px;
     font-size: 18px;
 }
-input#username {
+.edit {
     padding-top: 0;
-    margin-top: -5;
-    margin-right: 30;
+    margin-top: -5px;
+    margin-right: 30px;
     width:200px;
 }
 form.edit1 {
     display: flex;
-    width: 500;
+    width: 500px;
 }
 button.btn.save {
     margin: -5px 0 0 0;
-    padding: 0 12;
+    padding: 0 12px;
     width: 80px;
     height: 32px;
 }
 .div_add_addr, .div_edit_addr {
     height: auto;
     border: 1px solid #ccc;
-    margin-bottom: 80;
+    margin-bottom: 80px;
     margin-left: 75px;
     margin-right: 70px;
 }
@@ -128,22 +128,22 @@ label#nameCorrect,#telCorrect,#detailCorrect {
 /*主元素*/
 button.add_addr,button.save_addr{
 	 text-align: center;
-    padding: 8;
+    padding: 8px;
     border: none;
-    width: 150;
+    width: 150px;
     height: 40px;
-    margin: 30 70 50px 20;
+    margin: 30px 70px 50px 20px;
     background: #000;
     color: #fff;
     font-weight: bolder;
-    font-size: 20;
+    font-size: 20px;
 }
 div.addr>ul>li {
-    margin: 20 0;
+    margin: 20px 0px;
 }
 li#rr {
     /* float: right; */
-    margin: 0 0 0 800;
+    margin: 0 0 0 800px;
 }
 ul.addr.add.edit {
     margin: 0;

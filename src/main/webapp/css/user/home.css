@@ -167,7 +167,7 @@ footer.contaniner.content {
     width:80%;
     border-top-color: #33333326;
     border-top-style: solid;
-    border-top-width: 1;
+    border-top-width: 1px;
     padding-top: 30px;
     font-weight: bold;
 }
@@ -277,4 +277,7 @@ ul.nav>li>a {
         background: #000;
         margin-top: -7.5px;
     }
+}
+[v-clock]{
+    display: none;
 }
