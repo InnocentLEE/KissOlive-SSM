@@ -169,4 +169,10 @@
         FROM tb_vip_level
         WHERE score_low &lt;= #{score} AND score_high &gt;= #{score}
     </select>
+    <select id="getGoodsUrl" resultType="java.lang.String">
+        SELECT img_url
+        FROM tb_production
+        LEFT JOIN tb_goods ON tb_production.id = tb_goods.production_id
+        WHERE tb_goods.id = #{goodsID}
+    </select>
 </mapper>

@@ -83,5 +83,6 @@ public interface SNH48Mapper {
 
     VipLevel getVipLevel(@Param("score")Integer score);
 
+    String getGoodsUrl(@Param("goodsID")Integer goodsID);
 
 }

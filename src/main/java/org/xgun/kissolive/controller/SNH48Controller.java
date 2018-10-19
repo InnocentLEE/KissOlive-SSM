@@ -111,8 +111,13 @@ public class SNH48Controller {
         return service.addOrder(orderItems, userID);
     }
 
+    /**
+     * 获取订单购物信息
+     * @param orderID 订单ID
+     * @return
+     */
     @GetMapping("/order/{orderID}")
-    public ServerResponse<ListOrder> getOrder(@PathVariable Integer orderID) {
+    public ServerResponse<ListOrder> getListOrder(@PathVariable Integer orderID) {
 
         return service.getListOrder(orderID);
     }
@@ -138,9 +143,11 @@ public class SNH48Controller {
      */
     @GetMapping("/orders/{status}/{page}/{size}")
     public ServerResponse<List<ListOrder>> getOrders(@PathVariable Integer status, @PathVariable Integer page,
-                                                     @PathVariable Integer size) {
+                                                     @PathVariable Integer size, HttpSession session) {
 
-        return service.getOrders(status, page, size);
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        Integer userID = user.getId();
+        return service.getOrders(status, page, size, userID);
     }
 
     /**

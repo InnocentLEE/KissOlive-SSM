@@ -159,7 +159,8 @@ public class SNH48ServiceImpl implements ISNH48Service {
             return ServerResponse.createByErrorMessage("删除购物车错误，下订单失败");
         }
         result.setGoods(orderGoods);
-        return ServerResponse.createBySuccess(result);
+        //return ServerResponse.createBySuccess(result);
+        return ServerResponse.createBySuccess();
     }
 
     @Override
@@ -179,7 +180,8 @@ public class SNH48ServiceImpl implements ISNH48Service {
         for (OrderItem oi : listOrderItem) {
             //获取商品名称
             String goodsName = getGoodsName(oi.getGoodsId());
-            OrderGoods og = new OrderGoods(oi, goodsName);
+            String url = mapper.getGoodsUrl(oi.getGoodsId());
+            OrderGoods og = new OrderGoods(oi, goodsName, url);
             orderGoods.add(og);
         }
         listOrder.setGoods(orderGoods);
@@ -271,10 +273,8 @@ public class SNH48ServiceImpl implements ISNH48Service {
     }
 
     @Override
-    public ServerResponse<List<ListOrder>> getOrders(Integer status, Integer page, Integer size) {
+    public ServerResponse<List<ListOrder>> getOrders(Integer status, Integer page, Integer size, Integer userID) {
 
-        //TODO 用户ID
-        Integer userID = 1;
         PageHelper.startPage(page,size);
         List<Order> orders = mapper.listOrder(userID, status);
         if (orders == null || orders.size() == 0) {
@@ -293,7 +293,8 @@ public class SNH48ServiceImpl implements ISNH48Service {
             List<OrderItem> listOrderItem = mapper.listOrderItem(orderID);
             for (OrderItem oi : listOrderItem) {
                 String name = getGoodsName(oi.getGoodsId());
-                OrderGoods og = new OrderGoods(oi, name);
+                String url = mapper.getGoodsUrl(oi.getGoodsId());
+                OrderGoods og = new OrderGoods(oi, name, url);
                 listOG.add(og);
             }
             lo.setGoods(listOG);
