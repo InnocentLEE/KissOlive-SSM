@@ -122,7 +122,7 @@
             <!-- 购物车页面 -->
             <div id="step1" class="tab-pane fade active in">
                 <div class="back">
-                    <a class="back" href="../../page/user/user_home.jsp">&lt;&lt;&nbsp;继续购物
+                    <a class="back" href="search?search=口红">&lt;&lt;&nbsp;继续购物
                         <span class="glyphicon glyphicon-shopping-cart"></span>
                     </a>
                 </div>
@@ -166,9 +166,9 @@
                             </td>
                             <td>
                                 <div class="amount_box">
-                                    <button class="reduce reSty btn" type="button" >-</button>
+                                    <button class="reduce reSty btn" type="button" :id="r.goodsId">-</button>
                                     <input type="text" :value="r.num" class="sum" disabled>
-                                    <button class="plus btn" type="button" >+</button>
+                                    <button class="plus btn" type="button" :id="r.goodsId">+</button>
                                 </div>
                             </td>
                             <td>

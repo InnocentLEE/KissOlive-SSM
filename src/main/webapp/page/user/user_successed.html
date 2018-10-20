@@ -102,7 +102,7 @@
 <!-- end of 头部 -->
 
 <!-- start of 内容 -->
-<div class="container content">
+<div class="container content" id="container">
     <div class="leadertab row">
         <ul id="myTab" class="nav nav-tabs" role="tablist">
             <li id="step1Li" class="gray">
@@ -133,16 +133,14 @@
                 <div class="item-right">
                     <span class="info-text" id="info">收货信息：</span>
                     <div class="div-row">
-                        <span class="infotext" id="name">娜丽丝</span>
-                        <span class="infotext" id="tel">136****5683</span>
-                        <span class="infotext" id="addr">内蒙古自治区 呼伦贝尔市 莫力达瓦达斡尔族自治旗 杜拉尔鄂温克民族乡 尼西空海拉松村××号</span>
+                        <span class="infotext" id="name">{{orderinfo.address}}</span>
                     </div>
                     <div class="div-row">
                         <span class="infotext" id="money">应付金额 ：</span>
-                        <span class="infotext" ><strong>￥355.00</strong></span>
+                        <span class="infotext" ><strong>￥{{orderinfo.price}}</strong></span>
                     </div>
                     <div class="div-row">
-                        <label class="label-gray">您的订单号 554465456485415132122</label>&nbsp;&nbsp;|&nbsp;&nbsp;
+                        <label class="label-gray">您的订单号 {{orderinfo.orderNumber}}</label>&nbsp;&nbsp;|&nbsp;&nbsp;
                         <label class="label-gray"><a href="#">查看订单详情</a></label>
                     </div>
                 </div>
@@ -158,7 +156,7 @@
             <div class="paycode-content">
                 <div class="paycode-item">
                 <span class="code-tip">请使用支付宝扫一扫扫描二维码支付</span>
-                <img class="code-png"src="../../img/user/alipay.png" alt="">
+                <img class="code-png" :src="QRcode.qrUrl" alt="">
                 </div>
                 <div class="paycode-item">
                     <img src="../../img/user/alipaysaoyisao.png" alt="">
@@ -249,7 +247,7 @@
 <script type="text/javascript" src="../../js/user/user_home.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../../js/jquery.cityselect.js"></script>
-<script type="text/javascript" src="../../js/shoppingcart.js"></script>
+<script type="text/javascript" src="../../js/user/user_successed.js"></script>
 
 </body>
 </html>

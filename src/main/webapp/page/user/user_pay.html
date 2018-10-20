@@ -41,7 +41,8 @@
 
                 <ul class="nav navbar-nav navbar-left" v-else>
                     <li>
-                        <a href="" class="navbar-brand"><img class="img-circle user-head-image" :src="user.imgUrl"></img></a>
+                        <a href="" class="navbar-brand"><img class="img-circle user-head-image"
+                                                             :src="user.imgUrl"></img></a>
                     </li>
                     <li>
                         <a href="info" class="navbar-brand">{{user.username}}</a>
@@ -115,25 +116,19 @@
 
         <div id="myTabContent" class="tab-content">
             <!-- 订单提交页面 -->
-            <form id="myForm" action="MainServlet">
+
                 <input type="hidden" name="method" value="">
                 <div id="step2" class="tab-pane fade active in">
                     <div class="titleborder">
                         <label class="labelhead">支付及物流</label>
                     </div>
-                                <ul class="addr">
-                                    <li><input type="radio" value="" name="selectaddr" id="add1" checked></li>
-                                    <li>收件人：星矢</li>
-                                    <li>联系方式：13685260000</li>
-                                    <li>收货地址：广东省肇庆市端州区肇庆学院主校区</li>
-                                </ul>
-
-                                <ul class="addr">
-                                    <li><input type="radio" value="" name="selectaddr" id="add2"></li>
-                                    <li>收件人：星矢</li>
-                                    <li>联系方式：13826328000</li>
-                                    <li>收货地址：广东省肇庆市端州区肇庆学院星湖校区</li>
-                                </ul>
+                    <ul class="addr" v-for="(r,index) in addresslist">
+                        <li v-if="index==0"><input type="radio" :value="r.id" name="selectaddr" id="selectaddr" checked></li>
+                        <li v-else><input type="radio" :value="r.id" name="selectaddr" id="selectaddr"></li>
+                        <li>收件人：{{r.consignee}}</li>
+                        <li>联系方式：{{r.telphone}}</li>
+                        <li>收货地址：{{r.province}}{{r.city}}{{r.district}}{{r.detail}}</li>
+                    </ul>
 
                     <table class="table">
                         <thead>
@@ -146,41 +141,44 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr class="order_lists"> <!-- 每一个orderlist就是一个购物车商品 -->
-                                <th>
-                                    <div class="list_img">
-                                        <img  src="../../images/959B06291F454B14A8A663597CC5C077.png" alt="">
-                                    </div></th>
-                                <td>
-                                    <p class="goodname">CLIO少女之吻丝润唇彩唇蜜</p>
-                                    <p class="goodcolor">#0321</p>
-                                </td>
-                                <td><p class="price">￥120</p></td>
-                                <td>
-                                    <div class="amount_box">
-                                        <input type="text" value="1" class="sum" id="gnumber" disabled>
-                                    </div>
-                                </td>
-                                <td><p class="order-sum_price">￥120</p></td>
-                            </tr>
-                            <input type="hidden" name="cid" value="">
+                        <tr class="order_lists" v-for="r in productionlist.goods"> <!-- 每一个orderlist就是一个购物车商品 -->
+                            <th>
+                                <div class="list_img">
+                                    <img :src="r.url" alt="">
+                                </div>
+                            </th>
+                            <td>
+                                <p class="goodname">{{r.name}}</p>
+                            </td>
+                            <td><p class="price">￥{{getOnePrice(r.price,r.number)}}</p></td>
+                            <td>
+                                <div class="amount_box">
+                                    <input type="text" :value="r.number" class="sum" id="gnumber" disabled>
+                                </div>
+                            </td>
+                            <td><p class="order-sum_price">￥{{r.price}}</p></td>
+                        </tr>
+                        <input type="hidden" name="cid" value="">
                         <tr>
-                            <th rowspan="2" colspan="3" style="vertical-align: middle;padding: 0 0 0 50px;font-size: 20px;font-weight: normal; ">订单总结</th>
+                            <th rowspan="2" colspan="3"
+                                style="vertical-align: middle;padding: 0 0 0 50px;font-size: 20px;font-weight: normal; ">
+                                订单总结
+                            </th>
                             <td>商品价格</td>
-                            <td><strong class="order-total_text">120</strong></td>
+                            <td><strong class="order-total_text">￥{{productionlist.price}}</strong></td>
                         </tr>
                         <tr>
                             <td>运费</td>
                             <td>免邮</td>
                         </tr>
                         <tr class="bordertop">
-                            <th colspan="3" ></th>
+                            <th colspan="3"></th>
                             <td>
                                 已选商品
                             </td>
                             <td>
                                 <div class="piece">
-                                    <strong class="order-piece_num">1</strong>件
+                                    <strong class="order-piece_num">{{productionnum}}</strong>件
                                 </div>
                             </td>
                         </tr>
@@ -189,23 +187,24 @@
                             <td>
                                 共计
                             </td>
-                            <td >
+                            <td>
                                 <div class="totalMoney">
-                                    <strong class="order-total_text">1</strong>
+                                    <strong class="order-total_text">￥{{productionlist.price}}</strong>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <th colspan="3"></th>
                             <td colspan="2">
-                                <button style="color: #fff;" class="buyBtn"  id="surecid" onclick="judge();">确定支付</button>
+                                <button style="color: #fff;" class="buyBtn" id="surecid" onclick="judge();">提交订单
+                                </button>
                             </td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
                 <!-- 订单提交页面 -->
-            </form>
+
         </div>
     </div>
 </div>
@@ -288,24 +287,8 @@
 <script type="text/javascript" src="../../js/user/user_home.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../../js/jquery.cityselect.js"></script>
-<script type="text/javascript" src="../../js/shoppingcart.js"></script>
+<script type="text/javascript" src="../../js/user/user_pay.js"></script>
 
 
-<script type="text/javascript">
-
-    function judge(){
-        var i=0;
-        $("input[name='selectaddr']").each(function(){
-            if($(this).is(':checked'))
-            {
-                i=1;
-                document.getElementById("myForm").submit()
-            }
-        });
-        if(i==0)
-            alert("请选择收货地址！！！");
-    }
-
-</script>
 </body>
 </html>

@@ -137,8 +137,11 @@ function doUpdate(){
 
         //数量变化ajax
         $.ajax({
-            url: "/KissOlive/MainServlet",//要请求的servlet
-            data: {method: "ajaxUpdateCart", number: $count, cid: $cid},//给服务器的参数
+            url: "http://localhost:8080/shoppingCart/add_card.do",//要请求的servlet
+            data: {
+                goodsId:$cid,
+                num:1
+            },//给服务器的参数
             type: "POST",
             dataType: "json",
             async: false,//是否异步请求，如果是异步，那么不会等服务器返回，这个函数就向下运行了。
@@ -168,12 +171,13 @@ function doUpdate(){
 
         if ($inputVal.val() > 1) {
             $inputVal.val($count);
-            // console.log($count);
-
             //数量变化ajax
             $.ajax({
-                url: "/KissOlive/MainServlet",//要请求的servlet
-                data: {method: "ajaxUpdateCart", number: $count, cid: $cid},//给服务器的参数
+                url: "http://localhost:8080/shoppingCart/add_card.do",//要请求的servlet
+                data: {
+                    goodsId:$cid,
+                    num:-1
+                },//给服务器的参数
                 type: "POST",
                 dataType: "json",
                 async: false,//是否异步请求，如果是异步，那么不会等服务器返回，这个函数就向下运行了。
@@ -253,10 +257,12 @@ function doSettlement() {
     var jsonObj = new Array();
     var select = $(".son_check");
     var card = new Array();
+    //var delcard = new Array();
     for(var i=0;i<select.length;i++){
         if(select[i].checked){
             var temp = $(select[i]).parents("td").siblings();
             var id = $(select[i]).parents("tr").prop("id");
+            //delcard.push(id);
             var temp = {
                 id : id,
                 goodsId : $(select[i]).val(),
@@ -280,6 +286,7 @@ function doSettlement() {
         dataType : "json",// 数据类型可以为 text xml json script jsonp
         success : function(result) {// 返回的参数就是 action里面所有的有get和set方法的参数
            if(result.status==0){
+               //delselect(delcard);
                alert("下单成功！");
                window.location.href = "http://localhost:8080/pay?id="+result.data.orderId;
            }else {
@@ -288,3 +295,27 @@ function doSettlement() {
         }
     });
 }
+/*
+function delselect(delcard) {
+    $.ajax({
+        type:'post',
+        url:'http://localhost:8080/shoppingCart/delete_card_ByBatch.do',
+        data:{
+            cardIds: delcard
+        },
+        cache: false,
+        traditional: true,
+        dataType:'json',
+        success: function(data) {
+            if(data.status==0) {
+                $("#"+selectid).remove();
+                alert(data.msg);
+                $("#myModal1").modal('hide');
+                totalMoney();
+            }
+        },
+        error:function(){
+            alert("删除异常");
+        }
+    });
+}*/
