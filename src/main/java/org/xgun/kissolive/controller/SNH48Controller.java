@@ -12,6 +12,7 @@ import org.xgun.kissolive.service.ISNH48Service;
 import org.xgun.kissolive.vo.ListOrder;
 import org.xgun.kissolive.vo.ListOrderItem;
 import org.xgun.kissolive.vo.ListStock;
+import org.xgun.kissolive.vo.OrderAddress;
 
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
@@ -208,6 +209,17 @@ public class SNH48Controller {
         User user = (User)session.getAttribute(Const.CURRENT_USER);
         Integer userID = user.getId();
         return service.getOrders(status, page, size, userID);
+    }
+
+    /**
+     * 获取订单详细地址和总价
+     * @param orderID 订单ID
+     * @return
+     */
+    @GetMapping("/order/info/{orderID}")
+    public ServerResponse<OrderAddress> getOrderAddress(@PathVariable Integer orderID) {
+
+        return service.getOrderAddress(orderID);
     }
 
     /**

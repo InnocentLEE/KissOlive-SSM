@@ -12,10 +12,7 @@ import org.xgun.kissolive.pojo.*;
 import org.xgun.kissolive.service.ISNH48Service;
 import org.xgun.kissolive.service.ISilentService;
 import org.xgun.kissolive.utils.DateUtil;
-import org.xgun.kissolive.vo.ListOrder;
-import org.xgun.kissolive.vo.ListOrderItem;
-import org.xgun.kissolive.vo.ListStock;
-import org.xgun.kissolive.vo.OrderGoods;
+import org.xgun.kissolive.vo.*;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -381,5 +378,28 @@ public class SNH48ServiceImpl implements ISNH48Service {
         }
         VipLevel vipLevel = mapper.getVipLevel(score);
         return vipLevel;
+    }
+
+    @Override
+    public ServerResponse<OrderAddress> getOrderAddress(Integer orderID) {
+
+        Order order = mapper.getOrder(orderID);
+        if (order == null) {
+            return ServerResponse.createByErrorMessage("没有此订单");
+        }
+        if (order.getAddressId() == null) {
+            return ServerResponse.createByErrorMessage("订单没有存储地址");
+        }
+        Address address = mapper.getAddress(order.getAddressId());
+        String addressInfo = address.getConsignee() + " ";
+        addressInfo += address.getTelphone().replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2");
+        addressInfo += " " + address.getProvince() + address.getCity() + address.getDistrict() + address.getDetail();
+        addressInfo += " " + address.getPostcode();
+        OrderAddress oa = new OrderAddress();
+        oa.setOrderID(orderID);
+        oa.setOrderNumber(order.getNumber());
+        oa.setPrice(order.getPrice());
+        oa.setAddress(addressInfo);
+        return ServerResponse.createBySuccess(oa);
     }
 }

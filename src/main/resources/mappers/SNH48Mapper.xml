@@ -180,4 +180,22 @@
         LEFT JOIN tb_goods ON tb_production.id = tb_goods.production_id
         WHERE tb_goods.id = #{goodsID}
     </select>
+    <resultMap id="AddressResultMap" type="org.xgun.kissolive.pojo.Address" >
+        <constructor >
+            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="province" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="city" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="district" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="detail" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="postcode" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="consignee" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="telphone" jdbcType="VARCHAR" javaType="java.lang.String" />
+        </constructor>
+    </resultMap>
+    <select id="getAddress" resultMap="AddressResultMap">
+        SELECT *
+        FROM tb_address
+        WHERE id = #{addressID}
+    </select>
 </mapper>

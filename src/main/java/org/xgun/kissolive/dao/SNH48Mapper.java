@@ -87,4 +87,6 @@ public interface SNH48Mapper {
 
     String getGoodsUrl(@Param("goodsID")Integer goodsID);
 
+    Address getAddress(@Param("addressID")Integer addressID);
+
 }

@@ -8,6 +8,7 @@ import org.xgun.kissolive.pojo.VipLevel;
 import org.xgun.kissolive.vo.ListOrder;
 import org.xgun.kissolive.vo.ListOrderItem;
 import org.xgun.kissolive.vo.ListStock;
+import org.xgun.kissolive.vo.OrderAddress;
 
 import java.util.List;
 
@@ -48,4 +49,6 @@ public interface ISNH48Service {
 
     //获取用户的VIP等级信息
     VipLevel getVIPLevel(Integer userID);
+
+    ServerResponse<OrderAddress> getOrderAddress(Integer orderID);
 }
