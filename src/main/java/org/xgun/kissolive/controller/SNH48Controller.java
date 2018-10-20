@@ -147,6 +147,54 @@ public class SNH48Controller {
     }*/
 
     /**
+     * 修改订单状态
+     * @param orderID
+     * @return
+     */
+    @PutMapping("/order/deliver/{orderID}")
+    public ServerResponse deliverOrder(@PathVariable Integer orderID) {
+
+        int status = 2; //发货了未收货
+        return service.updateOrderStatus(orderID, status);
+    }
+
+    /**
+     * 修改订单状态
+     * @param orderID
+     * @return
+     */
+    @PutMapping("/order/receive/{orderID}")
+    public ServerResponse receiveOrder(@PathVariable Integer orderID) {
+
+        int status = 3; //收货了未评价
+        return service.updateOrderStatus(orderID, status);
+    }
+
+    /**
+     * 修改订单状态
+     * @param orderID
+     * @return
+     */
+    @PutMapping("/order/done/{orderID}")
+    public ServerResponse doneOrder(@PathVariable Integer orderID) {
+
+        int status = 4; //评价了即完成
+        return service.updateOrderStatus(orderID, status);
+    }
+
+    /**
+     * 修改订单状态
+     * @param orderID
+     * @return
+     */
+    @PutMapping("/order/cancel/{orderID}")
+    public ServerResponse cancelOrder(@PathVariable Integer orderID) {
+
+        int status = -1; //取消
+        return service.updateOrderStatus(orderID, status);
+    }
+
+    /**
      * 获取不同状态的订单列表
      * @param status 订单状态
      * @param page 第几页
