@@ -11,6 +11,7 @@
         <link rel="stylesheet" type="text/css" href="../../css/admin/table/dataTables.responsive.css">
         <link rel="stylesheet" type="text/css" href="../../css/admin/table/sb-admin-2.css">
         <link rel="stylesheet" type="text/css" href="../../css/admin/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="../../css/admin/table/admin-brand.css">
 	</head>
 	<body>
 		
@@ -18,7 +19,7 @@
 		<!-- start:权限管理 -->
 		<div class="row" >
 			<div class="col-lg-10">
-				<h1 class="page-header">账号权限管理</h1> 
+				<h1 class="page-header"  style="margin-left: 20px">账号权限管理</h1>
 			</div>
 		</div>
 		<table id="per_table" class="table table-bordered" >
@@ -36,44 +37,24 @@
        </thead>
        <tbody>
            <tr align="center" v-for="r in datas">
-               <td></td><td>&radic;</td><td>&radic;</td><td>&radic;</td><td></td><td></td><td></td></td><td>
+               <td>{{r.userId}}</td>
+               <td v-if="r.homeManage==1">&radic;</td>
+               <td v-else></td>
+               <td v-if="r.brandManage==1">&radic;</td>
+               <td v-else></td>
+               <td v-if="r.goodsManage==1">&radic;</td>
+               <td v-else></td>
+               <td v-if="r.orderManage==1">&radic;</td>
+               <td v-else></td>
+               <td v-if="r.stockManage==1">&radic;</td>
+               <td v-else></td>
+               <td v-if="r.activityManage==1">&radic;</td>
+               <td v-else></td>
+               <td><a class='btn btn-danger btn-xs' data-toggle='modal' data-target='#per_myModal2' onclick='update(this)'><span class='glyphicon glyphicon-pencil'></span> 修改权限</a></td>
            </tr>
-           <tr align="center">
-               <td>002</td><td>&radic;</td><td></td><td></td><td></td><td></td><td></td></td><td>
-           </tr>
-           <tr align="center">
-               <td>003</td><td>&radic;</td><td></td><td></td><td></td><td></td><td></td></td><td>
-           </tr>
-           <tr align="center">
-               <td>004</td><td>&radic;</td><td></td><td></td><td></td><td></td><td></td></td><td>
-           </tr>
-            <tr align="center">
-              <td>005</td><td>&radic;</td><td></td><td></td><td></td><td></td><td></td></td><td>
-           </tr>
-           <tr align="center">
-              <td>006</td><td>&radic;</td><td></td><td></td><td></td><td></td><td></td></td><td>
-           </tr>
-           <tr align="center">
-               <td>007</td><td>&radic;</td><td></td><td></td><td></td><td></td><td></td></td><td>
-           </tr>
-           <tr align="center">
-               <td>008</td><td>&radic;</td><td></td><td></td><td></td><td></td><td></td></td><td>
-           </tr>
-            <tr align="center">
-               <td>009</td><td>&radic;</td><td></td><td></td><td></td><td></td><td></td></td><td>
-           </tr>
-           <tr align="center">
-               <td>010</td><td>&radic;</td><td></td><td></td><td></td><td></td><td></td></td><td>
-           </tr>
-           <tr align="center">
-               <td>011</td><td>&radic;</td><td></td><td></td><td></td><td></td><td></td></td><td>
-           </tr>
-           <tr align="center">
-               <td>012</td><td>&radic;</td><td></td><td></td><td></td><td></td><td></td></td><td>
-           </tr>		
        </tbody>
 </table>
-
+        </div>
 <div>
 <div class="modal fade" id="per_myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -86,11 +67,12 @@
 			<form role="form">
 			<div class="form-group">
 				<label class="col-sm-2 control-label">管理列表</label>
-				<input type="checkbox" name="home_admin" value="1">首页管理 &nbsp;
-				<input type="checkbox" name="brand_admin" value="1">品牌管理 &nbsp;
-				<input type="checkbox" name="product_admin" value="1">商品管理 &nbsp;
-				<input type="checkbox" name="inventory_admin" value="1">库存管理 &nbsp;
-				<input type="checkbox" name="activity_admin" value="1">活动发布 
+				<input type="checkbox" name="home_admin" value="" id="home_admin">首页管理 &nbsp;
+				<input type="checkbox" name="brand_admin" value="" id="brand_admin">品牌管理 &nbsp;
+				<input type="checkbox" name="product_admin" value="" id="product_admin">商品管理 &nbsp;
+				<input type="checkbox" name="inventory_admin" value="" id="inventory_admin">库存管理 &nbsp;
+                <input type="checkbox" name="order_admin" value="" id="order_admin">订单管理 &nbsp;
+				<input type="checkbox" name="activity_admin" value="" id="activity_admin">活动发布
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -101,16 +83,15 @@
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 </div>
-            <script type="text/javascript" src="../../js/vue.js"></script>
             <script type="text/javascript" src="../../js/jquery.js"></script>
             <!--DataTables 核心 js-->
-            <script type="text/javascript" src="../../js/table/jquery.dataTables.min.js"></script>
-            <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
-            <script type="text/javascript" src="../../js/login_verify.js"></script>
-            <script type="text/javascript" src="../../js/valid.js"></script>
-            <script type="text/javascript" src="../../js/table/dataTables.bootstrap.min.js"></script>
+
+        <script type="text/javascript" src="../../js/table/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../js/login_verify.js"></script>
+        <script type="text/javascript" src="../../js/valid.js"></script>
+        <script type="text/javascript" src="../../js/table/dataTables.bootstrap.min.js"></script>
             <script type="text/javascript" src="../../js/vue.js"></script>
             <script type="text/javascript" src="../../js/admin/account.js"></script>
-</div>
 </body>
 </html>

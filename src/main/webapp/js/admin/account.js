@@ -1,7 +1,6 @@
 <!--权限管理的datatables的配置-->
     $(document).ready(function() {
         $('#per_table').DataTable({
-            "jQueryUI": true,
             "processing": true,
             "aLengthMenu": [ 5, 10, 20],
             "language": {
@@ -29,15 +28,16 @@
                 }
             },
 
-            "columnDefs" : [ {
+/*            "columnDefs" : [ {
                 "targets" : 7,//操作按钮目标列
                 "data" : null,
                 "render" : function(data, type,row) {
                     var html = "<a class='btn btn-danger btn-xs' data-toggle='modal' data-target='#per_myModal2' onclick='update(this)'><span class='glyphicon glyphicon-pencil'></span> 修改权限</a>"
                     return html;
                 }
-            } ],
+            } ],*/
             "sDom": "<'col-md-12' <'row col-md-12' <'col-md-2'l> <'cos-md-2' f>> t <'col-md-6' i> <'col-md-6'p>>"
+            /*"sDom": "<'col-sm-12' <'row col-sm-12' <'col-sm-2'<'#btn'>> <'col-sm-8'> <'cos-sm-2'f>> t <'col-sm-6'> <'col-sm-6'>>"*/
         });
     });
 <!--修改权限的作流程 -->
@@ -53,9 +53,31 @@ function update(a)
     userID=td.innerText;
 }
 
+//VUE设置，列表渲染
+var per_table=new Vue({
+    el:'#per_table',
+    data:{
+        datas:[]
+    },
+    created:function () {
+        var self = this;
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:8080/permit',
+            async: false,
+            dataType: 'json',
+            success: function (result) {
+                if (result.status == 0)
+                    self.datas = result.data;
+            }
+        })
+    }
+})
+
 //提交按钮的操作
 $("#update_account").click(function(){
 
+    alert(userID);
     //获取表单的值
     var a=$("#home_admin").prop("checked");
     var b=$("#product_admin").prop("checked");
@@ -126,40 +148,19 @@ $("#update_account").click(function(){
     formData.append("brand_admin",brand_value);
     formData.append("inventory_admin",inventory_value);
     formData.append("order_admin",order_value);
-/*    for (var value of formData.values()) {
-        console.log(value);
-    }*/
     //2.ajax发送请求提交
     $.ajax({
-        type:'post',
-        url:'',
+        type:'put',
+        url:'http://localhost:8080/permit'+userID,
         data:formData,
         success:function(result){
+            console.log(result);
             //3.成功之后的回调函数关闭模态框
             $('#per_myModal2').modal('hide');
             //4.显示返回信息
-            showmsg(result.msg);
         }
     });
 
 })
 
-//VUE设置，列表渲染
-var per_table=new Vue({
-    el:'#per_table',
-    data:{
-        datas:[]
-    },
-    created:function () {
-        var self = this;
-        $.ajax({
-            type: 'get',
-            url: 'http://localhost:8080/permit',
-            dataType: 'JSONP',
-            success: function (result) {
-                /*self.datas = result.data;*/
-                console.log(result);
-            }
-        })
-    }
-})
+
