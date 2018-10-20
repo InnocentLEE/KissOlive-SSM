@@ -23,7 +23,7 @@
 		</div>
 		<table id="table_id_example" class="table table-bordered">
 			<thead>
-			<tr>
+			<tr >
 				<th style="text-align:center;">库存批号</th>
 				<th style="text-align:center;">商品名</th>
 				<th style="text-align:center;">保质期限</th>
@@ -33,101 +33,13 @@
 			</tr>
 			</thead>
 			<tbody>
-			<tr align="center">
-				<td>001</td>
-				<td>002</td>
-				<td>003</td>
-				<td>004</td>
-				<td>005</td>
-				<td>006</td>
-			</tr>
-			<tr align="center">
-				<td>001</td>
-				<td>002</td>
-				<td>003</td>
-				<td>004</td>
-				<td>005</td>
-				<td>006</td>
-			</tr>
-			<tr align="center">
-				<td>001</td>
-				<td>002</td>
-				<td>003</td>
-				<td>004</td>
-				<td>005</td>
-				<td>006</td>
-			</tr>
-			<tr align="center">
-				<td>001</td>
-				<td>002</td>
-				<td>003</td>
-				<td>004</td>
-				<td>005</td>
-				<td>006</td>
-			</tr>
-			<tr align="center">
-				<td>001</td>
-				<td>002</td>
-				<td>003</td>
-				<td>004</td>
-				<td>005</td>
-				<td>006</td>
-			</tr>
-			<tr align="center">
-				<td>001</td>
-				<td>002</td>
-				<td>003</td>
-				<td>004</td>
-				<td>005</td>
-				<td>006</td>
-			</tr>
-			<tr align="center">
-				<td>001</td>
-				<td>002</td>
-				<td>003</td>
-				<td>004</td>
-				<td>005</td>
-				<td>006</td>
-			</tr>
-			<tr align="center">
-				<td>001</td>
-				<td>002</td>
-				<td>003</td>
-				<td>004</td>
-				<td>005</td>
-				<td>006</td>
-			</tr>
-			<tr align="center">
-				<td>001</td>
-				<td>002</td>
-				<td>003</td>
-				<td>004</td>
-				<td>005</td>
-				<td>006</td>
-			</tr>
-			<tr align="center">
-				<td>001</td>
-				<td>002</td>
-				<td>003</td>
-				<td>004</td>
-				<td>005</td>
-				<td>006</td>
-			</tr>
-			<tr align="center">
-				<td>001</td>
-				<td>002</td>
-				<td>003</td>
-				<td>004</td>
-				<td>005</td>
-				<td>006</td>
-			</tr>
-			<tr align="center">
-				<td>001</td>
-				<td>002</td>
-				<td>003</td>
-				<td>004</td>
-				<td>005</td>
-				<td>006</td>
+			<tr align="center" v-for="r in datas">
+				<td>{{r.stockId}}</td>
+				<td>{{r.productionName}}</td>
+				<td>{{r.shelfdate}}</td>
+				<td>{{r.number}}</td>
+				<td>{{r.supplierName}}</td>
+				<td>{{r.updatetime}}</td>
 			</tr>
 			</tbody>
 		</table>
@@ -144,21 +56,13 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">入库批号</label>
 							<input type="text" id="newinventory1">&nbsp;&nbsp;<input type="button" id="newinventory" value="生成入库号" class="btn btn-default" />
-								<div class="form-group">
+								<div class="form-group" id="brand_product_color">
 									<label class="col-sm-2 control-label">选择商品</label>
-									<select>
-										<option value="1">品牌</option>
-										<option value="2">奥迪</option>
-										<option value="3">香奈儿</option>
-										<option value="4">圣罗兰</option>
-										<option value="5">古驰</option>
+									<select v-model="datas">
+										<option v-for="r in datas" :value="r.id">{{r.name}}</option>
 									</select>
-									<select>
-										<option value="1">产品</option>
-										<option value="2">奥迪</option>
-										<option value="3">香奈儿</option>
-										<option value="4">圣罗兰</option>
-										<option value="5">古驰</option>
+									<select v-model="datas">
+										<option v-for="r in datas">{{r.name}}</option>
 									</select>
 									<select>
 										<option value="1">色号</option>
@@ -204,6 +108,7 @@
 		<script type="text/javascript" src="../../js/valid.js"></script>
 		<script type="text/javascript" src="../../js/table/dataTables.bootstrap.min.js"></script>
 		<!--datatables的配置-->
+		<script type="text/javascript" src="../../js/vue.js"></script>
 		<script type="text/javascript" src="../../js/admin/inventory.js"></script>
 
 	</body>

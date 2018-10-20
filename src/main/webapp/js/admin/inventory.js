@@ -31,12 +31,80 @@ $(document).ready(function() {
         },
         "sDom": "<'col-sm-12' <'row col-sm-12' <'col-sm-2'l> <'col-sm-8'<'#btn'>> <'cos-sm-2' f>> t <'col-sm-6' i> <'col-sm-6'p>>"
     });
-    var btnn = "<button class='btn btn-default' type='button' data-toggle='modal' data-target='#myModal' >入库</button>";
+    var btnn = "<button class='btn btn-default' type='button' data-toggle='modal' data-target='#myModal' onclick='getmsg()'>入库</button>";
     $("#btn")[0].innerHTML = btnn;
 });
+//点击入库按钮发送请求获取品牌，产品，色号
+function getmsg() {
+    alert("请求品牌，产品，色号");
+    //请求品牌名字
+    var brand_product_color=new Vue({
+        el:'#brand_product_color',
+        data:{
+            datas:[]
+        },
+        created:function () {
+            var self = this;
+            $.ajax({
+                type: 'post',
+                url: 'http://localhost:8080/production/get_brand_list.do',
+                async: false,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.status == 0)
+                        self.datas = result.data;
+                }
+            })
+        }
+    })
+    //请求产品名和颜色
+    var brand_product_color=new Vue({
+        el:'#brand_product_color',
+        data:{
+            datas:[]
+        },
+        created:function () {
+            var self = this;
+            $.ajax({
+                type: 'post',
+                url: 'http://localhost:8080/production/get_brand_list.do',
+                async: false,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.status == 0)
+                        self.datas = result.data;
+                        console.log(result);
+                }
+            })
+        }
+    })
+}
 
+//生成入库号
 $("#newinventory").click(function() {
     var myDate = new Date();
     var date2 = "" + myDate.getFullYear() + (myDate.getMonth() + 1) + myDate.getDate() + myDate.getHours() + myDate.getMinutes() + myDate.getSeconds();
     $("#newinventory1").val(date2);
 });
+
+
+//VUE设置，列表渲染
+var table_id_example=new Vue({
+    el:'#table_id_example',
+    data:{
+        datas:[]
+    },
+    created:function () {
+        var self = this;
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:8080/stock',
+            async: false,
+            dataType: 'json',
+            success: function (result) {
+                if (result.status == 0)
+                    self.datas = result.data;
+            }
+        })
+    }
+})
