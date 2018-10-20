@@ -42,6 +42,15 @@
     </foreach>
     AND user_id = #{userId}
   </delete>
+
+  <delete id="deleteCardGoodsByBatch">
+    DELETE FROM tb_card
+    WHERE goods_id IN
+    <foreach collection="goodsIds" item="goodsId" index="index" open="(" separator="," close=")">
+      #{goodsId}
+    </foreach>
+    AND user_id = #{userId}
+  </delete>
   
   <!-- 活动模块 -->
   <resultMap id="activityMenuInfoMap" type="org.xgun.kissolive.vo.ActivityMenuInfo">

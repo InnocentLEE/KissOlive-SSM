@@ -18,6 +18,8 @@ public interface ISilentService {
 
     ServerResponse deleteCardByBatch(Integer userId, int[] cardIds);
 
+    ServerResponse deleteCardGoodsByBatch(Integer userId, int[] goodsIds);
+
     ServerResponse getActivityMenu(int page, int num);
 
     ServerResponse insertActivity(Activity activity, int[] vipLevel, int[] goods, BigDecimal[] price);

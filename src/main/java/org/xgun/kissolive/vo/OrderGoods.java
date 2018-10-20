@@ -17,7 +17,28 @@ public class OrderGoods extends OrderItem {
         this.setNumber(orderitem.getNumber());
         this.setUpdatetime(orderitem.getUpdatetime());
     }
+
+    public OrderGoods(OrderItem orderitem, String name, String url) {
+        this.name = name;
+        this.url = url;
+        this.setPrice(orderitem.getPrice());
+        this.setOrderId(orderitem.getOrderId());
+        this.setGoodsId(orderitem.getGoodsId());
+        this.setId(orderitem.getId());
+        this.setNumber(orderitem.getNumber());
+        this.setUpdatetime(orderitem.getUpdatetime());
+    }
     private String name;
+
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public String getName() {
         return name;

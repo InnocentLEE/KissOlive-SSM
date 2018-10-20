@@ -25,11 +25,13 @@ public interface ISNH48Service {
 
     ServerResponse<List<ListStock>> listStock();
 
-    ServerResponse<ListOrder> addOrder(ListOrderItem OrderItems);
+    ServerResponse<ListOrder> addOrder(ListOrderItem OrderItems, Integer userID);
+
+    ServerResponse<ListOrder> getListOrder(Integer orderID);
 
     ServerResponse updateOrderStatus(Integer orderID, Integer status);
 
-    ServerResponse<List<ListOrder>> getOrders(Integer status, Integer page, Integer size);
+    ServerResponse<List<ListOrder>> getOrders(Integer status, Integer page, Integer size, Integer userID);
 
     ServerResponse<List<Permit>> getPermits();
 

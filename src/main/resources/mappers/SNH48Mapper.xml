@@ -79,6 +79,11 @@
         FROM tb_order_item
         WHERE order_id = #{orderID}
     </select>
+    <select id="getOrder" resultType="org.xgun.kissolive.pojo.Order">
+        SELECT id, address_id AS addressId, user_id AS userId, number, status, time, updatetime, price
+        FROM tb_order
+        WHERE id = #{orderID}
+    </select>
     <resultMap id="PermitResultMap" type="org.xgun.kissolive.pojo.Permit" >
         <constructor >
             <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -163,5 +168,11 @@
         SELECT *
         FROM tb_vip_level
         WHERE score_low &lt;= #{score} AND score_high &gt;= #{score}
+    </select>
+    <select id="getGoodsUrl" resultType="java.lang.String">
+        SELECT img_url
+        FROM tb_production
+        LEFT JOIN tb_goods ON tb_production.id = tb_goods.production_id
+        WHERE tb_goods.id = #{goodsID}
     </select>
 </mapper>

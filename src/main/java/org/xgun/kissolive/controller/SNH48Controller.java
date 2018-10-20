@@ -5,16 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.xgun.kissolive.common.Const;
 import org.xgun.kissolive.common.ServerResponse;
-import org.xgun.kissolive.pojo.Permit;
-import org.xgun.kissolive.pojo.Stock;
-import org.xgun.kissolive.pojo.Supplier;
-import org.xgun.kissolive.pojo.VipLevel;
+import org.xgun.kissolive.pojo.*;
 import org.xgun.kissolive.service.ISNH48Service;
 import org.xgun.kissolive.vo.ListOrder;
 import org.xgun.kissolive.vo.ListOrderItem;
 import org.xgun.kissolive.vo.ListStock;
 
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -102,12 +101,25 @@ public class SNH48Controller {
      * @return
      */
     @PostMapping("/order")
-    public ServerResponse<ListOrder> addOrder(@RequestBody(required = false) ListOrderItem orderItems) {
+    public ServerResponse<ListOrder> addOrder(@RequestBody(required = false) ListOrderItem orderItems, HttpSession session) {
 
         if (orderItems == null || orderItems.getItems().size() == 0) {
             return ServerResponse.createByErrorMessage("订单信息不能为空");
         }
-        return service.addOrder(orderItems);
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        Integer userID = user.getId();
+        return service.addOrder(orderItems, userID);
+    }
+
+    /**
+     * 获取订单购物信息
+     * @param orderID 订单ID
+     * @return
+     */
+    @GetMapping("/order/{orderID}")
+    public ServerResponse<ListOrder> getListOrder(@PathVariable Integer orderID) {
+
+        return service.getListOrder(orderID);
     }
 
     /**
@@ -131,9 +143,11 @@ public class SNH48Controller {
      */
     @GetMapping("/orders/{status}/{page}/{size}")
     public ServerResponse<List<ListOrder>> getOrders(@PathVariable Integer status, @PathVariable Integer page,
-                                                     @PathVariable Integer size) {
+                                                     @PathVariable Integer size, HttpSession session) {
 
-        return service.getOrders(status, page, size);
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        Integer userID = user.getId();
+        return service.getOrders(status, page, size, userID);
     }
 
     /**

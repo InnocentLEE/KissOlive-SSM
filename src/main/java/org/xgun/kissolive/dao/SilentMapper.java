@@ -29,6 +29,9 @@ public interface SilentMapper {
     //删除我的购物车里某件商品
     int deleteCardByBatch(@Param("cardIds")int[] cardIds, @Param("userId")Integer userId);
 
+    //删除我的购物车里某件商品2
+    int deleteCardGoodsByBatch(@Param("goodsIds")int[] goodsIds, @Param("userId")Integer userId);
+
     /*活动模块*/
 
     //新增活动
