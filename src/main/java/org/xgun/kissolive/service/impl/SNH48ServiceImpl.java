@@ -189,6 +189,16 @@ public class SNH48ServiceImpl implements ISNH48Service {
     }
 
     @Override
+    public ServerResponse updateOrderAddress(Integer orderID, Integer addressID) {
+
+        int result = mapper.updateOrderAddress(orderID, addressID);
+        if (result == 0) {
+            return ServerResponse.createByErrorMessage("更新订单地址失败");
+        }
+        return ServerResponse.createBySuccess();
+    }
+
+    @Override
     public ServerResponse updateOrderStatus(Integer orderID, Integer status) {
 
         if (status < -1 || status > 4) {

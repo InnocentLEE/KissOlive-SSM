@@ -29,6 +29,8 @@ public interface ISNH48Service {
 
     ServerResponse<ListOrder> getListOrder(Integer orderID);
 
+    ServerResponse updateOrderAddress(Integer orderID, Integer addressID);
+
     ServerResponse updateOrderStatus(Integer orderID, Integer status);
 
     ServerResponse<List<ListOrder>> getOrders(Integer status, Integer page, Integer size, Integer userID);

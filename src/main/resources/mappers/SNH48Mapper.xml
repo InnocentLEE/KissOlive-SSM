@@ -64,6 +64,11 @@
         LEFT JOIN tb_production ON tb_production.id = tb_goods.production_id
         WHERE tb_goods.id = #{goodsID}
     </select>
+    <update id="updateOrderAddress">
+        UPDATE tb_order
+        SET address_id = #{addressID}, updatetime = now()
+        WHERE id = #{orderID}
+    </update>
     <update id="updateOrderStatus">
         UPDATE tb_order
         SET status = #{status}, updatetime = now()

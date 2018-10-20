@@ -123,16 +123,28 @@ public class SNH48Controller {
     }
 
     /**
+     * 修改订单收货地址
+     * @param orderID   订单ID
+     * @param addressID 收货地址ID
+     * @return
+     */
+    @PutMapping("/order/{orderID}/{addressID}")
+    public ServerResponse updateOrderAddress(@PathVariable Integer orderID, @PathVariable Integer addressID) {
+
+        return service.updateOrderAddress(orderID, addressID);
+    }
+
+    /**
      * 改变订单状态
      * @param orderID 订单ID
      * @param status 订单状态(0提交了未付款;1付款了未发货;2发货了未收货3;收货了未评价;4评价了即完成;-1取消)
      * @return
      */
-    @PutMapping("/order/{orderID}/{status}")
+    /*@PutMapping("/order/{orderID}/{status}")
     public ServerResponse updateOrderStatus(@PathVariable Integer orderID, @PathVariable Integer status) {
 
         return service.updateOrderStatus(orderID, status);
-    }
+    }*/
 
     /**
      * 获取不同状态的订单列表
