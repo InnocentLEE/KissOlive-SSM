@@ -49,7 +49,8 @@
 
                 <ul class="nav navbar-nav navbar-left" v-else>
                     <li>
-                        <a href="" class="navbar-brand"><img class="img-circle user-head-image" :src="user.imgUrl"></img></a>
+                        <a href="" class="navbar-brand"><img class="img-circle user-head-image"
+                                                             :src="user.imgUrl"></img></a>
                     </li>
                     <li>
                         <a href="info" class="navbar-brand">{{user.username}}</a>
@@ -65,11 +66,13 @@
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right" style="margin: 0">
                     <li>
-                        <a href="user_myshoppingcart.html"><span class="glyphicon glyphicon-shopping-cart">&nbsp;<span>我的购物车</span></span>
+                        <a href="myshoppingcart"><span
+                                class="glyphicon glyphicon-shopping-cart">&nbsp;<span>我的购物袋</span></span>
                         </a>
                     </li>
                     <li>
-                        <a href="<c:url value='/MainServlet?method=userOrder'/>"><span class="glyphicon glyphicon-list">&nbsp;<span>我的订单</span></span>
+                        <a href="orderlist"><span
+                                class="glyphicon glyphicon-list">&nbsp;<span>我的订单</span></span>
                         </a>
                     </li>
 
@@ -82,18 +85,18 @@
         <div class="header-logo row">
             <div class="col-md-4 col-lg-4"></div>
             <div class="col-md-4 col-lg-4">
-                <a href="user_home.html"><img src="../../img/kissolive.png" class="icon-olive"/></a>
+                <a href="home"><img src="../../img/kissolive.png" class="icon-olive"/></a>
             </div>
-            <div class="col-md-4 col-lg-4">
-                <form action="/KissOlive/MainServlet" method="post">
-                    <input type="hidden" name="method" value="search"/>
+            <div class="col-md-4 col-lg-4" id="searchform">
+                <form :action="'search?search='+search" method="get">
                     <div class="nav-search">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="search" placeholder="Search for..."> <span
-                                class="input-group-btn">
-									<button class="btn btn-default glyphicon glyphicon-search"
-                                            type="submit"></button>
-								</span>
+                            <input type="text" class="form-control" name="search" placeholder="Search for..."
+                                   v-model="search" id="search">
+                            <span class="input-group-btn">
+								<a class="btn btn-default glyphicon glyphicon-search"
+                                   :href="'search?search='+search"></a>
+							</span>
                         </div>
                         <!-- /input-group -->
                     </div>
@@ -101,12 +104,13 @@
             </div>
         </div>
     </div>
+
     <!-- end of main-bar-content -->
 </div>
 <!-- end of 头部 -->
 
 <!-- start of 内容 -->
-<div class="container content">
+<div class="container content" id="orderlist">
     <div class="line">
         <span class="header">订单详情</span>
     </div>
@@ -136,96 +140,43 @@
                 <div class="top">
                     <span>产品</span><span>数量</span><span>价格</span>
                 </div>
-                <div class="orderlist">
-                    <form action="/KissOlive/MainServlet" method="post" id="">
+                <div class="orderlist" v-for="r in orderlist1">
+                    <!--<form action="/KissOlive/MainServlet" method="post" id="">-->
                         <table class="table table-striped">
                             <thead>
                             <tr>
                                 <th style="width: 100px;"></th>
-                                <th style="width: 423px;">订单编号：20180829150401</th>
+                                <th style="width: 423px;">订单编号：{{r.orderNumber}}</th>
                                 <th colspan="2"></th>
                             </tr>
                             </thead>
                             <tbody>
 
-                            <tr>
+                            <tr v-for="t in r.goods">
                                 <td></td>
-                                <td>CLIO少女之吻丝润唇彩唇蜜#520</td>
-                                <td style="text-align: center;width: 220px;">2</td>
-                                <td style="text-align: center;">￥250</td>
-                            </tr>
-
-                            <tr>
-                                <td></td>
-                                <td>CLIO少女之吻丝润唇彩唇蜜#521</td>
-                                <td style="text-align: center;width: 220px;">3</td>
-                                <td style="text-align: center;">￥360</td>
+                                <td>{{t.name}}</td>
+                                <td style="text-align: center;width: 220px;">{{t.number}}</td>
+                                <td style="text-align: center;">￥{{t.price}}</td>
                             </tr>
 
                             <tr>
                                 <td colspan="3"></td>
-                                <td style=" text-align: center;">总价：￥610</td>
+                                <td style=" text-align: center;">总价：￥{{r.price}}</td>
                             </tr>
                             </tbody>
                         </table>
                         <div class="table-btn">
-                            <button type="button" class="btn defalut cancel" onclick="foward('${orderListItem.oid }')">
+                            <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId)">
                                 查看详情
                             </button>
-                            <button type="button" class="btn defalut cancel" onclick="cancel('${orderListItem.oid }')">
+                            <button type="button" class="btn defalut cancel" @click="cancelOrder(r.orderId)">
                                 取消
                             </button>
-                            <button type="button" class="btn defalut payfor" onclick="payfor('${orderListItem.oid }')">
+                            <button type="button" class="btn defalut payfor" @click="payOrder(r.orderId)">
                                 付款
                             </button>
                         </div>
-                    </form>
-                </div>
-
-                <div class="orderlist">
-                    <form action="/KissOlive/MainServlet" method="post">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th style="width: 100px;"></th>
-                                <th style="width: 423px;">订单编号：20180829150402</th>
-                                <th colspan="2"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            <tr>
-                                <td></td>
-                                <td>CLIO少女之吻丝润唇彩唇蜜#520</td>
-                                <td style="text-align: center;width: 220px;">2</td>
-                                <td style="text-align: center;">￥250</td>
-                            </tr>
-
-                            <tr>
-                                <td></td>
-                                <td>CLIO少女之吻丝润唇彩唇蜜#521</td>
-                                <td style="text-align: center;width: 220px;">3</td>
-                                <td style="text-align: center;">￥360</td>
-                            </tr>
-
-                            <tr>
-                                <td colspan="3"></td>
-                                <td style=" text-align: center;">总价：￥610</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <div class="table-btn">
-                            <button type="button" class="btn defalut cancel" onclick="foward('${orderListItem.oid }')">
-                                查看详情
-                            </button>
-                            <button type="button" class="btn defalut cancel" onclick="cancel('${orderListItem.oid }')">
-                                取消
-                            </button>
-                            <button type="button" class="btn defalut payfor" onclick="payfor('${orderListItem.oid }')">
-                                付款
-                            </button>
-                        </div>
-                    </form>
+                    <!--</form>-->
                 </div>
 
             </div>
@@ -235,39 +186,32 @@
                     <span>产品</span><span>数量</span><span>价格</span>
                 </div>
 
-                <div class="orderlist">
+                <div class="orderlist" v-for="r in orderlist2">
                     <table class="table table-striped">
                         <thead>
                         <tr>
                             <th style="width: 100px;"></th>
-                            <th style="width: 423px;">订单编号：20180829150403</th>
+                            <th style="width: 423px;">订单编号：{{r.orderNumber}}</th>
                             <th colspan="2"></th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        <tr>
+                        <tr v-for="t in r.goods">
                             <td></td>
-                            <td>CLIO少女之吻丝润唇彩唇蜜#520</td>
-                            <td style="text-align: center;width: 220px;">2</td>
-                            <td style="text-align: center;">￥250</td>
-                        </tr>
-
-                        <tr>
-                            <td></td>
-                            <td>CLIO少女之吻丝润唇彩唇蜜#521</td>
-                            <td style="text-align: center;width: 220px;">3</td>
-                            <td style="text-align: center;">￥360</td>
+                            <td>{{t.name}}</td>
+                            <td style="text-align: center;width: 220px;">{{t.number}}</td>
+                            <td style="text-align: center;">￥{{t.price}}</td>
                         </tr>
 
                         <tr>
                             <td colspan="3"></td>
-                            <td style=" text-align: center;">总价：￥610</td>
+                            <td style=" text-align: center;">总价：￥{{r.price}}</td>
                         </tr>
                         </tbody>
                     </table>
                     <div class="table-btn sure">
-                        <button type="button" class="btn defalut cancel" onclick="forward('${orderListItem.oid }')">
+                        <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId)">
                             查看详情
                         </button>
                     </div>
@@ -281,44 +225,36 @@
                     <span>产品</span><span>数量</span><span>价格</span>
                 </div>
 
-                <div class="orderlist">
-                    <form action="/KissOlive/MainServlet" method="post" id="${orderListItem.oid }">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th style="width: 100px;"></th>
-                                <th style="width: 423px;">订单编号：20180829150404</th>
-                                <th colspan="2"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                <div class="orderlist" v-for="r in orderlist3">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th style="width: 100px;"></th>
+                            <th style="width: 423px;">订单编号：{{r.orderNumber}}</th>
+                            <th colspan="2"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
-                            <tr>
-                                <td></td>
-                                <td>CLIO少女之吻丝润唇彩唇蜜#520</td>
-                                <td style="text-align: center;width: 220px;">2</td>
-                                <td style="text-align: center;">￥250</td>
-                            </tr>
+                        <tr v-for="t in r.goods">
+                            <td></td>
+                            <td>{{t.name}}</td>
+                            <td style="text-align: center;width: 220px;">{{t.number}}</td>
+                            <td style="text-align: center;">￥{{t.price}}</td>
+                        </tr>
 
-                            <tr>
-                                <td></td>
-                                <td>CLIO少女之吻丝润唇彩唇蜜#521</td>
-                                <td style="text-align: center;width: 220px;">3</td>
-                                <td style="text-align: center;">￥360</td>
-                            </tr>
-
-                            <tr>
-                                <td colspan="3"></td>
-                                <td style=" text-align: center;">总价：￥610</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <tr>
+                            <td colspan="3"></td>
+                            <td style=" text-align: center;">总价：￥{{r.price}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
                         <div class="table-btn two">
-                            <button type="button" class="btn defalut cancel" onclick="forward('${orderListItem.oid }')">
+                            <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId)">
                                 查看详情
                             </button>
                             <button type="button" class="btn defalut received"
-                                    onclick="received('${orderListItem.oid }')">确认收货
+                                    @click="receivedOrder(r.orderId)">确认收货
                             </button>
                         </div>
                     </form>
@@ -332,39 +268,32 @@
                     <span>产品</span><span>数量</span><span>价格</span>
                 </div>
 
-                <div class="orderlist">
+                <div class="orderlist" v-for="r in orderlist4">
                     <table class="table table-striped">
                         <thead>
                         <tr>
                             <th style="width: 100px;"></th>
-                            <th style="width: 423px;">订单编号：20180829150405</th>
+                            <th style="width: 423px;">订单编号：{{r.orderNumber}}</th>
                             <th colspan="2"></th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        <tr>
+                        <tr v-for="t in r.goods">
                             <td></td>
-                            <td>CLIO少女之吻丝润唇彩唇蜜#520</td>
-                            <td style="text-align: center;width: 220px;">2</td>
-                            <td style="text-align: center;">￥250</td>
-                        </tr>
-
-                        <tr>
-                            <td></td>
-                            <td>CLIO少女之吻丝润唇彩唇蜜#521</td>
-                            <td style="text-align: center;width: 220px;">3</td>
-                            <td style="text-align: center;">￥360</td>
+                            <td>{{t.name}}</td>
+                            <td style="text-align: center;width: 220px;">{{t.number}}</td>
+                            <td style="text-align: center;">￥{{t.price}}</td>
                         </tr>
 
                         <tr>
                             <td colspan="3"></td>
-                            <td style=" text-align: center;">总价：￥610</td>
+                            <td style=" text-align: center;">总价：￥{{r.price}}</td>
                         </tr>
                         </tbody>
                     </table>
                     <div class="table-btn sure">
-                        <button type="button" class="btn defalut cancel" onclick="forward('${orderListItem.oid }')">
+                        <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId)">
                             查看详情
                         </button>
                     </div>
@@ -377,39 +306,32 @@
                 <div class="top">
                     <span>产品</span><span>数量</span><span>价格</span>
                 </div>
-                <div class="orderlist">
+                <div class="orderlist" v-for="r in orderlist5">
                     <table class="table table-striped">
                         <thead>
                         <tr>
                             <th style="width: 100px;"></th>
-                            <th style="width: 423px;">订单编号：20180829150406</th>
+                            <th style="width: 423px;">订单编号：{{r.orderNumber}}</th>
                             <th colspan="2"></th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        <tr>
+                        <tr v-for="t in r.goods">
                             <td></td>
-                            <td>CLIO少女之吻丝润唇彩唇蜜#520</td>
-                            <td style="text-align: center;width: 220px;">2</td>
-                            <td style="text-align: center;">￥250</td>
-                        </tr>
-
-                        <tr>
-                            <td></td>
-                            <td>CLIO少女之吻丝润唇彩唇蜜#521</td>
-                            <td style="text-align: center;width: 220px;">3</td>
-                            <td style="text-align: center;">￥360</td>
+                            <td>{{t.name}}</td>
+                            <td style="text-align: center;width: 220px;">{{t.number}}</td>
+                            <td style="text-align: center;">￥{{t.price}}</td>
                         </tr>
 
                         <tr>
                             <td colspan="3"></td>
-                            <td style=" text-align: center;">总价：￥610</td>
+                            <td style=" text-align: center;">总价：￥{{r.price}}</td>
                         </tr>
                         </tbody>
                     </table>
                     <div class="table-btn sure">
-                        <button type="button" class="btn defalut cancel" onclick="forward('${orderListItem.oid }')">
+                        <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId)">
                             查看详情
                         </button>
                     </div>
@@ -501,10 +423,8 @@
 <script type="text/javascript" src="../../js/vue.js"></script>
 <script type="text/javascript" src="../../js/user/user_home.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../../js/slideunlock.js"></script>
-<script type="text/javascript" src="../../js/login_verify.js"></script>
-<script type="text/javascript" src="../../js/valid.js"></script>
-<script type="text/javascript" src="../../js/login.js"></script>
+<script type="text/javascript" src="../../js/user/user_orderlist.js"></script>
+
 <script type="text/javascript">
     //取消
     function cancel(id) {

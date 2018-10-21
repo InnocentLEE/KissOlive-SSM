@@ -79,7 +79,7 @@ public class Zqu004Application {
 		return "page/user/user_successed.html";
 	}
 
-	@RequestMapping("/order_list")
+	@RequestMapping("/orderlist")
 	String orderList(){
 		return "page/user/user_orderlist.html";
 	}
