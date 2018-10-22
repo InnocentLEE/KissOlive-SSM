@@ -84,6 +84,29 @@
         FROM tb_order_item
         WHERE order_id = #{orderID}
     </select>
+    <resultMap id="OrderItemShipmentResultMap" type="org.xgun.kissolive.pojo.OrderItemShipment" >
+        <constructor >
+            <arg column="order_item_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="stock_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="number" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+        </constructor>
+    </resultMap>
+    <select id="listOrderItemShipment" resultMap="OrderItemShipmentResultMap">
+        SELECT *
+        FROM tb_order_item_shipment
+        WHERE order_item_id = #{orderItemID}
+    </select>
+    <update id="recoverStock">
+        UPDATE tb_stock
+        SET number = number + #{num}
+        WHERE id = #{stockID}
+    </update>
+    <delete id="deleteOrderItemShipment">
+        DELETE
+        FROM tb_order_item_shipment
+        WHERE stock_id = #{stockID}
+    </delete>
     <select id="getOrder" resultType="org.xgun.kissolive.pojo.Order">
         SELECT id, address_id AS addressId, user_id AS userId, number, status, time, updatetime, price
         FROM tb_order

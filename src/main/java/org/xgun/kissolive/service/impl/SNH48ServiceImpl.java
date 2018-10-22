@@ -156,8 +156,8 @@ public class SNH48ServiceImpl implements ISNH48Service {
             return ServerResponse.createByErrorMessage("删除购物车错误，下订单失败");
         }
         result.setGoods(orderGoods);
-        //return ServerResponse.createBySuccess(result);
-        return ServerResponse.createBySuccess();
+        return ServerResponse.createBySuccess(result);
+        //return ServerResponse.createBySuccess();
     }
 
     @Override
@@ -205,6 +205,25 @@ public class SNH48ServiceImpl implements ISNH48Service {
             return ServerResponse.createByErrorMessage("更新订单状态失败");
         }
         return ServerResponse.createBySuccess();
+    }
+
+    @Override
+    public ServerResponse cancelOrder(Integer orderID) {
+
+        //TODO 失败判断
+        //库存恢复
+        List<OrderItem> listOrderItem = mapper.listOrderItem(orderID);
+        for (OrderItem oi : listOrderItem) {
+            List<OrderItemShipment> listOrderItemShipment = mapper.listOrderItemShipment(oi.getId());
+            for (OrderItemShipment ois : listOrderItemShipment) {
+                mapper.recoverStock(ois.getStockId(), ois.getNumber());
+                //根据库存ID删除出库记录
+                //mapper.deleteOrderItemShipment(ois.getStockId());
+            }
+        }
+
+        int status = -1; //取消订单
+        return updateOrderStatus(orderID, status);
     }
 
     //生成订单，返回订单ID和编号（此时不存地址）

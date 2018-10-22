@@ -34,6 +34,8 @@ public interface ISNH48Service {
 
     ServerResponse updateOrderStatus(Integer orderID, Integer status);
 
+    ServerResponse cancelOrder(Integer orderID);
+
     ServerResponse<List<ListOrder>> getOrders(Integer status, Integer page, Integer size, Integer userID);
 
     ServerResponse<List<Permit>> getPermits();

@@ -191,8 +191,7 @@ public class SNH48Controller {
     @PutMapping("/order/cancel/{orderID}")
     public ServerResponse cancelOrder(@PathVariable Integer orderID) {
 
-        int status = -1; //取消
-        return service.updateOrderStatus(orderID, status);
+        return service.cancelOrder(orderID);
     }
 
     /**

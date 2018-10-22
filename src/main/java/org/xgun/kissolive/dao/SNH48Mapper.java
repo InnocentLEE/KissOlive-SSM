@@ -68,6 +68,12 @@ public interface SNH48Mapper {
 
     List<OrderItem> listOrderItem(@Param("orderID")Integer orderID);
 
+    List<OrderItemShipment> listOrderItemShipment(@Param("orderItemID")Integer orderItemID);
+
+    int recoverStock(@Param("stockID")Integer stockID, @Param("num")int num);
+
+    int deleteOrderItemShipment(@Param("stockID")Integer stockID);
+
     Order getOrder(@Param("orderID")Integer orderID);
 
     List<Permit> listPermit();
