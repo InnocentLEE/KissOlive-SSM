@@ -36,7 +36,7 @@
     district = #{district,jdbcType=VARCHAR},
     detail = #{detail,jdbcType=VARCHAR},
     consignee = #{consignee,jdbcType=VARCHAR},
-    #{telphone,jdbcType=VARCHAR}
+    telphone = #{telphone,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER} and user_id = #{userId,jdbcType=INTEGER}
   </update>
   <insert id="insertBrand" parameterType="org.xgun.kissolive.pojo.Brand">
