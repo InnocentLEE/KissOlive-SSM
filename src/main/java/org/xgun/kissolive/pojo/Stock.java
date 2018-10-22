@@ -1,5 +1,7 @@
 package org.xgun.kissolive.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Stock {
@@ -9,6 +11,7 @@ public class Stock {
 
     private Integer goodsId;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date shelfdate;
 
     private Integer number;

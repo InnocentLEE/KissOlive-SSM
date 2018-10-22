@@ -36,10 +36,10 @@
 			<tr align="center" v-for="r in datas">
 				<td>{{r.stockId}}</td>
 				<td>{{r.productionName}}</td>
-				<td>{{r.shelfdate}}</td>
+				<td>{{r.stringShelfdate}}</td>
 				<td>{{r.number}}</td>
 				<td>{{r.supplierName}}</td>
-				<td>{{r.updatetime}}</td>
+				<td>{{timeformat(r.updatetime)}}</td>
 			</tr>
 			</tbody>
 		</table>
@@ -52,45 +52,47 @@
 						</button>
 						<h4 class="modal-title" id="myModalLabel">商品入库</h4>
 					</div>
-					<form role="form">
+					<form role="form" id="addiventory">
 						<div class="form-group">
 							<label class="col-sm-2 control-label">入库批号</label>
-							<input type="text" id="newinventory1">&nbsp;&nbsp;<input type="button" id="newinventory" value="生成入库号" class="btn btn-default" />
+							<input type="text" id="newinventory1" >&nbsp;&nbsp;<input type="button" id="newinventory" value="生成入库号" class="btn btn-default" />
 								<div class="form-group" id="brand_product_color">
 									<label class="col-sm-2 control-label">选择商品</label>
-									<select v-model="datas">
-										<option v-for="r in datas" :value="r.id">{{r.name}}</option>
+
+									<select id="select1" onchange="changebrand()">
+										<option value="0" >品牌</option>
+										<option v-for="r in brands" :value="r.id">{{r.name}}</option>
 									</select>
-									<select v-model="datas">
-										<option v-for="r in datas">{{r.name}}</option>
+									<select id="select2" onchange="changeproduct()">
+										<option value="0" >产品</option>
+										<option v-for="r in products" :value="r.id">{{r.name}}</option>
+		<!--						<option v-for="(r,index) in products" :value="r.id" v-if="index==0" selected="selected">{{r.name}}</option>
+										<option :value="r.id" v-else>{{r.name}}</option>-->
 									</select>
-									<select>
-										<option value="1">色号</option>
-										<option value="2">红色</option>
-										<option value="3">绿色</option>
-										<option value="4">黑色</option>
-										<option value="5">古粉色</option>
+									<select id="select3">
+										<option value="0">色号</option>
+										<option v-for="r in colors" :value="r.id">{{r.colorName}}</option>
 									</select>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-2 control-label">保质期限</label><input type="date">
+									<label class="col-sm-2 control-label">保质期限</label><input type="date" id="permitdate">
 								</div>
 								<div class="form-group">
-									<label class="col-sm-2 control-label">入库数量</label><input type="text">&nbsp;<label class="control-label">件</label>
+									<label class="col-sm-2 control-label">入库数量</label><input type="text" id="innernumber">&nbsp;<label class="control-label">件</label>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-2 control-label">供应商</label>
-									<select>
-										<option value="1">供应商</option>
-										<option value="2">阿玛尼公司</option>
-										<option value="3">圣罗兰公司</option>
-										<option value="4">香奈儿公司</option>
-										<option value="5">雅诗兰黛公司</option>
+									<label class="col-sm-2 control-label" id="supplier">供应商</label>
+									<select id="select4">
+										<option value="0">供应商</option>
+										<option v-for="r in suppliers" :value="r.id">{{r.name}}</option>
 									</select>
 								</div>
+			<!--							<div class="form-group">
+											<label class="col-sm-2 control-label errorClass" id="Errormsg" ></label>
+										</div>-->
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-									<button type="button" class="btn btn-default" onclick="">提交</button>
+									<button type="button" class="btn btn-default" onclick="addiven()">提交</button>
 								</div>
 						</div>
 					</form>

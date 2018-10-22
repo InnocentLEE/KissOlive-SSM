@@ -77,7 +77,6 @@ var per_table=new Vue({
 //提交按钮的操作
 $("#update_account").click(function(){
 
-    alert(userID);
     //获取表单的值
     var a=$("#home_admin").prop("checked");
     var b=$("#product_admin").prop("checked");
@@ -128,39 +127,44 @@ $("#update_account").click(function(){
         $("#order_admin").attr("value",0);
     }
 
-    var formData = new FormData();
+    var permit = new FormData();
     var home_value=$("#home_admin").attr("value");
-    alert(home_value);
     var product_value=$("#product_admin").attr("value");
-    alert(product_value);
     var activity_value=$("#activity_admin").attr("value");
-    alert(activity_value);
     var brand_value=$("#brand_admin").attr("value");
-    alert(brand_value);
     var inventory_value=$("#inventory_admin").attr("value");
-    alert(inventory_value);
     var order_value=$("#order_admin").attr("value");
-    alert(order_value);
 
-    formData.append("home_admin",home_value);
-    formData.append("product_admin",product_value);
-    formData.append("activity_admin",activity_value);
-    formData.append("brand_admin",brand_value);
-    formData.append("inventory_admin",inventory_value);
-    formData.append("order_admin",order_value);
     //2.ajax发送请求提交
     $.ajax({
         type:'put',
-        url:'http://localhost:8080/permit'+userID,
-        data:formData,
+        url:'http://localhost:8080/permit/'+userID,
+        async: false,
+        data:{
+            homeManage:home_value,
+            goodsManage:product_value,
+            activityManage:activity_value,
+            brandManage:brand_value,
+            stockManage:inventory_value,
+            orderManage:order_value
+        },
+        processData : true,
+        contentType : "application/x-www-form-urlencoded",
+        dataType : 'json',
         success:function(result){
-            console.log(result);
             //3.成功之后的回调函数关闭模态框
-            $('#per_myModal2').modal('hide');
-            //4.显示返回信息
+            if(result.status==0) {
+                $('#per_myModal2').modal('hide');
+                window.parent.frames["right"].location.reload();
+            }
+            else
+            {
+                $('#per_myModal2').modal('hide');
+                alert(reslut.msg);
+                window.parent.frames["right"].location.reload();
+            }
         }
-    });
-
+    })
 })
 
 
