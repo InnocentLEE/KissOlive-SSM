@@ -8,9 +8,11 @@ var myTabContent= new Vue({
     el:"#container",
     data:{
         orderinfo:[],
-        QRcode:[]
+        QRcode:[],
+        orderid:[]
     },
     created:function () {
+        this.orderid = id;
         this.getOrder();
         this.getQR_code();
     },
