@@ -331,7 +331,7 @@ public class InnocentController {
     @ResponseBody
     public ServerResponse editBrand(HttpSession session, HttpServletRequest request,
                                     @RequestParam("brand_id")Integer brandId,
-                                    @RequestParam("logo_img") MultipartFile brandLogo,
+                                    @RequestParam(name = "logo_img",required = false) MultipartFile brandLogo,
                                     @RequestParam("brand_name") String brandName,
                                     @RequestParam("brand_status") Integer status) {
         // TODO: 2018/9/13 校验身份
