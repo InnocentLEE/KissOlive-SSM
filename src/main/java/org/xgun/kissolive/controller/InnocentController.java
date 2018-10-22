@@ -336,7 +336,7 @@ public class InnocentController {
                                     @RequestParam("brand_status") Integer status) {
         // TODO: 2018/9/13 校验身份
         String imgUrl = null;
-        if(!brandLogo.isEmpty()){
+        if(brandLogo!=null){
             try {
                 Map map = FTPSSMLoad.upload(brandLogo, request, Const.FILE_SAVE_PATH);
                 if(!(boolean)map.get("result"))
