@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="../../css/admin/fontawesome-all.css">
     <link rel="stylesheet" href="../../css/user/home.css">
     <link rel="stylesheet" href="../../css/user/userinfo.css">
+    <link rel="stylesheet" href="../../css/user/signup.css">
+    <link rel="stylesheet" href="../../css/user/sign_login.css">
     <!--
 <link rel="stylesheet" type="text/css" href="styles.css">
 -->
@@ -125,7 +127,7 @@
                     <form class="edit1" action="#" method="post">
                         用户名：
                         <input class="edit form-control" id="username" name="username" :value="user.username"/>
-                        <button class="btn save" type="button">保存</button>&nbsp;&nbsp;&nbsp;
+                        <button class="btn save" type="button" onclick="saveUsername()">保存</button>&nbsp;&nbsp;&nbsp;
                         <button class="btn save" type="button" onclick="edit_name()">取消</button>
                     </form>
                 </div>
@@ -142,10 +144,17 @@
                 <div class="editphone" style="display:none">
                     <form class="edit1" action="#" method="post">
                         手机号：
-                        <input class="edit form-control" id="phone"  :value="user.telphone"/>
-                        <button class="btn save" type="button">保存</button>&nbsp;&nbsp;&nbsp;
+                        <input class="edit form-control" id="usertel"  :value="user.telphone" onblur="validateUsertel()"/>
+                        验证码：
+                        <input class="edit form-control" id="verifyCode" onkeyup="validateCode()"/>
+                        <input type="button" class="btn btn-default obtain generate_code" value="获取验证码" onclick="sentVerifyCode();settime(this);" id="VerifyCodeButton" disabled="true"/>&nbsp;&nbsp;&nbsp;
+                        <button class="btn save" type="button" onclick="changeTel()">保存</button>&nbsp;&nbsp;&nbsp;
                         <button class="btn save" type="button" onclick="edit_phone()">取消</button>
                     </form>
+                    <label class="errorClass" id="usertelError"></label>
+                    <label class="correctClass" id="usertelCorrect"></label>
+                    <label class="errorClass" id="verifyCodeError"></label>
+                    <label class="correctClass" id="verifyCodeCorrect"></label>
                 </div>
                 <!-- 修改手机号  -->
 
@@ -185,7 +194,7 @@
                             <label class="correctClass" id="telCorrect"></label>
                         </li>
                         <li>收货地址：
-                            <div class="addr_choice">
+                            <div class="edit_addr">
                                 <select class="prov" :id="'eitdprovince'+r.id" name="province"></select>
                                 <select class="city" :id="'eitdcity'+r.id" name="city" disabled="disabled"></select>
                                 <select class="dist" :id="'eitddistrict'+r.id" name="district" disabled="disabled"></select>
@@ -193,14 +202,14 @@
                         </li>
                         <li>详细地址：
                             <input type="text" class="inputClass form-control " :id="'eitddetail'+r.id" name="detail"
-                                   placeholder="请输入详细地址" :value="r.detail"/>
+                                   placeholder="请输入详细地址" :value="r.detail" style="width: 730px;"/>
                             <label class="errorClass" id="detailError"></label>
                             <label class="correctClass" id="detailCorrect"></label>
                         </li>
                     </ul>
                     <div class="btn_save_addr">
                         <button type="button" class="save_addr" @click="canceladdr(r.id)">取消修改</button>&nbsp;&nbsp;&nbsp;
-                        <button type="button" class="save_addr">保存地址</button>
+                        <button type="button" class="save_addr" @click="doEditaddr(r.id)">保存地址</button>
                         <div class="clearfix"></div>
                     </div>
                 </form>
@@ -246,7 +255,7 @@
                 </ul>
                 <div class="btn_save_addr">
                     <button type="button" class="save_addr" onclick="cancel_add_addr()">取消修改</button>&nbsp;&nbsp;&nbsp;
-                    <button type="button" class="save_addr">保存地址</button>
+                    <button type="button" class="save_addr" onclick="saveAddr()">保存地址</button>
                     <div class="clearfix"></div>
                     <div class="clearfix"></div>
                 </div>
@@ -338,10 +347,30 @@
 <script type="text/javascript" src="../../js/vue.js"></script>
 <script type="text/javascript" src="../../js/user/user_home.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../../js/jquery.cityselect.js"></script>
-<script type="text/javascript" src="../../js/valid.js"></script>
 <script type="text/javascript" src="../../js/user/userinfo.js"></script>
+<script type="text/javascript" src="../../js/jquery.cityselect.js"></script>
+<script type="text/javascript">
+    //倒计时
+    var countdown = 3;
 
+    function settime(val) {
+        if(countdown == 0) {
+
+            val.removeAttribute("disabled");
+            val.value = "获取验证码";
+            countdown = 3;
+
+            return false;
+        } else {
+            val.setAttribute("disabled", true);
+            val.value = "重新发送(" + countdown + ")";
+            countdown--;
+        }
+        setTimeout(function() {
+            settime(val);
+        }, 1000);
+    }
+</script>
 </body>
 
 </html>

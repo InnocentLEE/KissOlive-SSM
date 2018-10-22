@@ -157,6 +157,10 @@ function brand_submit() {
 function edit_brand() {
     var formData = new FormData();
     var brand_logo = $('#edit_logo').get(0).files[0];
+    /*if (typeof(brand_logo) == "undefined")
+    {
+        brand_logo = null;
+    }*/
     var select = $('#edit_brand_status').val();
     var brand_name = $('#edit_brand_name').val();
     formData.append("brand_id",edit_brand_id);

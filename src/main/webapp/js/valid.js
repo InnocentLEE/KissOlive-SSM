@@ -396,7 +396,7 @@ function sentVerifyCode(){
                 return false;
             }else{
                 verifyCodeNumber = result.data.verifyCode;
-                alert(verifyCodeNumber);
+                //alert(verifyCodeNumber);
             }
         }
     });

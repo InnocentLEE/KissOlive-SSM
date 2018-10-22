@@ -287,6 +287,7 @@ function doSettlement() {
         success : function(result) {// 返回的参数就是 action里面所有的有get和set方法的参数
            if(result.status==0){
                //delselect(delcard);
+               console.log(result.data);
                alert("下单成功！");
                window.location.href = "http://localhost:8080/pay?id="+result.data.orderId;
            }else {

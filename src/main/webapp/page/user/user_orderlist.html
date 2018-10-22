@@ -88,12 +88,12 @@
             <div class="col-md-4 col-lg-4">
                 <a href="home"><img src="../../img/kissolive.png" class="icon-olive"/></a>
             </div>
-            <div class="col-md-4 col-lg-4" id="searchform">
+            <div class="col-md-4 col-lg-4" id="search">
                 <form :action="'search?search='+search" method="get">
                     <div class="nav-search">
                         <div class="input-group">
                             <input type="text" class="form-control" name="search" placeholder="Search for..."
-                                   v-model="search" id="search">
+                                   v-model="search">
                             <span class="input-group-btn">
 								<a class="btn btn-default glyphicon glyphicon-search"
                                    :href="'search?search='+search"></a>

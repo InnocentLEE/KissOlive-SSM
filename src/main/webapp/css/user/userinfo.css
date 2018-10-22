@@ -72,7 +72,7 @@ input#name,#tel{
 input#detail {
 	width:600px;
 }
-select#province, .city, .dist {
+select#province, .city, .dist, .prov {
     width: 100px;
     height: 32px;
 }
@@ -103,7 +103,7 @@ button.btn.btn-link.update_phone{
 }
 form.edit1 {
     display: flex;
-    width: 500px;
+    width: 1000px;
 }
 button.btn.save {
     margin: -5px 0 0 0;
