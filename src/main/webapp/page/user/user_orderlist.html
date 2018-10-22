@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="../../css/user/floatstyle.css">
     <link rel="stylesheet" href="../../css/user/sign_login.css"/>
     <link rel="stylesheet" href="../../css/user/slide-unlock.css">
+    <link rel="stylesheet" href="../../css/user/sure_panel.css">
     <!--
 <link rel="stylesheet" type="text/css" href="styles.css">
 -->
@@ -125,6 +126,9 @@
             <li id="step3Li" class="gray">
                 <a href="#step3" data-toggle="tab" role="tab">等待确认</a>
             </li>
+            <li id="step6Li" class="gray">
+                <a href="#step6" data-toggle="tab" role="tab">未评价</a>
+            </li>
             <li id="step4Li" class="gray">
                 <a href="#step4" data-toggle="tab" role="tab">已完成</a>
             </li>
@@ -166,7 +170,7 @@
                             </tbody>
                         </table>
                         <div class="table-btn">
-                            <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId)">
+                            <button type="button" class="btn defalut cancel" @click="payOrder(r.orderId)">
                                 查看详情
                             </button>
                             <button type="button" class="btn defalut cancel" @click="cancelOrder(r.orderId)">
@@ -262,13 +266,55 @@
 
             </div>
 
+            <!-- 未评价 -->
+            <div id="step6" class="tab-pane fade">
+                <div class="top">
+                    <span>产品</span><span>数量</span><span>价格</span>
+                </div>
+
+                <div class="orderlist" v-for="r in orderlist4">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th style="width: 100px;"></th>
+                            <th style="width: 423px;">订单编号：{{r.orderNumber}}</th>
+                            <th colspan="2"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr v-for="t in r.goods">
+                            <td></td>
+                            <td>{{t.name}}</td>
+                            <td style="text-align: center;width: 220px;">{{t.number}}</td>
+                            <td style="text-align: center;">￥{{t.price}}</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="3"></td>
+                            <td style=" text-align: center;">总价：￥{{r.price}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="table-btn sure">
+                        <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId)">
+                            查看详情
+                        </button>
+                        <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId)">
+                            评价商品
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
             <!-- 已完成 -->
             <div id="step4" class="tab-pane fade">
                 <div class="top">
                     <span>产品</span><span>数量</span><span>价格</span>
                 </div>
 
-                <div class="orderlist" v-for="r in orderlist4">
+                <div class="orderlist" v-for="r in orderlist5">
                     <table class="table table-striped">
                         <thead>
                         <tr>
@@ -306,7 +352,7 @@
                 <div class="top">
                     <span>产品</span><span>数量</span><span>价格</span>
                 </div>
-                <div class="orderlist" v-for="r in orderlist5">
+                <div class="orderlist" v-for="r in orderlist0">
                     <table class="table table-striped">
                         <thead>
                         <tr>
@@ -418,38 +464,22 @@
     </div>
 </footer>
 <!-- end of 尾部 -->
+<div class="popup_de xycenter" id="tip">
+    <div class="popup_box">
+        <span class="popup_close" value="关闭">×</span>
+        <span class="show_msg" id="show_msg"></span>
+        <div class="btn_box">
+            <div class="popup_btn btn-danger" value="确定" id="tipbtn">确定</div>
+            <div class="popup_btn btn_cancel" value="取消">取消</div>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript" src="../../js/jquery.js"></script>
 <script type="text/javascript" src="../../js/vue.js"></script>
 <script type="text/javascript" src="../../js/user/user_home.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../../js/user/user_orderlist.js"></script>
-
-<script type="text/javascript">
-    //取消
-    function cancel(id) {
-        $("input[id='" + id + "']").val("cancelOrder");
-        $("form[id='" + id + "']").submit();
-    }
-
-    //付款
-    function payfor(id) {
-        $("input[id='" + id + "']").val("payforOrder");
-        $("form[id='" + id + "']").submit();
-    }
-
-    //收货
-    function received(id) {
-        $("input[id='" + id + "']").val("recieveOrder");
-        $("form[id='" + id + "']").submit();
-    }
-
-    //跳转
-    function forward() {
-        $("input[id='" + id + "']").val("detailOrder");
-        $("form[id='" + id + "']").submit();
-    }
-</script>
 
 </body>
 

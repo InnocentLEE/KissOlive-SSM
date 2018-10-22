@@ -1,18 +1,18 @@
 /*选项卡样式*/
 ul#myTab {
     border-bottom: 1px solid #000;
-    margin: 0 65;
+    margin: 0px 65px;
 }
-li#step1Li, #step2Li, #step3Li,#step4Li,#step5Li{
+li#step1Li, #step2Li, #step3Li,#step4Li,#step5Li,#step6Li{
     /* color: #fff; */
-    margin: 0 30 0 0;
+    margin: 0px 30px 0px 0px;
 }
-li#step1Li, #step2Li, #step3Li, #step4Li>a, #step5Li>a {
+li#step1Li, #step2Li, #step3Li, #step4Li, #step5Li, #step6Li {
     background-color: #555;
     color: #fff;
     font-size: 16px;
     font-weight: bold;
-    width: 120;
+    width: 120px;
     padding: 0;
     text-align: center;
 }
@@ -23,7 +23,7 @@ li#step1Li, #step2Li, #step3Li, #step4Li>a, #step5Li>a {
 }
 /*头部*/
 .line {
-    margin: 50 70 30 70;
+    margin: 50px 70px 30px 70px;
 }
 div.line>span.header {
     padding-top: 0.2%;
@@ -31,12 +31,12 @@ div.line>span.header {
     font-size: 28px;
 }
 .top {
-    margin: 30 65;
+    margin: 30px 65px;
     background: #080808f7;
-    height: 30;
+    height: 30px;
     color: #fff;
     display: grid;
-    grid-template-columns: 435px 390 300;
+    grid-template-columns: 435px 390px 300px;
     font-size: 20px;
     text-align: center;
     font-family: fantasy;
@@ -44,25 +44,25 @@ div.line>span.header {
 }
 /*卡片式订单*/
 .orderlist {
-    margin: 0 65;
+    margin: 0 65px;
     border: 1px solid #ccc;
     border-radius: 6px;
     margin-bottom: 50px;
 }
 button.btn.defalut {
     width: 80px;
-    margin: 0 20;
+    margin: 0 20px;
     background: #000;
     color: #fff;
 }
 .table-btn {
-    margin: 0 0 0 770;
+    margin: 0 0 0 770px;
 }
 .table-btn.sure {
-   margin: 0 0 10 920;
+   margin: 0 0 10px 920px;
 }
 .table-btn.two {
-    margin: 0 0 0 850;
+    margin: 0 0 0 850px;
 }
 table.table.table-striped {
     margin-bottom: 10px;
@@ -84,12 +84,12 @@ table.table.table-striped {
     background: #555;
     color: #fff;
 }
-li#step4Li,#step5Li {
+li#step4Li,#step5Li,#step6Li {
     height: 42px;
 }
-li#step4Li>a, li#step5Li>a {
+li#step4Li>a, li#step5Li>a, li#step6Li>a {
     height: 44px;
-    padding: 8;
+    padding: 8px;
     /* margin: auto 0; */
 }
 .nav-tabs>li#step5Li.active>a:hover 
