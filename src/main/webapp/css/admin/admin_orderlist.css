@@ -1,0 +1,41 @@
+/*.table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>th, .table>thead:first-child>tr:first-child>th, .table>caption+thead>tr:first-child>td, .table>colgroup+thead>tr:first-child>td, .table>thead:first-child>tr:first-child>td {
+    vertical-align: middle;
+}
+.leadertab.row {
+    width: 97%;
+    margin: 0 auto;
+}
+table.table-bordered {
+    margin: 5px 0;
+}
+a.btn>i.fa {
+    padding-right: 5px;
+}*/
+
+ul#myTab {
+    border-bottom: 1px solid #000;
+    margin: 0px 0px;
+}
+.top {
+    margin: 30px 0;
+
+    grid-template-columns: 479px 302px 300px;
+}
+.orderlist {
+    margin: 0 0 65px;
+}
+.table-btn {
+    margin: 0 0 0 0px;
+    text-align: right;
+    padding-bottom: 15px;
+}
+.table-btn.sure {
+    margin: 0 0 0 0;
+    padding-bottom: 15px;
+}
+.table-btn.single {
+    margin-right: 120px;
+}
+.table-btn.two {
+    margin: 0 55px 0 0;
+}

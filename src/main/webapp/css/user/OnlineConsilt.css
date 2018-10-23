@@ -997,6 +997,30 @@ a.icon-close {
         a.icon-close:hover {
     outline: unset;
 }
+/*20181023修改员工端客服样式*/
+div#shop_cart {
+    margin-top: 56px;
+}
+div#msgpanel {
+    background: #fff;
+    position: unset;
+}
+@media screen and (max-height:695px) {
+    /*当屏幕尺寸小于695px时，应用下面的CSS样式!*/
+    div#chat-content {
+        max-height:71.5%;
+    }
+}
 
-
-       
+@media screen and (max-height:773px) {
+    /*当屏幕尺寸小于773px时，应用下面的CSS样式!*/
+    div#chat-content {
+        max-height:71.5%;
+    }
+}
+@media screen and (max-height:927px) {
+    /*当屏幕尺寸小于773px时，应用下面的CSS样式!*/
+    div#chat-content {
+        max-height:78.5%;
+    }
+}

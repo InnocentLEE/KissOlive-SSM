@@ -13,8 +13,10 @@
     <link rel="stylesheet" type="text/css" href="../../css/admin/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="../../css/admin/table/table.css">
     <link rel="stylesheet" type="text/css" href="../../css/admin/table/admin-brand.css">
-    <!--<link rel="stylesheet" href="../../css/user/orderlist.css">-->
-    <link rel="stylesheet" type="text/css" href="../../css/admin/admin_detailorder.css">
+    <link rel="stylesheet" href="../../css/user/home.css">
+    <link rel="stylesheet" href="../../css/user/orderlist.css">
+    <link rel="stylesheet" href="../../css/user/sure_panel.css">
+    <link rel="stylesheet" type="text/css" href="../../css/admin/admin_orderlist.css">
 </head>
 <body>
 <div class="page-wrapper">
@@ -24,245 +26,280 @@
             <h1 class="page-header" style="margin-left: 20px">订单管理</h1>
         </div>
     </div>
-    <div class="leadertab row">
-        <ul id="myTab" class="nav nav-tabs nav-justified "role="tablist">
-            <li id="step1Li" class="active black">
-                <a href="#step1" data-toggle="tab" role="tab">未付款</a>
-            </li>
-            <li id="step2Li" class="gray">
-                <a href="#step2" data-toggle="tab" role="tab">等待发货</a>
-            </li>
-            <li id="step3Li" class="gray">
-                <a href="#step3" data-toggle="tab" role="tab">等待确认</a>
-            </li>
-            <li id="step4Li" class="gray">
-                <a href="#step4" data-toggle="tab" role="tab">已完成</a>
-            </li>
-            <li id="step5Li" class="gray">
-                <a href="#step5" data-toggle="tab" role="tab">已取消</a>
-            </li>
-        </ul>
+    <div class="container content" id="orderlist">
+        <div class="leadertab row">
+            <ul id="myTab" class="nav nav-tabs" role="tablist">
+                <li id="step1Li" class="active black">
+                    <a href="#step1" data-toggle="tab" role="tab">未付款</a>
+                </li>
+                <li id="step2Li" class="gray">
+                    <a href="#step2" data-toggle="tab" role="tab">等待发货</a>
+                </li>
+                <li id="step3Li" class="gray">
+                    <a href="#step3" data-toggle="tab" role="tab">等待确认</a>
+                </li>
+                <li id="step6Li" class="gray">
+                    <a href="#step6" data-toggle="tab" role="tab">未评价</a>
+                </li>
+                <li id="step4Li" class="gray">
+                    <a href="#step4" data-toggle="tab" role="tab">已完成</a>
+                </li>
+                <li id="step5Li" class="gray">
+                    <a href="#step5" data-toggle="tab" role="tab">已取消</a>
+                </li>
+            </ul>
 
-        <div id="myTabContent" class="tab-content">
-            <!-- 订单页面 -->
-            <!-- 未付款 -->
-            <div id="step1" class="tab-pane fade active in">
-                <table id="table_id_undo" class="table table-bordered">
-                    <thead style="vertical-align: middle">
-                    <th rowspan="2"> 订单</th>
-                    <th colspan="3">产品</th>
-                    <th rowspan="2">管理</th>
-                    <tr align="center">
-                        <th >产品名称</th>
-                        <th >产品数量</th>
-                        <th >产品价格</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr align="center">
-                        <!--rosspan为合并n行，有多少个产品就有n+1个rowspan -->
-                        <td rowspan="4">856231161232313455</td>
-                        <td class="muti-col">Dior魅惑唇釉</td>
-                        <td class="muti-col">5</td>
-                        <td class="muti-col">320.00</td>
-                        <!--rosspan为合并n行，有多少个产品就有n+1个rowspan -->
-                        <td rowspan="4">
-                            <a class="btn btn-info btn-sm" target="right" data-toggle="modal" data-target="#editGoodModal">
-                                <i class="fa fa-pencil-square"></i>详情</a>
-                            <a class="btn btn-danger btn-sm" target="right" data-toggle="modal" data-target="#editGoodModal">
-                                <i class="fa fa-pencil-square"></i>取消</a>
-                        </td>
-                    <tr>
-                    <tr>
-                        <td class="muti-col">Dior魅惑唇釉</td>
-                        <td class="muti-col">5</td>
-                        <td class="muti-col">320.00</td>
-                    </tr>
-                    <tr>
-                        <td class="muti-col">Dior魅惑唇釉</td>
-                        <td class="muti-col">5</td>
-                        <td class="muti-col">320.00</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- 等待发货 -->
-            <div id="step2" class="tab-pane fade">
-                <table id="table_id_willdo" class="table table-bordered">
-                    <thead style="vertical-align: middle">
-                    <th rowspan="2"> 订单</th>
-                    <th colspan="3">产品</th>
-                    <th rowspan="2">管理</th>
-                    <tr align="center">
-                        <th >产品名称</th>
-                        <th >产品数量</th>
-                        <th >产品价格</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr align="center">
-                        <!--rosspan为合并n行，有多少个产品就有n+1个rowspan -->
-                        <td rowspan="4">856231161232313455</td>
-                        <td class="muti-col">Dior魅惑唇釉</td>
-                        <td class="muti-col">5</td>
-                        <td class="muti-col">320.00</td>
-                        <!--rosspan为合并n行，有多少个产品就有n+1个rowspan -->
-                        <td rowspan="4">
-                            <a class="btn btn-success btn-sm" target="right" data-toggle="modal" data-target="#editGoodModal">
-                                <i class="fa fa-send"></i>发货</a>
-                            <a class="btn btn-info btn-sm" target="right" data-toggle="modal" data-target="#editGoodModal">
-                                <i class="fa fa-pencil-square"></i>详情</a>
-                            <a class="btn btn-danger btn-sm" target="right" data-toggle="modal" data-target="#editGoodModal">
-                                <i class="fa fa-pencil-square"></i>取消</a>
-                        </td>
-                    <tr>
-                    <tr>
-                        <td class="muti-col">Dior魅惑唇釉</td>
-                        <td class="muti-col">5</td>
-                        <td class="muti-col">320.00</td>
-                    </tr>
-                    <tr>
-                        <td class="muti-col">Dior魅惑唇釉</td>
-                        <td class="muti-col">5</td>
-                        <td class="muti-col">320.00</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- 等待确认 -->
-            <div id="step3" class="tab-pane fade">
-                <table id="table_id_will-confirm" class="table table-bordered">
-                    <thead style="vertical-align: middle">
-                    <th rowspan="2"> 订单</th>
-                    <th colspan="3">产品</th>
-                    <th rowspan="2">管理</th>
-                    <tr align="center">
-                        <th >产品名称</th>
-                        <th >产品数量</th>
-                        <th >产品价格</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr align="center">
-                        <!--rosspan为合并n行，有多少个产品就有n+1个rowspan -->
-                        <td rowspan="4">856231161232313455</td>
-                        <td class="muti-col">Dior魅惑唇釉</td>
-                        <td class="muti-col">5</td>
-                        <td class="muti-col">320.00</td>
-                        <!--rosspan为合并n行，有多少个产品就有n+1个rowspan -->
-                        <td rowspan="4">
-                            <a class="btn btn-info btn-sm" target="right" data-toggle="modal" data-target="#editGoodModal">
-                                <i class="fa fa-pencil-square"></i>详情</a>
-                            <a class="btn btn-danger btn-sm" target="right" data-toggle="modal" data-target="#editGoodModal">
-                                <i class="fa fa-pencil-square"></i>取消</a>
-                        </td>
-                    <tr>
-                    <tr>
-                        <td class="muti-col">Dior魅惑唇釉</td>
-                        <td class="muti-col">5</td>
-                        <td class="muti-col">320.00</td>
-                    </tr>
-                    <tr>
-                        <td class="muti-col">Dior魅惑唇釉</td>
-                        <td class="muti-col">5</td>
-                        <td class="muti-col">320.00</td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div id="myTabContent" class="tab-content">
+                <!-- 订单页面 -->
+                <!-- 未付款 -->
+                <div id="step1" class="tab-pane fade active in">
+                    <div class="top">
+                        <span>产品</span><span>数量</span><span>价格</span>
+                    </div>
+                    <div class="orderlist" v-for="r in orderlist1">
+                        <!--<form action="/KissOlive/MainServlet" method="post" id="">-->
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th style="width: 100px;"></th>
+                                <th style="width: 423px;text-align: left;">订单编号：{{r.orderNumber}}</th>
+                                <th colspan="2"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
 
-            </div>
-            <!-- 已完成 -->
-            <div id="step4" class="tab-pane fade">
-                <table id="table_id_done" class="table table-bordered">
-                    <thead style="vertical-align: middle">
-                    <th rowspan="2"> 订单</th>
-                    <th colspan="3">产品</th>
-                    <th rowspan="2">管理</th>
-                    <tr align="center">
-                        <th >产品名称</th>
-                        <th >产品数量</th>
-                        <th >产品价格</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr align="center">
-                        <!--rosspan为合并n行，有多少个产品就有n+1个rowspan -->
-                        <td rowspan="4">856231161232313455</td>
-                        <td class="muti-col">Dior魅惑唇釉</td>
-                        <td class="muti-col">5</td>
-                        <td class="muti-col">320.00</td>
-                        <!--rosspan为合并n行，有多少个产品就有n+1个rowspan -->
-                        <td rowspan="4">
-                            <a class="btn btn-info btn-sm" target="right" data-toggle="modal" data-target="#editGoodModal">
-                                <i class="fa fa-pencil-square"></i>详情</a>
-                        </td>
-                    <tr>
-                    <tr>
-                        <td class="muti-col">Dior魅惑唇釉</td>
-                        <td class="muti-col">5</td>
-                        <td class="muti-col">320.00</td>
-                    </tr>
-                    <tr>
-                        <td class="muti-col">Dior魅惑唇釉</td>
-                        <td class="muti-col">5</td>
-                        <td class="muti-col">320.00</td>
-                    </tr>
-                    </tbody>
-                </table>
+                            <tr v-for="t in r.goods">
+                                <td></td>
+                                <td>{{t.name}}</td>
+                                <td style="text-align: center;width: 220px;">{{t.number}}</td>
+                                <td style="text-align: center;">￥{{t.price}}</td>
+                            </tr>
 
-            </div>
-            <!-- 已取消 -->
-            <div id="step5" class="tab-pane fade">
-                <table id="table_id_canceled" class="table table-bordered">
-                    <thead style="vertical-align: middle">
-                    <th rowspan="2"> 订单</th>
-                    <th colspan="3">产品</th>
-                    <th rowspan="2">管理</th>
-                    <tr align="center">
-                        <th >产品名称</th>
-                        <th >产品数量</th>
-                        <th >产品价格</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr align="center">
-                        <!--rosspan为合并n行，有多少个产品就有n+1个rowspan -->
-                        <td rowspan="4">856231161232313455</td>
-                        <td class="muti-col">Dior魅惑唇釉</td>
-                        <td class="muti-col">5</td>
-                        <td class="muti-col">320.00</td>
-                        <!--rosspan为合并n行，有多少个产品就有n+1个rowspan -->
-                        <td rowspan="4">
-                            <a class="btn btn-info btn-sm" target="right" data-toggle="modal" data-target="#editGoodModal">
-                                <i class="fa fa-pencil-square"></i>详情</a>
-                        </td>
-                    <tr>
-                    <tr>
-                        <td class="muti-col">Dior魅惑唇釉</td>
-                        <td class="muti-col">5</td>
-                        <td class="muti-col">320.00</td>
-                    </tr>
-                    <tr>
-                        <td class="muti-col">Dior魅惑唇釉</td>
-                        <td class="muti-col">5</td>
-                        <td class="muti-col">320.00</td>
-                    </tr>
-                    </tbody>
-                </table>
+                            <tr>
+                                <td colspan="3"></td>
+                                <td style=" text-align: center;">总价：￥{{r.price}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="table-btn two">
+                            <button type="button" class="btn defalut cancel" @click="payOrder(r.orderId)">
+                                查看详情
+                            </button>
+                            <button type="button" class="btn defalut cancel" @click="cancelOrder(r.orderId)">
+                                取消
+                            </button>
+                        </div>
+                        <!--</form>-->
+                    </div>
+
+                </div>
+                <!-- 等待发货 -->
+                <div id="step2" class="tab-pane fade">
+                    <div class="top">
+                        <span>产品</span><span>数量</span><span>价格</span>
+                    </div>
+
+                    <div class="orderlist" v-for="r in orderlist2">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th style="width: 100px;"></th>
+                                <th style="width: 423px;text-align: left;">订单编号：{{r.orderNumber}}</th>
+                                <th colspan="2"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr v-for="t in r.goods">
+                                <td></td>
+                                <td>{{t.name}}</td>
+                                <td style="text-align: center;width: 220px;">{{t.number}}</td>
+                                <td style="text-align: center;">￥{{t.price}}</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3"></td>
+                                <td style=" text-align: center;">总价：￥{{r.price}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="table-btn two">
+                            <button type="button" class="btn defalut delivery" >发货
+                            </button>
+                            <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId)">
+                                查看详情
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 等待确认 -->
+                <div id="step3" class="tab-pane fade">
+                    <div class="top">
+                        <span>产品</span><span>数量</span><span>价格</span>
+                    </div>
+
+                    <div class="orderlist" v-for="r in orderlist3">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th style="width: 100px;"></th>
+                                <th style="width: 423px;text-align: left;">订单编号：{{r.orderNumber}}</th>
+                                <th colspan="2"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr v-for="t in r.goods">
+                                <td></td>
+                                <td>{{t.name}}</td>
+                                <td style="text-align: center;width: 220px;">{{t.number}}</td>
+                                <td style="text-align: center;">￥{{t.price}}</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3"></td>
+                                <td style=" text-align: center;">总价：￥{{r.price}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="table-btn single">
+                            <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId)">
+                                查看详情
+                            </button>
+
+                        </div>
+                        </form>
+                    </div>
+
+                </div>
+
+                <!-- 未评价 -->
+                <div id="step6" class="tab-pane fade">
+                    <div class="top">
+                        <span>产品</span><span>数量</span><span>价格</span>
+                    </div>
+
+                    <div class="orderlist" v-for="r in orderlist4">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th style="width: 100px;"></th>
+                                <th style="width: 423px;text-align: left;">订单编号：{{r.orderNumber}}</th>
+                                <th colspan="2"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr v-for="t in r.goods">
+                                <td></td>
+                                <td>{{t.name}}</td>
+                                <td style="text-align: center;width: 220px;">{{t.number}}</td>
+                                <td style="text-align: center;">￥{{t.price}}</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3"></td>
+                                <td style=" text-align: center;">总价：￥{{r.price}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="table-btn single">
+                            <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId)">
+                                查看详情
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 已完成 -->
+                <div id="step4" class="tab-pane fade">
+                    <div class="top">
+                        <span>产品</span><span>数量</span><span>价格</span>
+                    </div>
+
+                    <div class="orderlist" v-for="r in orderlist5">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th style="width: 100px;"></th>
+                                <th style="width: 423px;text-align: left;">订单编号：{{r.orderNumber}}</th>
+                                <th colspan="2"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr v-for="t in r.goods">
+                                <td></td>
+                                <td>{{t.name}}</td>
+                                <td style="text-align: center;width: 220px;">{{t.number}}</td>
+                                <td style="text-align: center;">￥{{t.price}}</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3"></td>
+                                <td style=" text-align: center;">总价：￥{{r.price}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="table-btn single">
+                            <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId)">
+                                查看详情
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 已取消 -->
+                <div id="step5" class="tab-pane fade">
+                    <div class="top">
+                        <span>产品</span><span>数量</span><span>价格</span>
+                    </div>
+                    <div class="orderlist" v-for="r in orderlist0">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th style="width: 100px;"></th>
+                                <th style="width: 423px;text-align: left;">订单编号：{{r.orderNumber}}</th>
+                                <th colspan="2"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr v-for="t in r.goods">
+                                <td></td>
+                                <td>{{t.name}}</td>
+                                <td style="text-align: center;width: 220px;">{{t.number}}</td>
+                                <td style="text-align: center;">￥{{t.price}}</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3"></td>
+                                <td style=" text-align: center;">总价：￥{{r.price}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="table-btn single">
+                            <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId)">
+                                查看详情
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
 </div>
+
 <script type="text/javascript" src="../../js/jquery.js"></script>
-<!--DataTables 核心 js-->
-<script type="text/javascript" src="../../js/table/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../../js/login_verify.js"></script>
-<script type="text/javascript" src="../../js/valid.js"></script>
-<script type="text/javascript" src="../../js/table/dataTables.bootstrap.min.js"></script>
-<!--datatables的配置-->
 <script type="text/javascript" src="../../js/vue.js"></script>
-<script type="text/javascript" src="../../js/admin/orderlist.js"></script>
+<script type="text/javascript" src="../../js/user/user_home.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/user/user_orderlist.js"></script>
+
+<script type="text/javascript" src="../../js/admin/admin_orderlist.js"></script>
 </body>
 </html>

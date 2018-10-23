@@ -180,7 +180,14 @@ span#face {
 div.clearfloat:first-child {
     margin-top: 10%;
 }
-
+.div-chat-title {
+     position: relative;
+     width: 100%;
+}
+div#msgpanel {
+    position: relative;
+    width: 100%;
+}
 @media screen and (min-width: 900px) and (max-width:1200px){/*当前屏幕大于900px*/
     .content {
         width:1145px;
@@ -191,12 +198,12 @@ div.clearfloat:first-child {
     .row.chat-container {
         height: 80%;
     }
-    .div-chat-title {
+   /* .div-chat-title {
         width: 75.5%;
-    }
+    }*/
     div#msgpanel {
         bottom: 25px;
-        width: 76%;
+       /* width: 76%;*/
     }
     div#msgpanel {
         min-height: 88px;
@@ -223,10 +230,10 @@ div.clearfloat:first-child {
 @media screen and (min-width: 1400px){
     div#msgpanel {
        /* bottom: 5.6%;*/
-        width: 77.8%;
+       /* width: 77.8%;*/
     }
     div#chat-content {
-        max-height: 619px;
+        max-height: 661px;
     }
 
 }
