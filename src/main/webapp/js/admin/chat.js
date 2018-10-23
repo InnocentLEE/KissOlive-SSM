@@ -48,13 +48,16 @@ function build_chatDIV(obj) {
 
         $("#myTabContent").append("" +
             "<div class='tab-pane fade ' id='U" + id + "' >" +
-            "<div id='chat-content' class='chat-content' style='max-height: 500px'>" +
+            " <div class=\"div-chat-title\">" +
+            " <p class=\"p-chat-object\">"+$(obj).text().substring(1)+"</p>" +
+            " </div>"+
+            "<div id='chat-content' class='chat-content'>" +
             "</div>" +
             "<div id='msgpanel'>" +
             "<textarea autoHeight='true' class='chatinput emotion' id='chatinput' placeholder='输入回复信息..'></textarea>" +
             "<div class='tools-box'>" +
             "<span class='face-icon tool-icon' id='face'>☺</span>" +
-            "<span class='fa fa-paper-plane tool-icon' id='analytic' onclick='out()'></span>" +
+            "<button type=\"button\" class=\"btn-send\" id=\"analytic\" onclick=\"out()\">发送</button>" +
             "</div>" +
             "</div>"
         );
@@ -84,7 +87,8 @@ function build_chatDIV(obj) {
             dataType:'json',
             success: function(data) {
                 if(data.status === 0) {
-                    console.log("获取用户："+id+"历史消息成功");
+                    console.log("获取用户："+id+"历史消息成功"+$(obj).text().substring(0,$(obj).length-1));
+                    console.log("obj.text=="+$(obj).text().substring(0,$(obj).length-1)));
                     //将数据渲染聊天框
                     username = $(obj).text();
 
@@ -109,7 +113,7 @@ function build_chatDIV(obj) {
                                 "   </div>" +
                                 "   <div class='left'>" +
                                 "       <div class='chat-nickname'>"+username+"</div>" +
-                                "       <div class='chat-avatars'><img src='../../img/user/user_prointro/missolive.png' alt=''></div>" +
+                                "       <div class='chat-avatars'><img src='../../img/guke.png' alt=''></div>" +
                                 "       <div class='chat-message'>" + AnalyticEmotion(data.data[i].message) + "</div>" +
                                 "   </div>" +
                                 "</div>");

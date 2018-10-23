@@ -1,0 +1,13 @@
+.table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>th, .table>thead:first-child>tr:first-child>th, .table>caption+thead>tr:first-child>td, .table>colgroup+thead>tr:first-child>td, .table>thead:first-child>tr:first-child>td {
+    vertical-align: middle;
+}
+.leadertab.row {
+    width: 97%;
+    margin: 0 auto;
+}
+table.table-bordered {
+    margin: 5px 0;
+}
+a.btn>i.fa {
+    padding-right: 5px;
+}
