@@ -124,7 +124,8 @@
                             </tbody>
                         </table>
                         <div class="table-btn two">
-                            <button type="button" class="btn defalut delivery" >发货
+                            <button type="button" class="btn defalut delivery"  @click="deliver(r.orderId)">
+                                发货
                             </button>
                             <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId)">
                                 查看详情
@@ -294,12 +295,20 @@
     </div>
 </div>
 
+<div class="popup_de xycenter" id="tip">
+    <div class="popup_box">
+        <span class="popup_close" value="关闭">×</span>
+        <span class="show_msg" id="show_msg"></span>
+        <div class="btn_box">
+            <div class="popup_btn btn-danger" value="确定" id="tipbtn">确定</div>
+            <div class="popup_btn btn_cancel" value="取消">取消</div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript" src="../../js/jquery.js"></script>
 <script type="text/javascript" src="../../js/vue.js"></script>
-<script type="text/javascript" src="../../js/user/user_home.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../../js/user/user_orderlist.js"></script>
-
 <script type="text/javascript" src="../../js/admin/admin_orderlist.js"></script>
 </body>
 </html>

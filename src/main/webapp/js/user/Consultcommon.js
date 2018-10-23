@@ -85,7 +85,7 @@ $(function() {
             AllUpdateOrderShoppingCar()
         }),
         $(window).resize(function() {
-            autoShopcartH();
+            //autoShopcartH();
         }),
         $(".compare_table tr:odd").addClass("gray_bg"),
         $(".compare_table tr td:last-child").addClass("last");
