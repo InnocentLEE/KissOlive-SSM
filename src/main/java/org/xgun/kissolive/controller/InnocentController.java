@@ -500,9 +500,10 @@ public class InnocentController {
     @ResponseBody
     public ServerResponse editGoods(HttpSession session, @RequestParam("goods_id")Integer id,
                                     @RequestParam("color_name")String colorName,
-                                    @RequestParam("color_code")String colorCode, Double price){
+                                    @RequestParam("color_code")String colorCode, Double price,
+                                    @RequestParam("status")int status){
         // TODO: 18-10-15  
-        Goods goods = new Goods(id,null,colorCode,colorName,new BigDecimal(price),null,null);
+        Goods goods = new Goods(id,null,colorCode,colorName,new BigDecimal(price),status,null);
         return iInnocentService.editGoods(goods);
     }
 }

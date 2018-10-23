@@ -9,14 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.xgun.kissolive.common.Const;
 import org.xgun.kissolive.common.ResponseCode;
 import org.xgun.kissolive.common.ServerResponse;
 import org.xgun.kissolive.pojo.Address;
 import org.xgun.kissolive.pojo.User;
 import org.xgun.kissolive.service.IUserService;
+import org.xgun.kissolive.utils.FTPSSMLoad;
 import org.xgun.kissolive.utils.MNS;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
@@ -241,5 +244,31 @@ public class UserController {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"还没登录，请先登录");
         Address address = new Address(id,user.getId(),province,city,district,detail,null,consignee,telphone);
         return iUserService.updateAddress(address);
+    }
+
+    /**
+     * 修改头像
+     * @param session
+     * @param request
+     * @param headimg
+     * @return
+     */
+    @RequestMapping(value = "update_user_headimg.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse updateUserHeadimg(HttpSession session, HttpServletRequest request,
+                                            @RequestParam("head_img") MultipartFile headimg){
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        if(user==null)
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"还没登录，请先登录");
+        String headimgUrl = null;
+        try {
+            Map map = FTPSSMLoad.upload(headimg, request, Const.FILE_SAVE_PATH);
+            if(!(boolean)map.get("result"))
+                return ServerResponse.createByErrorMessage("添加头像失败");
+            headimgUrl = map.get("http_url").toString();
+        }catch (Exception e){
+            return ServerResponse.createByErrorMessage("添加头像失败");
+        }
+        return null;
     }
 }
