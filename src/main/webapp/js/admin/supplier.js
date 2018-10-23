@@ -95,7 +95,12 @@ function delete1(btn)
                 if(result.status == 0)
                     window.parent.frames["right"].location.reload();
                 else{
-
+                    var text="删除失败!";
+                    document.getElementById('show_msg').innerHTML=text;
+                    $('#tip').addClass('bbox');
+                    $('#tipbtn').one('click',function() {
+                        window.parent.frames["right"].location.reload();
+                    })
                 }
             }
         })
@@ -151,7 +156,7 @@ function updatesup() {
             success:function (result) {
                 if(result.status==0)
                 {
-                    var text="修改成功";
+                    var text="修改成功!";
                     document.getElementById('show_msg').innerHTML=text;
                     $('#tip').addClass('bbox');
                     $('#tipbtn').one('click',function(){

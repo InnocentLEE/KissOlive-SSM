@@ -148,7 +148,6 @@ function changeproduct() {
 }
 //点击入库按钮发送请求获取品牌，产品，色号
 function getmsg() {
-    alert("请求品牌，产品，色号，供应商");
     $.ajax({
         type: 'get',
         url: 'http://localhost:8080/supplier',
@@ -196,7 +195,6 @@ var table_id_example=new Vue({
 //单击模态框提交按钮时间
 function addiven() {
     if(checked()){
-        alert("可以提交");
         //1.获取表单的值
         var formData = new FormData();
         var addnumber=$("#newinventory1").val();
@@ -204,7 +202,6 @@ function addiven() {
         var permitdate=$("#permitdate").val();
         var number=$("#innernumber").val();
         var supplierid=$("#select4").val();
-        alert(supplierid);
         formData.append("stockId",addnumber);
         formData.append("goodsId",goodsid);
         formData.append("shelfdate",permitdate);

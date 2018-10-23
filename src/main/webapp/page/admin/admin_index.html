@@ -22,13 +22,16 @@
 	<body>
 
 		<!-- start: sidebar -->
-		<div class="sidebar ">
+		<div class="sidebar " id="admin_index">
 			<div class="sidebar-collapse">
 				<div class="sidebar-header t-center">
 					<span><img class="text-logo" src="../../img/admin/logo1.png"></span>
 				</div>
-				<div class="username">
-					<span>欢迎，admin</span>
+			<br>
+				<div class="username" v-if="loginflag==1">
+					<span>欢迎，{{user.username}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</div>
+				<div class="username" v-else>
 				</div>
 				<div class="sidebar-menu">
 					<ul class="nav nav-sidebar">
@@ -88,6 +91,9 @@
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript" src="../../js/jquery.js"></script>
+		<script type="text/javascript" src="../../js/vue.js"></script>
+		<script type="text/javascript" src="../../js/admin/admin_index.js"></script>
 	</body>
 
 </html>

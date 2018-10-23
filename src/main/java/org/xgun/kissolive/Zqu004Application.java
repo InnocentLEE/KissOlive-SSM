@@ -84,4 +84,9 @@ public class Zqu004Application {
 		return "page/user/user_orderlist.html";
 	}
 
+	@RequestMapping("/admin_login")
+	String adminlogin(){
+		return "page/admin/admin_login.html";
+	}
+
 }
