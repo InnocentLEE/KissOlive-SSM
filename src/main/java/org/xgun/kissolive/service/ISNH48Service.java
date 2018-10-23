@@ -38,6 +38,8 @@ public interface ISNH48Service {
 
     ServerResponse<List<ListOrder>> getOrders(Integer status, Integer page, Integer size, Integer userID);
 
+    ServerResponse<List<ListOrder>> getAdminOrders(Integer status, Integer page, Integer size);
+
     ServerResponse<List<Permit>> getPermits();
 
     ServerResponse updatePermit(Permit permit);

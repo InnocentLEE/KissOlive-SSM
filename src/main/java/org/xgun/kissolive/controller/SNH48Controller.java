@@ -211,6 +211,20 @@ public class SNH48Controller {
     }
 
     /**
+     * 管理员获取订单列表
+     * @param status 订单状态
+     * @param page 第几页
+     * @param size 每页几条
+     * @return
+     */
+    @GetMapping("/orders/admin/{status}/{page}/{size}")
+    public ServerResponse<List<ListOrder>> getAdminOrders(@PathVariable Integer status, @PathVariable Integer page,
+                                                     @PathVariable Integer size) {
+
+        return service.getAdminOrders(status, page, size);
+    }
+
+    /**
      * 获取订单详细地址和总价
      * @param orderID 订单ID
      * @return

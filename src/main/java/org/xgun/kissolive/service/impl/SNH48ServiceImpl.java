@@ -335,6 +335,37 @@ public class SNH48ServiceImpl implements ISNH48Service {
     }
 
     @Override
+    public ServerResponse<List<ListOrder>> getAdminOrders(Integer status, Integer page, Integer size) {
+
+        PageHelper.startPage(page,size);
+        List<Order> orders = mapper.listAdminOrder(status);
+        if (orders == null || orders.size() == 0) {
+            return ServerResponse.createBySuccess("订单为空", null);
+        }
+        List<ListOrder> listOrder = new ArrayList<>();
+        //遍历每一个订单
+        for (Order order : orders) {
+            ListOrder lo = new ListOrder();
+            Integer orderID = order.getId();
+            lo.setOrderId(orderID);
+            lo.setOrderNumber(order.getNumber());
+            lo.setPrice(order.getPrice());
+
+            List<OrderGoods> listOG = new ArrayList<>();
+            List<OrderItem> listOrderItem = mapper.listOrderItem(orderID);
+            for (OrderItem oi : listOrderItem) {
+                String name = getGoodsName(oi.getGoodsId());
+                String url = mapper.getGoodsUrl(oi.getGoodsId());
+                OrderGoods og = new OrderGoods(oi, name, url);
+                listOG.add(og);
+            }
+            lo.setGoods(listOG);
+            listOrder.add(lo);
+        }
+        return ServerResponse.createBySuccess(listOrder);
+    }
+
+    @Override
     public ServerResponse<List<Permit>> getPermits() {
 
         List<Permit> listPermit = mapper.listPermit();

@@ -66,6 +66,8 @@ public interface SNH48Mapper {
 
     List<Order> listOrder(@Param("userID")Integer userID, @Param("status")Integer status);
 
+    List<Order> listAdminOrder(@Param("status")Integer status);
+
     List<OrderItem> listOrderItem(@Param("orderID")Integer orderID);
 
     List<OrderItemShipment> listOrderItemShipment(@Param("orderItemID")Integer orderItemID);
