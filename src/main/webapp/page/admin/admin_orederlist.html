@@ -82,7 +82,7 @@
                             </tbody>
                         </table>
                         <div class="table-btn two">
-                            <button type="button" class="btn defalut cancel" @click="payOrder(r.orderId)">
+                            <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId,0)">
                                 查看详情
                             </button>
                             <button type="button" class="btn defalut cancel" @click="cancelOrder(r.orderId)">
@@ -127,7 +127,7 @@
                             <button type="button" class="btn defalut delivery"  @click="deliver(r.orderId)">
                                 发货
                             </button>
-                            <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId)">
+                            <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId,1)">
                                 查看详情
                             </button>
                         </div>
@@ -166,7 +166,7 @@
                             </tbody>
                         </table>
                         <div class="table-btn single">
-                            <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId)">
+                            <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId,2)">
                                 查看详情
                             </button>
 
@@ -207,7 +207,7 @@
                             </tbody>
                         </table>
                         <div class="table-btn single">
-                            <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId)">
+                            <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId,3)">
                                 查看详情
                             </button>
                         </div>
@@ -246,7 +246,7 @@
                             </tbody>
                         </table>
                         <div class="table-btn single">
-                            <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId)">
+                            <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId,4)">
                                 查看详情
                             </button>
                         </div>
@@ -284,7 +284,7 @@
                             </tbody>
                         </table>
                         <div class="table-btn single">
-                            <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId)">
+                            <button type="button" class="btn defalut cancel" @click="getDetail(r.orderId,5)">
                                 查看详情
                             </button>
                         </div>
