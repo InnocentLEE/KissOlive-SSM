@@ -44,8 +44,13 @@ public class SNH48ServiceImpl implements ISNH48Service {
 
     @Override
     public ServerResponse removeSupplier(Integer id) {
-        if (mapper.removeSupplier(id) > 0)
-            return ServerResponse.createBySuccess();
+        try {
+            if (mapper.removeSupplier(id) > 0)
+                return ServerResponse.createBySuccess();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.createByErrorMessage("删除供应商失败");
+        }
         return ServerResponse.createByErrorMessage("删除供应商失败");
     }
 
