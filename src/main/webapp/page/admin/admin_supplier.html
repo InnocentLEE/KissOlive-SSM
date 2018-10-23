@@ -11,13 +11,14 @@
 		<link rel="stylesheet" type="text/css" href="../../css/admin/table/dataTables.responsive.css">
 		<link rel="stylesheet" type="text/css" href="../../css/admin/table/sb-admin-2.css">
 		<link rel="stylesheet" type="text/css" href="../../css/admin/font-awesome.css">
+		<link rel="stylesheet" href="../../css/user/sure_panel.css">
 	</head>
 	<body>
 		<div class="page-wrapper">
 		<!-- start:供应商管理 -->
 		<div class="row">
 			<div class="col-lg-10">
-				<h1 class="page-header">供应商管理</h1> 
+				<h1 class="page-header" style="margin-left: 20px">供应商管理</h1>
 			</div>
 		</div>
 		<table id="table_id_example" class="table table-bordered">
@@ -29,42 +30,14 @@
            </tr>
        </thead>
        <tbody>
-           <tr align="center">
-               <td>001</td><td>002</td><td></td>
+           <tr align="center" v-for="r in datas">
+               <td >{{r.id}}</td>
+			   <td>{{r.name}}</td>
+			   <td>
+				   <a class='btn btn-success btn-xs' data-toggle='modal' data-target='#myModal2' onclick='edit(this)'><i class='fa fa-arrow-up'></i> 编辑</a>
+				   <a class='btn btn-danger btn-xs' onclick='delete1(this)'><i class='fa fa-arrow-down'></i> 删除</a>
+			   </td>
            </tr>
-           <tr align="center">
-               <td>002</td><td>003</td><td></td>
-           </tr>
-           <tr align="center">
-               <td>003</td><td>007</td><td></td>
-           </tr>
-           <tr align="center">
-               <td>004</td><td>005</td><td></td>
-           </tr>
-            <tr align="center">
-              <td>005</td><td>006</td><td></td>
-           </tr>
-           <tr align="center">
-              <td>006</td><td>003</td><td></td>
-           </tr>
-           <tr align="center">
-               <td>007</td><td>002</td><td></td>
-           </tr>
-           <tr align="center">
-               <td>008</td><td>002</td><td></td>
-           </tr>
-            <tr align="center">
-               <td>009</td><td>002</td><td></td>
-           </tr>
-           <tr align="center">
-               <td>010</td><td>002</td><td></td>
-           </tr>
-           <tr align="center">
-               <td>011</td><td>002</td><td></td>
-           </tr>
-           <tr align="center">
-               <td>012</td><td>002</td><td></td>
-           </tr>		
        </tbody>
 </table>
 <!--模态框1-->
@@ -75,7 +48,7 @@
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 				</button>
-				<h4 class="modal-title" id="myModalLabel">供应商入库</h4>
+				<h4 class="modal-title" id="myModalLabel">添加供应商</h4>
 			</div>
 			<form role="form">
 			<div class="form-group">
@@ -115,13 +88,26 @@
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 </div>
-<script type="text/javascript" src="../../js/jquery.js"></script>
-<!--DataTables 核心 js-->
+
+			<div class="popup_de xycenter" id="tip">
+				<div class="popup_box">
+					<span class="popup_close" value="关闭">×</span>
+					<span class="show_msg" id="show_msg"></span>
+					<div class="btn_box">
+						<div class="popup_btn btn-danger" value="确定" id="tipbtn">确定</div>
+						<div class="popup_btn btn_cancel" value="取消">取消</div>
+					</div>
+				</div>
+			</div>
+
+			<script type="text/javascript" src="../../js/jquery.js"></script>
+			<!--DataTables 核心 js-->
 			<script type="text/javascript" src="../../js/table/jquery.dataTables.min.js"></script>
 			<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
 			<script type="text/javascript" src="../../js/login_verify.js"></script>
 			<script type="text/javascript" src="../../js/valid.js"></script>
 			<script type="text/javascript" src="../../js/table/dataTables.bootstrap.min.js"></script>
+			<script type="text/javascript" src="../../js/vue.js"></script>
 			<script type="text/javascript" src="../../js/admin/supplier.js"></script>
         </div>
 	</body>

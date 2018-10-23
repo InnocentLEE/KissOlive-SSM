@@ -6,7 +6,7 @@
             "language": {
                 "decimal": "",
                 "emptyTable": "表中没有可用数据",
-                "info": "显示 _START_ 到 _END_ 的 _TOTAL_ 条数",
+                "info": "第 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",
                 "infoEmpty": "没有记录",
                 "infoFiltered": "(从所有记录中搜索)",
                 "infoPostFix": "",
