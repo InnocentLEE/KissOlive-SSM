@@ -288,7 +288,7 @@ function doSettlement() {
            if(result.status==0){
                //delselect(delcard);
                console.log(result.data);
-               alert("下单成功！");
+               //alert("下单成功！");
                window.location.href = "http://localhost:8080/pay?id="+result.data.orderId;
            }else {
                alert(result.msg);

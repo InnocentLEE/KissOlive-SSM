@@ -58,7 +58,7 @@ function  login() {
         dataType:'json',
         success: function(data) {
             if(data.status==0) {
-                alert(data.msg);
+                //alert(data.msg);
                 $('#loginModal').modal('hide');
                 window.location.reload();
             }else{

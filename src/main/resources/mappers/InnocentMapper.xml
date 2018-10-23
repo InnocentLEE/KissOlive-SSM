@@ -344,6 +344,7 @@
     SET color_code = #{colorCode,jdbcType=VARCHAR},
       color_name = #{colorName,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
       updatetime = now()
     WHERE id = #{id,jdbcType=INTEGER}
   </update>
