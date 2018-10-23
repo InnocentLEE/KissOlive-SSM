@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Kiss Olive 订单管理</title>
+    <link rel="stylesheet" type="text/css" href="../../css/admin/table/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../css/admin/table/bootstrap.min.css">
+<!--    <link rel="stylesheet" type="text/css" href="../../css/validform/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/user/slide-unlock.css">
+    <link rel="stylesheet" type="text/css" href="../../css/user/sign_login1.css">-->
+    <link rel="stylesheet" type="text/css" href="../../css/admin/table/dataTables.responsive.css">
+    <link rel="stylesheet" type="text/css" href="../../css/admin/table/sb-admin-2.css">
+    <link rel="stylesheet" type="text/css" href="../../css/admin/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="../../css/admin/table/table.css">
+    <link rel="stylesheet" type="text/css" href="../../css/admin/table/admin-brand.css">
+    <!--<link rel="stylesheet" href="../../css/user/orderlist.css">-->
+    <link rel="stylesheet" type="text/css" href="../../css/admin/admin_detailorder.css">
+</head>
+<body>
+<div class="page-wrapper">
+    <!-- start:订单管理 -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header" style="margin-left: 20px">订单管理</h1>
+        </div>
+    </div>
+    <div class="leadertab row">
+        <ul id="myTab" class="nav nav-tabs nav-justified "role="tablist">
+            <li id="step1Li" class="active black">
+                <a href="#step1" data-toggle="tab" role="tab">未付款</a>
+            </li>
+            <li id="step2Li" class="gray">
+                <a href="#step2" data-toggle="tab" role="tab">等待发货</a>
+            </li>
+            <li id="step3Li" class="gray">
+                <a href="#step3" data-toggle="tab" role="tab">等待确认</a>
+            </li>
+            <li id="step4Li" class="gray">
+                <a href="#step4" data-toggle="tab" role="tab">已完成</a>
+            </li>
+            <li id="step5Li" class="gray">
+                <a href="#step5" data-toggle="tab" role="tab">已取消</a>
+            </li>
+        </ul>
+
+        <div id="myTabContent" class="tab-content">
+            <!-- 订单页面 -->
+            <!-- 未付款 -->
+            <div id="step1" class="tab-pane fade active in">
+                <table id="table_id_undo" class="table table-bordered">
+                    <thead style="vertical-align: middle">
+                    <th rowspan="2"> 订单</th>
+                    <th colspan="3">产品</th>
+                    <th rowspan="2">管理</th>
+                    <tr align="center">
+                        <th >产品名称</th>
+                        <th >产品数量</th>
+                        <th >产品价格</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr align="center">
+                        <!--rosspan为合并n行，有多少个产品就有n+1个rowspan -->
+                        <td rowspan="4">856231161232313455</td>
+                        <td class="muti-col">Dior魅惑唇釉</td>
+                        <td class="muti-col">5</td>
+                        <td class="muti-col">320.00</td>
+                        <!--rosspan为合并n行，有多少个产品就有n+1个rowspan -->
+                        <td rowspan="4">
+                            <a class="btn btn-info btn-sm" target="right" data-toggle="modal" data-target="#editGoodModal">
+                                <i class="fa fa-pencil-square"></i>详情</a>
+                            <a class="btn btn-danger btn-sm" target="right" data-toggle="modal" data-target="#editGoodModal">
+                                <i class="fa fa-pencil-square"></i>取消</a>
+                        </td>
+                    <tr>
+                    <tr>
+                        <td class="muti-col">Dior魅惑唇釉</td>
+                        <td class="muti-col">5</td>
+                        <td class="muti-col">320.00</td>
+                    </tr>
+                    <tr>
+                        <td class="muti-col">Dior魅惑唇釉</td>
+                        <td class="muti-col">5</td>
+                        <td class="muti-col">320.00</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- 等待发货 -->
+            <div id="step2" class="tab-pane fade">
+                <table id="table_id_willdo" class="table table-bordered">
+                    <thead style="vertical-align: middle">
+                    <th rowspan="2"> 订单</th>
+                    <th colspan="3">产品</th>
+                    <th rowspan="2">管理</th>
+                    <tr align="center">
+                        <th >产品名称</th>
+                        <th >产品数量</th>
+                        <th >产品价格</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr align="center">
+                        <!--rosspan为合并n行，有多少个产品就有n+1个rowspan -->
+                        <td rowspan="4">856231161232313455</td>
+                        <td class="muti-col">Dior魅惑唇釉</td>
+                        <td class="muti-col">5</td>
+                        <td class="muti-col">320.00</td>
+                        <!--rosspan为合并n行，有多少个产品就有n+1个rowspan -->
+                        <td rowspan="4">
+                            <a class="btn btn-success btn-sm" target="right" data-toggle="modal" data-target="#editGoodModal">
+                                <i class="fa fa-send"></i>发货</a>
+                            <a class="btn btn-info btn-sm" target="right" data-toggle="modal" data-target="#editGoodModal">
+                                <i class="fa fa-pencil-square"></i>详情</a>
+                            <a class="btn btn-danger btn-sm" target="right" data-toggle="modal" data-target="#editGoodModal">
+                                <i class="fa fa-pencil-square"></i>取消</a>
+                        </td>
+                    <tr>
+                    <tr>
+                        <td class="muti-col">Dior魅惑唇釉</td>
+                        <td class="muti-col">5</td>
+                        <td class="muti-col">320.00</td>
+                    </tr>
+                    <tr>
+                        <td class="muti-col">Dior魅惑唇釉</td>
+                        <td class="muti-col">5</td>
+                        <td class="muti-col">320.00</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- 等待确认 -->
+            <div id="step3" class="tab-pane fade">
+                <table id="table_id_will-confirm" class="table table-bordered">
+                    <thead style="vertical-align: middle">
+                    <th rowspan="2"> 订单</th>
+                    <th colspan="3">产品</th>
+                    <th rowspan="2">管理</th>
+                    <tr align="center">
+                        <th >产品名称</th>
+                        <th >产品数量</th>
+                        <th >产品价格</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr align="center">
+                        <!--rosspan为合并n行，有多少个产品就有n+1个rowspan -->
+                        <td rowspan="4">856231161232313455</td>
+                        <td class="muti-col">Dior魅惑唇釉</td>
+                        <td class="muti-col">5</td>
+                        <td class="muti-col">320.00</td>
+                        <!--rosspan为合并n行，有多少个产品就有n+1个rowspan -->
+                        <td rowspan="4">
+                            <a class="btn btn-info btn-sm" target="right" data-toggle="modal" data-target="#editGoodModal">
+                                <i class="fa fa-pencil-square"></i>详情</a>
+                            <a class="btn btn-danger btn-sm" target="right" data-toggle="modal" data-target="#editGoodModal">
+                                <i class="fa fa-pencil-square"></i>取消</a>
+                        </td>
+                    <tr>
+                    <tr>
+                        <td class="muti-col">Dior魅惑唇釉</td>
+                        <td class="muti-col">5</td>
+                        <td class="muti-col">320.00</td>
+                    </tr>
+                    <tr>
+                        <td class="muti-col">Dior魅惑唇釉</td>
+                        <td class="muti-col">5</td>
+                        <td class="muti-col">320.00</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- 已完成 -->
+            <div id="step4" class="tab-pane fade">
+                <table id="table_id_done" class="table table-bordered">
+                    <thead style="vertical-align: middle">
+                    <th rowspan="2"> 订单</th>
+                    <th colspan="3">产品</th>
+                    <th rowspan="2">管理</th>
+                    <tr align="center">
+                        <th >产品名称</th>
+                        <th >产品数量</th>
+                        <th >产品价格</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr align="center">
+                        <!--rosspan为合并n行，有多少个产品就有n+1个rowspan -->
+                        <td rowspan="4">856231161232313455</td>
+                        <td class="muti-col">Dior魅惑唇釉</td>
+                        <td class="muti-col">5</td>
+                        <td class="muti-col">320.00</td>
+                        <!--rosspan为合并n行，有多少个产品就有n+1个rowspan -->
+                        <td rowspan="4">
+                            <a class="btn btn-info btn-sm" target="right" data-toggle="modal" data-target="#editGoodModal">
+                                <i class="fa fa-pencil-square"></i>详情</a>
+                        </td>
+                    <tr>
+                    <tr>
+                        <td class="muti-col">Dior魅惑唇釉</td>
+                        <td class="muti-col">5</td>
+                        <td class="muti-col">320.00</td>
+                    </tr>
+                    <tr>
+                        <td class="muti-col">Dior魅惑唇釉</td>
+                        <td class="muti-col">5</td>
+                        <td class="muti-col">320.00</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- 已取消 -->
+            <div id="step5" class="tab-pane fade">
+                <table id="table_id_canceled" class="table table-bordered">
+                    <thead style="vertical-align: middle">
+                    <th rowspan="2"> 订单</th>
+                    <th colspan="3">产品</th>
+                    <th rowspan="2">管理</th>
+                    <tr align="center">
+                        <th >产品名称</th>
+                        <th >产品数量</th>
+                        <th >产品价格</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr align="center">
+                        <!--rosspan为合并n行，有多少个产品就有n+1个rowspan -->
+                        <td rowspan="4">856231161232313455</td>
+                        <td class="muti-col">Dior魅惑唇釉</td>
+                        <td class="muti-col">5</td>
+                        <td class="muti-col">320.00</td>
+                        <!--rosspan为合并n行，有多少个产品就有n+1个rowspan -->
+                        <td rowspan="4">
+                            <a class="btn btn-info btn-sm" target="right" data-toggle="modal" data-target="#editGoodModal">
+                                <i class="fa fa-pencil-square"></i>详情</a>
+                        </td>
+                    <tr>
+                    <tr>
+                        <td class="muti-col">Dior魅惑唇釉</td>
+                        <td class="muti-col">5</td>
+                        <td class="muti-col">320.00</td>
+                    </tr>
+                    <tr>
+                        <td class="muti-col">Dior魅惑唇釉</td>
+                        <td class="muti-col">5</td>
+                        <td class="muti-col">320.00</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<!--DataTables 核心 js-->
+<script type="text/javascript" src="../../js/table/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/login_verify.js"></script>
+<script type="text/javascript" src="../../js/valid.js"></script>
+<script type="text/javascript" src="../../js/table/dataTables.bootstrap.min.js"></script>
+<!--datatables的配置-->
+<script type="text/javascript" src="../../js/vue.js"></script>
+<script type="text/javascript" src="../../js/admin/orderlist.js"></script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+div#chatlist{
+  /*  background-color: #EEEEEE;*/
+    background-color: #e6e6e6;
+    overflow: scroll;
+    white-space: nowrap;
+    font-size: 18px;
+    width: 20%;
+    /*padding-left: 10px;*/
+    /*padding-top: 20px;*/
+    border-right: 1px solid #ddd;
+    height: -webkit-fill-available;
+    float: left;
+}
+
+.content{
+    width: 100%;
+    height: 100%;
+    /*background-color: #FAF2CC;*/
+    margin: 0;
+}
+.page-header {
+    margin: 30px 20px 10px 20px;
+    color: #808080;
+}
+h1.page-header {
+    margin-bottom: 0;
+
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+}
+.tab-content{
+    padding: 0;background-color: #FFFFFF;height: 100%;
+}
+div#myTabContent {
+    width: 80%;
+    float: left;
+    height: 100%;
+    background: #f5f5f5;
+}
+div#chat-content{
+    max-height: 500px
+}
+.div-waiting-content {
+    margin: 0 auto;
+    width: -webkit-fill-available;
+  /*  height: -webkit-fill-available;*/
+    text-align: center;
+    vertical-align: middle;
+}
+.clipimg {
+    width: 500px;
+    height: 343px;
+    overflow-x: hidden;
+    position: relative;
+    /* border: 1px solid black; */
+    margin: 0 auto;
+    margin-top: 5%;
+}
+img.img-waiting {
+    margin-top: 10%;
+    width: 510px;
+    float: right;
+}
+p.p-tip {
+    font-size: 1.5em;
+    color: #333;
+}
+
+/*表情弹出板块css*/
+div#msgpanel {
+    background: #fff;
+}
+div#emotions {
+    width: 100%;
+}
+#emotions .container,#emotions .page {
+    width: 80%;
+}
+.row.chat-container {
+    height: 85%;
+    margin: 5px 20px 0 20px;
+    border: 1px solid #e7e7e7;
+}
+h4.h4title {
+    padding-left: 0;
+    color: #eeeeee;
+    border-bottom: 2px solid #ccc;
+    cursor: pointer;
+    font-size: 1em;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 25px;
+    background: #292525;
+    /*margin-bottom: 15px;*/
+}
+i.iconfont.icon-icon_lianxiren {
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-left: 10px;
+
+}
+.page-header{
+    margin: 20px 20px 10px 20px;
+    color: #808080;
+}
+a:hover {
+    color: inherit;
+}
+.div-chat-title {
+    font-size: 1em;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 25px;
+    border-bottom: 1px solid #e7e7e7;
+    position: absolute;
+    width: 77.5%;
+    background: #f5f5f5;
+    z-index: 1;
+}
+p.p-chat-object {
+    font-size: 1.5em;
+}
+div#msgpanel {
+    bottom: 22px;
+    width: 77.5%;
+    line-height: 2.1;
+    min-height: 158px;
+    border-bottom: 1px solid #ddd;
+}
+textarea#chatinput {
+    max-height: 130px;
+}
+#emotions .container, #emotions .page {
+    width: 100%;
+}
+.nav-pills>li.active>a,.nav-pills>li:hover>a{
+    color: #fff;
+    background-color: #bdbebf;
+}
+.nav-pills>.active>a>.badge {
+    color: #bdbebf;
+    background-color: #fff;
+}
+.nav>li>a {
+    font-weight: unset;
+    padding: 20px 24px;
+}
+button.btn-send {
+    border: none;
+    padding: 0px 25px;
+    font-size: 14px;
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    float: right;
+    margin-bottom: 8px;
+    margin-right: 20px;
+}
+button#analytic:hover {
+    /*background: #000;*/
+    background: #dcdcde;
+    color: #fff;
+}
+/*button.btn-send:hover {
+    background: #dcdcde;
+}*/
+img.img-waiting {
+    margin: 25% 30%;
+    width: 40%;
+    /* float: right; */
+}
+.div-waiting-content {
+    height: inherit;
+}
+div#emotions {
+    margin-top: 12px;
+}
+span#face {
+    line-height: 0.8;
+}
+div.clearfloat:first-child {
+    margin-top: 10%;
+}
+
+@media screen and (min-width: 900px) and (max-width:1200px){/*当前屏幕大于900px*/
+    .content {
+        width:1145px;
+    }
+    div#chat-content {
+        max-height: 466px;
+    }
+    .row.chat-container {
+        height: 80%;
+    }
+    .div-chat-title {
+        width: 75.5%;
+    }
+    div#msgpanel {
+        bottom: 25px;
+        width: 76%;
+    }
+    div#msgpanel {
+        min-height: 88px;
+    }
+    textarea#chatinput {
+        max-height: 40px;
+        font-size: 14px;
+        padding-top: 5px;
+    }
+    .nav>li>a {
+        font-size: 16px;
+    }
+    h4.h4title {
+        font-size: 0.9em;
+    }
+ }
+@media screen and (min-width: 1200px){/*当前屏幕小于1200px*/
+    .content {
+        width: 1145px;
+    }
+
+}
+
+@media screen and (min-width: 1400px){
+    div#msgpanel {
+       /* bottom: 5.6%;*/
+        width: 77.8%;
+    }
+    div#chat-content {
+        max-height: 619px;
+    }
+
+}
