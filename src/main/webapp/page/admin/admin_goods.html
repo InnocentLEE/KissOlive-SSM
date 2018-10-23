@@ -44,7 +44,7 @@
             </td>
             <td>{{titleformat(r.description)}}</td>
             <td>
-                <a class="btn btn-primary btn-sm" target="right" data-toggle="modal" data-target="#editGoodModal"><i class="fa fa-pencil-square"></i>管理商品</a>
+                <a class="btn btn-primary btn-sm" target="right" data-toggle="modal" data-target="#editGoodModal" @click="getGoods(r.id)"><i class="fa fa-pencil-square"></i>管理商品</a>
             </td>
         </tr>
         </tbody>
@@ -98,27 +98,65 @@
                                 <th class="operator">管理</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr id="tr-goods">
-                                <td>003</td>
-                                <td><em class="color-display" style="background:#FF4F81"></em>#FF4F81</td>
-                                <td>#10粉红色</td>
-                                <td>168</td>
-                                <td>上架</td>
-                                <td><a class="btn btn-primary btn-sm" id="aedit"><i class="fa fa-pencil-square" ></i>编辑</a></td>
-                            </tr>
-                            <tr class="tr-edit" id="tr-editgoods">
-                                <td><input type="text" value="003" class="input-group td-input"></td>
-                                <td><input type="text"name="color" class="input-group td-input color" value="#FF4F81"></td>
-                                <td><input type="text" value="#10粉红色" class="input-group td-input"></td>
-                                <td><input type="text" value="168" class="input-group td-input"></td>
-                                <td><input type="text" value="上架" class="input-group td-input"></td>
-                                <td>
-                                    <a class="btn btn-success btn-sm" id="asave" onclick="cancel()"><i class="fa fa-save"></i>保存</a>
-                                    <a class="btn btn-warning btn-sm" id="acancel" onclick="cancel()"><i class="fa fa-warning"></i>取消</a></td>
-                            </tr>
-
+                            <tbody v-if="goodsNum==0">
+                                <tr>
+                                    <td colspan="6">该产品下无商品</td>
+                                </tr>
                             </tbody>
+                            <tbody v-for="r in content.goodses" v-else>
+                            <tr :id="'tr-goods'+r.id">
+                                <td>{{r.id}}</td>
+                                <td><em class="color-display" :style="'background:'+r.colorCode"></em>{{r.colorCode}}</td>
+                                <td>{{r.colorName}}</td>
+                                <td>{{r.price}}</td>
+                                <td v-if="r.status==1">
+                                    上架
+                                </td>
+                                <td v-else>
+                                    下架
+                                </td>
+                                <td><a class="btn btn-primary btn-sm" id="aedit" @click="openEdit(r.id)"><i class="fa fa-pencil-square" ></i>编辑</a></td>
+                            </tr>
+                            <tr class="tr-edit" :id="'tr-editgoods'+r.id">
+                                <td>{{r.id}}</td>
+                                <td><input type="text" name="color" class="input-group td-input color" :value="r.colorCode" :id="'colorCode'+r.id"></td>
+                                <td><input type="text" :value="r.colorName" class="input-group td-input" :id="'colorName'+r.id"></td>
+                                <td><input type="text" :value="r.price" class="input-group td-input" :id="'price'+r.id"></td>
+                                <td>
+                                    <select :id="'status'+r.id" v-if="r.status==1">
+                                        <option value="1" selected="selected">上架</option>
+                                        <option value="2">下架</option>
+                                    </select>
+                                    <select :id="'status'+r.id" v-else>
+                                        <option value="1">上架</option>
+                                        <option value="2" selected="selected">下架</option>
+                                    </select></td>
+                                <td>
+                                    <a class="btn btn-success btn-sm" id="asave" @click="editGoods(r.id)"><i class="fa fa-save"></i>保存</a>
+                                    <a class="btn btn-warning btn-sm" id="acancel" @click="closeEdit(r.id)"><i class="fa fa-warning"></i>取消</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tbody>
+                                <tr id="add">
+                                    <td colspan="6">
+                                        <a class="btn btn-primary btn-sm" onclick="open_addGoods()"><i class="fa fa-plus"></i>增加商品</a>
+                                    </td>
+                                </tr>
+                                <tr class="tr-edit" id="addgoods">
+                                    <td></td>
+                                    <td><input type="text" name="color" class="input-group td-input color" id="colorCode"></td>
+                                    <td><input type="text" class="input-group td-input" id="colorName"></td>
+                                    <td><input type="text" class="input-group td-input" id="price"></td>
+                                    <td>
+                                        上架
+                                    <td>
+                                        <a class="btn btn-success btn-sm" @click="addGoods(content.id)"><i class="fa fa-save"></i>保存</a>
+                                        <a class="btn btn-warning btn-sm" onclick="open_addGoods()"><i class="fa fa-warning"></i>取消</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+
                         </table>
                     </div>
                 </div>
@@ -138,15 +176,5 @@
 <!--datatables的配置-->
 <script type="text/javascript" src="../../js/vue.js"></script>
 <script type="text/javascript" src="../../js/admin/goods.js"></script>
-<script>
-  $("#aedit").click(function (){
-      $("#tr-goods").fadeToggle();
-      $("#tr-editgoods").slideToggle();
-  })
-    function cancel() {
-        $("#tr-editgoods").fadeToggle();
-        $("#tr-goods").slideToggle();
-    }
-</script>
 </body>
 </html>

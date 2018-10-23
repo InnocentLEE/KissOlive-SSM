@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="../../css/user/home.css">
     <link rel="stylesheet" href="../../css/user/user_cart.css">
     <link rel="stylesheet" href="../../css/user/user_successed.css">
+    <link rel="stylesheet" href="../../css/user/sure_panel.css">
 
 </head>
 
@@ -33,7 +34,7 @@
                         <a href="#" class="navbar-brand">登录</a>
                     </li>
                     <li>
-                        <a href="#" class="navbar-brand">注册</a>
+                        <a onclick="regis()" class="navbar-brand">注册</a>
                     </li>
                     <!-- 响应式布局按钮-下拉框 -->
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
@@ -242,6 +243,15 @@
     </div>
 </footer>
 <!-- end of 尾部 -->
+<div class="popup_de xycenter" id="tip">
+    <div class="popup_box">
+        <span class="popup_close" value="关闭">×</span>
+        <span class="show_msg" id="show_msg"></span>
+        <div class="btn_box">
+            <div class="popup_btn btn-danger" value="确定" id="tipbtn">确定</div>
+        </div>
+    </div>
+</div>
 <script type="text/javascript" src="../../js/jquery.js"></script>
 <script type="text/javascript" src="../../js/vue.js"></script>
 <script type="text/javascript" src="../../js/user/user_home.js"></script>

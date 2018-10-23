@@ -31,7 +31,7 @@ $(document).ready(function() {
         "sDom": "<'col-sm-12' <'row col-sm-12' <'col-sm-2'l> <'col-sm-8'<'#btn'>> <'col-sm-8'> <'cos-sm-2'f>> t <'col-sm-6' i> <'col-sm-6' p>>"
     });
     var btnn = "<a class=\"btn btn-primary btn-sm\" href='admin_addproduction.html' target='right'><i class=\"fa fa-plus\"></i>添加</a>\n";
-    $("#btn")[0].innerHTML = btnn;
+    //$("#btn")[0].innerHTML = btnn;
     /*$("#all").click(function(){
         $('[name=all]:checkbox').prop('checked',this.checked);//checked为true时为默认显示的状态
     });*/
@@ -50,7 +50,9 @@ var table_id_example = new Vue({
     el : '#table_id_example',
     data :{
         datas:[],
-        maxlength:15
+        maxlength:15,
+        content:[],
+        goodsNum:0
     },
     created:function () {
         var self = this;
@@ -76,6 +78,9 @@ var table_id_example = new Vue({
                 return str.slice(0,this.maxlength) + "...";
             else
                 return str;
+        },
+        getGoods:function (id) {
+            doGetGoods(id);
         }
     }
 })
@@ -85,5 +90,98 @@ function showmsg(msg) {
     $('#show').addClass('bbox');
     $('#showbtn').one('click',function(){
         window.parent.frames["right"].location.reload();
+    })
+}
+
+function doGetGoods(id) {
+    //alert(id);
+    $.ajax({
+        type:"post",
+        url:"http://localhost:8080/production/get_production_show.do",
+        data:{
+            production_id:id
+        },
+        dataType:'json',
+        success:function (data) {
+            editGoodModal.content = data.data;
+            editGoodModal.goodsNum = data.data.goodses.length;
+        },
+        error:function () {
+            alert("获取异常");
+        }
+    })
+}
+
+var editGoodModal = new Vue({
+    el:"#editGoodModal",
+    data:{
+        content:[],
+        goodsNum:0
+    },
+    methods:{
+        openEdit:function (id) {
+            $("#tr-goods"+id).fadeToggle();
+            $("#tr-editgoods"+id).slideToggle();
+        },
+        closeEdit:function (id) {
+            $("#tr-editgoods"+id).fadeToggle();
+            $("#tr-goods"+id).slideToggle();
+        },
+        editGoods:function (id) {
+            doEditGoods(id);
+        },
+        addGoods:function (id) {
+            doAddGoods(id);
+        }
+    }
+})
+function open_addGoods() {
+    $("#add").fadeToggle();
+    $("#addgoods").slideToggle();
+}
+function doEditGoods(id) {
+    var color_name = $("#colorName"+id).val();
+    var color_code = $("#colorCode"+id).val();
+    var price = $("#price"+id).val();
+    var status = $("#status"+id).val();
+    $.ajax({
+        type:"post",
+        url:"http://localhost:8080/production/edit_goods.do",
+        data:{
+            goods_id:id,
+            color_name:color_name,
+            color_code:color_code,
+            price:price,
+            status:status
+        },
+        dataType:'json',
+        success:function (data) {
+            window.parent.frames["right"].location.reload();
+        },
+        error:function () {
+            alert("修改异常");
+        }
+    })
+}
+function doAddGoods(id) {
+    var color_name = $("#colorName").val();
+    var color_code = $("#colorCode").val();
+    var price = $("#price").val();
+    $.ajax({
+        type:"post",
+        url:"http://localhost:8080/production/add_goods.do",
+        data:{
+            production_id:id,
+            color_name:color_name,
+            color_code:color_code,
+            price:price,
+        },
+        dataType:'json',
+        success:function (data) {
+            window.parent.frames["right"].location.reload();
+        },
+        error:function () {
+            alert("添加异常");
+        }
     })
 }

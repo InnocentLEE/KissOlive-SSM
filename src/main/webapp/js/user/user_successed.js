@@ -64,7 +64,12 @@ function judgePay() {
         dataType:'json',
         success :function (data) {
             if(data.data==true){
-                alert("支付成功");
+                var text="支付成功";
+                document.getElementById('show_msg').innerHTML=text;
+                $('#tip').addClass('bbox');
+                $('#tipbtn').one('click',function(){
+                    $('.popup_de').removeClass('bbox');
+                })
                 clearInterval(time);
             }
         }
@@ -75,3 +80,7 @@ function judgePay() {
    }*/
 }
 var time = setInterval("judgePay()","2000");
+//弹出框关闭按钮事件
+$('.popup_de .popup_close').click(function(){
+    $('.popup_de').removeClass('bbox');
+});
