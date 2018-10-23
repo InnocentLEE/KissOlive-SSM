@@ -187,3 +187,45 @@ em.fa.fa-list-alt {
 	color: #fff;
 	padding-left: 1%;
 }
+
+/*20181021修改sidebar宽度*/
+.sidebar {
+	width: 100%;
+}
+.sidebar .sidebar-menu {
+	overflow-x: hidden;
+	overflow-y: unset;
+	width: 100%;
+}
+.sidebar ul.nav.nav-sidebar {
+	margin: 0px 0 10px 0;
+	width: 100%;
+	padding: 5% 0;
+}
+@media screen and (max-width:991px) { /*当屏幕尺寸小于991px时，应用下面的CSS样式!*/
+
+	.sidebar ul.nav.nav-sidebar li a {
+		line-height: 30px;
+		font-size: 16px;
+	}
+	.sidebar .sidebar-header img {
+		width: 100%;
+	}
+	.sidebar .sidebar-header {
+		padding: 10px;
+		height: auto;
+	}
+	.username {
+		text-align: center;
+		margin-top: -10%;
+	}
+}
+@media screen and (max-width:204px){
+	.sidebar ul.nav.nav-sidebar li a {
+		line-height: 16px;
+		font-size: 14px;
+	}
+}
+
+
+

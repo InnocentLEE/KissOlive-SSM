@@ -49,7 +49,7 @@ function build_chatDIV(obj) {
         $("#myTabContent").append("" +
             "<div class='tab-pane fade ' id='U" + id + "' >" +
             " <div class=\"div-chat-title\">" +
-            " <p class=\"p-chat-object\">"+$(obj).text().substring(1)+"</p>" +
+            " <p class=\"p-chat-object\">"+ $(obj).text().substring(0,$(obj).text().length-1)+"</p>" +
             " </div>"+
             "<div id='chat-content' class='chat-content'>" +
             "</div>" +
@@ -87,10 +87,10 @@ function build_chatDIV(obj) {
             dataType:'json',
             success: function(data) {
                 if(data.status === 0) {
-                    console.log("获取用户："+id+"历史消息成功"+$(obj).text().substring(0,$(obj).length-1));
-                    console.log("obj.text=="+$(obj).text().substring(0,$(obj).length-1)));
+                    console.log("获取用户："+id+"历史消息成功 打印名字："+$(obj).text().substring(0,$(obj).text().length-1));
+                    console.log("obj.text=="+$(obj).text().substring(0,$(obj).text().length-1));
                     //将数据渲染聊天框
-                    username = $(obj).text();
+                    username = $(obj).text().substring(0,$(obj).text().length-1);
 
                     for ( var i in data.data ){
                         if(data.data[i].source === 2) {
