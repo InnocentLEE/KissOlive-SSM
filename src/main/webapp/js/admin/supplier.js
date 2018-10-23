@@ -78,13 +78,14 @@ function edit(btn)
 <!--删除按钮功能-->
 function delete1(btn)
 {
+    var tr = btn.parentElement.parentElement;
+    var td = tr.cells[0];
+    var userID=td.innerText;
+
     var text="确认删除？";
     document.getElementById('show_msg').innerHTML=text;
     $('#tip').addClass('bbox');
     $('#tipbtn').one('click',function(){
-        var tr = btn.parentElement.parentElement;
-        var td = tr.cells[0];
-        var userID=td.innerText;
         //发送删除ajax请求
         $.ajax({
             type:'delete',
@@ -93,6 +94,9 @@ function delete1(btn)
             success:function (result) {
                 if(result.status == 0)
                     window.parent.frames["right"].location.reload();
+                else{
+
+                }
             }
         })
     })
