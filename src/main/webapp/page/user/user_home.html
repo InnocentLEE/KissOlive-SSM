@@ -165,108 +165,34 @@
             <!-- end of 轮播图  -->
 
             <!-- start of 信息部分  -->
-            <div style="" class="brand-name-div">
+            <div style="" class="brand-name-div" id="show">
                 <div style="height: 70px;">
                     <div class="inlien-left">
-                        <h3 class="text-capitalize">YSL圣罗兰</h3>
+                        <h3 class="text-capitalize">珂莱欧</h3>
                     </div>
                     <div class="inline-right">
-                        <a href="#">更多>></a>
+                        <a href="search?brand=4">更多>></a>
                     </div>
                 </div>
                 <div class="content-list">
                     <ul class="brick-list">
-                        <li class="brick-item brick-item-m" data-gid="2181600011">
+                        <li class="brick-item brick-item-m" data-gid="2181600011" v-for="(r,temp) in data1" v-if="temp<5">
                             <div class="figure figure-img">
-                                <a class="exposure" href="#detail" onclick="">
-                                    <img src="../../images/YSL1.jpg" alt="圣罗兰纯口红"></a>
-                            </div>
-                            <h3 class="title">
-                                <a href="#detail" onclick="">ROUGE PUR COUTURE</a>
-                            </h3>
-                            <p class="desc"> 唇膏 / 圣罗兰纯口红</p>
-                            <p class="price"><span class="num">1399</span>元
-                                <del><span class="num">1699</span>元</del>
-                            </p>
-                            <p class="rank"></p>
-                            <div class="review-wrapper">
-                                <a href="#">
-                                    <span class="review">查看详情</span>
+                                <a class="exposure" href="#detail" :href="'production_detail?id='+r.id">
+                                    <img :src="r.imgUrl">
                                 </a>
                             </div>
-                        </li>
-                        <li class="brick-item brick-item-m" data-gid="2181600011">
-                            <div class="figure figure-img">
-                                <a class="exposure" href="#detail" onclick="">
-                                    <img src="../../images/6E43A08923604C1397CBF20FE1225ABC.png" alt="圣罗兰纯口红"></a>
-                            </div>
                             <h3 class="title">
-                                <a href="#detail" onclick="">ROUGE PUR COUTURE</a>
+                                <a :href="'production_detail?id='+r.id" onclick="">{{r.name}}</a>
                             </h3>
-                            <p class="desc"> 唇膏 / 圣罗兰纯口红</p>
-                            <p class="price"><span class="num">1399</span>元
-                                <del><span class="num">1699</span>元</del>
+                            <p class="desc">{{r.description}}</p>
+                            <p class="price" v-for="(t,index) in r.goodses" v-if="index<1">
+                                <span class="num">{{t.price}}</span>元
+                                <del><span class="num">{{t.price+300}}</span>元</del>
                             </p>
                             <p class="rank"></p>
                             <div class="review-wrapper">
-                                <a href="#">
-                                    <span class="review">查看详情</span>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="brick-item brick-item-m" data-gid="2181600011">
-                            <div class="figure figure-img">
-                                <a class="exposure" href="#detail" onclick="">
-                                    <img src="../../images/6E43A08923604C1397CBF20FE1225ABC.png" alt="圣罗兰纯口红"></a>
-                            </div>
-                            <h3 class="title">
-                                <a href="#detail" onclick="">ROUGE PUR COUTURE</a>
-                            </h3>
-                            <p class="desc"> 唇膏 / 圣罗兰纯口红</p>
-                            <p class="price"><span class="num">1399</span>元
-                                <del><span class="num">1699</span>元</del>
-                            </p>
-                            <p class="rank"></p>
-                            <div class="review-wrapper">
-                                <a href="#">
-                                    <span class="review">查看详情</span>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="brick-item brick-item-m" data-gid="2181600011">
-                            <div class="figure figure-img">
-                                <a class="exposure" href="#detail" onclick="">
-                                    <img src="../../images/6E43A08923604C1397CBF20FE1225ABC.png" alt="圣罗兰纯口红"></a>
-                            </div>
-                            <h3 class="title">
-                                <a href="#detail" onclick="">ROUGE PUR COUTURE</a>
-                            </h3>
-                            <p class="desc"> 唇膏 / 圣罗兰纯口红</p>
-                            <p class="price"><span class="num">1399</span>元
-                                <del><span class="num">1699</span>元</del>
-                            </p>
-                            <p class="rank"></p>
-                            <div class="review-wrapper">
-                                <a href="#">
-                                    <span class="review">查看详情</span>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="brick-item brick-item-m" data-gid="2181600011">
-                            <div class="figure figure-img">
-                                <a class="exposure" href="#detail" onclick="">
-                                    <img src="../../images/6E43A08923604C1397CBF20FE1225ABC.png" alt="圣罗兰纯口红"></a>
-                            </div>
-                            <h3 class="title">
-                                <a href="#detail" onclick="">ROUGE PUR COUTURE</a>
-                            </h3>
-                            <p class="desc"> 唇膏 / 圣罗兰纯口红</p>
-                            <p class="price"><span class="num">1399</span>元
-                                <del><span class="num">1699</span>元</del>
-                            </p>
-                            <p class="rank"></p>
-                            <div class="review-wrapper">
-                                <a href="#">
+                                <a :href="'production_detail?id='+r.id">
                                     <span class="review">查看详情</span>
                                 </a>
                             </div>
@@ -276,105 +202,31 @@
                 </div>
                 <div style="height: 70px;">
                     <div class="inlien-left">
-                        <h3 class="text-capitalize">阿玛尼</h3>
+                        <h3 class="text-capitalize">美宝莲纽约</h3>
                     </div>
                     <div class="inline-right">
-                        <a href="#">更多>></a>
+                        <a href="search?brand=9">更多>></a>
                     </div>
                 </div>
                 <div class="content-list">
                     <ul class="brick-list">
-                        <li class="brick-item brick-item-m" data-gid="2181600011">
+                        <li class="brick-item brick-item-m" data-gid="2181600011" v-for="(r,temp) in data3" v-if="temp<5">
                             <div class="figure figure-img">
-                                <a class="exposure" href="#detail" onclick="">
-                                    <img src="../../images/AMANI.png" alt="臻致丝绒哑光唇釉"></a>
-                            </div>
-                            <h3 class="title">
-                                <a href="#detail" onclick="">GIORGIO ARMANI LIP MAESTRO</a>
-                            </h3>
-                            <p class="desc">唇釉 / 臻致丝绒哑光唇釉</p>
-                            <p class="price"><span class="num">1399</span>元
-                                <del><span class="num">1699</span>元</del>
-                            </p>
-                            <p class="rank"></p>
-                            <div class="review-wrapper">
-                                <a href="#">
-                                    <span class="review">查看详情</span>
+                                <a class="exposure" href="#detail" :href="'production_detail?id='+r.id">
+                                    <img :src="r.imgUrl">
                                 </a>
                             </div>
-                        </li>
-                        <li class="brick-item brick-item-m" data-gid="2181600011">
-                            <div class="figure figure-img">
-                                <a class="exposure" href="#detail" onclick="">
-                                    <img src="../../images/A24F36A04024440B960470880694B4F5.png" alt="臻致丝绒哑光唇釉"></a>
-                            </div>
                             <h3 class="title">
-                                <a href="#detail" onclick="">GIORGIO ARMANI LIP MAESTRO</a>
+                                <a :href="'production_detail?id='+r.id" onclick="">{{r.name}}</a>
                             </h3>
-                            <p class="desc">唇釉 / 臻致丝绒哑光唇釉</p>
-                            <p class="price"><span class="num">1399</span>元
-                                <del><span class="num">1699</span>元</del>
+                            <p class="desc">{{r.description}}</p>
+                            <p class="price" v-for="(t,index) in r.goodses" v-if="index<1">
+                                <span class="num">{{t.price}}</span>元
+                                <del><span class="num">{{t.price+300}}</span>元</del>
                             </p>
                             <p class="rank"></p>
                             <div class="review-wrapper">
-                                <a href="#">
-                                    <span class="review">查看详情</span>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="brick-item brick-item-m" data-gid="2181600011">
-                            <div class="figure figure-img">
-                                <a class="exposure" href="#detail" onclick="">
-                                    <img src="../../images/43BA9650F414402B8472A33881DEF788.png" alt="臻致丝绒哑光唇釉"></a>
-                            </div>
-                            <h3 class="title">
-                                <a href="#detail" onclick="">GIORGIO ARMANI LIP MAESTRO</a>
-                            </h3>
-                            <p class="desc">唇釉 / 臻致丝绒哑光唇釉</p>
-                            <p class="price"><span class="num">1399</span>元
-                                <del><span class="num">1699</span>元</del>
-                            </p>
-                            <p class="rank"></p>
-                            <div class="review-wrapper">
-                                <a href="#">
-                                    <span class="review">查看详情</span>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="brick-item brick-item-m" data-gid="2181600011">
-                            <div class="figure figure-img">
-                                <a class="exposure" href="#detail" onclick="">
-                                    <img src="../../images/43BA9650F414402B8472A33881DEF788.png" alt="臻致丝绒哑光唇釉"></a>
-                            </div>
-                            <h3 class="title">
-                                <a href="#detail" onclick="">GIORGIO ARMANI LIP MAESTRO</a>
-                            </h3>
-                            <p class="desc">唇釉 / 臻致丝绒哑光唇釉</p>
-                            <p class="price"><span class="num">1399</span>元
-                                <del><span class="num">1699</span>元</del>
-                            </p>
-                            <p class="rank"></p>
-                            <div class="review-wrapper">
-                                <a href="#">
-                                    <span class="review">查看详情</span>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="brick-item brick-item-m" data-gid="2181600011">
-                            <div class="figure figure-img">
-                                <a class="exposure" href="#detail" onclick="">
-                                    <img src="../../images/871795D64731442FA9CAE5993708E5D2.jpg" alt="臻致丝绒哑光唇釉"></a>
-                            </div>
-                            <h3 class="title">
-                                <a href="#detail" onclick="">GIORGIO ARMANI LIP MAESTRO</a>
-                            </h3>
-                            <p class="desc">唇釉 / 臻致丝绒哑光唇釉</p>
-                            <p class="price"><span class="num">1399</span>元
-                                <del><span class="num">1699</span>元</del>
-                            </p>
-                            <p class="rank"></p>
-                            <div class="review-wrapper">
-                                <a href="#">
+                                <a :href="'production_detail?id='+r.id">
                                     <span class="review">查看详情</span>
                                 </a>
                             </div>
@@ -384,105 +236,31 @@
                 </div>
                 <div style="height: 70px;">
                     <div class="inlien-left">
-                        <h3 class="text-capitalize">雅诗兰黛</h3>
+                        <h3 class="text-capitalize">迪奥</h3>
                     </div>
                     <div class="inline-right">
-                        <a href="#">更多>></a>
+                        <a href="search?brand=11">更多>></a>
                     </div>
                 </div>
                 <div class="content-list">
                     <ul class="brick-list">
-                        <li class="brick-item brick-item-m" data-gid="2181600011">
+                        <li class="brick-item brick-item-m" data-gid="2181600011" v-for="(r,temp) in data4" v-if="temp<5">
                             <div class="figure figure-img">
-                                <a class="exposure" href="#detail" onclick="">
-                                    <img src="../../images/YASLD.jpg" alt="Pure Color Love Lipstick"></a>
-                            </div>
-                            <h3 class="title">
-                                <a href="#detail" onclick="">Pure Color Love Lipstick</a>
-                            </h3>
-                            <p class="desc">恋爱唇膏</p>
-                            <p class="price"><span class="num">1399</span>元
-                                <del><span class="num">1699</span>元</del>
-                            </p>
-                            <p class="rank"></p>
-                            <div class="review-wrapper">
-                                <a href="#">
-                                    <span class="review">查看详情</span>
+                                <a class="exposure" href="#detail" :href="'production_detail?id='+r.id">
+                                    <img :src="r.imgUrl">
                                 </a>
                             </div>
-                        </li>
-                        <li class="brick-item brick-item-m" data-gid="2181600011">
-                            <div class="figure figure-img">
-                                <a class="exposure" href="#detail" onclick="">
-                                    <img src="../../images/YASLD.jpg" alt="Pure Color Love Lipstick"></a>
-                            </div>
                             <h3 class="title">
-                                <a href="#detail" onclick="">Pure Color Love Lipstick</a>
+                                <a :href="'production_detail?id='+r.id" onclick="">{{r.name}}</a>
                             </h3>
-                            <p class="desc">恋爱唇膏</p>
-                            <p class="price"><span class="num">1399</span>元
-                                <del><span class="num">1699</span>元</del>
+                            <p class="desc">{{r.description}}</p>
+                            <p class="price" v-for="(t,index) in r.goodses" v-if="index<1">
+                                <span class="num">{{t.price}}</span>元
+                                <del><span class="num">{{t.price+300}}</span>元</del>
                             </p>
                             <p class="rank"></p>
                             <div class="review-wrapper">
-                                <a href="#">
-                                    <span class="review">查看详情</span>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="brick-item brick-item-m" data-gid="2181600011">
-                            <div class="figure figure-img">
-                                <a class="exposure" href="#detail" onclick="">
-                                    <img src="../../images/YASLD.jpg" alt="Pure Color Love Lipstick"></a>
-                            </div>
-                            <h3 class="title">
-                                <a href="#detail" onclick="">Pure Color Love Lipstick</a>
-                            </h3>
-                            <p class="desc">恋爱唇膏</p>
-                            <p class="price"><span class="num">1399</span>元
-                                <del><span class="num">1699</span>元</del>
-                            </p>
-                            <p class="rank"></p>
-                            <div class="review-wrapper">
-                                <a href="#">
-                                    <span class="review">查看详情</span>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="brick-item brick-item-m" data-gid="2181600011">
-                            <div class="figure figure-img">
-                                <a class="exposure" href="#detail" onclick="">
-                                    <img src="../../images/YASLD.jpg" alt="Pure Color Love Lipstick"></a>
-                            </div>
-                            <h3 class="title">
-                                <a href="#detail" onclick="">Pure Color Love Lipstick</a>
-                            </h3>
-                            <p class="desc">恋爱唇膏</p>
-                            <p class="price"><span class="num">1399</span>元
-                                <del><span class="num">1699</span>元</del>
-                            </p>
-                            <p class="rank"></p>
-                            <div class="review-wrapper">
-                                <a href="#">
-                                    <span class="review">查看详情</span>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="brick-item brick-item-m" data-gid="2181600011">
-                            <div class="figure figure-img">
-                                <a class="exposure" href="#detail" onclick="">
-                                    <img src="../../images/YASLD.jpg" alt="Pure Color Love Lipstick"></a>
-                            </div>
-                            <h3 class="title">
-                                <a href="#detail" onclick="">Pure Color Love Lipstick</a>
-                            </h3>
-                            <p class="desc">恋爱唇膏</p>
-                            <p class="price"><span class="num">1399</span>元
-                                <del><span class="num">1699</span>元</del>
-                            </p>
-                            <p class="rank"></p>
-                            <div class="review-wrapper">
-                                <a href="#">
+                                <a :href="'production_detail?id='+r.id">
                                     <span class="review">查看详情</span>
                                 </a>
                             </div>
@@ -490,15 +268,15 @@
 
                     </ul>
                 </div>
-                <div style="height: 70px;">
+                <!--<div style="height: 70px;">
                     <div class="inlien-left">
                         <h3 class="text-capitalize">香奈儿</h3>
                     </div>
                     <div class="inline-right">
                         <a href="#">更多>></a>
                     </div>
-                </div>
-                <div class="content-list">
+                </div>-->
+                <!--<div class="content-list">
                     <ul class="brick-list">
                         <li class="brick-item brick-item-m" data-gid="2181600011">
                             <div class="figure figure-img">
@@ -597,7 +375,7 @@
                         </li>
 
                     </ul>
-                </div>
+                </div>-->
             </div>
             <div style="height:60px"></div>
         </div>
@@ -820,6 +598,7 @@
     })
 </script>
 <script type="text/javascript" src="../../js/user/user_home.js"></script>
+<script type="text/javascript" src="../../js/user/user_index.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
 <!--<script type="text/javascript" src="../../js/slideunlock.js"></script>-->
 <script type="text/javascript" src="../../js/login_verify.js"></script>
