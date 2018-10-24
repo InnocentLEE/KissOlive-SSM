@@ -329,6 +329,7 @@ public class SNH48ServiceImpl implements ISNH48Service {
                 listOG.add(og);
             }
             lo.setGoods(listOG);
+            lo.setUpdateTime(DateUtil.formatTime(order.getUpdatetime()));
             listOrder.add(lo);
         }
         return ServerResponse.createBySuccess(listOrder);
@@ -360,6 +361,7 @@ public class SNH48ServiceImpl implements ISNH48Service {
                 listOG.add(og);
             }
             lo.setGoods(listOG);
+            lo.setUpdateTime(DateUtil.formatTime(order.getUpdatetime()));
             listOrder.add(lo);
         }
         return ServerResponse.createBySuccess(listOrder);

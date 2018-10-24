@@ -18,6 +18,16 @@ public class ListOrder {
     //商品列表
     private List<OrderGoods> goods;
 
+    private String updateTime;
+
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
+    }
+
     public Integer getOrderId() {
         return orderId;
     }
