@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="../../css/validform/demo.css">
 <link rel="stylesheet" type="text/css" href="../../css/user/slide-unlock.css">
 <link rel="stylesheet" type="text/css" href="../../css/user/sign_login2.css">
+	<link rel="stylesheet" href="../../css/user/sure_panel.css">
 </head>
 
 <body>
@@ -25,7 +26,7 @@
 						<span class="denglu">&nbsp;&nbsp;&nbsp;后&nbsp;&nbsp;&nbsp;&nbsp;台&nbsp;&nbsp;&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录</span>
 					</div>
 
-					<form class="registerform form-horizontal " onsubmit="return checkform()" action=" " method="post" >
+					<form class="registerform form-horizontal " method="post">
 						<input type="hidden" name="method" value="login" />
 						<div class="sum-group">
 							<div class="form-group">
@@ -40,7 +41,7 @@
 								<div class="col-sm-6">
 									<input type="password" value="" id="password" name="password"
 										class="inputClass form-control inputxt"
-										placeholder="6-18位以字母开头，含数字/字母/'_'"/>
+										placeholder="请输入密码"/>
 								</div>
 								<div class="col-sm-12 tip1" >
 				                      <label class="errorClass" id="userError" style="vertical-align:middle;"></label>
@@ -99,7 +100,7 @@
 		
 							<div class="form-group">
 								<div class="login_btn col-md-12 col-lg-12">
-									<button class="btn btn-default lbtn" type="submit" id="submit" >登 录</button>
+									<button class="btn btn-default lbtn" type="button" onclick="login()">登 录</button>
 								</div>
 							</div>
 					   </div>
@@ -114,6 +115,16 @@
 	</div>
 	<!-- container_fluid -->
 
+	<div class="popup_de xycenter" id="tip">
+		<div class="popup_box">
+			<span class="popup_close" value="关闭">×</span>
+			<span class="show_msg" id="show_msg"></span>
+			<div class="btn_box">
+				<div class="popup_btn btn-danger" value="确定" id="tipbtn">确定</div>
+				<div class="popup_btn btn_cancel" value="取消">取消</div>
+			</div>
+		</div>
+	</div>
 	<script type="text/javascript" src="../../js/jquery.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../../js/login_verify.js"></script>

@@ -49,7 +49,6 @@ function update(a)
 {
     var tr = a.parentElement.parentElement;
     var td = tr.cells[0];
-    alert(td.innerText);
     userID=td.innerText;
 }
 
@@ -160,7 +159,6 @@ $("#update_account").click(function(){
             else
             {
                 $('#per_myModal2').modal('hide');
-                alert(reslut.msg);
                 window.parent.frames["right"].location.reload();
             }
         }

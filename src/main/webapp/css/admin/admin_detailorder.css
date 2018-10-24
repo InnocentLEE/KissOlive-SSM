@@ -1,0 +1,40 @@
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin: 0;
+}
+ul.addr {
+    margin-left: 30px;
+    margin-top: 10px;
+
+    padding-bottom: 15px;
+    padding-top: 15px;
+    padding-left: 35px;
+}
+.div-text {
+     padding: 15px;
+     margin-right: 0;
+     margin-left: 35px;
+     background: #fff;
+     font-size: 16px;
+     padding-bottom: 15px;
+     border-bottom: 1px solid #ddd;
+     color: #555;
+    padding-left: 0;
+    margin-bottom: 35px;
+}
+
+.row {
+    margint: 0;
+}
+.leadertab.row {
+    margin: 0;
+}
+table.table {
+    margin-top: 15px;
+    margin-left: 30px;
+    width: 97%;
+}
+.labelhead{
+    color: #808080;
+}

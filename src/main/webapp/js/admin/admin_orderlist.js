@@ -24,8 +24,8 @@ var orderlist = new Vue({
         getOrderlist:function (status) {
             doGetOrderlist(status);
         },
-        getDetail:function (id) {
-            window.location.href="http://localhost:8080/order_detail?id="+id;
+        getDetail:function (id,status) {
+            window.location.href="http://localhost:8080/page/admin/admin_detailorder.html?id="+id+"&status="+status;
         },
         cancelOrder:function (id) {
             var text="确定取消该订单吗?";
@@ -36,7 +36,7 @@ var orderlist = new Vue({
             })
         },
         payOrder:function (id) {
-            window.location.href="http://localhost:8080/pay?id="+id;
+            window.location.href="http://localhost:8080/page/admin/admin_detailorder.html?id="+id;
         },
         receivedOrder:function (id) {
             var text="确定收货吗?";
