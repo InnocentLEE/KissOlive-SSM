@@ -69,6 +69,7 @@ function judgePay() {
                 $('#tip').addClass('bbox');
                 $('#tipbtn').one('click',function(){
                     $('.popup_de').removeClass('bbox');
+                    window.location.href = "http://localhost:8080/orderlist";
                 })
                 clearInterval(time);
             }

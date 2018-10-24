@@ -434,8 +434,8 @@ window.onload=function(){
             fd.readAsDataURL(files[0]);
 
 
-            var Max_Width = 630;
-            var Max_Height = 350;
+            var Max_Width = 200;
+            var Max_Height = 200;
             var isAllow =false;
 
             fd.onload=function(){

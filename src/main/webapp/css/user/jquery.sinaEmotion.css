@@ -3,7 +3,7 @@
 	width: 315px;
 	font-size: 12px;
 	background: #fff;
-	/*position: absolute;*/
+	position: absolute;
 	border: 1px solid #e8e8e8;
 	/*z-index: 999999;*/
 }

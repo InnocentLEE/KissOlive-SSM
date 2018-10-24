@@ -1021,6 +1021,7 @@ div#msgpanel {
 @media screen and (max-height:927px) {
     /*当屏幕尺寸小于773px时，应用下面的CSS样式!*/
     div#chat-content {
-        max-height:78.5%;
+        /*max-height:78.5%;*/
+        max-height:73.5%;
     }
 }

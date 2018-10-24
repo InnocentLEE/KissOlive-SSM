@@ -115,7 +115,7 @@
 <!-- start of 内容 -->
 <div class="container content" id="content" v-cloak>
     <div class="product-pic">
-        <img class="pic" src="../../images/959B06291F454B14A8A663597CC5C077.png" alt="">
+        <img class="pic" :src="content.imgUrl" alt="">
     </div>
     <div class="product-intro">
         <h1 class="product-name">{{content.name}}</h1>
@@ -239,26 +239,26 @@
                 客服咨询<a href="javascript:void(0)" class="icon-close" onclick="closeBar()">X</a>
             </h4>
             <div id="chat-content" >
-                <div class='clearfloat'>
-                    <div class='time-column'>
-                        <small class='chat-date'>2018-10-18 14:00</small>
-                    </div>
-                    <div class='left'>
-                        <div class='chat-nickname'>Olive小姐</div>
-                        <div class='chat-avatars'><img src="../../img/user/user_prointro/missolive.png" alt=""></div>
-                        <div class='chat-message'>请在此留言，我们的咨询顾问将在最快时间内直接回复您。</div>
-                    </div>
-                </div>
-                <div class='clearfloat'>
-                    <div class='time-column'>
-                        <small class='chat-date'>2018-10-18 14:01</small>
-                    </div>
-                    <div class='right'>
-                        <div class='chat-nickname'>我</div>
-                        <div class='chat-message'>这个口红最近有什么促销活动吗？</div>
-                        <div class='chat-avatars'><img src="../../img/user/user_prointro/missolive.png" alt=""></div>
-                    </div>
-                </div>
+                <!--<div class='clearfloat'>-->
+                    <!--<div class='time-column'>-->
+                        <!--<small class='chat-date'>2018-10-18 14:00</small>-->
+                    <!--</div>-->
+                    <!--<div class='left'>-->
+                        <!--<div class='chat-nickname'>Olive小姐</div>-->
+                        <!--<div class='chat-avatars'><img src="../../img/user/user_prointro/missolive.png" alt=""></div>-->
+                        <!--<div class='chat-message'>请在此留言，我们的咨询顾问将在最快时间内直接回复您。</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class='clearfloat'>-->
+                    <!--<div class='time-column'>-->
+                        <!--<small class='chat-date'>2018-10-18 14:01</small>-->
+                    <!--</div>-->
+                    <!--<div class='right'>-->
+                        <!--<div class='chat-nickname'>我</div>-->
+                        <!--<div class='chat-message'>这个口红最近有什么促销活动吗？</div>-->
+                        <!--<div class='chat-avatars'><img src="../../img/user/user_prointro/missolive.png" alt=""></div>-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
             <div id="msgpanel">
                 <textarea autoHeight="true" class="chatinput emotion" id="chatinput"
@@ -467,7 +467,7 @@
             message : inputText,
             datetime :currentTime(),
             type :1,  //1标志为用户信息
-            from :"1",//userId
+            from :head.user.id,//userId
             to : "admin"
         }));
 
@@ -479,7 +479,7 @@
             "   <div class='right'>" +
             "       <div class='chat-nickname'> 我 </div>" +
             "       <div class='chat-message'>" + AnalyticEmotion(inputText) + "</div>" +
-            "<div class='chat-avatars'><img src='../../img/user/user_prointro/missolive.png' alt=''></div>" +
+            "<div class='chat-avatars'><img src='\"+headImg +\"' alt=''></div>" +
             "   </div>" +
             "</div>");
         $("#chatinput").val("");

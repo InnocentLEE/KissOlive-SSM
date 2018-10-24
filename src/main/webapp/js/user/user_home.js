@@ -4,7 +4,7 @@ var search1 = new Vue({
         search:[]
     }
 })
-
+var headImg;
 var head = new Vue({
     el:"#head",
     data:{
@@ -24,6 +24,7 @@ var head = new Vue({
                     if(data.status==0) {
                         head.loginflag = 1;
                         head.user = data.data.user;
+                        headImg = head.user.imgUrl;
                     }else{
                         head.loginflag = 0;
                     }
@@ -79,9 +80,6 @@ function logout() {
         dataType:'json',
         success: function(data) {
             window.location.reload();
-        },
-        error:function(){
-            alert("退出异常");
         }
     })
 }

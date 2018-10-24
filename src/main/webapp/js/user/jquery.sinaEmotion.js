@@ -90,7 +90,8 @@ function AnalyticEmotion(s) {
 		var cat_page;
 		$(this).click(function(event) {
 			event.stopPropagation();
-			var eTop = target.offset().top + target.height() - 981;
+			// var eTop = target.offset().top + target.height() - 981;
+            var eTop = target.offset().top + target.height()-360;
 			var eLeft = 0;
 			if ($('#emotions .categorys')[0]) {
 				$('#emotions').css({

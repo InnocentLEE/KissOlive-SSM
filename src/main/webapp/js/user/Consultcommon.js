@@ -1,7 +1,6 @@
 /**
  * Created by lizhenya on 2018/5/19.
  */
-
 function openCart() {
     var t = $(window).width();
     0 == $(".shopping_all").length ? t > 768 ? $("#shop_cart").animate({
@@ -17,6 +16,11 @@ function openCart() {
         $(".shop_cart").addClass("bg")
 }
 function openBar() {
+    if(head.loginflag==0){
+        alert("用户未登录！");
+        return;
+    }
+
     connect();
     toolbar.hasClass("open") || (toolbar.addClass("open"),
         $("#shop_cart .lazyload").removeClass("hidden").find("img").trigger("appear"),
@@ -36,9 +40,9 @@ function closeBar() {
 }
 function openCartMeiu() {
     var t = $(window).width();
-    $("..bar_consult").hasClass("current") || $("..bar_consult").addClass("current").siblings("a").removeClass("current"),
+    $(".bar_consult").hasClass("current") || $(".bar_consult").addClass("current").siblings("a").removeClass("current"),
         $(".global_toolbar").hasClass("open") ? closeBar() : openBar(),
-        t > 768 ? $("..bar_consult").hasClass("current") || $("..bar_consult").trigger("click") : openBar()
+        t > 768 ? $(".bar_consult").hasClass("current") || $(".bar_consult").trigger("click") : openBar()
 }
 
 
@@ -193,19 +197,20 @@ $(function () {
     //}
 })
 var stompClient;
+
 function connect() {
     var socket = new SockJS("/endpointChat");
     stompClient = Stomp.over(socket);
     stompClient.connect(
         {
-            name: "1"//userId
+            name: head.user.id//userId
         },
         function connectCallback(frame){
             console.log("link success!"),
             //获取历史信息
             $.ajax({
                 type:'get',
-                url:'http://localhost:8080/chat/user/get_AllMessage/'+'1',//userId
+                url:'http://localhost:8080/chat/user/get_AllMessage/'+head.user.id,//userId
                 cache: false,
                 dataType:'json',
                 success: function(data) {
@@ -223,7 +228,7 @@ function connect() {
                                     "   <div class='right'>" +
                                     "       <div class='chat-nickname'> 我 </div>" +
                                     "       <div class='chat-message'>" + AnalyticEmotion(data.data[i].message) + "</div>" +
-                                    "       <div class='chat-avatars'><img src='../../img/user/user_prointro/missolive.png' alt=''></div>" +
+                                    "       <div class='chat-avatars'><img src='"+headImg +"' alt=''></div>" +
                                     "   </div>" +
                                     "</div>");
                             }else if(data.data[i].source === 2){
@@ -298,7 +303,7 @@ function showMessage(data) {
             "   <div class='right'>" +
             "       <div class='chat-nickname'>" + "我" + "</div>" +
             "       <div class='chat-message'>" + AnalyticEmotion(data.message) + "</div>" +
-            "       <div class='chat-avatars'><img src='../../img/user/user_prointro/missolive.png' alt=''></div>" +
+            "       <div class='chat-avatars'><img src='\"+headImg +\"' alt=''></div>" +
             "       <div class='chat-avatars'></div>" +
             "   </div>" +
             "</div>");

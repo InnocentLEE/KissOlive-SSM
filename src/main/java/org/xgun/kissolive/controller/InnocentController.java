@@ -436,10 +436,10 @@ public class InnocentController {
                                         @RequestParam("production_name")String name,
                                         @RequestParam("description")String description,
                                         @RequestParam("detail")String detail,
-                                        @RequestParam("img")MultipartFile file) {
+                                        @RequestParam(name="img",required = false)MultipartFile file) {
         // TODO: 2018/9/10 校验管理员身份
         String imgUrl = null;
-        if(!file.isEmpty()){
+        if(file!=null&&(!file.isEmpty())){
             Map map = FTPSSMLoad.upload(file, request, Const.FILE_SAVE_PATH);
             if(!(boolean)map.get("result"))
                 imgUrl = map.get("http_url").toString();

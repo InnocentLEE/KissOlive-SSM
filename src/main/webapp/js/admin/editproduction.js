@@ -5,7 +5,7 @@ function getUrlParam(name) {
 }
 var id=getUrlParam('id');
 var production;
-
+var delectflag = false;
 var brand = new Vue({
     el:"#brand",
     data:{
@@ -285,10 +285,13 @@ function sendarticle(){
     if (typeof (sendFile) != "undefined") {
         formData.append("img", sendFile);
     }else{
-        alert("品牌图片不能为空！");
-        return;
+        if(delectflag == true){
+            alert("品牌图片不能为空！");
+            return;
+        }
+        formData.append("img", null);
     }
-    formData.append("id", id);
+    formData.append("production_id", id);
     var brandlinks =document.getElementById("brand").getElementsByTagName("a");
     var brand_id = null;
     for(var i=0;i<brandlinks.length;i++){
@@ -388,7 +391,7 @@ function sendarticle(){
     formData.append("production_name", production_name);
     formData.append("description", description);
     formData.append("detail", detail);
-    var url = "http://localhost:8080/production/add_production.do";
+    var url = "http://localhost:8080/production/edit_production.do";
     submit(formData,url);
 }
 function submit(data,url){
@@ -404,7 +407,7 @@ function submit(data,url){
             alert(data.msg);
         },
         error : function() {
-            alert("添加失败");
+            alert("修改失败");
         }
     });
 }
@@ -545,6 +548,7 @@ $("#imgArea").hover(function(){
 });
 
 $(".WriteCover-deleteButton").click(function(){
+    delectflag = true;
     var previewImg =document.getElementById("banner-pic");
     var Imgarea = document.getElementById("imgArea");
     var reloadBtn = document.getElementById("reloadbtn");
