@@ -132,7 +132,8 @@ button.book {
 }
 @media (min-width: 1280px) {
 	.container.content {
-		width: 1550px;
+		/*width: 1550px;*/
+        width:1280px;
 	}
 }
 .left-list{
