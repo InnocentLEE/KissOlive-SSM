@@ -1030,7 +1030,9 @@ div#msgpanel {
         max-height: unset;
     }
     div#emotions {
-        margin-top: -5%;
+        /*margin-top: -5%;*/
+        /*margin-top: -43%;*/
+        margin-top: -15px;
     }
 }
 @media screen and (max-width:1825px) {
@@ -1043,33 +1045,37 @@ div#msgpanel {
         max-height: unset;
     }
     div#emotions {
-        margin-top: -44.8%;
-    }
+        /*margin-top: -44.8%;*/
+       /* margin-top: -3%;*/
+
+        margin-top: -15px;
+   }
 }
 @media screen and (max-width:1366px) {
-    div#chat-content {
-        height:70%;
-    }
-    div#msgpanel {
-        height: 65px;
-        border-bottom: none;
-        max-height: unset;
-    }
-    div#emotions {
-        margin-top: -109.1%;
-    }
+   div#chat-content {
+       height:70%;
+   }
+   div#msgpanel {
+       height: 65px;
+       border-bottom: none;
+       max-height: unset;
+   }
+   div#emotions {
+       /*margin-top: -109.1%;*/
+       margin-top: -1px;
+}
 }
 /*@media screen and (max-height:773px) {
-    !*当屏幕尺寸小于773px时，应用下面的CSS样式!*!
-    div#chat-content {
-        max-height:71.5%;
-    }
+!*当屏幕尺寸小于773px时，应用下面的CSS样式!*!
+div#chat-content {
+max-height:71.5%;
+}
 }
 @media screen and (max-height:927px) {
-    !*当屏幕尺寸小于773px时，应用下面的CSS样式!*!
-    div#chat-content {
-        !*max-height:78.5%;*!
-        max-height:73.5%;
-    }
+!*当屏幕尺寸小于773px时，应用下面的CSS样式!*!
+div#chat-content {
+!*max-height:78.5%;*!
+max-height:73.5%;
+}
 }
 */
