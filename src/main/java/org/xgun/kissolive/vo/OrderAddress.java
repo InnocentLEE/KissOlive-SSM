@@ -8,6 +8,15 @@ public class OrderAddress {
     private String orderNumber;
     private BigDecimal price;
     private String address;
+    private String updateTime;
+
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
+    }
 
     public Integer getOrderID() {
         return orderID;
