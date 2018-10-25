@@ -38,8 +38,8 @@ div#myTabContent {
     background: #f5f5f5;
 }
 div#chat-content{
-    height: 100%;
-    max-height: 589px;
+    /*height: 100%;
+    max-height: 589px;*/
 }
 .div-waiting-content {
     margin: 0 auto;
@@ -180,7 +180,7 @@ span#face {
     line-height: 0.8;
 }
 div.clearfloat:first-child {
-    margin-top: 10%;
+    margin-top: 15px;
 }
 .div-chat-title {
      position: relative;
@@ -256,7 +256,7 @@ div#chat-content {
     /*height: 80%;*/
     /* border-bottom: 1px solid #ccc; */
 
-    /*max-height: unset;*/
+    max-height: unset;
 }
 div#msgpanel {
     /*height: 10%;*/
@@ -282,8 +282,8 @@ span#face {
 }
 @media screen and (max-width:2100px) {
     div#chat-content {
-        height:100%;
-        min-height: 589px;
+        height:589px;
+        /*min-height: 589px;*/
     }
     div#msgpanel {
         height: 65px;
@@ -296,7 +296,7 @@ span#face {
     div#emotions {
         margin-left: 20.8%;
         /*margin-top: 8.5%;*/
-        margin-top: 8.9%;
+        margin-top: 6.9%;
         height: 158px;
     }
     div#emotions {
@@ -307,12 +307,17 @@ span#face {
         color: #ccc;
         height: 31px;
     }
+    .tools-box {
+        padding: 0;
+        background-color: #080808;
+        height: 53px;
+    }
 }
 @media screen and (max-width:1366px) {
     div#chat-content {
-        height:90%;
-        min-height: 468px;
-        max-height: 468px;
+        height: 409px;
+        /*min-height: 468px;*/
+        /*max-height: 468px;*/
     }
     div#msgpanel {
         height: 65px;
@@ -327,7 +332,24 @@ span#face {
         margin-top: 15.4%;
         width: 76%;
     }
+    .tools-box {
+        padding: 7px;
+        background-color: #080808;
+        height: 40px;
+    }
 }
 div#msgpanel {
     line-height: unset;
+}
+button.btn-send {
+    background: transparent;
+    color: #fff;
+    margin: 0;
+    margin-right: 10px;
+    margin-top: 3px;
+}
+button#analytic:hover{
+    background: transparent;
+    color: #999;
+    border: 1px solid #999;
 }
