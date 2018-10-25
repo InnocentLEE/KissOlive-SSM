@@ -159,76 +159,79 @@
                             <em class="progress-item-text">签收</em>
                         </li>
                     </ul>
-                    <div class="div-text">
-                        <span class="span-status">状&nbsp;态:&nbsp;&nbsp;签收</span>
-                    </div>
-                    <!--物流信息--时间轴-->
-                    <div class="timeline-content">
-                        <div class="history">
-                            <div class="history-date">
-                                <ul>
-                                    <li class="green" title="点击展开折叠内容"> <!-- “green为最新物流信息样式”-->
-                                        <a href="#nogo">
-                                            <h3>13:01:14<span>2018-09-23</span></h3>
+                    <div class="div-delivery">
+                        <div class="div-text">
+                            <span class="span-status">状&nbsp;态：&nbsp;&nbsp;</span>
+                            <span class="span-time">时间：&nbsp;&nbsp;{{orderinfo.updateTime}}</span>
+                        </div>
+                        <!--物流信息--时间轴-->
+                        <div class="timeline-content">
+                            <div class="history">
+                                <div class="history-date">
+                                    <ul>
+                                        <li class="green" title="点击展开折叠内容"> <!-- “green为最新物流信息样式”-->
+                                            <a href="#nogo">
+                                                <h3>13:01:14<span>2018-09-23</span></h3>
+                                                <dl>
+                                                    <dt><span>您已签收本次订单包裹，本次配送完成。感谢您在KissOlive商城购物，祝您生活愉快！</span></dt>
+                                                </dl>
+                                            </a>
+                                        </li>
+                                        <li class="line"></li><!-- “连接线条样式”-->
+                                        <li>
+                                            <h3>08:33:54<span>2018-09-23</span></h3>
                                             <dl>
-                                                <dt><span>您已签收本次订单包裹，本次配送完成。感谢您在KissOlive商城购物，祝您生活愉快！</span></dt>
+                                                <dt><span>订单已到达配送站点，详情请联系配送快递员电话：13527035119，请留意收件</span></dt>
                                             </dl>
-                                        </a>
-                                    </li>
-                                    <li class="line"></li><!-- “连接线条样式”-->
-                                    <li>
-                                        <h3>08:33:54<span>2018-09-23</span></h3>
-                                        <dl>
-                                            <dt><span>订单已到达配送站点，详情请联系配送快递员电话：13527035119，请留意收件</span></dt>
-                                        </dl>
-                                    </li>
-                                    <li>
-                                        <h3>08:23:00<span>2018-09-23</span></h3>
-                                        <dl>
-                                            <dt><span> 从肇庆端州站入库</span></dt>
-                                        </dl>
-                                    </li>
-                                    <li>
-                                        <h3>02:23:00<span>2018-09-23</span></h3>
-                                        <dl>
-                                            <dt><span>  订单已装车完成，下一站：肇庆端州站，操作人：李华</span></dt>
-                                        </dl>
-                                    </li>
-                                    <li>
-                                        <h3>18:24:00<span>2018-09-22</span></h3>
-                                        <dl>
-                                            <dt><span> 订单包裹已经派发给承运商华南广东品骏</span></dt>
-                                        </dl>
-                                    </li>
-                                    <li>
-                                        <h3>18:00:00<span>2018-09-22</span></h3>
-                                        <dl>
-                                            <dt><span> 从广东大旺分拨中心入库</span></dt>
-                                        </dl>
-                                    </li>
-                                    <li>
-                                        <h3>17:49:00<span>2018-09-22</span></h3>
-                                        <dl>
-                                            <dt><span> 订单商品已经打包，正在派发给承运商</span></dt>
-                                        </dl>
-                                    </li>
-                                    <li>
-                                        <h3>17:38:00<span>2018-09-22</span></h3>
-                                        <dl>
-                                            <dt><span> 您订单中的商品已成功匹配到华南仓</span></dt>
-                                        </dl>
-                                    </li>
-                                    <li>
-                                        <h3>16:35:00<span>2018-09-22</span></h3>
-                                        <dl>
-                                            <dt><span> 您的订单已提交并支付成功，支付方式为：支付宝支付，商品预计在09月24日（周一）送达</span></dt>
-                                        </dl>
-                                    </li>
-                                </ul>
+                                        </li>
+                                        <li>
+                                            <h3>08:23:00<span>2018-09-23</span></h3>
+                                            <dl>
+                                                <dt><span> 从肇庆端州站入库</span></dt>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <h3>02:23:00<span>2018-09-23</span></h3>
+                                            <dl>
+                                                <dt><span>  订单已装车完成，下一站：肇庆端州站，操作人：李华</span></dt>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <h3>18:24:00<span>2018-09-22</span></h3>
+                                            <dl>
+                                                <dt><span> 订单包裹已经派发给承运商华南广东品骏</span></dt>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <h3>18:00:00<span>2018-09-22</span></h3>
+                                            <dl>
+                                                <dt><span> 从广东大旺分拨中心入库</span></dt>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <h3>17:49:00<span>2018-09-22</span></h3>
+                                            <dl>
+                                                <dt><span> 订单商品已经打包，正在派发给承运商</span></dt>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <h3>17:38:00<span>2018-09-22</span></h3>
+                                            <dl>
+                                                <dt><span> 您订单中的商品已成功匹配到华南仓</span></dt>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <h3>16:35:00<span>2018-09-22</span></h3>
+                                            <dl>
+                                                <dt><span> 您的订单已提交并支付成功，支付方式为：支付宝支付，商品预计在09月24日（周一）送达</span></dt>
+                                            </dl>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
+                        <!--物流信息--时间轴-->
                     </div>
-                    <!--物流信息--时间轴-->
                 </div>
                 <div class="div-title">
                     <label class="label-title">商品清单</label>

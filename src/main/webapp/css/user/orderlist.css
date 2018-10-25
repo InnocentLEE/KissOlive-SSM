@@ -56,7 +56,9 @@ button.btn.defalut {
     color: #fff;
 }
 .table-btn {
-    margin: 0 0 0 770px;
+    /*margin: 0 0 0 770px;*/
+    /*2018/10/24*/
+    margin: 0 0 20px 770px;
 }
 .table-btn.sure {
    margin: 0 0 10px 920px;
@@ -100,4 +102,12 @@ li#step4Li>a, li#step5Li>a, li#step6Li>a {
     background-color: #080808;
     border: 1px solid #080808;
     border-bottom-color: transparent;
+}
+button.btn.defalut.info {
+    padding: 6px 0;
+    width: 100px;
+}
+button.btn.defalut.cancel {
+    padding: 6px 0px;
+    width: 100px;
 }

@@ -111,4 +111,21 @@ li.brick-item.brick-item-m:hover .review-wrapper{
 	width: 100%;
 	height: 100%;
 }
-		
+
+/*20181025修改首页商品卡片样式*/
+.brick-item-m .title, .brick-item-m .title a {
+    color: #333;
+    text-overflow: ellipsis;
+    padding: 0 10px;
+}
+.brick-item-m .desc {
+    margin: 0 10px 10px;
+    height: 20px;
+}
+.brick-item-m .figure-img {
+    width: 245px;
+}
+/**20181025修改首部导航的菜单被鼠标悬浮的颜色*/
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+    color: #999;
+}

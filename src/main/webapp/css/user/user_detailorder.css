@@ -164,3 +164,18 @@ label.label-title.label-right {
 /*
 *   2018.10.12
 */
+.timeline-content {
+    margin:0;
+}
+.div-text {
+    padding: 15px;
+    margin: 0;
+}
+.div-delivery{
+    margin: 0 50px;
+
+}
+span.span-time {
+    float: right;
+    margin-right: 15px;
+}

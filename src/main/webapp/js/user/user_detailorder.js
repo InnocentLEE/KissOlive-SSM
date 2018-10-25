@@ -26,6 +26,7 @@ var myTabContent= new Vue({
                     if(data.status==0){
                         myTabContent.productionlist = data.data;
                         myTabContent.productionnum = data.data.goods.length;
+                        console.log("productionlist ="+data.data.toString());
                     }else{
                         alert(data.msg);
                     }
@@ -44,6 +45,7 @@ var myTabContent= new Vue({
                 success :function (data) {
                     if(data.status==0){
                         myTabContent.orderinfo = data.data;
+                        console.log("orderinfo="+data.data.toString());
                     }else{
                         alert(data.msg);
                     }
