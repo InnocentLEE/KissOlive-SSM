@@ -39,6 +39,7 @@
             <ul class="nav nav-pills nav-stacked">
                 <li role="presentation"  v-for="user in userlist">
                     <a :href="'#U'+user.userId" data-toggle="pill" onclick="build_chatDIV(this)">{{user.name}}<span class="badge">{{user.num}}</span></a>
+                    <input type="hidden" :value="user.imgUrl" />
                 </li>
             </ul>
         </div>

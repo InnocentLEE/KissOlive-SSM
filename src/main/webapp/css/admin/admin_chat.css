@@ -38,7 +38,8 @@ div#myTabContent {
     background: #f5f5f5;
 }
 div#chat-content{
-    max-height: 500px
+    height: 100%;
+    max-height: 589px;
 }
 .div-waiting-content {
     margin: 0 auto;
@@ -129,6 +130,7 @@ div#msgpanel {
 }
 textarea#chatinput {
     max-height: 130px;
+    border: 0;
 }
 #emotions .container, #emotions .page {
     width: 100%;
@@ -254,7 +256,7 @@ div#chat-content {
     /*height: 80%;*/
     /* border-bottom: 1px solid #ccc; */
 
-    max-height: unset;
+    /*max-height: unset;*/
 }
 div#msgpanel {
     /*height: 10%;*/
@@ -263,6 +265,7 @@ div#msgpanel {
 }
 .tools-box {
     padding-top: 10px;
+    background-color: #000000;
 }
 div#emotions {
     margin-top: 89px;
@@ -275,10 +278,12 @@ div#emotions {
 span#face {
     display: inline-block;
     line-height: 0.5;
+    color: white;
 }
 @media screen and (max-width:2100px) {
     div#chat-content {
-        height:80%;
+        height:100%;
+        min-height: 589px;
     }
     div#msgpanel {
         height: 65px;
@@ -291,7 +296,7 @@ span#face {
     div#emotions {
         margin-left: 20.8%;
         /*margin-top: 8.5%;*/
-        margin-top: 6.9%;
+        margin-top: 8.9%;
         height: 158px;
     }
     div#emotions {
@@ -306,6 +311,8 @@ span#face {
 @media screen and (max-width:1366px) {
     div#chat-content {
         height:90%;
+        min-height: 468px;
+        max-height: 468px;
     }
     div#msgpanel {
         height: 65px;
@@ -313,7 +320,7 @@ span#face {
         max-height: unset;
     }
     div#myTabContent {
-        height: 80%;
+        height: 90%;
     }
     div#emotions {
         margin-left: 21%;

@@ -31,6 +31,7 @@ var setlist = new Vue({
 //聊天框获取
 var id;
 var username;
+var imgUrl;
 function build_chatDIV(obj) {
     id = $(obj).attr('href').substring(2);
     //判断是否已存在该ID标签页
@@ -91,7 +92,7 @@ function build_chatDIV(obj) {
                     console.log("obj.text=="+$(obj).text().substring(0,$(obj).text().length-1));
                     //将数据渲染聊天框
                     username = $(obj).text().substring(0,$(obj).text().length-1);
-
+                    imgUrl = $(obj).parent().find("input").val();
                     for ( var i in data.data ){
                         if(data.data[i].source === 2) {
                             $("#chat-content").append("" +
@@ -113,7 +114,7 @@ function build_chatDIV(obj) {
                                 "   </div>" +
                                 "   <div class='left'>" +
                                 "       <div class='chat-nickname'>"+username+"</div>" +
-                                "       <div class='chat-avatars'><img src='../../img/guke.png' alt=''></div>" +
+                                "       <div class='chat-avatars'><img src='"+imgUrl+"' alt=''></div>" +
                                 "       <div class='chat-message'>" + AnalyticEmotion(data.data[i].message) + "</div>" +
                                 "   </div>" +
                                 "</div>");
@@ -259,7 +260,7 @@ function showMessage(data) {
             "   <div class='right'>" +
             "       <div class='chat-nickname'>" + "我" + "</div>" +
             "       <div class='chat-message'>" + AnalyticEmotion(data.message) + "</div>" +
-            "       <div class='chat-avatars'></div>" +
+            "       <div class='chat-avatars'><img src='../../img/user/user_prointro/missolive.png' alt=''></div>" +
             "   </div>" +
             "</div>");
     } else {
@@ -270,7 +271,7 @@ function showMessage(data) {
             "   </div>" +
             "   <div class='left'>" +
             "       <div class='chat-nickname'>" + username + "</div>" +
-            "       <div class='chat-avatars'><img src=\"../../img/user/user_prointro/missolive.png\" alt=\"\"></div>" +
+            "       <div class='chat-avatars'><img src='"+imgUrl+"' alt=''></div>" +
             "       <div class='chat-message'>" + AnalyticEmotion(data.message) + "</div>" +
             "   </div>" +
             "</div>");
